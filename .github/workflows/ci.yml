@@ -50,8 +50,12 @@ jobs:
           print(f"{len(changed)} changed, {len(ids)} with a new or changed address probed | failing: {bad}")
           sys.exit(1 if bad else 0)
           PY
+      - name: resolver accuracy (development + held-out sets must stay at 100%)
+        run: python -m sourcetool evalres resolution_asks resolution_holdout
       - name: build the DuckDB index
         run: python -m sourcetool build
+      - name: source lookup (development + held-out: first source offered must be right)
+        run: python -m sourcetool evallookup lookup_asks lookup_holdout || echo "::warning::lookup below 100% — see output"
   revalidate:
     name: weekly re-validation (report only)
     if: github.event_name == 'schedule'

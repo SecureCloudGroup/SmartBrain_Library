@@ -1,0 +1,56 @@
+{"aliases": ["ak", "alaska"], "attrs": {}, "id": "us_state:AK", "key": "AK", "kind": "us_state", "lat": null, "lon": null, "name": "Alaska", "rank": 0, "resolver": "us_state", "state": "AK"}
+{"aliases": ["al", "alabama"], "attrs": {}, "id": "us_state:AL", "key": "AL", "kind": "us_state", "lat": null, "lon": null, "name": "Alabama", "rank": 0, "resolver": "us_state", "state": "AL"}
+{"aliases": ["ar", "arkansas"], "attrs": {}, "id": "us_state:AR", "key": "AR", "kind": "us_state", "lat": null, "lon": null, "name": "Arkansas", "rank": 0, "resolver": "us_state", "state": "AR"}
+{"aliases": ["american samoa", "as"], "attrs": {}, "id": "us_state:AS", "key": "AS", "kind": "us_state", "lat": null, "lon": null, "name": "American Samoa", "rank": 0, "resolver": "us_state", "state": "AS"}
+{"aliases": ["arizona", "az"], "attrs": {}, "id": "us_state:AZ", "key": "AZ", "kind": "us_state", "lat": null, "lon": null, "name": "Arizona", "rank": 0, "resolver": "us_state", "state": "AZ"}
+{"aliases": ["ca", "california"], "attrs": {}, "id": "us_state:CA", "key": "CA", "kind": "us_state", "lat": null, "lon": null, "name": "California", "rank": 0, "resolver": "us_state", "state": "CA"}
+{"aliases": ["co", "colorado"], "attrs": {}, "id": "us_state:CO", "key": "CO", "kind": "us_state", "lat": null, "lon": null, "name": "Colorado", "rank": 0, "resolver": "us_state", "state": "CO"}
+{"aliases": ["connecticut", "ct"], "attrs": {}, "id": "us_state:CT", "key": "CT", "kind": "us_state", "lat": null, "lon": null, "name": "Connecticut", "rank": 0, "resolver": "us_state", "state": "CT"}
+{"aliases": ["dc", "district of columbia"], "attrs": {}, "id": "us_state:DC", "key": "DC", "kind": "us_state", "lat": null, "lon": null, "name": "District of Columbia", "rank": 0, "resolver": "us_state", "state": "DC"}
+{"aliases": ["de", "delaware"], "attrs": {}, "id": "us_state:DE", "key": "DE", "kind": "us_state", "lat": null, "lon": null, "name": "Delaware", "rank": 0, "resolver": "us_state", "state": "DE"}
+{"aliases": ["fl", "florida"], "attrs": {}, "id": "us_state:FL", "key": "FL", "kind": "us_state", "lat": null, "lon": null, "name": "Florida", "rank": 0, "resolver": "us_state", "state": "FL"}
+{"aliases": ["ga", "georgia"], "attrs": {}, "id": "us_state:GA", "key": "GA", "kind": "us_state", "lat": null, "lon": null, "name": "Georgia", "rank": 0, "resolver": "us_state", "state": "GA"}
+{"aliases": ["gu", "guam"], "attrs": {}, "id": "us_state:GU", "key": "GU", "kind": "us_state", "lat": null, "lon": null, "name": "Guam", "rank": 0, "resolver": "us_state", "state": "GU"}
+{"aliases": ["hawaii", "hi"], "attrs": {}, "id": "us_state:HI", "key": "HI", "kind": "us_state", "lat": null, "lon": null, "name": "Hawaii", "rank": 0, "resolver": "us_state", "state": "HI"}
+{"aliases": ["ia", "iowa"], "attrs": {}, "id": "us_state:IA", "key": "IA", "kind": "us_state", "lat": null, "lon": null, "name": "Iowa", "rank": 0, "resolver": "us_state", "state": "IA"}
+{"aliases": ["id", "idaho"], "attrs": {}, "id": "us_state:ID", "key": "ID", "kind": "us_state", "lat": null, "lon": null, "name": "Idaho", "rank": 0, "resolver": "us_state", "state": "ID"}
+{"aliases": ["il", "illinois"], "attrs": {}, "id": "us_state:IL", "key": "IL", "kind": "us_state", "lat": null, "lon": null, "name": "Illinois", "rank": 0, "resolver": "us_state", "state": "IL"}
+{"aliases": ["in", "indiana"], "attrs": {}, "id": "us_state:IN", "key": "IN", "kind": "us_state", "lat": null, "lon": null, "name": "Indiana", "rank": 0, "resolver": "us_state", "state": "IN"}
+{"aliases": ["kansas", "ks"], "attrs": {}, "id": "us_state:KS", "key": "KS", "kind": "us_state", "lat": null, "lon": null, "name": "Kansas", "rank": 0, "resolver": "us_state", "state": "KS"}
+{"aliases": ["kentucky", "ky"], "attrs": {}, "id": "us_state:KY", "key": "KY", "kind": "us_state", "lat": null, "lon": null, "name": "Kentucky", "rank": 0, "resolver": "us_state", "state": "KY"}
+{"aliases": ["la", "louisiana"], "attrs": {}, "id": "us_state:LA", "key": "LA", "kind": "us_state", "lat": null, "lon": null, "name": "Louisiana", "rank": 0, "resolver": "us_state", "state": "LA"}
+{"aliases": ["ma", "massachusetts"], "attrs": {}, "id": "us_state:MA", "key": "MA", "kind": "us_state", "lat": null, "lon": null, "name": "Massachusetts", "rank": 0, "resolver": "us_state", "state": "MA"}
+{"aliases": ["maryland", "md"], "attrs": {}, "id": "us_state:MD", "key": "MD", "kind": "us_state", "lat": null, "lon": null, "name": "Maryland", "rank": 0, "resolver": "us_state", "state": "MD"}
+{"aliases": ["maine", "me"], "attrs": {}, "id": "us_state:ME", "key": "ME", "kind": "us_state", "lat": null, "lon": null, "name": "Maine", "rank": 0, "resolver": "us_state", "state": "ME"}
+{"aliases": ["mi", "michigan"], "attrs": {}, "id": "us_state:MI", "key": "MI", "kind": "us_state", "lat": null, "lon": null, "name": "Michigan", "rank": 0, "resolver": "us_state", "state": "MI"}
+{"aliases": ["minnesota", "mn"], "attrs": {}, "id": "us_state:MN", "key": "MN", "kind": "us_state", "lat": null, "lon": null, "name": "Minnesota", "rank": 0, "resolver": "us_state", "state": "MN"}
+{"aliases": ["missouri", "mo"], "attrs": {}, "id": "us_state:MO", "key": "MO", "kind": "us_state", "lat": null, "lon": null, "name": "Missouri", "rank": 0, "resolver": "us_state", "state": "MO"}
+{"aliases": ["mp", "northern mariana islands"], "attrs": {}, "id": "us_state:MP", "key": "MP", "kind": "us_state", "lat": null, "lon": null, "name": "Northern Mariana Islands", "rank": 0, "resolver": "us_state", "state": "MP"}
+{"aliases": ["mississippi", "ms"], "attrs": {}, "id": "us_state:MS", "key": "MS", "kind": "us_state", "lat": null, "lon": null, "name": "Mississippi", "rank": 0, "resolver": "us_state", "state": "MS"}
+{"aliases": ["montana", "mt"], "attrs": {}, "id": "us_state:MT", "key": "MT", "kind": "us_state", "lat": null, "lon": null, "name": "Montana", "rank": 0, "resolver": "us_state", "state": "MT"}
+{"aliases": ["nc", "north carolina"], "attrs": {}, "id": "us_state:NC", "key": "NC", "kind": "us_state", "lat": null, "lon": null, "name": "North Carolina", "rank": 0, "resolver": "us_state", "state": "NC"}
+{"aliases": ["nd", "north dakota"], "attrs": {}, "id": "us_state:ND", "key": "ND", "kind": "us_state", "lat": null, "lon": null, "name": "North Dakota", "rank": 0, "resolver": "us_state", "state": "ND"}
+{"aliases": ["ne", "nebraska"], "attrs": {}, "id": "us_state:NE", "key": "NE", "kind": "us_state", "lat": null, "lon": null, "name": "Nebraska", "rank": 0, "resolver": "us_state", "state": "NE"}
+{"aliases": ["new hampshire", "nh"], "attrs": {}, "id": "us_state:NH", "key": "NH", "kind": "us_state", "lat": null, "lon": null, "name": "New Hampshire", "rank": 0, "resolver": "us_state", "state": "NH"}
+{"aliases": ["new jersey", "nj"], "attrs": {}, "id": "us_state:NJ", "key": "NJ", "kind": "us_state", "lat": null, "lon": null, "name": "New Jersey", "rank": 0, "resolver": "us_state", "state": "NJ"}
+{"aliases": ["new mexico", "nm"], "attrs": {}, "id": "us_state:NM", "key": "NM", "kind": "us_state", "lat": null, "lon": null, "name": "New Mexico", "rank": 0, "resolver": "us_state", "state": "NM"}
+{"aliases": ["nevada", "nv"], "attrs": {}, "id": "us_state:NV", "key": "NV", "kind": "us_state", "lat": null, "lon": null, "name": "Nevada", "rank": 0, "resolver": "us_state", "state": "NV"}
+{"aliases": ["new york", "ny"], "attrs": {}, "id": "us_state:NY", "key": "NY", "kind": "us_state", "lat": null, "lon": null, "name": "New York", "rank": 0, "resolver": "us_state", "state": "NY"}
+{"aliases": ["oh", "ohio"], "attrs": {}, "id": "us_state:OH", "key": "OH", "kind": "us_state", "lat": null, "lon": null, "name": "Ohio", "rank": 0, "resolver": "us_state", "state": "OH"}
+{"aliases": ["ok", "oklahoma"], "attrs": {}, "id": "us_state:OK", "key": "OK", "kind": "us_state", "lat": null, "lon": null, "name": "Oklahoma", "rank": 0, "resolver": "us_state", "state": "OK"}
+{"aliases": ["or", "oregon"], "attrs": {}, "id": "us_state:OR", "key": "OR", "kind": "us_state", "lat": null, "lon": null, "name": "Oregon", "rank": 0, "resolver": "us_state", "state": "OR"}
+{"aliases": ["pa", "pennsylvania"], "attrs": {}, "id": "us_state:PA", "key": "PA", "kind": "us_state", "lat": null, "lon": null, "name": "Pennsylvania", "rank": 0, "resolver": "us_state", "state": "PA"}
+{"aliases": ["pr", "puerto rico"], "attrs": {}, "id": "us_state:PR", "key": "PR", "kind": "us_state", "lat": null, "lon": null, "name": "Puerto Rico", "rank": 0, "resolver": "us_state", "state": "PR"}
+{"aliases": ["rhode island", "ri"], "attrs": {}, "id": "us_state:RI", "key": "RI", "kind": "us_state", "lat": null, "lon": null, "name": "Rhode Island", "rank": 0, "resolver": "us_state", "state": "RI"}
+{"aliases": ["sc", "south carolina"], "attrs": {}, "id": "us_state:SC", "key": "SC", "kind": "us_state", "lat": null, "lon": null, "name": "South Carolina", "rank": 0, "resolver": "us_state", "state": "SC"}
+{"aliases": ["sd", "south dakota"], "attrs": {}, "id": "us_state:SD", "key": "SD", "kind": "us_state", "lat": null, "lon": null, "name": "South Dakota", "rank": 0, "resolver": "us_state", "state": "SD"}
+{"aliases": ["tennessee", "tn"], "attrs": {}, "id": "us_state:TN", "key": "TN", "kind": "us_state", "lat": null, "lon": null, "name": "Tennessee", "rank": 0, "resolver": "us_state", "state": "TN"}
+{"aliases": ["texas", "tx"], "attrs": {}, "id": "us_state:TX", "key": "TX", "kind": "us_state", "lat": null, "lon": null, "name": "Texas", "rank": 0, "resolver": "us_state", "state": "TX"}
+{"aliases": ["ut", "utah"], "attrs": {}, "id": "us_state:UT", "key": "UT", "kind": "us_state", "lat": null, "lon": null, "name": "Utah", "rank": 0, "resolver": "us_state", "state": "UT"}
+{"aliases": ["va", "virginia"], "attrs": {}, "id": "us_state:VA", "key": "VA", "kind": "us_state", "lat": null, "lon": null, "name": "Virginia", "rank": 0, "resolver": "us_state", "state": "VA"}
+{"aliases": ["u s virgin islands", "vi"], "attrs": {}, "id": "us_state:VI", "key": "VI", "kind": "us_state", "lat": null, "lon": null, "name": "U.S. Virgin Islands", "rank": 0, "resolver": "us_state", "state": "VI"}
+{"aliases": ["vermont", "vt"], "attrs": {}, "id": "us_state:VT", "key": "VT", "kind": "us_state", "lat": null, "lon": null, "name": "Vermont", "rank": 0, "resolver": "us_state", "state": "VT"}
+{"aliases": ["wa", "washington"], "attrs": {}, "id": "us_state:WA", "key": "WA", "kind": "us_state", "lat": null, "lon": null, "name": "Washington", "rank": 0, "resolver": "us_state", "state": "WA"}
+{"aliases": ["wi", "wisconsin"], "attrs": {}, "id": "us_state:WI", "key": "WI", "kind": "us_state", "lat": null, "lon": null, "name": "Wisconsin", "rank": 0, "resolver": "us_state", "state": "WI"}
+{"aliases": ["west virginia", "wv"], "attrs": {}, "id": "us_state:WV", "key": "WV", "kind": "us_state", "lat": null, "lon": null, "name": "West Virginia", "rank": 0, "resolver": "us_state", "state": "WV"}
+{"aliases": ["wy", "wyoming"], "attrs": {}, "id": "us_state:WY", "key": "WY", "kind": "us_state", "lat": null, "lon": null, "name": "Wyoming", "rank": 0, "resolver": "us_state", "state": "WY"}

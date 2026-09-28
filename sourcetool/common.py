@@ -44,7 +44,7 @@ def _host_lock(host: str) -> threading.Lock:
 
 
 def _client() -> httpx.Client:
-    return httpx.Client(headers={"User-Agent": USER_AGENT}, timeout=30.0, follow_redirects=True,
+    return httpx.Client(headers={"User-Agent": USER_AGENT}, timeout=90.0, follow_redirects=True,
                         trust_env=False)
 
 
@@ -100,7 +100,18 @@ def get(url: str, *, cache_hours: float = 24.0, headers: dict | None = None, api
     if cp.exists() and (time.time() - cp.stat().st_mtime) < cache_hours * 3600:
         meta = json.loads((cp.with_suffix(".meta")).read_text())
         return meta["status"], cp.read_bytes(), meta["ctype"]
-    r = _raw_get(url, headers=headers, check_robots=not api)
+    for attempt in range(3):
+        r = _raw_get(url, headers=headers, check_robots=not api)
+        if r.status_code not in (429, 503):
+            break
+        # the provider asked us to slow down: wait what it says (capped), then try again
+        try:
+            wait = float(r.headers.get("retry-after", "") or 20 * (attempt + 1))
+        except ValueError:
+            wait = 20.0 * (attempt + 1)
+        time.sleep(min(wait, 60.0))
+    if r.status_code >= 400 and r.status_code not in (404, 410):
+        return r.status_code, r.content, r.headers.get("content-type", "")  # never cache a transient error
     cp.parent.mkdir(parents=True, exist_ok=True)
     cp.write_bytes(r.content)
     cp.with_suffix(".meta").write_text(json.dumps({"status": r.status_code, "ctype": r.headers.get("content-type", ""),
