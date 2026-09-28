@@ -5,6 +5,7 @@ local source, so a record means the same thing everywhere.
 """
 from __future__ import annotations
 
+import ipaddress
 import re
 from urllib.parse import urlsplit
 
@@ -34,6 +35,33 @@ def _cat_ids() -> tuple[set[str], set[str], set[str]]:
 
 
 _CATS, _KINDS, _PKINDS = _cat_ids()
+
+
+def url_problems(url: str) -> list[str]:
+    """https, a public host, and no credential in the address."""
+    errs = []
+    try:
+        u = urlsplit(url.replace("{", "").replace("}", ""))
+        host_is_param = bool(re.fullmatch(r"\{[a-z_][a-z0-9_]*\}", urlsplit(url).netloc))
+    except ValueError:
+        return ["not a valid address"]
+    if u.scheme != "https":
+        errs.append("https only")
+    # a {param} host is filled by a resolver whose values are checked when filled
+    if not host_is_param and (not u.hostname or "." not in u.hostname or _private_ip(u.hostname)
+                              or u.hostname.endswith((".local", ".internal", ".localhost", ".home.arpa"))):
+        errs.append("public host only")
+    if (_SECRETISH.search(url) and "{" not in _SECRETISH.search(url).group(2)) or "@" in urlsplit(url).netloc:
+        errs.append("url carries a credential; keys come from the user's own vault as a {param}")
+    return errs
+
+
+def _private_ip(host: str) -> bool:
+    """An address typed as an IP that is not on the public internet (10.x, 192.168.x, 127.x, 169.254.x...)."""
+    try:
+        return not ipaddress.ip_address(host).is_global
+    except ValueError:
+        return False  # a host name, not an IP literal
 
 
 def validate_record(r: dict) -> list[str]:
@@ -67,16 +95,7 @@ def validate_record(r: dict) -> list[str]:
         if not url:
             errs.append("access needs url_template or docs_url")
         else:
-            u = urlsplit(url.replace("{", "").replace("}", ""))
-            host_is_param = bool(re.fullmatch(r"\{[a-z_][a-z0-9_]*\}", urlsplit(url).netloc))
-            if u.scheme != "https":
-                errs.append("https only")
-            # a {param} host is filled by a resolver whose values are checked when filled
-            if not host_is_param and (not u.hostname or "." not in u.hostname
-                                      or u.hostname.endswith((".local", ".internal"))):
-                errs.append("public host only")
-            if _SECRETISH.search(url) and "{" not in _SECRETISH.search(url).group(2):
-                errs.append("url carries a credential; keys come from the user's own vault as a {param}")
+            errs += url_problems(url)
     names = set(_PARAM.findall(a.get("url_template") or ""))
     declared = {q["name"] for q in a.get("params", [])}
     if names - declared:

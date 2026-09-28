@@ -61,7 +61,8 @@ def build() -> str:
     BUILD.mkdir(exist_ok=True)
     if DB.exists():
         DB.unlink()
-    recs = [r for d in ("curated", "harvested") for f in sorted((SOURCES / d).glob("*.jsonl")) for r in read_jsonl(f)]
+    recs = [r for d in ("curated", "harvested", "suggested") for f in sorted((SOURCES / d).glob("*.jsonl"))
+            for r in read_jsonl(f)]
     con = duckdb.connect(str(DB))
     con.execute("""CREATE TABLE library_sources(
         id VARCHAR PRIMARY KEY, name VARCHAR, description VARCHAR, provider_id VARCHAR, provider_name VARCHAR,
@@ -198,7 +199,7 @@ SELECT s.id, s.name, s.tier, s.validation_status, s.provider_name,
 FROM cand JOIN library_sources s ON s.id = cand.source_id LEFT JOIN hits h ON h.source_id = s.id
      LEFT JOIN catb c ON c.source_id = s.id
 WHERE s.validation_status NOT IN ('failed', 'refused') AND s.role <> 'helper'
-ORDER BY score DESC LIMIT ?"""
+ORDER BY score DESC, (s.auth <> 'none'), s.prior DESC, s.id LIMIT ?"""
 
 
 # resolvers that name a specific thing; places are too common a word-match to decide the source on their own.
@@ -307,7 +308,8 @@ def named_entities(ask: str) -> list[str]:
     from . import resolve
     from .resolvers import norm
     words = set(norm(ask).split())
-    codes = set(_re.findall(r"\b[A-Z]{3,5}\b", ask or ""))
+    # a code that names the ask's place ("NYC weather") is the place, not a ticker, unless a cue says so
+    codes = set(_re.findall(r"\b[A-Z]{3,5}\b", ask or "")) - {w.upper() for w in place_words(ask)[0]}
     found = {}
     for res in ENTITY_RESOLVERS:
         r = resolve.by_name(res, ask)

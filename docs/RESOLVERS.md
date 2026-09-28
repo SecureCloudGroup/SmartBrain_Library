@@ -10,7 +10,7 @@ A resolver is a table of entries, one per line in `resolvers/<name>.jsonl`, all 
 
 | Resolver | Entries | Open source |
 |---|---|---|
-| place | 32,333 | Census gazetteer plus population estimates |
+| place | 32,333 | Census gazetteer plus population estimates; nicknames from Wikidata and `resolvers/place_nicknames.json` |
 | zip | 33,791 | Census ZIP code areas (ZCTAs) |
 | county | 3,222 | Census gazetteer |
 | us_state | 56 | fixed list |
@@ -32,6 +32,17 @@ The single matcher is `sourcetool/resolve.py`. It works in three ways:
 - **`by_name`** looks for a phrase match on a name or alias. It scores by the distinctive words in the phrase, agreement with a state the ask names, and context words (sport, league, exchange). Popularity is weighted per resolver. Among equal matches, one that is at least 20 times more populous wins. A short code counts only when it's typed like a code, unless it's also the thing's name.
 - **`by_name(many=True)`** returns every distinct thing named, in order: a currency pair, or "compare X and Y".
 - **`near`** returns the nearest entries within the policy's distance. When a near rival differs in what it measures (`differ_on`, such as a different body of water or river), the result is *ambiguous*, which means **ask the user**. When nothing is in range, it's an honest *none*.
+
+### Place nicknames
+People say "NYC", "LA", "Philly", "Vegas", "NOLA", "Chi-town" or "the Big Apple". These are extra aliases on the place:
+- **Wikidata**: English short names (P1813) and nicknames (P1449) of items with a GNIS id (P590), joined to the Census place by the gazetteer's GNIS code (ANSICODE). The join keeps only items that are a Census place. A nickname is kept when it is a code typed in capitals ("NYC", "L.A."), a single word of five or more letters ("Philly"), or a phrase of up to three words ("Mile High City"); slogans, anything with a digit, short everyday words ("Jeff", "The Hub") and state names are dropped. A Wikidata nickname never shadows another place's own name ("Frisco" stays Frisco, Texas).
+- **Reviewed list** `resolvers/place_nicknames.json`: the common ones Wikidata lacks (it has none for Chicago), plus an `exclude` list for Wikidata nicknames we refuse.
+
+Two matcher rules keep short nicknames honest:
+- A **two-letter** place alias counts only when typed in capitals: "LA weather" is Los Angeles, the word "la" never is.
+- A capitalised **state code that is also a place nickname** ("LA", "DC") names that place only when no other place is named. "LA weather" is Los Angeles; "Lafayette LA" is Lafayette, Louisiana, because another place is named and the code is its state.
+
+In source lookup, a code typed in capitals that names the ask's place ("NYC weather") is the place, not a ticker, unless the ask has a ticker cue ("NYC stock").
 
 Every result is `resolved`, `ambiguous` (the card asks one question, offering the candidates) or `none`. Nothing is guessed silently.
 
@@ -74,7 +85,7 @@ Resolver sets:
 
 | Set | Size | Result |
 |---|---|---|
-| Development | 60 asks | 100% |
+| Development | 71 asks (11 nickname asks added) | 100% |
 | Held-out | 44 asks | 82% on its first run, then 100% after general fixes |
 | Sealed | 40 asks, run once | **90%** |
 
@@ -82,7 +93,7 @@ Lookup sets (top-1):
 
 | Set | Size | Result |
 |---|---|---|
-| Development | 45 asks | 100% |
+| Development | 47 asks | 100% |
 | Held-out | 40 asks | 85% on its first run, then 95% after general fixes |
 | Sealed | 30 asks, run once | **100%** |
 
