@@ -71,6 +71,9 @@ def socrata(max_rows: int = 10000, min_views: int = 30) -> list[dict]:
                 continue
             if datetime.fromisoformat(upd.replace("Z", "+00:00")) < cutoff:
                 continue
+            if dom.endswith((".ca", ".uk", ".au", ".nz", ".eu", ".mx", ".br", ".fr", ".de", ".it", ".es", ".nl",
+                             ".ie", ".in", ".za", ".jp", ".sg")):
+                continue  # the US catalog also lists some non-US portals; v1 scope is the US
             rid = slug("socrata", dom.replace("data.", ""), r["id"])
             if rid in seen:
                 continue

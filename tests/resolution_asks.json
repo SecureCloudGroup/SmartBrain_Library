@@ -1,0 +1,404 @@
+{
+ "description": "Broad resolver evaluation: ask -> expected outcome, across every resolver kind. 'resolved' names the key; 'ambiguous' means the right behaviour is to ASK; 'none' means honestly not covered.",
+ "cases": [
+  {
+   "ask": "weather in Boise",
+   "resolver": "place",
+   "expect": "resolved",
+   "state": "ID"
+  },
+  {
+   "ask": "forecast for Austin TX",
+   "resolver": "place",
+   "expect": "resolved",
+   "state": "TX"
+  },
+  {
+   "ask": "weather in Portland Oregon",
+   "resolver": "place",
+   "expect": "resolved",
+   "state": "OR"
+  },
+  {
+   "ask": "Portland weather",
+   "resolver": "place",
+   "expect": "ambiguous"
+  },
+  {
+   "ask": "Charleston weather",
+   "resolver": "place",
+   "expect": "ambiguous"
+  },
+  {
+   "ask": "Springfield forecast",
+   "resolver": "place",
+   "expect": "ambiguous"
+  },
+  {
+   "ask": "tides for Melbourne FL",
+   "resolver": "place",
+   "expect": "resolved",
+   "state": "FL"
+  },
+  {
+   "ask": "sunset in Key West",
+   "resolver": "place",
+   "expect": "resolved",
+   "state": "FL"
+  },
+  {
+   "ask": "air quality in Denver",
+   "resolver": "place",
+   "expect": "resolved",
+   "state": "CO"
+  },
+  {
+   "ask": "rain in Seattle this weekend",
+   "resolver": "place",
+   "expect": "resolved",
+   "state": "WA"
+  },
+  {
+   "ask": "weather in Nashville",
+   "resolver": "place",
+   "expect": "resolved",
+   "state": "TN"
+  },
+  {
+   "ask": "Louisville forecast",
+   "resolver": "place",
+   "expect": "resolved",
+   "state": "KY"
+  },
+  {
+   "ask": "Louisville KY forecast",
+   "resolver": "place",
+   "expect": "resolved",
+   "state": "KY"
+  },
+  {
+   "ask": "temperature in New York City",
+   "resolver": "place",
+   "expect": "resolved",
+   "state": "NY"
+  },
+  {
+   "ask": "weather in Salt Lake City",
+   "resolver": "place",
+   "expect": "resolved",
+   "state": "UT"
+  },
+  {
+   "ask": "air quality 94110",
+   "resolver": "zip",
+   "expect": "resolved",
+   "key": "94110"
+  },
+  {
+   "ask": "uv index for 10001",
+   "resolver": "zip",
+   "expect": "resolved",
+   "key": "10001"
+  },
+  {
+   "ask": "pollen in 30303",
+   "resolver": "zip",
+   "expect": "resolved",
+   "key": "30303"
+  },
+  {
+   "ask": "delays at ORD",
+   "resolver": "airport",
+   "expect": "resolved",
+   "key": "ORD"
+  },
+  {
+   "ask": "is JFK delayed",
+   "resolver": "airport",
+   "expect": "resolved",
+   "key": "JFK"
+  },
+  {
+   "ask": "delays at O'Hare",
+   "resolver": "airport",
+   "expect": "resolved",
+   "key": "ORD"
+  },
+  {
+   "ask": "ground stop at LaGuardia",
+   "resolver": "airport",
+   "expect": "resolved",
+   "key": "LGA"
+  },
+  {
+   "ask": "SFO delays",
+   "resolver": "airport",
+   "expect": "resolved",
+   "key": "SFO"
+  },
+  {
+   "ask": "wait times at Hartsfield-Jackson",
+   "resolver": "airport",
+   "expect": "resolved",
+   "key": "ATL"
+  },
+  {
+   "ask": "AAPL price",
+   "resolver": "ticker",
+   "expect": "resolved",
+   "key": "AAPL"
+  },
+  {
+   "ask": "apple stock",
+   "resolver": "ticker",
+   "expect": "resolved",
+   "key": "AAPL"
+  },
+  {
+   "ask": "nvidia stock price",
+   "resolver": "ticker",
+   "expect": "resolved",
+   "key": "NVDA"
+  },
+  {
+   "ask": "how is Tesla stock doing",
+   "resolver": "ticker",
+   "expect": "resolved",
+   "key": "TSLA"
+  },
+  {
+   "ask": "SPY today",
+   "resolver": "ticker",
+   "expect": "resolved",
+   "key": "SPY"
+  },
+  {
+   "ask": "microsoft share price",
+   "resolver": "ticker",
+   "expect": "resolved",
+   "key": "MSFT"
+  },
+  {
+   "ask": "bitcoin price",
+   "resolver": "crypto",
+   "expect": "resolved",
+   "key": "bitcoin"
+  },
+  {
+   "ask": "ETH price",
+   "resolver": "crypto",
+   "expect": "resolved",
+   "key": "ethereum"
+  },
+  {
+   "ask": "eth price",
+   "resolver": "crypto",
+   "expect": "resolved",
+   "key": "ethereum"
+  },
+  {
+   "ask": "solana price",
+   "resolver": "crypto",
+   "expect": "resolved",
+   "key": "solana"
+  },
+  {
+   "ask": "dogecoin",
+   "resolver": "crypto",
+   "expect": "resolved",
+   "key": "dogecoin"
+  },
+  {
+   "ask": "dollar to euro",
+   "resolver": "currency",
+   "expect": "resolved",
+   "many": true,
+   "keys": [
+    "USD",
+    "EUR"
+   ]
+  },
+  {
+   "ask": "yen exchange rate",
+   "resolver": "currency",
+   "expect": "resolved",
+   "key": "JPY"
+  },
+  {
+   "ask": "next Braves game",
+   "resolver": "team_mlb",
+   "expect": "resolved",
+   "key": "144"
+  },
+  {
+   "ask": "Yankees score",
+   "resolver": "team_mlb",
+   "expect": "resolved",
+   "key": "147"
+  },
+  {
+   "ask": "Bruins schedule",
+   "resolver": "team_nhl",
+   "expect": "resolved",
+   "key": "BOS"
+  },
+  {
+   "ask": "Lakers score",
+   "resolver": "team_espn",
+   "expect": "resolved",
+   "league": "nba"
+  },
+  {
+   "ask": "Dallas Cowboys next game",
+   "resolver": "team_espn",
+   "expect": "resolved",
+   "league": "nfl"
+  },
+  {
+   "ask": "Giants game",
+   "resolver": "team_espn",
+   "expect": "ambiguous"
+  },
+  {
+   "ask": "Chiefs score",
+   "resolver": "team_espn",
+   "expect": "resolved",
+   "league": "nfl"
+  },
+  {
+   "ask": "Alabama football",
+   "resolver": "team_espn",
+   "expect": "resolved",
+   "league": "college-football"
+  },
+  {
+   "ask": "is GitHub down",
+   "resolver": "statuspage",
+   "expect": "resolved",
+   "key": "www.githubstatus.com"
+  },
+  {
+   "ask": "openai status",
+   "resolver": "statuspage",
+   "expect": "resolved",
+   "key": "status.openai.com"
+  },
+  {
+   "ask": "is discord having an outage",
+   "resolver": "statuspage",
+   "expect": "resolved",
+   "key": "discordstatus.com"
+  },
+  {
+   "ask": "is slack down",
+   "resolver": "statuspage",
+   "expect": "none"
+  },
+  {
+   "ask": "weather alerts in Texas",
+   "resolver": "us_state",
+   "expect": "resolved",
+   "key": "TX"
+  },
+  {
+   "ask": "drought in California",
+   "resolver": "us_state",
+   "expect": "resolved",
+   "key": "CA"
+  },
+  {
+   "ask": "FL disaster declarations",
+   "resolver": "us_state",
+   "expect": "resolved",
+   "key": "FL"
+  },
+  {
+   "ask": "wildfires in Brevard County FL",
+   "resolver": "county",
+   "expect": "resolved",
+   "key": "12009"
+  },
+  {
+   "ask": "crime in Cook County IL",
+   "resolver": "county",
+   "expect": "resolved",
+   "key": "17031"
+  }
+ ],
+ "near": [
+  {
+   "ask": "tides for Melbourne FL",
+   "from": "place",
+   "resolver": "tide_station",
+   "max_km": 30,
+   "differ_on": [
+    "water"
+   ],
+   "expect_any": [
+    "resolved",
+    "ambiguous"
+   ]
+  },
+  {
+   "ask": "tides at Charleston SC",
+   "from": "place",
+   "resolver": "tide_station",
+   "max_km": 30,
+   "differ_on": [
+    "water"
+   ],
+   "expect_any": [
+    "resolved",
+    "ambiguous"
+   ]
+  },
+  {
+   "ask": "tides in Denver CO",
+   "from": "place",
+   "resolver": "tide_station",
+   "max_km": 30,
+   "differ_on": [
+    "water"
+   ],
+   "expect_any": [
+    "none"
+   ]
+  },
+  {
+   "ask": "buoy near Hatteras NC",
+   "from": "place",
+   "resolver": "buoy",
+   "max_km": 120,
+   "differ_on": [],
+   "expect_any": [
+    "resolved"
+   ]
+  },
+  {
+   "ask": "tides in Seattle WA",
+   "from": "place",
+   "resolver": "tide_station",
+   "max_km": 30,
+   "differ_on": [
+    "water"
+   ],
+   "expect_any": [
+    "resolved",
+    "ambiguous"
+   ]
+  },
+  {
+   "ask": "tides at Galveston TX",
+   "from": "place",
+   "resolver": "tide_station",
+   "max_km": 30,
+   "differ_on": [
+    "water"
+   ],
+   "expect_any": [
+    "resolved",
+    "ambiguous"
+   ]
+  }
+ ]
+}

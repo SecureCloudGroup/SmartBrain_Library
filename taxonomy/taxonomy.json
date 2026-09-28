@@ -79,7 +79,24 @@
       "hourly",
       "daily",
       "wind"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "geo",
+      "resolvers": [
+       "place"
+      ],
+      "max_km": 25,
+      "differ_on": [],
+      "max_age": "1h",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "current",
@@ -99,7 +116,25 @@
       "humidity",
       "dew point",
       "metar"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "geo",
+      "resolvers": [
+       "place",
+       "airport"
+      ],
+      "max_km": 40,
+      "differ_on": [],
+      "max_age": "1h",
+      "cross_check": true,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "alerts",
@@ -122,7 +157,26 @@
       "tornado",
       "flood warning",
       "heat advisory"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "geo",
+      "resolvers": [
+       "place",
+       "county",
+       "us_state"
+      ],
+      "max_km": 40,
+      "differ_on": [],
+      "max_age": "15m",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "air_quality",
@@ -142,7 +196,25 @@
       "ozone",
       "smoke",
       "pollution"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "geo",
+      "resolvers": [
+       "zip",
+       "place"
+      ],
+      "max_km": 25,
+      "differ_on": [],
+      "max_age": "1h",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "pollen",
@@ -160,7 +232,25 @@
       "allergy",
       "allergen",
       "mold"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "geo",
+      "resolvers": [
+       "zip",
+       "place"
+      ],
+      "max_km": 40,
+      "differ_on": [],
+      "max_age": "1h",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "uv",
@@ -177,7 +267,25 @@
       "uv index",
       "sunburn",
       "ultraviolet"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "geo",
+      "resolvers": [
+       "zip",
+       "place"
+      ],
+      "max_km": 40,
+      "differ_on": [],
+      "max_age": "1d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "radar_imagery",
@@ -195,7 +303,25 @@
       "satellite",
       "imagery",
       "loop"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "geo",
+      "resolvers": [
+       "place",
+       "radar_site"
+      ],
+      "max_km": 250,
+      "differ_on": [],
+      "max_age": "15m",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "climate_records",
@@ -214,7 +340,24 @@
       "normals",
       "historical weather",
       "drought"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "geo",
+      "resolvers": [
+       "place"
+      ],
+      "max_km": 40,
+      "differ_on": [],
+      "max_age": "1d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "drought",
@@ -231,7 +374,25 @@
       "drought",
       "dry",
       "drought monitor"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "geo",
+      "resolvers": [
+       "us_state",
+       "county"
+      ],
+      "max_km": 40,
+      "differ_on": [],
+      "max_age": "7d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     }
    ]
   },
@@ -258,7 +419,25 @@
       "seismic",
       "magnitude",
       "tremor"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "geo",
+      "resolvers": [
+       "place",
+       "us_state"
+      ],
+      "max_km": 300,
+      "differ_on": [],
+      "max_age": "15m",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "tropical_storms",
@@ -276,7 +455,22 @@
       "tropical storm",
       "cyclone",
       "nhc"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1h",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "wildfires",
@@ -296,7 +490,25 @@
       "containment",
       "burn",
       "smoke"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "geo",
+      "resolvers": [
+       "place",
+       "us_state"
+      ],
+      "max_km": 200,
+      "differ_on": [],
+      "max_age": "1h",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "floods_rivers",
@@ -317,7 +529,27 @@
       "gauge",
       "streamflow",
       "discharge"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "geo",
+      "resolvers": [
+       "place",
+       "nwps_gauge"
+      ],
+      "max_km": 25,
+      "differ_on": [
+       "river"
+      ],
+      "max_age": "1h",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "volcanoes",
@@ -333,7 +565,22 @@
       "volcano",
       "eruption",
       "volcanic"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1h",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "tsunami",
@@ -346,7 +593,22 @@
      ],
      "keywords": [
       "tsunami"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "15m",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "space_weather",
@@ -366,7 +628,22 @@
       "kp index",
       "solar flare",
       "space weather"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1h",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "emergencies",
@@ -381,7 +658,24 @@
       "disaster declaration",
       "fema",
       "emergency"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "name",
+      "resolvers": [
+       "us_state"
+      ],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     }
    ]
   },
@@ -406,7 +700,27 @@
       "high tide",
       "low tide",
       "tide table"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "geo",
+      "resolvers": [
+       "place",
+       "tide_station"
+      ],
+      "max_km": 30,
+      "differ_on": [
+       "water"
+      ],
+      "max_age": "1d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "water_levels",
@@ -422,7 +736,27 @@
       "water level",
       "storm surge",
       "sea level"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "geo",
+      "resolvers": [
+       "place",
+       "tide_station"
+      ],
+      "max_km": 30,
+      "differ_on": [
+       "water"
+      ],
+      "max_age": "15m",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "surf_waves",
@@ -440,7 +774,25 @@
       "wave height",
       "swell",
       "buoy"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "geo",
+      "resolvers": [
+       "place",
+       "buoy"
+      ],
+      "max_km": 80,
+      "differ_on": [],
+      "max_age": "1h",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "water_temperature",
@@ -454,7 +806,28 @@
      "keywords": [
       "water temperature",
       "sea temperature"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "geo",
+      "resolvers": [
+       "place",
+       "tide_station",
+       "buoy"
+      ],
+      "max_km": 30,
+      "differ_on": [
+       "water"
+      ],
+      "max_age": "1h",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "marine_forecast",
@@ -470,7 +843,24 @@
       "marine forecast",
       "small craft",
       "boating"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "geo",
+      "resolvers": [
+       "place"
+      ],
+      "max_km": 60,
+      "differ_on": [],
+      "max_age": "1h",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "beach_quality",
@@ -486,7 +876,24 @@
       "water quality",
       "bacteria",
       "swim advisory"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "geo",
+      "resolvers": [
+       "place"
+      ],
+      "max_km": 30,
+      "differ_on": [],
+      "max_age": "1d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "currents",
@@ -503,7 +910,26 @@
       "slack water",
       "ebb",
       "flood current"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "geo",
+      "resolvers": [
+       "place"
+      ],
+      "max_km": 30,
+      "differ_on": [
+       "water"
+      ],
+      "max_age": "1d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     }
    ]
   },
@@ -528,7 +954,22 @@
       "spacex",
       "nasa launch",
       "liftoff"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "sun_moon",
@@ -546,7 +987,24 @@
       "moon phase",
       "moonrise",
       "daylight"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "geo",
+      "resolvers": [
+       "place"
+      ],
+      "max_km": 100,
+      "differ_on": [],
+      "max_age": "1d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "iss",
@@ -566,7 +1024,22 @@
       "astronauts",
       "people in space",
       "pass over"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "15m",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "sky_events",
@@ -584,7 +1057,22 @@
       "planet",
       "conjunction",
       "comet"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "space_images",
@@ -600,7 +1088,22 @@
       "apod",
       "mars rover",
       "space photo"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "near_earth",
@@ -617,7 +1120,22 @@
       "near earth",
       "neo",
       "close approach"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     }
    ]
   },
@@ -642,7 +1160,24 @@
       "quote",
       "nasdaq",
       "nyse"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "primary",
+       "official",
+       "aggregator",
+       "community"
+      ],
+      "match": "name",
+      "resolvers": [
+       "ticker"
+      ],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "15m",
+      "cross_check": true,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "indices",
@@ -661,7 +1196,24 @@
       "nasdaq composite",
       "index",
       "russell"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "primary",
+       "official",
+       "aggregator",
+       "community"
+      ],
+      "match": "name",
+      "resolvers": [
+       "ticker"
+      ],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "15m",
+      "cross_check": true,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "crypto",
@@ -682,7 +1234,24 @@
       "token",
       "btc",
       "eth"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "primary",
+       "official",
+       "aggregator",
+       "community"
+      ],
+      "match": "name",
+      "resolvers": [
+       "crypto"
+      ],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "15m",
+      "cross_check": true,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "fx",
@@ -701,7 +1270,24 @@
       "fx",
       "usd",
       "euro"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "primary",
+       "official",
+       "aggregator",
+       "community"
+      ],
+      "match": "name",
+      "resolvers": [
+       "currency"
+      ],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1d",
+      "cross_check": true,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "commodities",
@@ -722,7 +1308,22 @@
       "commodity",
       "wheat",
       "corn"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "primary",
+       "official",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1d",
+      "cross_check": true,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "rates_bonds",
@@ -742,7 +1343,22 @@
       "mortgage rate",
       "fed funds",
       "10-year"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "filings",
@@ -762,7 +1378,24 @@
       "earnings",
       "edgar",
       "insider"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "name",
+      "resolvers": [
+       "ticker"
+      ],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "funds",
@@ -778,7 +1411,24 @@
       "etf",
       "mutual fund",
       "nav"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "primary",
+       "official",
+       "aggregator",
+       "community"
+      ],
+      "match": "name",
+      "resolvers": [
+       "ticker"
+      ],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1d",
+      "cross_check": true,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "market_status",
@@ -795,7 +1445,22 @@
       "market closed",
       "trading hours",
       "market holiday"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "15m",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     }
    ]
   },
@@ -819,7 +1484,22 @@
       "cpi",
       "consumer price",
       "pce"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "40d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "jobs",
@@ -838,7 +1518,24 @@
       "payrolls",
       "jobless claims",
       "labor"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [
+       "us_state"
+      ],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "40d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "gdp",
@@ -854,7 +1551,22 @@
       "gdp",
       "economic growth",
       "recession"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "40d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "housing",
@@ -874,7 +1586,25 @@
       "rent",
       "house price index",
       "mortgage"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "geo",
+      "resolvers": [
+       "place",
+       "us_state"
+      ],
+      "max_km": 50,
+      "differ_on": [],
+      "max_age": "40d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "fuel_prices",
@@ -893,7 +1623,24 @@
       "gasoline",
       "diesel",
       "fuel price"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "geo",
+      "resolvers": [
+       "us_state"
+      ],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "7d",
+      "cross_check": true,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "food_prices",
@@ -910,7 +1657,22 @@
       "grocery",
       "food price",
       "milk price"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "40d",
+      "cross_check": true,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "government_finance",
@@ -927,7 +1689,22 @@
       "deficit",
       "federal spending",
       "treasury"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "40d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "trade",
@@ -944,7 +1721,22 @@
       "imports",
       "exports",
       "tariff"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "40d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "economic_calendar",
@@ -961,7 +1753,22 @@
       "fomc",
       "economic calendar",
       "fed meeting"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "7d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     }
    ]
   },
@@ -985,7 +1792,24 @@
       "power price",
       "kwh",
       "utility rate"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "geo",
+      "resolvers": [
+       "us_state"
+      ],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "grid",
@@ -1006,7 +1830,24 @@
       "iso",
       "ercot",
       "caiso"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "geo",
+      "resolvers": [
+       "us_state"
+      ],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1h",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "outages",
@@ -1023,7 +1864,25 @@
       "power outage",
       "outage",
       "blackout"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "geo",
+      "resolvers": [
+       "us_state",
+       "county"
+      ],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1h",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "ev_charging",
@@ -1039,7 +1898,25 @@
       "ev charging",
       "charging station",
       "charger"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "geo",
+      "resolvers": [
+       "place",
+       "zip"
+      ],
+      "max_km": 25,
+      "differ_on": [],
+      "max_age": "1d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "oil_gas_supply",
@@ -1056,7 +1933,22 @@
       "crude stocks",
       "natural gas storage",
       "rig count"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "7d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     }
    ]
   },
@@ -1080,7 +1972,26 @@
       "live score",
       "game",
       "final"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "primary",
+       "official",
+       "aggregator",
+       "community"
+      ],
+      "match": "name",
+      "resolvers": [
+       "team_mlb",
+       "team_nhl",
+       "team_espn"
+      ],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "15m",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "schedules",
@@ -1099,7 +2010,26 @@
       "next game",
       "kickoff",
       "tip-off"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "primary",
+       "official",
+       "aggregator",
+       "community"
+      ],
+      "match": "name",
+      "resolvers": [
+       "team_mlb",
+       "team_nhl",
+       "team_espn"
+      ],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "15m",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "standings",
@@ -1115,7 +2045,26 @@
       "table",
       "rankings",
       "playoff picture"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "primary",
+       "official",
+       "aggregator",
+       "community"
+      ],
+      "match": "name",
+      "resolvers": [
+       "team_mlb",
+       "team_nhl",
+       "team_espn"
+      ],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "player_stats",
@@ -1133,7 +2082,26 @@
       "leaders",
       "top scorer",
       "batting average"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "primary",
+       "official",
+       "aggregator",
+       "community"
+      ],
+      "match": "name",
+      "resolvers": [
+       "team_mlb",
+       "team_nhl",
+       "team_espn"
+      ],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "results",
@@ -1149,7 +2117,26 @@
       "results",
       "who won",
       "final score"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "primary",
+       "official",
+       "aggregator",
+       "community"
+      ],
+      "match": "name",
+      "resolvers": [
+       "team_mlb",
+       "team_nhl",
+       "team_espn"
+      ],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "15m",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "injuries_news",
@@ -1165,7 +2152,26 @@
       "injury report",
       "team news",
       "roster"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "primary",
+       "official",
+       "aggregator",
+       "community"
+      ],
+      "match": "name",
+      "resolvers": [
+       "team_mlb",
+       "team_nhl",
+       "team_espn"
+      ],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "15m",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "college",
@@ -1184,7 +2190,24 @@
       "ncaa",
       "march madness",
       "ap poll"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "primary",
+       "official",
+       "aggregator",
+       "community"
+      ],
+      "match": "name",
+      "resolvers": [
+       "team_espn"
+      ],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1h",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "motorsport_golf_other",
@@ -1204,7 +2227,24 @@
       "golf leaderboard",
       "tennis",
       "ufc"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "primary",
+       "official",
+       "aggregator",
+       "community"
+      ],
+      "match": "name",
+      "resolvers": [
+       "team_espn"
+      ],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "15m",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     }
    ]
   },
@@ -1227,7 +2267,22 @@
       "news",
       "breaking",
       "top stories"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "primary",
+       "official",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1h",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "topic_news",
@@ -1239,12 +2294,34 @@
       "topic"
      ],
      "keywords": [
-      "news about",
+      "business news",
+      "entertainment news",
+      "health news",
       "latest on",
-      "technology news",
+      "news about",
+      "politics",
       "politics news",
-      "science news"
-     ]
+      "science news",
+      "sports news",
+      "tech news",
+      "technology news",
+      "world news"
+     ],
+     "policy": {
+      "prefer": [
+       "primary",
+       "official",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1h",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "local_news",
@@ -1259,7 +2336,25 @@
      "keywords": [
       "local news",
       "city news"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "primary",
+       "official",
+       "aggregator",
+       "community"
+      ],
+      "match": "geo",
+      "resolvers": [
+       "place",
+       "us_state"
+      ],
+      "max_km": 80,
+      "differ_on": [],
+      "max_age": "1h",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "feeds",
@@ -1276,7 +2371,22 @@
       "blog",
       "feed",
       "newsletter"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "primary",
+       "official",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1h",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "podcasts",
@@ -1290,7 +2400,22 @@
      "keywords": [
       "podcast",
       "episode"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "primary",
+       "official",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "press_releases",
@@ -1306,7 +2431,22 @@
       "press release",
       "announcement",
       "newsroom"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "primary",
+       "official",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1h",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "fact_checks",
@@ -1319,7 +2459,22 @@
      ],
      "keywords": [
       "fact check"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "primary",
+       "official",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     }
    ]
   },
@@ -1343,7 +2498,24 @@
       "arrival",
       "departure",
       "delayed"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "primary",
+       "official",
+       "aggregator",
+       "community"
+      ],
+      "match": "name",
+      "resolvers": [
+       "airport"
+      ],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "15m",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "airport_delays",
@@ -1359,7 +2531,24 @@
       "ground stop",
       "faa delays",
       "tsa wait"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "name",
+      "resolvers": [
+       "airport"
+      ],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "15m",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "transit",
@@ -1381,7 +2570,24 @@
       "transit",
       "metro",
       "light rail"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "geo",
+      "resolvers": [
+       "place"
+      ],
+      "max_km": 50,
+      "differ_on": [],
+      "max_age": "15m",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "transit_alerts",
@@ -1399,7 +2605,24 @@
       "delay",
       "disruption",
       "planned work"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "geo",
+      "resolvers": [
+       "place"
+      ],
+      "max_km": 50,
+      "differ_on": [],
+      "max_age": "15m",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "traffic_roads",
@@ -1420,7 +2643,25 @@
       "road conditions",
       "traffic camera",
       "511"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "geo",
+      "resolvers": [
+       "place",
+       "us_state"
+      ],
+      "max_km": 50,
+      "differ_on": [],
+      "max_age": "15m",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "rail",
@@ -1435,7 +2676,22 @@
      "keywords": [
       "amtrak",
       "train status"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "15m",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "border_waits",
@@ -1449,7 +2705,22 @@
      "keywords": [
       "border wait",
       "crossing wait"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1h",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "parks_travel",
@@ -1467,7 +2738,22 @@
       "park alerts",
       "travel advisory",
       "passport"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "name",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "bikeshare",
@@ -1485,7 +2771,24 @@
       "citi bike",
       "docks",
       "scooter"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "geo",
+      "resolvers": [
+       "place"
+      ],
+      "max_km": 30,
+      "differ_on": [],
+      "max_age": "15m",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     }
    ]
   },
@@ -1511,7 +2814,24 @@
       "illness",
       "wastewater",
       "cases"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [
+       "us_state"
+      ],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "7d",
+      "cross_check": true,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "outbreaks",
@@ -1527,7 +2847,24 @@
       "outbreak",
       "measles",
       "salmonella"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [
+       "us_state"
+      ],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "7d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "recalls",
@@ -1546,7 +2883,24 @@
       "drug recall",
       "product recall",
       "vehicle recall"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [
+       "us_state"
+      ],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "7d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "drugs",
@@ -1562,7 +2916,24 @@
       "drug shortage",
       "medication",
       "fda approval"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [
+       "us_state"
+      ],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "7d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "hospitals",
@@ -1577,7 +2948,25 @@
       "hospital",
       "er wait",
       "clinic"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "geo",
+      "resolvers": [
+       "place",
+       "zip"
+      ],
+      "max_km": 50,
+      "differ_on": [],
+      "max_age": "40d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "nutrition",
@@ -1592,7 +2981,22 @@
       "nutrition",
       "calories",
       "ingredients"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "name",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1y",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     }
    ]
   },
@@ -1617,7 +3021,22 @@
       "legislation",
       "vote",
       "law"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "elections",
@@ -1637,7 +3056,25 @@
       "ballot",
       "voter registration",
       "primary"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "name",
+      "resolvers": [
+       "us_state",
+       "county"
+      ],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "courts",
@@ -1654,7 +3091,22 @@
       "court opinion",
       "ruling",
       "case"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "regulations",
@@ -1670,7 +3122,24 @@
       "regulation",
       "rule",
       "public comment"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "name",
+      "resolvers": [
+       "fr_agency"
+      ],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "city_services",
@@ -1687,7 +3156,26 @@
       "service request",
       "pothole",
       "noise complaint"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "geo",
+      "resolvers": [
+       "place",
+       "county",
+       "us_state"
+      ],
+      "max_km": 50,
+      "differ_on": [],
+      "max_age": "1d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "public_safety",
@@ -1705,7 +3193,26 @@
       "police",
       "incidents",
       "arrests"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "geo",
+      "resolvers": [
+       "place",
+       "county",
+       "us_state"
+      ],
+      "max_km": 50,
+      "differ_on": [],
+      "max_age": "1d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "permits_property",
@@ -1722,7 +3229,26 @@
       "property",
       "zoning",
       "inspection"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "geo",
+      "resolvers": [
+       "place",
+       "county",
+       "us_state"
+      ],
+      "max_km": 50,
+      "differ_on": [],
+      "max_age": "1d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "schools",
@@ -1739,7 +3265,26 @@
       "school closing",
       "school calendar",
       "school district"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "geo",
+      "resolvers": [
+       "place",
+       "county",
+       "us_state"
+      ],
+      "max_km": 50,
+      "differ_on": [],
+      "max_age": "1d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "gov_contracts",
@@ -1755,7 +3300,24 @@
       "contract award",
       "grant",
       "federal spending"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "name",
+      "resolvers": [
+       "spending_agency"
+      ],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "7d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "open_data",
@@ -1773,7 +3335,26 @@
      "keywords": [
       "open data",
       "dataset"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "geo",
+      "resolvers": [
+       "place",
+       "county",
+       "us_state"
+      ],
+      "max_km": 50,
+      "differ_on": [],
+      "max_age": "1d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     }
    ]
   },
@@ -1801,7 +3382,24 @@
       "outage right now",
       "not working",
       "status"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "primary",
+       "official",
+       "aggregator",
+       "community"
+      ],
+      "match": "name",
+      "resolvers": [
+       "statuspage"
+      ],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "15m",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "repos_releases",
@@ -1820,7 +3418,22 @@
       "commits",
       "issues",
       "pull requests"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "primary",
+       "official",
+       "aggregator",
+       "community"
+      ],
+      "match": "name",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1h",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "packages",
@@ -1838,7 +3451,22 @@
       "package version",
       "crate",
       "downloads"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "primary",
+       "official",
+       "aggregator",
+       "community"
+      ],
+      "match": "name",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "security_advisories",
@@ -1857,7 +3485,22 @@
       "security advisory",
       "kev",
       "exploit"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "tech_news",
@@ -1872,10 +3515,27 @@
      ],
      "keywords": [
       "hacker news",
+      "product hunt",
       "reddit",
-      "trending",
-      "product hunt"
-     ]
+      "tech headlines",
+      "tech news",
+      "trending"
+     ],
+     "policy": {
+      "prefer": [
+       "primary",
+       "official",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1h",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "domains_web",
@@ -1892,7 +3552,22 @@
       "ssl certificate",
       "uptime",
       "dns"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "primary",
+       "official",
+       "aggregator",
+       "community"
+      ],
+      "match": "name",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "ai_models",
@@ -1908,7 +3583,22 @@
       "model release",
       "leaderboard",
       "hugging face"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "primary",
+       "official",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     }
    ]
   },
@@ -1931,7 +3621,22 @@
       "tv show",
       "season",
       "airs"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "primary",
+       "official",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "movies",
@@ -1951,7 +3656,22 @@
       "new releases",
       "in theaters",
       "streaming"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "primary",
+       "official",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "music",
@@ -1969,7 +3689,22 @@
       "new album",
       "billboard",
       "top songs"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "primary",
+       "official",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "books",
@@ -1989,7 +3724,22 @@
       "new book",
       "book release",
       "library"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "primary",
+       "official",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "games",
@@ -2008,7 +3758,22 @@
       "steam",
       "game deals",
       "player count"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "primary",
+       "official",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "events",
@@ -2027,7 +3792,24 @@
       "tour dates",
       "festival",
       "things to do"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "primary",
+       "official",
+       "aggregator",
+       "community"
+      ],
+      "match": "geo",
+      "resolvers": [
+       "place"
+      ],
+      "max_km": 50,
+      "differ_on": [],
+      "max_age": "1d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "museums_art",
@@ -2045,7 +3827,22 @@
       "artwork",
       "collection",
       "exhibit"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "primary",
+       "official",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "40d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "reference_daily",
@@ -2062,7 +3859,22 @@
       "quote of the day",
       "on this day",
       "featured article"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "primary",
+       "official",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "trivia_fun",
@@ -2077,7 +3889,22 @@
       "trivia",
       "joke",
       "fact"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "primary",
+       "official",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     }
    ]
   },
@@ -2100,7 +3927,22 @@
       "price drop",
       "cheapest",
       "deal"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "primary",
+       "official",
+       "aggregator",
+       "community"
+      ],
+      "match": "name",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1d",
+      "cross_check": true,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "deals",
@@ -2117,7 +3959,22 @@
       "sale",
       "coupon",
       "discount"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "primary",
+       "official",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1h",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "availability",
@@ -2132,7 +3989,22 @@
       "in stock",
       "availability",
       "back in stock"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "primary",
+       "official",
+       "aggregator",
+       "community"
+      ],
+      "match": "name",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1d",
+      "cross_check": true,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "app_prices",
@@ -2148,7 +4020,22 @@
       "app price",
       "app update",
       "software release"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "primary",
+       "official",
+       "aggregator",
+       "community"
+      ],
+      "match": "name",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1d",
+      "cross_check": true,
+      "ask_if_ambiguous": true
+     }
     }
    ]
   },
@@ -2171,7 +4058,22 @@
       "preprint",
       "journal",
       "study"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "7d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "clinical_trials",
@@ -2186,7 +4088,22 @@
      "keywords": [
       "clinical trial",
       "trial"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "7d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "patents",
@@ -2200,7 +4117,22 @@
      ],
      "keywords": [
       "patent"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "7d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "datasets_research",
@@ -2216,7 +4148,22 @@
       "dataset",
       "census data",
       "survey"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "7d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "nature_wildlife",
@@ -2234,7 +4181,24 @@
       "wildlife",
       "species",
       "observations"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "geo",
+      "resolvers": [
+       "place"
+      ],
+      "max_km": 25,
+      "differ_on": [],
+      "max_age": "7d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "environment_data",
@@ -2253,7 +4217,22 @@
       "carbon",
       "sea ice",
       "global temperature"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "40d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     }
    ]
   },
@@ -2276,7 +4255,22 @@
       "holiday",
       "federal holiday",
       "day off"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1y",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "countdowns",
@@ -2291,7 +4285,22 @@
       "countdown",
       "days until",
       "how long until"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "15m",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "time_zones",
@@ -2306,7 +4315,24 @@
       "time in",
       "time zone",
       "what time"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "name",
+      "resolvers": [
+       "place"
+      ],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "15m",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "observances",
@@ -2322,7 +4348,22 @@
       "observance",
       "solstice",
       "equinox"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1y",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     }
    ]
   },
@@ -2345,7 +4386,22 @@
       "my notes",
       "my documents",
       "knowledge base"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "primary",
+       "official",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "15m",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "schedules_runs",
@@ -2361,7 +4417,22 @@
       "my schedule",
       "scheduled",
       "briefing"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "primary",
+       "official",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "15m",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "home_devices",
@@ -2378,7 +4449,22 @@
       "sensor",
       "home assistant",
       "smart home"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "primary",
+       "official",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "15m",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     },
     {
      "id": "email_calendar",
@@ -2395,7 +4481,22 @@
       "unread email",
       "my calendar",
       "meetings today"
-     ]
+     ],
+     "policy": {
+      "prefer": [
+       "primary",
+       "official",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "15m",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     }
    ]
   }
