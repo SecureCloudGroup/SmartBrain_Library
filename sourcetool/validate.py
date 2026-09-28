@@ -73,6 +73,8 @@ def validate_one(r: dict) -> dict:
     v = {"checked_at": now_iso()}
     if a["kind"] in ("internal", "docs_only"):
         return {**v, "status": "unvalidated", "note": "not probed (" + a["kind"] + ")"}
+    if a.get("contact_ua"):
+        return {**v, "status": "unvalidated", "note": "needs the user's contact email in the User-Agent (R11)"}
     tpl = a.get("url_template") or ""
     url = fill(tpl, a.get("params", []))
     if url is None:

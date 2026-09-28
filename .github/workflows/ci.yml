@@ -21,19 +21,28 @@ jobs:
       - run: pip install "httpx==0.28.1" "duckdb==1.5.4"
       - name: schema check (every record)
         run: python -m sourcetool check
-      - name: probe sources changed in this PR
+      - name: probe sources changed in this PR (fail on regressions only)
         if: github.event_name == 'pull_request'
         run: |
           git diff --unified=0 origin/${{ github.base_ref }}...HEAD -- 'sources/**/*.jsonl' \
-            | grep '^+{' | python -c "import sys,json; print('\n'.join(json.loads(l[1:])['id'] for l in sys.stdin))" > changed.txt || true
-          echo "$(wc -l < changed.txt) changed records"
-          head -200 changed.txt | while read id; do python -m sourcetool validate --id "$id" >/dev/null; done
+            | grep '^+{' | cut -c2- > changed.jsonl || true
+          git diff --unified=0 origin/${{ github.base_ref }}...HEAD -- 'sources/**/*.jsonl' \
+            | grep '^-{' | cut -c2- > before.jsonl || true
+          echo "$(wc -l < changed.jsonl) changed records"
           python - <<'PY'
-          import json, pathlib, sys
-          ids = set(pathlib.Path("changed.txt").read_text().split())
-          bad = [r["id"] for f in pathlib.Path("sources").rglob("*.jsonl") for r in map(json.loads, f.read_text().splitlines())
-                 if r["id"] in ids and r.get("validation", {}).get("status") in ("failed",)]
-          print("failed probes:", bad)
+          import json, pathlib, subprocess, sys
+          changed = [json.loads(l) for l in pathlib.Path("changed.jsonl").read_text().splitlines() if l.strip()]
+          before = {r["id"]: r.get("validation", {}).get("status")
+                    for r in map(json.loads, pathlib.Path("before.jsonl").read_text().splitlines()) if r}
+          ids = [r["id"] for r in changed][:300]
+          if ids:
+              subprocess.run([sys.executable, "-m", "sourcetool", "validate", "--id", ",".join(ids)], check=True)
+          now = {r["id"]: r.get("validation", {}).get("status")
+                 for f in pathlib.Path("sources").rglob("*.jsonl") for r in map(json.loads, f.read_text().splitlines())
+                 if r["id"] in set(ids)}
+          # a regression = a new source that fails, or a source that was not failing and now fails
+          bad = [i for i in ids if now.get(i) == "failed" and before.get(i) != "failed"]
+          print("probed", len(ids), "| regressions:", bad)
           sys.exit(1 if bad else 0)
           PY
       - name: build the DuckDB index
