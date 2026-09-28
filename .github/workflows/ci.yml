@@ -1,0 +1,52 @@
+name: ci
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "17 9 * * 1"   # weekly re-validation report (Mondays)
+permissions:
+  contents: read
+jobs:
+  check:
+    name: records (schema + changed-source probes)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install "httpx==0.28.1" "duckdb==1.5.4"
+      - name: schema check (every record)
+        run: python -m sourcetool check
+      - name: probe sources changed in this PR
+        if: github.event_name == 'pull_request'
+        run: |
+          git diff --unified=0 origin/${{ github.base_ref }}...HEAD -- 'sources/**/*.jsonl' \
+            | grep '^+{' | python -c "import sys,json; print('\n'.join(json.loads(l[1:])['id'] for l in sys.stdin))" > changed.txt || true
+          echo "$(wc -l < changed.txt) changed records"
+          head -200 changed.txt | while read id; do python -m sourcetool validate --id "$id" >/dev/null; done
+          python - <<'PY'
+          import json, pathlib, sys
+          ids = set(pathlib.Path("changed.txt").read_text().split())
+          bad = [r["id"] for f in pathlib.Path("sources").rglob("*.jsonl") for r in map(json.loads, f.read_text().splitlines())
+                 if r["id"] in ids and r.get("validation", {}).get("status") in ("failed",)]
+          print("failed probes:", bad)
+          sys.exit(1 if bad else 0)
+          PY
+      - name: build the DuckDB index
+        run: python -m sourcetool build
+  revalidate:
+    name: weekly re-validation (report only)
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install "httpx==0.28.1" "duckdb==1.5.4"
+      - run: python -m sourcetool validate --only curated
+      - run: git diff --stat

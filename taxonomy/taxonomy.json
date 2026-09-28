@@ -1,0 +1,2403 @@
+{
+ "version": 1,
+ "scope": "US",
+ "question_kinds": [
+  "current_value",
+  "forecast",
+  "next_event",
+  "schedule",
+  "latest_items",
+  "ranking",
+  "trend",
+  "status",
+  "alerts",
+  "count",
+  "lookup",
+  "map",
+  "image",
+  "text_brief",
+  "compare"
+ ],
+ "param_kinds": [
+  "none",
+  "place",
+  "us_state",
+  "county",
+  "zip",
+  "station",
+  "ticker",
+  "fund",
+  "currency_pair",
+  "crypto_asset",
+  "commodity",
+  "series",
+  "team",
+  "league",
+  "player",
+  "airport",
+  "flight",
+  "transit_agency",
+  "transit_stop",
+  "route",
+  "road",
+  "repo",
+  "package",
+  "service",
+  "domain",
+  "topic",
+  "person",
+  "organization",
+  "product",
+  "title",
+  "date",
+  "agency",
+  "bill",
+  "court",
+  "dataset"
+ ],
+ "categories": [
+  {
+   "id": "weather",
+   "label": "Weather & Air",
+   "subcategories": [
+    {
+     "id": "forecast",
+     "label": "Forecast",
+     "kinds": [
+      "forecast"
+     ],
+     "params": [
+      "place"
+     ],
+     "keywords": [
+      "forecast",
+      "weather",
+      "temperature",
+      "rain",
+      "precipitation",
+      "snow",
+      "hourly",
+      "daily",
+      "wind"
+     ]
+    },
+    {
+     "id": "current",
+     "label": "Current conditions",
+     "kinds": [
+      "current_value"
+     ],
+     "params": [
+      "place",
+      "station"
+     ],
+     "keywords": [
+      "current weather",
+      "conditions",
+      "observation",
+      "temperature now",
+      "humidity",
+      "dew point",
+      "metar"
+     ]
+    },
+    {
+     "id": "alerts",
+     "label": "Weather alerts & warnings",
+     "kinds": [
+      "alerts",
+      "status"
+     ],
+     "params": [
+      "place",
+      "us_state",
+      "county"
+     ],
+     "keywords": [
+      "alert",
+      "warning",
+      "watch",
+      "advisory",
+      "severe",
+      "tornado",
+      "flood warning",
+      "heat advisory"
+     ]
+    },
+    {
+     "id": "air_quality",
+     "label": "Air quality",
+     "kinds": [
+      "current_value",
+      "forecast"
+     ],
+     "params": [
+      "place",
+      "zip"
+     ],
+     "keywords": [
+      "air quality",
+      "aqi",
+      "pm2.5",
+      "ozone",
+      "smoke",
+      "pollution"
+     ]
+    },
+    {
+     "id": "pollen",
+     "label": "Pollen & allergens",
+     "kinds": [
+      "current_value",
+      "forecast"
+     ],
+     "params": [
+      "place",
+      "zip"
+     ],
+     "keywords": [
+      "pollen",
+      "allergy",
+      "allergen",
+      "mold"
+     ]
+    },
+    {
+     "id": "uv",
+     "label": "UV index",
+     "kinds": [
+      "current_value",
+      "forecast"
+     ],
+     "params": [
+      "place",
+      "zip"
+     ],
+     "keywords": [
+      "uv index",
+      "sunburn",
+      "ultraviolet"
+     ]
+    },
+    {
+     "id": "radar_imagery",
+     "label": "Radar & satellite imagery",
+     "kinds": [
+      "image",
+      "map"
+     ],
+     "params": [
+      "place",
+      "us_state"
+     ],
+     "keywords": [
+      "radar",
+      "satellite",
+      "imagery",
+      "loop"
+     ]
+    },
+    {
+     "id": "climate_records",
+     "label": "Climate & historical records",
+     "kinds": [
+      "trend",
+      "lookup"
+     ],
+     "params": [
+      "place",
+      "station"
+     ],
+     "keywords": [
+      "climate",
+      "record high",
+      "normals",
+      "historical weather",
+      "drought"
+     ]
+    },
+    {
+     "id": "drought",
+     "label": "Drought",
+     "kinds": [
+      "current_value",
+      "map"
+     ],
+     "params": [
+      "us_state",
+      "county"
+     ],
+     "keywords": [
+      "drought",
+      "dry",
+      "drought monitor"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hazards",
+   "label": "Earth & Hazards",
+   "subcategories": [
+    {
+     "id": "earthquakes",
+     "label": "Earthquakes",
+     "kinds": [
+      "latest_items",
+      "alerts",
+      "count",
+      "map"
+     ],
+     "params": [
+      "place",
+      "none"
+     ],
+     "keywords": [
+      "earthquake",
+      "quake",
+      "seismic",
+      "magnitude",
+      "tremor"
+     ]
+    },
+    {
+     "id": "tropical_storms",
+     "label": "Hurricanes & tropical storms",
+     "kinds": [
+      "latest_items",
+      "alerts",
+      "map"
+     ],
+     "params": [
+      "none"
+     ],
+     "keywords": [
+      "hurricane",
+      "tropical storm",
+      "cyclone",
+      "nhc"
+     ]
+    },
+    {
+     "id": "wildfires",
+     "label": "Wildfires",
+     "kinds": [
+      "latest_items",
+      "map",
+      "status"
+     ],
+     "params": [
+      "us_state",
+      "place"
+     ],
+     "keywords": [
+      "wildfire",
+      "fire",
+      "containment",
+      "burn",
+      "smoke"
+     ]
+    },
+    {
+     "id": "floods_rivers",
+     "label": "Floods & river levels",
+     "kinds": [
+      "current_value",
+      "forecast",
+      "alerts"
+     ],
+     "params": [
+      "station",
+      "place"
+     ],
+     "keywords": [
+      "river level",
+      "flood",
+      "stage",
+      "gauge",
+      "streamflow",
+      "discharge"
+     ]
+    },
+    {
+     "id": "volcanoes",
+     "label": "Volcanoes",
+     "kinds": [
+      "status",
+      "latest_items"
+     ],
+     "params": [
+      "none"
+     ],
+     "keywords": [
+      "volcano",
+      "eruption",
+      "volcanic"
+     ]
+    },
+    {
+     "id": "tsunami",
+     "label": "Tsunami",
+     "kinds": [
+      "alerts"
+     ],
+     "params": [
+      "none"
+     ],
+     "keywords": [
+      "tsunami"
+     ]
+    },
+    {
+     "id": "space_weather",
+     "label": "Space weather & aurora",
+     "kinds": [
+      "current_value",
+      "forecast",
+      "alerts"
+     ],
+     "params": [
+      "none"
+     ],
+     "keywords": [
+      "aurora",
+      "northern lights",
+      "geomagnetic",
+      "kp index",
+      "solar flare",
+      "space weather"
+     ]
+    },
+    {
+     "id": "emergencies",
+     "label": "Emergency declarations",
+     "kinds": [
+      "latest_items"
+     ],
+     "params": [
+      "us_state"
+     ],
+     "keywords": [
+      "disaster declaration",
+      "fema",
+      "emergency"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "water",
+   "label": "Water & Coast",
+   "subcategories": [
+    {
+     "id": "tides",
+     "label": "Tides",
+     "kinds": [
+      "next_event",
+      "schedule"
+     ],
+     "params": [
+      "station",
+      "place"
+     ],
+     "keywords": [
+      "tide",
+      "tides",
+      "high tide",
+      "low tide",
+      "tide table"
+     ]
+    },
+    {
+     "id": "water_levels",
+     "label": "Coastal water levels",
+     "kinds": [
+      "current_value",
+      "trend"
+     ],
+     "params": [
+      "station"
+     ],
+     "keywords": [
+      "water level",
+      "storm surge",
+      "sea level"
+     ]
+    },
+    {
+     "id": "surf_waves",
+     "label": "Surf & waves",
+     "kinds": [
+      "current_value",
+      "forecast"
+     ],
+     "params": [
+      "station",
+      "place"
+     ],
+     "keywords": [
+      "surf",
+      "wave height",
+      "swell",
+      "buoy"
+     ]
+    },
+    {
+     "id": "water_temperature",
+     "label": "Water temperature",
+     "kinds": [
+      "current_value"
+     ],
+     "params": [
+      "station"
+     ],
+     "keywords": [
+      "water temperature",
+      "sea temperature"
+     ]
+    },
+    {
+     "id": "marine_forecast",
+     "label": "Marine forecasts",
+     "kinds": [
+      "forecast",
+      "alerts"
+     ],
+     "params": [
+      "place"
+     ],
+     "keywords": [
+      "marine forecast",
+      "small craft",
+      "boating"
+     ]
+    },
+    {
+     "id": "beach_quality",
+     "label": "Beach & water quality",
+     "kinds": [
+      "status"
+     ],
+     "params": [
+      "place"
+     ],
+     "keywords": [
+      "beach closure",
+      "water quality",
+      "bacteria",
+      "swim advisory"
+     ]
+    },
+    {
+     "id": "currents",
+     "label": "Currents",
+     "kinds": [
+      "forecast",
+      "schedule"
+     ],
+     "params": [
+      "station"
+     ],
+     "keywords": [
+      "current",
+      "slack water",
+      "ebb",
+      "flood current"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "sky",
+   "label": "Space & Sky",
+   "subcategories": [
+    {
+     "id": "launches",
+     "label": "Rocket launches",
+     "kinds": [
+      "next_event",
+      "schedule"
+     ],
+     "params": [
+      "none",
+      "organization"
+     ],
+     "keywords": [
+      "launch",
+      "rocket",
+      "spacex",
+      "nasa launch",
+      "liftoff"
+     ]
+    },
+    {
+     "id": "sun_moon",
+     "label": "Sunrise, sunset & moon",
+     "kinds": [
+      "next_event",
+      "current_value"
+     ],
+     "params": [
+      "place"
+     ],
+     "keywords": [
+      "sunrise",
+      "sunset",
+      "moon phase",
+      "moonrise",
+      "daylight"
+     ]
+    },
+    {
+     "id": "iss",
+     "label": "Space station",
+     "kinds": [
+      "current_value",
+      "next_event",
+      "map"
+     ],
+     "params": [
+      "none",
+      "place"
+     ],
+     "keywords": [
+      "iss",
+      "space station",
+      "astronauts",
+      "people in space",
+      "pass over"
+     ]
+    },
+    {
+     "id": "sky_events",
+     "label": "Sky events",
+     "kinds": [
+      "schedule",
+      "next_event"
+     ],
+     "params": [
+      "none"
+     ],
+     "keywords": [
+      "eclipse",
+      "meteor shower",
+      "planet",
+      "conjunction",
+      "comet"
+     ]
+    },
+    {
+     "id": "space_images",
+     "label": "Space images",
+     "kinds": [
+      "image"
+     ],
+     "params": [
+      "none"
+     ],
+     "keywords": [
+      "astronomy picture",
+      "apod",
+      "mars rover",
+      "space photo"
+     ]
+    },
+    {
+     "id": "near_earth",
+     "label": "Asteroids & near-Earth objects",
+     "kinds": [
+      "latest_items",
+      "next_event"
+     ],
+     "params": [
+      "none"
+     ],
+     "keywords": [
+      "asteroid",
+      "near earth",
+      "neo",
+      "close approach"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "markets",
+   "label": "Markets & Money",
+   "subcategories": [
+    {
+     "id": "stocks",
+     "label": "Stocks",
+     "kinds": [
+      "current_value",
+      "trend"
+     ],
+     "params": [
+      "ticker"
+     ],
+     "keywords": [
+      "stock",
+      "share price",
+      "ticker",
+      "quote",
+      "nasdaq",
+      "nyse"
+     ]
+    },
+    {
+     "id": "indices",
+     "label": "Market indices",
+     "kinds": [
+      "current_value",
+      "trend"
+     ],
+     "params": [
+      "ticker",
+      "none"
+     ],
+     "keywords": [
+      "s&p 500",
+      "dow",
+      "nasdaq composite",
+      "index",
+      "russell"
+     ]
+    },
+    {
+     "id": "crypto",
+     "label": "Crypto",
+     "kinds": [
+      "current_value",
+      "trend",
+      "ranking"
+     ],
+     "params": [
+      "crypto_asset"
+     ],
+     "keywords": [
+      "bitcoin",
+      "ethereum",
+      "crypto",
+      "coin",
+      "token",
+      "btc",
+      "eth"
+     ]
+    },
+    {
+     "id": "fx",
+     "label": "Currency exchange",
+     "kinds": [
+      "current_value",
+      "trend"
+     ],
+     "params": [
+      "currency_pair"
+     ],
+     "keywords": [
+      "exchange rate",
+      "currency",
+      "forex",
+      "fx",
+      "usd",
+      "euro"
+     ]
+    },
+    {
+     "id": "commodities",
+     "label": "Commodities",
+     "kinds": [
+      "current_value",
+      "trend"
+     ],
+     "params": [
+      "commodity"
+     ],
+     "keywords": [
+      "gold",
+      "silver",
+      "oil price",
+      "crude",
+      "natural gas",
+      "commodity",
+      "wheat",
+      "corn"
+     ]
+    },
+    {
+     "id": "rates_bonds",
+     "label": "Interest rates & bonds",
+     "kinds": [
+      "current_value",
+      "trend"
+     ],
+     "params": [
+      "series",
+      "none"
+     ],
+     "keywords": [
+      "treasury yield",
+      "interest rate",
+      "bond",
+      "mortgage rate",
+      "fed funds",
+      "10-year"
+     ]
+    },
+    {
+     "id": "filings",
+     "label": "Company filings & earnings",
+     "kinds": [
+      "latest_items",
+      "next_event"
+     ],
+     "params": [
+      "ticker",
+      "organization"
+     ],
+     "keywords": [
+      "sec filing",
+      "10-k",
+      "8-k",
+      "earnings",
+      "edgar",
+      "insider"
+     ]
+    },
+    {
+     "id": "funds",
+     "label": "Funds & ETFs",
+     "kinds": [
+      "current_value"
+     ],
+     "params": [
+      "fund",
+      "ticker"
+     ],
+     "keywords": [
+      "etf",
+      "mutual fund",
+      "nav"
+     ]
+    },
+    {
+     "id": "market_status",
+     "label": "Market hours & holidays",
+     "kinds": [
+      "status",
+      "schedule"
+     ],
+     "params": [
+      "none"
+     ],
+     "keywords": [
+      "market open",
+      "market closed",
+      "trading hours",
+      "market holiday"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "economy",
+   "label": "Economy & Prices",
+   "subcategories": [
+    {
+     "id": "inflation",
+     "label": "Inflation & CPI",
+     "kinds": [
+      "current_value",
+      "trend"
+     ],
+     "params": [
+      "series",
+      "none"
+     ],
+     "keywords": [
+      "inflation",
+      "cpi",
+      "consumer price",
+      "pce"
+     ]
+    },
+    {
+     "id": "jobs",
+     "label": "Jobs & unemployment",
+     "kinds": [
+      "current_value",
+      "trend"
+     ],
+     "params": [
+      "us_state",
+      "none"
+     ],
+     "keywords": [
+      "unemployment",
+      "jobs report",
+      "payrolls",
+      "jobless claims",
+      "labor"
+     ]
+    },
+    {
+     "id": "gdp",
+     "label": "GDP & growth",
+     "kinds": [
+      "current_value",
+      "trend"
+     ],
+     "params": [
+      "none"
+     ],
+     "keywords": [
+      "gdp",
+      "economic growth",
+      "recession"
+     ]
+    },
+    {
+     "id": "housing",
+     "label": "Housing",
+     "kinds": [
+      "current_value",
+      "trend"
+     ],
+     "params": [
+      "place",
+      "us_state",
+      "none"
+     ],
+     "keywords": [
+      "home price",
+      "housing starts",
+      "rent",
+      "house price index",
+      "mortgage"
+     ]
+    },
+    {
+     "id": "fuel_prices",
+     "label": "Gas & fuel prices",
+     "kinds": [
+      "current_value",
+      "trend"
+     ],
+     "params": [
+      "us_state",
+      "place",
+      "none"
+     ],
+     "keywords": [
+      "gas price",
+      "gasoline",
+      "diesel",
+      "fuel price"
+     ]
+    },
+    {
+     "id": "food_prices",
+     "label": "Food & grocery prices",
+     "kinds": [
+      "current_value",
+      "trend"
+     ],
+     "params": [
+      "none"
+     ],
+     "keywords": [
+      "egg prices",
+      "grocery",
+      "food price",
+      "milk price"
+     ]
+    },
+    {
+     "id": "government_finance",
+     "label": "Federal debt & spending",
+     "kinds": [
+      "current_value",
+      "trend"
+     ],
+     "params": [
+      "none"
+     ],
+     "keywords": [
+      "national debt",
+      "deficit",
+      "federal spending",
+      "treasury"
+     ]
+    },
+    {
+     "id": "trade",
+     "label": "Trade",
+     "kinds": [
+      "current_value",
+      "trend"
+     ],
+     "params": [
+      "none"
+     ],
+     "keywords": [
+      "trade deficit",
+      "imports",
+      "exports",
+      "tariff"
+     ]
+    },
+    {
+     "id": "economic_calendar",
+     "label": "Economic calendar",
+     "kinds": [
+      "schedule",
+      "next_event"
+     ],
+     "params": [
+      "none"
+     ],
+     "keywords": [
+      "release schedule",
+      "fomc",
+      "economic calendar",
+      "fed meeting"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "energy",
+   "label": "Energy & Utilities",
+   "subcategories": [
+    {
+     "id": "electricity_prices",
+     "label": "Electricity prices",
+     "kinds": [
+      "current_value",
+      "trend"
+     ],
+     "params": [
+      "us_state",
+      "place"
+     ],
+     "keywords": [
+      "electricity price",
+      "power price",
+      "kwh",
+      "utility rate"
+     ]
+    },
+    {
+     "id": "grid",
+     "label": "Grid demand & mix",
+     "kinds": [
+      "current_value",
+      "trend"
+     ],
+     "params": [
+      "organization",
+      "none"
+     ],
+     "keywords": [
+      "grid",
+      "demand",
+      "generation mix",
+      "renewables",
+      "iso",
+      "ercot",
+      "caiso"
+     ]
+    },
+    {
+     "id": "outages",
+     "label": "Power outages",
+     "kinds": [
+      "current_value",
+      "status"
+     ],
+     "params": [
+      "us_state",
+      "county"
+     ],
+     "keywords": [
+      "power outage",
+      "outage",
+      "blackout"
+     ]
+    },
+    {
+     "id": "ev_charging",
+     "label": "EV charging",
+     "kinds": [
+      "lookup",
+      "map"
+     ],
+     "params": [
+      "place"
+     ],
+     "keywords": [
+      "ev charging",
+      "charging station",
+      "charger"
+     ]
+    },
+    {
+     "id": "oil_gas_supply",
+     "label": "Oil & gas supply",
+     "kinds": [
+      "current_value",
+      "trend"
+     ],
+     "params": [
+      "none"
+     ],
+     "keywords": [
+      "oil inventories",
+      "crude stocks",
+      "natural gas storage",
+      "rig count"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "sports",
+   "label": "Sports",
+   "subcategories": [
+    {
+     "id": "scores",
+     "label": "Live scores",
+     "kinds": [
+      "current_value",
+      "latest_items"
+     ],
+     "params": [
+      "league",
+      "team"
+     ],
+     "keywords": [
+      "score",
+      "live score",
+      "game",
+      "final"
+     ]
+    },
+    {
+     "id": "schedules",
+     "label": "Schedules & fixtures",
+     "kinds": [
+      "schedule",
+      "next_event"
+     ],
+     "params": [
+      "league",
+      "team"
+     ],
+     "keywords": [
+      "schedule",
+      "fixtures",
+      "next game",
+      "kickoff",
+      "tip-off"
+     ]
+    },
+    {
+     "id": "standings",
+     "label": "Standings & tables",
+     "kinds": [
+      "ranking"
+     ],
+     "params": [
+      "league"
+     ],
+     "keywords": [
+      "standings",
+      "table",
+      "rankings",
+      "playoff picture"
+     ]
+    },
+    {
+     "id": "player_stats",
+     "label": "Player stats",
+     "kinds": [
+      "current_value",
+      "ranking"
+     ],
+     "params": [
+      "player",
+      "league"
+     ],
+     "keywords": [
+      "player stats",
+      "leaders",
+      "top scorer",
+      "batting average"
+     ]
+    },
+    {
+     "id": "results",
+     "label": "Results",
+     "kinds": [
+      "latest_items"
+     ],
+     "params": [
+      "league",
+      "team"
+     ],
+     "keywords": [
+      "results",
+      "who won",
+      "final score"
+     ]
+    },
+    {
+     "id": "injuries_news",
+     "label": "Team news & injuries",
+     "kinds": [
+      "latest_items"
+     ],
+     "params": [
+      "team",
+      "league"
+     ],
+     "keywords": [
+      "injury report",
+      "team news",
+      "roster"
+     ]
+    },
+    {
+     "id": "college",
+     "label": "College sports",
+     "kinds": [
+      "schedule",
+      "ranking",
+      "latest_items"
+     ],
+     "params": [
+      "team",
+      "league"
+     ],
+     "keywords": [
+      "college football",
+      "ncaa",
+      "march madness",
+      "ap poll"
+     ]
+    },
+    {
+     "id": "motorsport_golf_other",
+     "label": "Racing, golf & other",
+     "kinds": [
+      "ranking",
+      "schedule",
+      "latest_items"
+     ],
+     "params": [
+      "league"
+     ],
+     "keywords": [
+      "f1",
+      "nascar",
+      "pga",
+      "golf leaderboard",
+      "tennis",
+      "ufc"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "news",
+   "label": "News & Media",
+   "subcategories": [
+    {
+     "id": "headlines",
+     "label": "Top headlines",
+     "kinds": [
+      "latest_items"
+     ],
+     "params": [
+      "none",
+      "organization"
+     ],
+     "keywords": [
+      "headlines",
+      "news",
+      "breaking",
+      "top stories"
+     ]
+    },
+    {
+     "id": "topic_news",
+     "label": "News by topic",
+     "kinds": [
+      "latest_items"
+     ],
+     "params": [
+      "topic"
+     ],
+     "keywords": [
+      "news about",
+      "latest on",
+      "technology news",
+      "politics news",
+      "science news"
+     ]
+    },
+    {
+     "id": "local_news",
+     "label": "Local news",
+     "kinds": [
+      "latest_items"
+     ],
+     "params": [
+      "place",
+      "us_state"
+     ],
+     "keywords": [
+      "local news",
+      "city news"
+     ]
+    },
+    {
+     "id": "feeds",
+     "label": "Blogs & feeds",
+     "kinds": [
+      "latest_items"
+     ],
+     "params": [
+      "url",
+      "organization"
+     ],
+     "keywords": [
+      "rss",
+      "blog",
+      "feed",
+      "newsletter"
+     ]
+    },
+    {
+     "id": "podcasts",
+     "label": "Podcasts",
+     "kinds": [
+      "latest_items"
+     ],
+     "params": [
+      "title"
+     ],
+     "keywords": [
+      "podcast",
+      "episode"
+     ]
+    },
+    {
+     "id": "press_releases",
+     "label": "Press releases",
+     "kinds": [
+      "latest_items"
+     ],
+     "params": [
+      "organization",
+      "agency"
+     ],
+     "keywords": [
+      "press release",
+      "announcement",
+      "newsroom"
+     ]
+    },
+    {
+     "id": "fact_checks",
+     "label": "Fact checks",
+     "kinds": [
+      "latest_items"
+     ],
+     "params": [
+      "none"
+     ],
+     "keywords": [
+      "fact check"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "travel",
+   "label": "Travel & Transport",
+   "subcategories": [
+    {
+     "id": "flights",
+     "label": "Flight status",
+     "kinds": [
+      "status",
+      "current_value"
+     ],
+     "params": [
+      "flight"
+     ],
+     "keywords": [
+      "flight status",
+      "flight",
+      "arrival",
+      "departure",
+      "delayed"
+     ]
+    },
+    {
+     "id": "airport_delays",
+     "label": "Airport delays",
+     "kinds": [
+      "status"
+     ],
+     "params": [
+      "airport"
+     ],
+     "keywords": [
+      "airport delay",
+      "ground stop",
+      "faa delays",
+      "tsa wait"
+     ]
+    },
+    {
+     "id": "transit",
+     "label": "Transit arrivals",
+     "kinds": [
+      "next_event",
+      "status"
+     ],
+     "params": [
+      "transit_agency",
+      "transit_stop",
+      "route"
+     ],
+     "keywords": [
+      "bus",
+      "train",
+      "subway",
+      "next arrival",
+      "transit",
+      "metro",
+      "light rail"
+     ]
+    },
+    {
+     "id": "transit_alerts",
+     "label": "Transit service alerts",
+     "kinds": [
+      "alerts",
+      "status"
+     ],
+     "params": [
+      "transit_agency",
+      "route"
+     ],
+     "keywords": [
+      "service alert",
+      "delay",
+      "disruption",
+      "planned work"
+     ]
+    },
+    {
+     "id": "traffic_roads",
+     "label": "Traffic & road conditions",
+     "kinds": [
+      "status",
+      "alerts",
+      "image"
+     ],
+     "params": [
+      "road",
+      "us_state",
+      "place"
+     ],
+     "keywords": [
+      "traffic",
+      "road closure",
+      "road conditions",
+      "traffic camera",
+      "511"
+     ]
+    },
+    {
+     "id": "rail",
+     "label": "Intercity rail",
+     "kinds": [
+      "status",
+      "schedule"
+     ],
+     "params": [
+      "route"
+     ],
+     "keywords": [
+      "amtrak",
+      "train status"
+     ]
+    },
+    {
+     "id": "border_waits",
+     "label": "Border wait times",
+     "kinds": [
+      "current_value"
+     ],
+     "params": [
+      "place"
+     ],
+     "keywords": [
+      "border wait",
+      "crossing wait"
+     ]
+    },
+    {
+     "id": "parks_travel",
+     "label": "National parks & travel advisories",
+     "kinds": [
+      "status",
+      "alerts"
+     ],
+     "params": [
+      "place",
+      "none"
+     ],
+     "keywords": [
+      "national park",
+      "park alerts",
+      "travel advisory",
+      "passport"
+     ]
+    },
+    {
+     "id": "bikeshare",
+     "label": "Bikes & scooters",
+     "kinds": [
+      "current_value",
+      "map"
+     ],
+     "params": [
+      "place",
+      "transit_agency"
+     ],
+     "keywords": [
+      "bike share",
+      "citi bike",
+      "docks",
+      "scooter"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "health",
+   "label": "Health",
+   "subcategories": [
+    {
+     "id": "disease_surveillance",
+     "label": "Illness activity",
+     "kinds": [
+      "current_value",
+      "trend"
+     ],
+     "params": [
+      "us_state",
+      "none"
+     ],
+     "keywords": [
+      "flu",
+      "covid",
+      "rsv",
+      "illness",
+      "wastewater",
+      "cases"
+     ]
+    },
+    {
+     "id": "outbreaks",
+     "label": "Outbreaks",
+     "kinds": [
+      "latest_items",
+      "alerts"
+     ],
+     "params": [
+      "none"
+     ],
+     "keywords": [
+      "outbreak",
+      "measles",
+      "salmonella"
+     ]
+    },
+    {
+     "id": "recalls",
+     "label": "Recalls",
+     "kinds": [
+      "latest_items",
+      "alerts"
+     ],
+     "params": [
+      "none",
+      "product"
+     ],
+     "keywords": [
+      "recall",
+      "food recall",
+      "drug recall",
+      "product recall",
+      "vehicle recall"
+     ]
+    },
+    {
+     "id": "drugs",
+     "label": "Drugs & shortages",
+     "kinds": [
+      "lookup",
+      "latest_items"
+     ],
+     "params": [
+      "product"
+     ],
+     "keywords": [
+      "drug shortage",
+      "medication",
+      "fda approval"
+     ]
+    },
+    {
+     "id": "hospitals",
+     "label": "Hospitals & care",
+     "kinds": [
+      "lookup"
+     ],
+     "params": [
+      "place"
+     ],
+     "keywords": [
+      "hospital",
+      "er wait",
+      "clinic"
+     ]
+    },
+    {
+     "id": "nutrition",
+     "label": "Food & nutrition",
+     "kinds": [
+      "lookup"
+     ],
+     "params": [
+      "product"
+     ],
+     "keywords": [
+      "nutrition",
+      "calories",
+      "ingredients"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "civic",
+   "label": "Government & Civic",
+   "subcategories": [
+    {
+     "id": "legislation",
+     "label": "Legislation & bills",
+     "kinds": [
+      "latest_items",
+      "status"
+     ],
+     "params": [
+      "bill",
+      "none"
+     ],
+     "keywords": [
+      "bill",
+      "congress",
+      "legislation",
+      "vote",
+      "law"
+     ]
+    },
+    {
+     "id": "elections",
+     "label": "Elections",
+     "kinds": [
+      "schedule",
+      "current_value",
+      "next_event"
+     ],
+     "params": [
+      "us_state",
+      "place"
+     ],
+     "keywords": [
+      "election",
+      "polls",
+      "ballot",
+      "voter registration",
+      "primary"
+     ]
+    },
+    {
+     "id": "courts",
+     "label": "Courts & cases",
+     "kinds": [
+      "latest_items",
+      "status"
+     ],
+     "params": [
+      "court"
+     ],
+     "keywords": [
+      "supreme court",
+      "court opinion",
+      "ruling",
+      "case"
+     ]
+    },
+    {
+     "id": "regulations",
+     "label": "Regulations & notices",
+     "kinds": [
+      "latest_items"
+     ],
+     "params": [
+      "agency"
+     ],
+     "keywords": [
+      "federal register",
+      "regulation",
+      "rule",
+      "public comment"
+     ]
+    },
+    {
+     "id": "city_services",
+     "label": "City services & 311",
+     "kinds": [
+      "latest_items",
+      "count"
+     ],
+     "params": [
+      "place"
+     ],
+     "keywords": [
+      "311",
+      "service request",
+      "pothole",
+      "noise complaint"
+     ]
+    },
+    {
+     "id": "public_safety",
+     "label": "Crime & public safety",
+     "kinds": [
+      "latest_items",
+      "count",
+      "trend"
+     ],
+     "params": [
+      "place"
+     ],
+     "keywords": [
+      "crime",
+      "police",
+      "incidents",
+      "arrests"
+     ]
+    },
+    {
+     "id": "permits_property",
+     "label": "Permits & property",
+     "kinds": [
+      "latest_items",
+      "lookup"
+     ],
+     "params": [
+      "place"
+     ],
+     "keywords": [
+      "building permit",
+      "property",
+      "zoning",
+      "inspection"
+     ]
+    },
+    {
+     "id": "schools",
+     "label": "Schools & education",
+     "kinds": [
+      "status",
+      "lookup",
+      "schedule"
+     ],
+     "params": [
+      "place"
+     ],
+     "keywords": [
+      "school closing",
+      "school calendar",
+      "school district"
+     ]
+    },
+    {
+     "id": "gov_contracts",
+     "label": "Spending & contracts",
+     "kinds": [
+      "latest_items"
+     ],
+     "params": [
+      "agency",
+      "organization"
+     ],
+     "keywords": [
+      "contract award",
+      "grant",
+      "federal spending"
+     ]
+    },
+    {
+     "id": "open_data",
+     "label": "City & state open data",
+     "kinds": [
+      "latest_items",
+      "count",
+      "trend",
+      "lookup"
+     ],
+     "params": [
+      "dataset",
+      "place"
+     ],
+     "keywords": [
+      "open data",
+      "dataset"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "tech",
+   "label": "Tech & Internet",
+   "subcategories": [
+    {
+     "id": "service_status",
+     "label": "Service status",
+     "kinds": [
+      "status",
+      "alerts"
+     ],
+     "params": [
+      "service"
+     ],
+     "keywords": [
+      "status page",
+      "outage",
+      "is down",
+      "incident",
+      "degraded",
+      "down",
+      "outage right now",
+      "not working",
+      "status"
+     ]
+    },
+    {
+     "id": "repos_releases",
+     "label": "Code repos & releases",
+     "kinds": [
+      "latest_items",
+      "current_value"
+     ],
+     "params": [
+      "repo"
+     ],
+     "keywords": [
+      "github",
+      "release",
+      "stars",
+      "commits",
+      "issues",
+      "pull requests"
+     ]
+    },
+    {
+     "id": "packages",
+     "label": "Package versions",
+     "kinds": [
+      "current_value",
+      "latest_items"
+     ],
+     "params": [
+      "package"
+     ],
+     "keywords": [
+      "npm",
+      "pypi",
+      "package version",
+      "crate",
+      "downloads"
+     ]
+    },
+    {
+     "id": "security_advisories",
+     "label": "Security advisories",
+     "kinds": [
+      "latest_items",
+      "alerts"
+     ],
+     "params": [
+      "product",
+      "none"
+     ],
+     "keywords": [
+      "cve",
+      "vulnerability",
+      "security advisory",
+      "kev",
+      "exploit"
+     ]
+    },
+    {
+     "id": "tech_news",
+     "label": "Tech community",
+     "kinds": [
+      "latest_items",
+      "ranking"
+     ],
+     "params": [
+      "none",
+      "topic"
+     ],
+     "keywords": [
+      "hacker news",
+      "reddit",
+      "trending",
+      "product hunt"
+     ]
+    },
+    {
+     "id": "domains_web",
+     "label": "Domains & websites",
+     "kinds": [
+      "status",
+      "lookup"
+     ],
+     "params": [
+      "domain"
+     ],
+     "keywords": [
+      "domain expiry",
+      "ssl certificate",
+      "uptime",
+      "dns"
+     ]
+    },
+    {
+     "id": "ai_models",
+     "label": "AI & models",
+     "kinds": [
+      "latest_items",
+      "ranking"
+     ],
+     "params": [
+      "none"
+     ],
+     "keywords": [
+      "model release",
+      "leaderboard",
+      "hugging face"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "culture",
+   "label": "Entertainment & Culture",
+   "subcategories": [
+    {
+     "id": "tv",
+     "label": "TV shows",
+     "kinds": [
+      "next_event",
+      "schedule"
+     ],
+     "params": [
+      "title"
+     ],
+     "keywords": [
+      "next episode",
+      "tv show",
+      "season",
+      "airs"
+     ]
+    },
+    {
+     "id": "movies",
+     "label": "Movies",
+     "kinds": [
+      "latest_items",
+      "ranking",
+      "schedule"
+     ],
+     "params": [
+      "none",
+      "title"
+     ],
+     "keywords": [
+      "movie",
+      "box office",
+      "new releases",
+      "in theaters",
+      "streaming"
+     ]
+    },
+    {
+     "id": "music",
+     "label": "Music",
+     "kinds": [
+      "ranking",
+      "latest_items"
+     ],
+     "params": [
+      "none",
+      "person"
+     ],
+     "keywords": [
+      "music chart",
+      "new album",
+      "billboard",
+      "top songs"
+     ]
+    },
+    {
+     "id": "books",
+     "label": "Books",
+     "kinds": [
+      "ranking",
+      "latest_items",
+      "lookup"
+     ],
+     "params": [
+      "none",
+      "person",
+      "title"
+     ],
+     "keywords": [
+      "bestseller",
+      "new book",
+      "book release",
+      "library"
+     ]
+    },
+    {
+     "id": "games",
+     "label": "Games",
+     "kinds": [
+      "latest_items",
+      "ranking",
+      "current_value"
+     ],
+     "params": [
+      "title",
+      "none"
+     ],
+     "keywords": [
+      "video game",
+      "steam",
+      "game deals",
+      "player count"
+     ]
+    },
+    {
+     "id": "events",
+     "label": "Events & concerts",
+     "kinds": [
+      "schedule",
+      "next_event"
+     ],
+     "params": [
+      "place",
+      "person"
+     ],
+     "keywords": [
+      "concert",
+      "event",
+      "tour dates",
+      "festival",
+      "things to do"
+     ]
+    },
+    {
+     "id": "museums_art",
+     "label": "Museums & art",
+     "kinds": [
+      "image",
+      "lookup"
+     ],
+     "params": [
+      "organization",
+      "none"
+     ],
+     "keywords": [
+      "museum",
+      "artwork",
+      "collection",
+      "exhibit"
+     ]
+    },
+    {
+     "id": "reference_daily",
+     "label": "Daily reference",
+     "kinds": [
+      "text_brief",
+      "image"
+     ],
+     "params": [
+      "none"
+     ],
+     "keywords": [
+      "word of the day",
+      "quote of the day",
+      "on this day",
+      "featured article"
+     ]
+    },
+    {
+     "id": "trivia_fun",
+     "label": "Trivia & fun",
+     "kinds": [
+      "text_brief"
+     ],
+     "params": [
+      "none"
+     ],
+     "keywords": [
+      "trivia",
+      "joke",
+      "fact"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "shopping",
+   "label": "Shopping & Deals",
+   "subcategories": [
+    {
+     "id": "product_prices",
+     "label": "Product prices",
+     "kinds": [
+      "current_value",
+      "trend"
+     ],
+     "params": [
+      "product"
+     ],
+     "keywords": [
+      "price of",
+      "price drop",
+      "cheapest",
+      "deal"
+     ]
+    },
+    {
+     "id": "deals",
+     "label": "Deals & sales",
+     "kinds": [
+      "latest_items"
+     ],
+     "params": [
+      "none",
+      "topic"
+     ],
+     "keywords": [
+      "deals",
+      "sale",
+      "coupon",
+      "discount"
+     ]
+    },
+    {
+     "id": "availability",
+     "label": "Stock & availability",
+     "kinds": [
+      "status"
+     ],
+     "params": [
+      "product"
+     ],
+     "keywords": [
+      "in stock",
+      "availability",
+      "back in stock"
+     ]
+    },
+    {
+     "id": "app_prices",
+     "label": "Apps & software",
+     "kinds": [
+      "current_value",
+      "latest_items"
+     ],
+     "params": [
+      "product"
+     ],
+     "keywords": [
+      "app price",
+      "app update",
+      "software release"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "science",
+   "label": "Science & Research",
+   "subcategories": [
+    {
+     "id": "papers",
+     "label": "New papers",
+     "kinds": [
+      "latest_items"
+     ],
+     "params": [
+      "topic"
+     ],
+     "keywords": [
+      "arxiv",
+      "paper",
+      "preprint",
+      "journal",
+      "study"
+     ]
+    },
+    {
+     "id": "clinical_trials",
+     "label": "Clinical trials",
+     "kinds": [
+      "latest_items",
+      "lookup"
+     ],
+     "params": [
+      "topic"
+     ],
+     "keywords": [
+      "clinical trial",
+      "trial"
+     ]
+    },
+    {
+     "id": "patents",
+     "label": "Patents",
+     "kinds": [
+      "latest_items"
+     ],
+     "params": [
+      "organization",
+      "topic"
+     ],
+     "keywords": [
+      "patent"
+     ]
+    },
+    {
+     "id": "datasets_research",
+     "label": "Research datasets",
+     "kinds": [
+      "lookup",
+      "trend"
+     ],
+     "params": [
+      "dataset"
+     ],
+     "keywords": [
+      "dataset",
+      "census data",
+      "survey"
+     ]
+    },
+    {
+     "id": "nature_wildlife",
+     "label": "Nature & wildlife",
+     "kinds": [
+      "latest_items",
+      "lookup"
+     ],
+     "params": [
+      "place",
+      "topic"
+     ],
+     "keywords": [
+      "bird sightings",
+      "wildlife",
+      "species",
+      "observations"
+     ]
+    },
+    {
+     "id": "environment_data",
+     "label": "Environment & emissions",
+     "kinds": [
+      "trend",
+      "current_value"
+     ],
+     "params": [
+      "none",
+      "place"
+     ],
+     "keywords": [
+      "co2",
+      "emissions",
+      "carbon",
+      "sea ice",
+      "global temperature"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "time",
+   "label": "Time & Calendars",
+   "subcategories": [
+    {
+     "id": "holidays",
+     "label": "Holidays",
+     "kinds": [
+      "next_event",
+      "schedule"
+     ],
+     "params": [
+      "none",
+      "us_state"
+     ],
+     "keywords": [
+      "holiday",
+      "federal holiday",
+      "day off"
+     ]
+    },
+    {
+     "id": "countdowns",
+     "label": "Countdowns",
+     "kinds": [
+      "next_event"
+     ],
+     "params": [
+      "date"
+     ],
+     "keywords": [
+      "countdown",
+      "days until",
+      "how long until"
+     ]
+    },
+    {
+     "id": "time_zones",
+     "label": "World clocks",
+     "kinds": [
+      "current_value"
+     ],
+     "params": [
+      "place"
+     ],
+     "keywords": [
+      "time in",
+      "time zone",
+      "what time"
+     ]
+    },
+    {
+     "id": "observances",
+     "label": "Observances & daylight saving",
+     "kinds": [
+      "next_event"
+     ],
+     "params": [
+      "none"
+     ],
+     "keywords": [
+      "daylight saving",
+      "observance",
+      "solstice",
+      "equinox"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "personal",
+   "label": "Personal & Home",
+   "subcategories": [
+    {
+     "id": "knowledge_base",
+     "label": "My knowledge base",
+     "kinds": [
+      "latest_items",
+      "lookup",
+      "text_brief"
+     ],
+     "params": [
+      "topic"
+     ],
+     "keywords": [
+      "my notes",
+      "my documents",
+      "knowledge base"
+     ]
+    },
+    {
+     "id": "schedules_runs",
+     "label": "My scheduled runs",
+     "kinds": [
+      "latest_items",
+      "text_brief"
+     ],
+     "params": [
+      "none"
+     ],
+     "keywords": [
+      "my schedule",
+      "scheduled",
+      "briefing"
+     ]
+    },
+    {
+     "id": "home_devices",
+     "label": "Home devices",
+     "kinds": [
+      "current_value",
+      "status"
+     ],
+     "params": [
+      "service"
+     ],
+     "keywords": [
+      "thermostat",
+      "sensor",
+      "home assistant",
+      "smart home"
+     ]
+    },
+    {
+     "id": "email_calendar",
+     "label": "Email & calendar",
+     "kinds": [
+      "latest_items",
+      "schedule"
+     ],
+     "params": [
+      "none"
+     ],
+     "keywords": [
+      "inbox",
+      "unread email",
+      "my calendar",
+      "meetings today"
+     ]
+    }
+   ]
+  }
+ ]
+}
