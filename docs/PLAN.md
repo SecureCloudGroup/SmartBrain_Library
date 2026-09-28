@@ -43,6 +43,9 @@ Harvested sources, by catalog:
 | R7 | **Submission is an API, not Git.** 99% of users do not know Git. The app submits through a Library API; only the operator's tooling touches GitHub. |
 | R8 | **Expand the initial set as much as possible**, and store it as **DuckDB tables** for fast lookup. |
 | R9 | The Library link on the NI page opens a **new Library page** where the user can see the Library and add to it (a form). |
+| R10 | robots.txt governs crawling and scraping pages; the provider's API terms govern documented API calls. The robots result is recorded per source. |
+| R11 | Sources that require a contact User-Agent (SEC, www.bls.gov) use the **user's own email**, entered once in the app. |
+| R12 | Pack delivery v1: each app release **pins the pack's sha256** and downloads it from the Library repo's GitHub release. v2: Ed25519-signed packs with a separate Library publisher key, for updates between app releases. |
 
 ## 1. Data model
 
@@ -139,4 +142,4 @@ Flow: the queue feeds `sourcetool ingest` on the operator's side. It validates, 
 - Keyword classification misplaces some harvested records. For example, a noise-complaints dataset lands under weather. The R3 model pass fixes these in review.
 - Some official sources require a contact email in the User-Agent: SEC EDGAR and www.bls.gov. The app needs a policy for that. For example, the user supplies an email, or these sources ship as `free_key`-style "needs your contact".
 - Some subcategories are thin or empty in v1. `sourcetool coverage` lists them.
-- **robots.txt vs API terms:** see `docs/POLICY.md`. Many documented public APIs (api.weather.gov, Open-Meteo, CoinGecko, Wikidata's query service) publish a crawler robots.txt that disallows `/`. We treat robots.txt as governing crawling and scraping, and API terms as governing documented API calls. Every source records its robots result so the policy can be tightened by a filter. **This needs the operator's ruling.**
+- **robots.txt vs API terms:** see `docs/POLICY.md`. Many documented public APIs (api.weather.gov, Open-Meteo, CoinGecko, Wikidata's query service) publish a crawler robots.txt that disallows `/`. We treat robots.txt as governing crawling and scraping, and API terms as governing documented API calls. Every source records its robots result so the policy can be tightened by a filter. **Ruled 2026-09-28: yes** (robots.txt governs crawling and scraping; API terms govern documented API calls).

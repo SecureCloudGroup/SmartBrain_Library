@@ -16,6 +16,7 @@ Each source is one JSON object per line in `sources/**/*.jsonl`. `sourcetool/sch
 | `access.params[]` | `{name, kind, example, required}`. `kind` comes from the taxonomy `param_kinds`, or is `key` for the user's own key. `example` is what `validate` probes with. |
 | `access.auth` | `none`, `free_key` (the user's own free key, from their vault), `oauth` or `user_account`. |
 | `access.headers` | Header templates; `{key}` is filled from the user's vault. |
+| `access.contact_ua` | `true` when the provider refuses requests without a contact email in the User-Agent (SEC, www.bls.gov). The app adds the user's own email for these sources only (ruling R11). |
 | `terms` | `{status: public_domain\|open_license\|terms_allow\|unverified, note, terms_url}` |
 | `freshness.cadence` | `realtime`, `minutes`, `hourly`, `daily`, `weekly`, `monthly`, `quarterly`, `annual`, `irregular` or `static`. |
 | `examples[]` | Asks this source answers. They are indexed for lookup. |
