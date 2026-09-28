@@ -145,6 +145,9 @@ PROV = {
 S_ = []
 
 
+CONTACT_UA_PROVIDERS = {"sec", "bls"}  # refuse requests without a contact email in the User-Agent (ruling R11)
+
+
 def S(id, name, desc, prov, cats, kinds, geo, kind, url, params=(), auth="none", cadence="hourly", examples=(),
       headers=None, notes="", docs=None, entity=""):
     ps = []
@@ -159,7 +162,7 @@ def S(id, name, desc, prov, cats, kinds, geo, kind, url, params=(), auth="none",
         "tier": "curated", "categories": list(cats), "kinds": list(kinds),
         "coverage": {"geo": geo, "entity": entity},
         "access": {"kind": kind, "url_template": url, "params": ps, "auth": auth, "headers": headers or {},
-                   "docs_url": docs or pv[5] or pv[1]},
+                   "docs_url": docs or pv[5] or pv[1], "contact_ua": prov in CONTACT_UA_PROVIDERS},
         "terms": {"status": pv[3], "note": pv[4], "terms_url": pv[5]},
         "freshness": {"cadence": cadence},
         "examples": list(examples), "notes": notes,

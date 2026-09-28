@@ -13,10 +13,11 @@
 ## How we fetch (sourcetool and the app alike)
 - **One honest User-Agent** that names the project. We never disguise ourselves as a browser, never rotate identities, and never solve challenges or CAPTCHAs.
 - **Politeness:** one connection per host, at most one request per second per host, and cached responses.
-- **robots.txt vs API terms (pending the operator's ruling):**
+- **robots.txt vs API terms (operator ruling, 2026-09-28):**
   - `robots.txt` is the crawler convention. It **governs every page we crawl or scrape**: HTML pages and search results. We honor it without exception.
   - **Documented API and feed endpoints** are governed by the provider's **API terms**, which the record carries. Several public APIs publish a robots.txt that disallows `/`, to keep search engines from indexing responses, while documenting the same endpoints for programs. Examples: api.weather.gov, Open-Meteo, CoinGecko, sunrise-sunset.org, Wikidata's query service.
   - Every source records its `validation.robots` result (`allow` or `disallow`), so the operator can tighten this with a filter at any time.
+- **Contact User-Agent (operator ruling, 2026-09-28):** a few official sources refuse requests without a contact email in the User-Agent (SEC EDGAR, www.bls.gov). For those sources only, the app adds the **user's own email**, which they enter once and can remove. Records mark this with `access.contact_ua: true`. The Library never collects that email.
 - **Search engines are not sources.** Google, Bing and Brave search pages disallow automation, so the Library never scrapes them. Assisted search, where the user runs the search themselves, is the rules-compliant path.
 
 ## Privacy

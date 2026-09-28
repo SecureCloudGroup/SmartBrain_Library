@@ -1,6 +1,6 @@
 """sourcetool — create, validate, harvest and build the SmartBrain Library.
 
-  python -m sourcetool validate [--only curated|harvested] [--file NAME] [--id ID]   probe, record results
+  python -m sourcetool validate [--only curated|harvested] [--file NAME] [--id ID,ID..]   probe, record results
   python -m sourcetool check                                            schema-check every record (CI)
   python -m sourcetool harvest NAME|all                                 pull candidates from an open catalog
   python -m sourcetool build                                            compile build/library.duckdb (+ term index)
@@ -44,12 +44,14 @@ def cmd_validate(args) -> int:
     from .validate import validate_all
     only = args[args.index("--only") + 1] if "--only" in args else None
     file = args[args.index("--file") + 1] if "--file" in args else None
-    want = args[args.index("--id") + 1] if "--id" in args else None
+    want = set(args[args.index("--id") + 1].split(",")) if "--id" in args else None
     for f in _files(only):
         if file and f.stem != file:
             continue
         rows = read_jsonl(f)
-        todo = [r for r in rows if not want or r["id"] == want]
+        todo = [r for r in rows if not want or r["id"] in want]
+        if not todo:
+            continue  # untouched files are not rewritten
         validate_all(todo)
         write_jsonl(f, rows)
         c = collections.Counter(r["validation"]["status"] for r in todo)

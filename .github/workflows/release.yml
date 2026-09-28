@@ -1,0 +1,33 @@
+name: release
+# A v* tag builds the Library pack and attaches it to a GitHub release. Each SmartBrain app release
+# pins the pack's sha256 (ruling R12), so the app only ever installs the exact bytes it was built for.
+on:
+  push:
+    tags: ["v*"]
+permissions:
+  contents: read
+jobs:
+  pack:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write   # create the release and upload the pack
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install "httpx==0.28.1" "duckdb==1.5.4"   # duckdb must match the app's pin
+      - run: python -m sourcetool check
+      - run: python -m sourcetool build
+      - name: compress + hash
+        run: |
+          gzip -n -9 -c build/library.duckdb > library.duckdb.gz
+          sha256sum library.duckdb.gz | tee library.duckdb.gz.sha256
+          stat -c '%s bytes' library.duckdb.gz
+      - name: publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" library.duckdb.gz library.duckdb.gz.sha256 \
+            --title "Library pack $GITHUB_REF_NAME" \
+            --notes "SmartBrain Library pack (DuckDB 1.5.4). sha256: $(cut -d' ' -f1 library.duckdb.gz.sha256)"
