@@ -323,6 +323,72 @@
    "resolver": "county",
    "expect": "resolved",
    "key": "17031"
+  },
+  {
+   "ask": "NYC weather",
+   "resolver": "place",
+   "expect": "resolved",
+   "state": "NY"
+  },
+  {
+   "ask": "LA weather",
+   "resolver": "place",
+   "expect": "resolved",
+   "state": "CA"
+  },
+  {
+   "ask": "SF fog tonight",
+   "resolver": "place",
+   "expect": "resolved",
+   "state": "CA"
+  },
+  {
+   "ask": "Philly forecast",
+   "resolver": "place",
+   "expect": "resolved",
+   "state": "PA"
+  },
+  {
+   "ask": "Vegas weather this weekend",
+   "resolver": "place",
+   "expect": "resolved",
+   "state": "NV"
+  },
+  {
+   "ask": "DC weather",
+   "resolver": "place",
+   "expect": "resolved",
+   "state": "DC"
+  },
+  {
+   "ask": "NOLA weather",
+   "resolver": "place",
+   "expect": "resolved",
+   "state": "LA"
+  },
+  {
+   "ask": "Chi-town weather",
+   "resolver": "place",
+   "expect": "resolved",
+   "state": "IL"
+  },
+  {
+   "ask": "weather in the Big Apple",
+   "resolver": "place",
+   "expect": "resolved",
+   "state": "NY"
+  },
+  {
+   "ask": "weather in Lafayette LA",
+   "resolver": "place",
+   "expect": "resolved",
+   "state": "LA"
+  },
+  {
+   "ask": "weather in la crosse",
+   "resolver": "place",
+   "expect": "resolved",
+   "state": "WI"
   }
  ],
  "near": [

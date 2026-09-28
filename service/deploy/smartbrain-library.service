@@ -1,0 +1,48 @@
+# SmartBrain Library API — /etc/systemd/system/smartbrain-library.service (see service/README.md)
+[Unit]
+Description=SmartBrain Library API (votes, suggestions, pack manifest)
+After=network-online.target docker.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=sblibrary
+Group=sblibrary
+WorkingDirectory=/opt/smartbrain-library
+EnvironmentFile=/etc/smartbrain-library/env
+Environment=PYTHONDONTWRITEBYTECODE=1
+# LIBRARY_BIND comes from the env file: 127.0.0.1, or the docker0 address when Caddy runs in a container
+ExecStart=/opt/smartbrain-library/.venv/bin/uvicorn --factory service.app:create_app \
+    --host ${LIBRARY_BIND} --port 8095 --workers 1 --limit-concurrency 64 --timeout-keep-alive 5 \
+    --no-access-log --no-server-header
+Restart=on-failure
+RestartSec=3
+StateDirectory=smartbrain-library
+StateDirectoryMode=0700
+UMask=0077
+
+# hardening: an unprivileged user that can write only its own state directory
+NoNewPrivileges=yes
+CapabilityBoundingSet=
+AmbientCapabilities=
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectKernelLogs=yes
+ProtectControlGroups=yes
+ProtectClock=yes
+ProtectHostname=yes
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+RestrictNamespaces=yes
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+LockPersonality=yes
+SystemCallArchitectures=native
+MemoryMax=256M
+TasksMax=64
+
+[Install]
+WantedBy=multi-user.target

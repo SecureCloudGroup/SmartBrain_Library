@@ -87,6 +87,11 @@ def by_name(resolver: str, ask: str, *, raw_case_codes: bool = True, many: bool 
     upper = set(re.findall(r"\b[A-Z0-9$]{1,6}\b", ask or ""))  # tokens the user typed in capitals
     states = states_in(ask)
     common = _common_words()
+    # a capitalised state code that is also a place's nickname ("LA", "DC") names that place only when no
+    # other place is named: "LA weather" is Los Angeles, "Lafayette LA" is Lafayette, Louisiana
+    codes = {c.lower() for c in re.findall(r"\b([A-Z]{2})\b", ask or "") if c in US_STATES} \
+        if resolver == "place" else set()
+    via_other: set[int] = set()  # candidates named by something other than a bare state code
     scored: dict[int, float] = {}
     first_at: dict[int, int] = {}
     text = f" {' '.join(tokens)} "
@@ -110,16 +115,23 @@ def by_name(resolver: str, ask: str, *, raw_case_codes: bool = True, many: bool 
             if n == 1 and r["kind"] == "crypto_asset" and gram in r["aliases"] and gram != norm(r["name"]) \
                     and not r.get("rank") and gram.upper() not in upper:
                 continue  # an unranked token's lowercase symbol is noise ("eth" is Ethereum, not a clone)
+            if n == 1 and r["kind"] == "place" and len(gram) <= 2 and gram.upper() not in upper:
+                continue  # a two-letter place nickname counts only in capitals ("LA", never the word "la")
             score = (2.0 * spec + partial_penalty + (0.5 if gram == norm(r["name"]) else 0.0)
                      + RANK_WEIGHT.get(resolver, 0.05) * float(r.get("rank") or 0))
-            if states:
-                score += 3.0 if r.get("state") in states else (-3.0 if r.get("state") else 0.0)
+            said = states - {gram.upper()} if n == 1 and gram in codes else states
+            if said:
+                score += 3.0 if r.get("state") in said else (-3.0 if r.get("state") else 0.0)
+            if not (n == 1 and gram in codes):
+                via_other.add(idx)
             for k in ATTR_CONTEXT:  # "Alabama football", "NBA", "on the NYSE"
                 v = norm(str(r.get("attrs", {}).get(k) or ""))
                 if v and any(f" {w} " in text for w in {v, v.replace("college ", "")} if w):
                     score += 1.5
             scored[idx] = max(scored.get(idx, -1e9), score)
             first_at[idx] = min(first_at.get(idx, 99), _i)
+    if via_other and codes:  # another place is named, so the code is its state ("Lafayette LA")
+        scored = {i: sc for i, sc in scored.items() if i in via_other}
     if not scored:
         return {"status": "none", "best": None, "candidates": [], "reason": f"nothing in {resolver} matches"}
     ranked = sorted(scored.items(), key=lambda kv: -kv[1])

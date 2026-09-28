@@ -68,7 +68,7 @@ These are the Library records (`docs/SCHEMA.md`).
 | `build` | Compile `build/library.duckdb`: sources, categories, taxonomy and a term index for scoring. |
 | `lookup "words"` | Look up a phrase against the build (the same SQL the app runs). |
 | `coverage` | Count sources per subcategory and list the empty ones. |
-| `ingest` (phase 2) | Pull the API submission queue, validate, aggregate votes, write records, and open a PR for the operator. |
+| `ingest` | Pull the API submission queue, check it again, aggregate votes, write suggestions to `sources/suggested/`, probe them, and clear the queue. The operator opens the PR (`--commit` makes the branch and commit). |
 
 `sourcetool` writes only to a checkout. Publishing is always a PR that the operator merges.
 
@@ -90,16 +90,18 @@ No and "broken" reports go the same way, as votes against a source.
 
 This is a small service on the existing VPS (`smartbrain.securecloudgroup.com`) next to the landing page and broker. It reuses the VPS deploy and TLS.
 
+The service is `service/` in this repo (`service/README.md` has the deploy steps).
+
 | Endpoint | Purpose |
 |---|---|
-| `POST /library/v1/votes` | `{source_id, verdict: yes\|no\|broken}` for known sources |
-| `POST /library/v1/suggestions` | A new source record (from the Library form or a Yes on a web source) |
-| `GET /library/v1/manifest` | The latest signed pack: seq, sha256, size, url |
-| `GET /library/v1/pack/{seq}` | The signed pack (the DuckDB file, or JSONL plus the build step in the app) |
+| `POST /library/v1/votes` | `{source_id, verdict: yes\|no\|broken, app_version}` for known sources |
+| `POST /library/v1/suggestions` | `{record, via: form\|yes, app_version}`: a new source record (from the Library form or a Yes on a web source) |
+| `GET /library/v1/manifest` | The latest pack: tag, url, sha256, bytes (the pack itself stays on the GitHub release, R12) |
+| `GET /library/v1/admin/queue`, `POST /library/v1/admin/ack` | The operator's `sourcetool ingest` (bearer token) |
 
 Security:
 - Anonymous: no account, no install id, no cookies.
-- Rate-limited per IP, with a small proof-of-work on submissions.
+- Rate-limited per IP in memory only (30 votes and 10 suggestions per hour). A proof-of-work is not built yet.
 - Size caps.
 - Every payload runs through the same `validate_record` rules as CI: https, public host, no credentials, known categories.
 - The service **never fetches** a submitted URL; `sourcetool ingest` validates on the operator's side.
@@ -134,7 +136,7 @@ Flow: the queue feeds `sourcetool ingest` on the operator's side. It validates, 
 | A | Taxonomy v1, schema, `sourcetool` check, validate, harvest, build and lookup; curated US core; 7 harvesters; DuckDB build | **done** |
 | B | Repo public and protected; CI (schema check plus validation of changed records); scheduled re-validation | this change |
 | C | App: signed pack install, DuckDB tables, lookup in the NI finder, Yes recorded locally, the Library page and form | next (SmartBrain_3000 PR) |
-| D | The Library API on the VPS, `sourcetool ingest`, vote aggregation, and the Yes vote plus suggestions from the app | after C |
+| D | The Library API on the VPS, `sourcetool ingest`, vote aggregation, and the Yes vote plus suggestions from the app | service and ingest built; VPS deploy and the app's calls next |
 | E | Model-drafted classification (R3) to fix keyword misplacements; more harvesters (state 511 and GTFS registries, NWS stations, NOAA stations as resolvers) | rolling |
 
 ## Known gaps (v1)

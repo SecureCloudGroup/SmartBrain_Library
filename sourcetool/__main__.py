@@ -11,6 +11,7 @@
   python -m sourcetool fills                                            declare how every source parameter is filled
   python -m sourcetool evalres [resolution_asks|resolution_holdout|resolution_sealed]  resolver accuracy
   python -m sourcetool evallookup [lookup_asks|...]                     is the first source offered the right one
+  python -m sourcetool ingest [--dry-run] [--no-probe] [--commit]      pull the Library API's votes + suggestions
 
 Writes only to this checkout. Publishing is a PR the operator merges.
 """
@@ -24,7 +25,7 @@ from .common import SOURCES, read_jsonl, taxonomy, write_jsonl
 
 
 def _files(only: str | None) -> list[Path]:
-    dirs = [SOURCES / only] if only else [SOURCES / "curated", SOURCES / "harvested"]
+    dirs = [SOURCES / only] if only else [SOURCES / "curated", SOURCES / "harvested", SOURCES / "suggested"]
     return sorted(p for d in dirs for p in d.glob("*.jsonl"))
 
 
@@ -160,9 +161,14 @@ def cmd_evallookup(args) -> int:
     return rc
 
 
+def cmd_ingest(args) -> int:
+    from . import ingest
+    return ingest.main(args)
+
+
 def main(argv: list[str]) -> int:
     if not argv or argv[0] not in {"check", "validate", "harvest", "build", "lookup", "coverage", "resolvers",
-                                   "policies", "fills", "evalres", "evallookup"}:
+                                   "policies", "fills", "evalres", "evallookup", "ingest"}:
         print(__doc__)
         return 2
     return globals()["cmd_" + argv[0]](argv[1:])

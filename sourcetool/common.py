@@ -93,10 +93,21 @@ def _raw_get(url: str, *, check_robots: bool = True, headers: dict | None = None
             _last_hit[host] = time.monotonic()
 
 
+def _cache_path(url: str, headers: dict | None) -> Path:
+    key = hashlib.sha256((url + json.dumps(headers or {}, sort_keys=True)).encode()).hexdigest()
+    return CACHE / key[:2] / key
+
+
+def uncache(url: str, headers: dict | None = None) -> None:
+    """Forget a cached answer that turned out unusable (a response cut off mid-body)."""
+    cp = _cache_path(url, headers)
+    cp.unlink(missing_ok=True)
+    cp.with_suffix(".meta").unlink(missing_ok=True)
+
+
 def get(url: str, *, cache_hours: float = 24.0, headers: dict | None = None, api: bool = False) -> tuple[int, bytes, str]:
     """Polite cached GET. Returns (status, body, content_type)."""
-    key = hashlib.sha256((url + json.dumps(headers or {}, sort_keys=True)).encode()).hexdigest()
-    cp = CACHE / key[:2] / key
+    cp = _cache_path(url, headers)
     if cp.exists() and (time.time() - cp.stat().st_mtime) < cache_hours * 3600:
         meta = json.loads((cp.with_suffix(".meta")).read_text())
         return meta["status"], cp.read_bytes(), meta["ctype"]

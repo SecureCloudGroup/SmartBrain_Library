@@ -35,9 +35,11 @@ python3 -m venv .venv && .venv/bin/pip install httpx duckdb
 | `taxonomy/` | categories, subcategories, question kinds, parameter kinds |
 | `sources/curated/` | hand-curated records (JSONL, one per line) |
 | `sources/harvested/` | records harvested from open catalogs (labelled, ranked lower) |
+| `sources/suggested/` | users' suggestions, written by `sourcetool ingest` |
 | `providers/` | provider records |
 | `resolvers/` | lists that turn words into parameters (status pages, stations…) |
 | `sourcetool/` | the tool |
+| `service/` | the Library API the app submits votes and suggestions to ([README](service/README.md)) |
 | `docs/` | [PLAN](docs/PLAN.md), [POLICY](docs/POLICY.md), [SCHEMA](docs/SCHEMA.md) |
 
 Only the maintainer merges changes to `main`. Changes from SmartBrain users arrive through the Library API, and are then reviewed and opened as PRs by the maintainer's tooling.

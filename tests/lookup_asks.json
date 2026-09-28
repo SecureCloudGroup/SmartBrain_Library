@@ -1,6 +1,8 @@
 {"description": "Source lookup (development): ask -> acceptable FIRST source ids. Across every category.",
  "cases": [
   {"ask": "weather in Boise", "ok": ["open-meteo-forecast", "nws-forecast", "nws-forecast-hourly", "wttr-in"]},
+  {"ask": "NYC weather", "ok": ["open-meteo-forecast", "nws-forecast", "nws-forecast-hourly", "wttr-in"]},
+  {"ask": "air quality in LA", "ok": ["open-meteo-air-quality", "airnow-current-zip", "airnow-forecast-zip"]},
   {"ask": "will it rain tomorrow in Denver", "ok": ["open-meteo-forecast", "nws-forecast", "nws-forecast-hourly"]},
   {"ask": "current temperature in Chicago", "ok": ["open-meteo-forecast", "nws-observation-latest", "wttr-in", "awc-metar"]},
   {"ask": "severe weather alerts near me", "ok": ["nws-alerts-point", "nws-alerts-state"]},

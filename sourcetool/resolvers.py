@@ -21,9 +21,10 @@ import json
 import math
 import re
 import zipfile
+from urllib.parse import quote
 from xml.etree import ElementTree
 
-from .common import ROOT, get, get_json, write_jsonl
+from .common import ROOT, get, get_json, uncache, write_jsonl
 
 RES = ROOT / "resolvers"
 
@@ -94,8 +95,11 @@ def _place_population() -> dict[str, int]:
 def h_place() -> list[dict]:
     out = []
     pop = _place_population()
+    gnis: dict[str, str] = {}  # GNIS feature id (the gazetteer's ANSICODE) -> GEOID, for Wikidata's nicknames
     for r in _gazetteer("https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2024_Gazetteer/"
                         "2024_Gaz_place_national.zip"):
+        if r.get("ANSICODE", "").isdigit():
+            gnis[str(int(r["ANSICODE"]))] = r["GEOID"]
         st, full = r["USPS"], r["NAME"]
         name = _PLACE_SUFFIX.sub("", re.sub(r"\s*\(balance\)$", "", full)).strip()
         typ = full[len(name):].strip().lower() or "place"
@@ -111,7 +115,76 @@ def h_place() -> list[dict]:
                       float(r["INTPTLAT"]), float(r["INTPTLONG"]), st,
                       {"type": typ, "land_km2": round(float(r["ALAND"]) / 1e6, 1), "pop": pop.get(r["GEOID"], 0)},
                       rank=round(math.log10(max(pop.get(r["GEOID"], 0), 1)), 2)))
+    _add_nicknames(out, gnis)
     return out
+
+
+# ------------------------------------------------------------------------------------------ place nicknames
+_NICKNAME_QUERY = """SELECT ?gnis ?nick WHERE {{ ?item wdt:{prop} ?nick . FILTER(LANGMATCHES(LANG(?nick), "en"))
+  ?item wdt:P590 ?gnis . }}"""
+
+
+def _wikidata_nicknames() -> list[tuple[str, str]]:
+    """(GNIS id, nickname) from Wikidata: English short names (P1813: "NYC", "LA") and nicknames (P1449:
+    "Big Apple", "NOLA") of items that carry a GNIS id (P590), the id the Census gazetteer carries as
+    ANSICODE. Joining on it keeps exactly the items that ARE a Census place (not a team, county or
+    neighbourhood of the same name), which is stricter than a city/town class filter."""
+    out = []
+    for prop in ("P1813", "P1449"):
+        url = "https://query.wikidata.org/sparql?format=json&query=" + quote(_NICKNAME_QUERY.format(prop=prop))
+        headers = {"Accept": "application/sparql-results+json"}
+        _, body, _ = get(url, cache_hours=720, api=True, headers=headers)
+        try:
+            rows = json.loads(body)["results"]["bindings"]
+        except ValueError:  # the query service cut the answer off at its time limit: never keep that
+            uncache(url, headers)
+            raise
+        out += [(b["gnis"]["value"], b["nick"]["value"]) for b in rows]
+    return out
+
+
+def _nickname_core(nick: str) -> str:
+    """The form of a Wikidata nickname people type, or "" when it would misfire as a place word.
+
+    Kept: codes written in capitals ("NYC", "L.A.", "NOLA"), single words of 5+ letters ("Philly", "Vegas"),
+    and phrases of up to three words ("Big Apple", "Mile High City"), with a leading "the" dropped (the
+    matcher ignores "the" anyway). Dropped: slogans (4+ words), anything with a digit ("The 313"), short
+    everyday words ("Jeff", "The Hub", "The Land"), and state names."""
+    raw = re.sub(r"^\s*the\s+", "", nick.strip().strip('"'), flags=re.I)
+    core = norm(raw)
+    words = core.split()
+    if not words or len(words) > 3 or re.search(r"\d", core) or core in _STATE_BY_NAME:
+        return ""
+    code = re.sub(r"[^A-Za-z]", "", raw)
+    if len(words) == 1 and not (code.isupper() and 2 <= len(code) <= 5) and len(core) < 5:
+        return ""
+    from .resolve import _common_words
+    return "" if len(words) == 1 and core in _common_words() else core
+
+
+def _add_nicknames(places: list[dict], gnis: dict[str, str]) -> None:
+    """Nicknames and short names become extra aliases on their place (docs/RESOLVERS.md, "Place nicknames").
+
+    Two sources: Wikidata (filtered by ``_nickname_core``, minus the reviewed file's ``exclude`` list) and the
+    reviewed ``entries`` in ``resolvers/place_nicknames.json`` for the common ones Wikidata lacks (it has no
+    nickname for Chicago).
+    A Wikidata nickname never shadows a real place's own name: "Frisco" is Frisco, Texas, not San Francisco,
+    and "Queen City" is a town in Texas and Missouri, so neither is added."""
+    reviewed = json.loads((RES / "place_nicknames.json").read_text())
+    refused = {norm(n) for n in reviewed["exclude"]}
+    by_key = {p["key"]: p for p in places}
+    taken: set[str] = {a for p in places for a in p["aliases"]}
+    for gid, nick in _wikidata_nicknames():
+        p = by_key.get(gnis.get(gid, ""))
+        core = _nickname_core(nick)
+        if p and core and core not in taken and norm(nick) not in refused:
+            p["aliases"] = sorted({*p["aliases"], core})
+    for e in reviewed["entries"]:
+        named = [p for p in places if p["state"] == e["state"] and norm(e["place"]) in p["aliases"]]
+        if not named:
+            raise ValueError(f"place_nicknames.json: no place {e['place']!r} in {e['state']}")
+        p = max(named, key=lambda p: p["attrs"].get("pop") or 0)
+        p["aliases"] = sorted({*p["aliases"], *(norm(n) for n in e["nicknames"])})
 
 
 def h_zip() -> list[dict]:

@@ -1,6 +1,6 @@
 # Source record schema (v1)
 
-Each source is one JSON object per line in `sources/**/*.jsonl`. `sourcetool/schema.py` holds the rules, and CI, `sourcetool` and the app all run the same validator.
+Each source is one JSON object per line in `sources/**/*.jsonl`. Users' suggestions arrive through the Library API and `sourcetool ingest` writes them to `sources/suggested/<date>.jsonl` with tier `harvested` and origin `{by: "user-suggestion"}`. `sourcetool/schema.py` holds the rules, and CI, `sourcetool` and the app all run the same validator.
 
 | Field | Meaning |
 |---|---|
@@ -29,8 +29,8 @@ Each source is one JSON object per line in `sources/**/*.jsonl`. `sourcetool/sch
 
 Rules that reject a record:
 - non-https URLs;
-- private or `.local` hosts;
-- a credential embedded in the URL;
+- private or `.local` hosts, and private, loopback or link-local IP addresses;
+- a credential embedded in the URL (a key parameter or `user:password@`);
 - unknown categories, kinds or parameter kinds;
 - undeclared `{params}`;
 - duplicate ids.

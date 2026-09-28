@@ -57,6 +57,16 @@ jobs:
       - name: "source lookup (development + held-out; the first source offered must be right)"
         run: |
           python -m sourcetool evallookup lookup_asks lookup_holdout || echo "::warning::lookup below 100%, see output"
+  service:
+    name: Library API + ingest tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r service/requirements-test.txt
+      - run: python -m pytest service/tests tests/test_ingest.py -q
   revalidate:
     name: weekly re-validation (report only)
     if: github.event_name == 'schedule'

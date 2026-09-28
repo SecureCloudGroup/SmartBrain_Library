@@ -1,0 +1,12 @@
+	# SmartBrain Library API. Paste INSIDE the existing smartbrain.securecloudgroup.com site block
+	# ({$LANDING_DOMAIN} { ... } in compose/conf.d/landing.caddy), above file_server. Caddy runs in the
+	# sb_caddy container, so it reaches the service on the host's docker0 address (see service/README.md).
+	handle /library/v1/* {
+		request_body {
+			max_size 16KB
+		}
+		reverse_proxy 172.17.0.1:8095 {
+			# one entry, the address Caddy saw: the service rate-limits on it and never stores it
+			header_up X-Forwarded-For {client_ip}
+		}
+	}
