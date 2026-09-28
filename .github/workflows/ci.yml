@@ -35,8 +35,8 @@ jobs:
           prev = {r["id"]: r for r in map(json.loads, pathlib.Path("before.jsonl").read_text().splitlines()) if r}
           def addr(r):  # what decides whether the source works: its address, params, headers, format
               a = r.get("access", {})
-              return json.dumps([a.get("kind"), a.get("url_template"), a.get("params"), a.get("headers")],
-                                sort_keys=True)
+              params = [(p.get("name"), p.get("example")) for p in a.get("params", [])]  # not fills/metadata
+              return json.dumps([a.get("kind"), a.get("url_template"), params, a.get("headers")], sort_keys=True)
           # probe only new sources and sources whose address changed; a metadata-only edit is not a
           # reason to re-probe (third parties often block GitHub's datacenter IPs; the operator's
           # scheduled validation from a residential connection is the source of truth for status)
