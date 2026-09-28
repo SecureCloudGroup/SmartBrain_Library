@@ -199,7 +199,7 @@ SELECT s.id, s.name, s.tier, s.validation_status, s.provider_name,
 FROM cand JOIN library_sources s ON s.id = cand.source_id LEFT JOIN hits h ON h.source_id = s.id
      LEFT JOIN catb c ON c.source_id = s.id
 WHERE s.validation_status NOT IN ('failed', 'refused') AND s.role <> 'helper'
-ORDER BY score DESC LIMIT ?"""
+ORDER BY score DESC, (s.auth <> 'none'), s.prior DESC, s.id LIMIT ?"""
 
 
 # resolvers that name a specific thing; places are too common a word-match to decide the source on their own.
