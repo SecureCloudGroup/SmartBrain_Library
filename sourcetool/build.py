@@ -205,7 +205,7 @@ ORDER BY score DESC LIMIT ?"""
 # A resolver whose names overlap ordinary place names (an airport called "Boise") counts only with a cue in
 # the ask — a code typed like a code, or one of its words.
 ENTITY_RESOLVERS = ("team_mlb", "team_nhl", "team_espn", "ticker", "crypto", "currency", "airport", "statuspage",
-                    "soccer_competition", "fr_agency", "spending_agency", "zip")
+                    "soccer_competition", "fr_agency", "spending_agency")  # a ZIP is a location, not a subject
 ENTITY_CUES = {
     "airport": {"airport", "airports", "flight", "flights", "delay", "delays", "delayed", "tsa", "ground", "gate",
                 "departures", "arrivals", "runway"},

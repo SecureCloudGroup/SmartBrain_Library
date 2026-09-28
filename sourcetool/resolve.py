@@ -30,6 +30,8 @@ week weekend month year tonight tomorrow yesterday price prices stock stocks sco
 weather forecast status down up is are open closed news report delays delay rate rates level levels air quality
 index time times tide tides high low sunset sunrise map chart live new top best any all list value city town county
 state station buoy airport near around local home work traffic bus train subway flight flights
+day days daily hour hours hourly minute minutes week weekly month monthly year yearly date info information
+data update updates
 """.split())
 
 
@@ -141,6 +143,8 @@ def by_name(resolver: str, ask: str, *, raw_case_codes: bool = True, many: bool 
                 "reason": f"{pops[0][1]['name']} is by far the largest of {len(ties)} places with that name"}
     distinct = {(t["name"], t.get("state"), json.dumps(t.get("attrs", {}).get("league"))) for t in ties}
     if len(ties) > 1 and len(distinct) > 1 and not _same_thing(ties):
+        # offer the likeliest readings first: the largest places, the most popular teams/assets
+        ties = sorted(all_ties, key=lambda t: (-(t.get("attrs", {}).get("pop") or 0), -float(t.get("rank") or 0)))[:6]
         return {"status": "ambiguous", "best": None, "candidates": ties,
                 "reason": "several match equally: " + "; ".join(_label(t) for t in ties)}
     return {"status": "resolved", "best": top, "candidates": [rows[i] for i, _ in ranked[:5]], "reason": ""}
