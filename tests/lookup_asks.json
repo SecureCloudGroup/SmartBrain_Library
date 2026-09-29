@@ -11,7 +11,7 @@
   {"ask": "any earthquakes today", "ok": ["usgs-quakes-all-day", "usgs-quakes-25-day", "usgs-quakes-significant-month", "usgs-quakes-45-week"]},
   {"ask": "hurricanes right now", "ok": ["nhc-current-storms", "nhc-atlantic-rss"]},
   {"ask": "wildfires in California", "ok": ["nifc-current-fires"]},
-  {"ask": "can I see the northern lights tonight", "ok": ["swpc-aurora", "swpc-kp"]},
+  {"ask": "can I see the northern lights tonight", "ok": ["swpc-kp-forecast", "swpc-aurora", "swpc-kp"]},
   {"ask": "tides for Melbourne FL", "ok": ["coops-tide-hilo"]},
   {"ask": "water temperature at the beach", "ok": ["coops-water-temp", "open-meteo-marine", "ndbc-buoy-realtime"]},
   {"ask": "next SpaceX launch", "ok": ["ll2-upcoming-launches", "rocketlaunch-next5"]},

@@ -1,0 +1,56 @@
+{
+ "source_id": "bart-advisories",
+ "answers": [
+  {
+   "name": "advisory",
+   "label": "BART advisory",
+   "kind": "value",
+   "primary": true,
+   "words": [
+    "delays",
+    "delay",
+    "advisory",
+    "advisories",
+    "service alert",
+    "alerts",
+    "running",
+    "disruption",
+    "status",
+    "is it running",
+    "bart"
+   ],
+   "path": "root.bsa.description._text",
+   "type": "text"
+  },
+  {
+   "name": "type",
+   "label": "Type",
+   "kind": "value",
+   "primary": true,
+   "words": [
+    "type",
+    "kind",
+    "delay or emergency"
+   ],
+   "path": "root.bsa.type._text",
+   "type": "text"
+  },
+  {
+   "name": "posted",
+   "label": "Posted",
+   "kind": "value",
+   "primary": true,
+   "words": [
+    "posted",
+    "when",
+    "since",
+    "as of",
+    "updated"
+   ],
+   "path": "root.bsa.posted._text",
+   "type": "text"
+  }
+ ],
+ "sample_url": "https://api.bart.gov/api/bsa.aspx?cmd=bsa&key=MW9S-E7SL-26DU-VV8V",
+ "checked": "2026-09-29"
+}

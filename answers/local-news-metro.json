@@ -1,0 +1,20 @@
+{
+ "source_id": "local-news-metro",
+ "answers": [
+  {
+   "name": "latest",
+   "label": "Local headlines",
+   "kind": "list",
+   "primary": true,
+   "words": ["local news", "news", "headlines", "latest", "what's happening", "city news", "stories", "breaking"],
+   "path": "items",
+   "row": [
+    {"path": "title", "label": "Title", "type": "text"},
+    {"path": "published", "label": "Published", "type": "time"}
+   ],
+   "may_be_empty": false
+  }
+ ],
+ "sample_url": "https://www.kare11.com/feeds/syndication/rss/news",
+ "checked": "2026-09-29"
+}

@@ -1,0 +1,52 @@
+{
+ "source_id": "cta-alerts",
+ "answers": [
+  {
+   "name": "alerts",
+   "label": "CTA 'L' alerts",
+   "kind": "list",
+   "primary": true,
+   "words": [
+    "delays",
+    "delay",
+    "advisory",
+    "advisories",
+    "service alert",
+    "alerts",
+    "running",
+    "disruption",
+    "status",
+    "is it running",
+    "cta",
+    "l train",
+    "red line",
+    "blue line"
+   ],
+   "path": "CTAAlerts.Alert",
+   "row": [
+    {
+     "path": "Headline",
+     "label": "Alert",
+     "type": "text"
+    },
+    {
+     "path": "ShortDescription",
+     "label": "Details",
+     "type": "text"
+    },
+    {
+     "path": "Impact",
+     "label": "Impact",
+     "type": "text"
+    },
+    {
+     "path": "EventStart",
+     "label": "Since",
+     "type": "text"
+    }
+   ]
+  }
+ ],
+ "sample_url": "https://www.transitchicago.com/api/1.0/alerts.aspx?outputType=JSON&activeonly=true&accessibility=false&routeid=red,blue,brn,g,org,p,pink,y",
+ "checked": "2026-09-29"
+}

@@ -1,10 +1,10 @@
 {
- "description": "Reviewed nicknames and short names for US places, added as aliases by `sourcetool resolvers place` on top of Wikidata's (P1813 short name, P1449 nickname). Only names people commonly type, and only where the city is what nearly everyone means. A two-letter nickname counts only when typed in capitals (LA, SF, DC, KC); see docs/RESOLVERS.md. `exclude` lists Wikidata nicknames that are not added (derogatory or misleading).",
+ "description": "Reviewed nicknames and short names for US places, added as aliases by `sourcetool resolvers place` on top of Wikidata's (P1813 short name, P1449 nickname). Only names people commonly type, and only where the city is what nearly everyone means. A well-known area that is not a Census place (\"Outer Banks\", \"Tahoe\", \"Bay Area\") is a nickname of the place that represents it: the area's main town, the one its visitors and forecasts name. `points` are areas with no Census place in them (\"Big Sur\"): each becomes its own place entry at a representative point. A two-letter nickname counts only when typed in capitals (LA, SF, DC, KC); see docs/RESOLVERS.md. `exclude` lists Wikidata nicknames that are not added (derogatory or misleading).",
  "exclude": ["Bodymore, Murderland"],
  "entries": [
   {"place": "New York", "state": "NY", "nicknames": ["NYC", "New York City", "Big Apple"]},
   {"place": "Los Angeles", "state": "CA", "nicknames": ["LA", "L.A."]},
-  {"place": "San Francisco", "state": "CA", "nicknames": ["SF", "San Fran"]},
+  {"place": "San Francisco", "state": "CA", "nicknames": ["SF", "San Fran", "Bay Area", "SF Bay Area"]},
   {"place": "Philadelphia", "state": "PA", "nicknames": ["Philly"]},
   {"place": "Las Vegas", "state": "NV", "nicknames": ["Vegas"]},
   {"place": "Washington", "state": "DC", "nicknames": ["DC", "D.C."]},
@@ -23,7 +23,7 @@
   {"place": "Kansas City", "state": "MO", "nicknames": ["KC"]},
   {"place": "St. Louis", "state": "MO", "nicknames": ["STL"]},
   {"place": "Albuquerque", "state": "NM", "nicknames": ["ABQ"]},
-  {"place": "Minneapolis", "state": "MN", "nicknames": ["Mpls"]},
+  {"place": "Minneapolis", "state": "MN", "nicknames": ["Mpls", "Twin Cities"]},
   {"place": "Pittsburgh", "state": "PA", "nicknames": ["Steel City", "PGH"]},
   {"place": "Baltimore", "state": "MD", "nicknames": ["Bmore", "Charm City"]},
   {"place": "San Antonio", "state": "TX", "nicknames": ["SATX"]},
@@ -33,6 +33,30 @@
   {"place": "Charlotte", "state": "NC", "nicknames": ["CLT"]},
   {"place": "Sacramento", "state": "CA", "nicknames": ["Sactown"]},
   {"place": "St. Petersburg", "state": "FL", "nicknames": ["St. Pete"]},
-  {"place": "Fort Lauderdale", "state": "FL", "nicknames": ["Ft. Lauderdale"]}
+  {"place": "Fort Lauderdale", "state": "FL", "nicknames": ["Ft. Lauderdale"]},
+  {"place": "San Jose", "state": "CA", "nicknames": ["Silicon Valley"]},
+  {"place": "Riverside", "state": "CA", "nicknames": ["Inland Empire"]},
+  {"place": "South Lake Tahoe", "state": "CA", "nicknames": ["Lake Tahoe", "Tahoe"]},
+  {"place": "Nags Head", "state": "NC", "nicknames": ["Outer Banks", "OBX"]},
+  {"place": "Barnstable Town", "state": "MA", "nicknames": ["Cape Cod"]},
+  {"place": "Vineyard Haven", "state": "MA", "nicknames": ["Martha's Vineyard", "Marthas Vineyard"]},
+  {"place": "Southampton", "state": "NY", "nicknames": ["Hamptons", "The Hamptons"]},
+  {"place": "Hempstead", "state": "NY", "nicknames": ["Long Island"]},
+  {"place": "Syracuse", "state": "NY", "nicknames": ["Upstate New York", "Upstate NY"]},
+  {"place": "Seaside Heights", "state": "NJ", "nicknames": ["Jersey Shore"]},
+  {"place": "Mount Pocono", "state": "PA", "nicknames": ["Poconos", "The Poconos", "Pocono Mountains"]},
+  {"place": "Marathon", "state": "FL", "nicknames": ["Florida Keys"]},
+  {"place": "Hilton Head Island", "state": "SC", "nicknames": ["Hilton Head"]},
+  {"place": "South Padre Island", "state": "TX", "nicknames": ["South Padre"]},
+  {"place": "Napa", "state": "CA", "nicknames": ["Napa Valley"]},
+  {"place": "Yosemite Valley", "state": "CA", "nicknames": ["Yosemite"]},
+  {"place": "Furnace Creek", "state": "CA", "nicknames": ["Death Valley"]},
+  {"place": "Jackson", "state": "WY", "nicknames": ["Jackson Hole"]},
+  {"place": "Kahului", "state": "HI", "nicknames": ["Maui"]},
+  {"place": "Lihue", "state": "HI", "nicknames": ["Kauai"]},
+  {"place": "Urban Honolulu", "state": "HI", "nicknames": ["Oahu"]}
+ ],
+ "points": [
+  {"name": "Big Sur", "state": "CA", "lat": 36.2704, "lon": -121.8081, "aliases": ["Big Sur"]}
  ]
 }

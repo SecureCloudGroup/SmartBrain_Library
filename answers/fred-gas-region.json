@@ -1,0 +1,37 @@
+{
+ "source_id": "fred-gas-region",
+ "answers": [
+  {
+   "name": "latest",
+   "label": "Regular gas, regional average",
+   "kind": "value",
+   "primary": true,
+   "words": ["gas prices", "gas price", "regular gas", "gasoline", "price per gallon", "regional average", "latest", "current", "now", "today"],
+   "path": "rows[0].{gas_series}",
+   "type": "number",
+   "unit": "$/gal"
+  },
+  {
+   "name": "as_of",
+   "label": "Week of",
+   "kind": "value",
+   "primary": true,
+   "words": ["as of", "when", "date", "week", "last updated"],
+   "path": "rows[0].observation_date",
+   "type": "date"
+  },
+  {
+   "name": "recent",
+   "label": "Recent weeks",
+   "kind": "list",
+   "words": ["recent", "history", "trend", "past", "over time", "chart", "last few"],
+   "path": "rows",
+   "row": [
+    {"path": "observation_date", "label": "Week of", "type": "date"},
+    {"path": "{gas_series}", "label": "Regional average", "type": "number", "unit": "$/gal"}
+   ]
+  }
+ ],
+ "sample_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=GASREGMWW",
+ "checked": "2026-09-29"
+}
