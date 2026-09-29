@@ -1,0 +1,36 @@
+{
+ "source_id": "mw-word-of-day",
+ "answers": [
+  {
+   "name": "latest",
+   "label": "Latest",
+   "kind": "list",
+   "primary": true,
+   "words": [
+    "word of the day",
+    "quote of the day",
+    "on this day",
+    "featured article",
+    "headlines",
+    "news",
+    "latest"
+   ],
+   "path": "items",
+   "row": [
+    {
+     "path": "title",
+     "label": "Title",
+     "type": "text"
+    },
+    {
+     "path": "published",
+     "label": "Published",
+     "type": "text"
+    }
+   ],
+   "may_be_empty": false
+  }
+ ],
+ "sample_url": "https://www.merriam-webster.com/wotd/feed/rss2",
+ "checked": "2026-09-28"
+}

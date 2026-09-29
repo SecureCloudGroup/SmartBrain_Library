@@ -1,0 +1,44 @@
+{
+ "source_id": "google-news-topic",
+ "answers": [
+  {
+   "name": "latest",
+   "label": "Latest",
+   "kind": "list",
+   "primary": true,
+   "words": [
+    "business news",
+    "entertainment news",
+    "health news",
+    "latest on",
+    "news about",
+    "politics",
+    "politics news",
+    "science news",
+    "sports news",
+    "tech news",
+    "technology news",
+    "world news",
+    "headlines",
+    "news",
+    "latest"
+   ],
+   "path": "items",
+   "row": [
+    {
+     "path": "title",
+     "label": "Title",
+     "type": "text"
+    },
+    {
+     "path": "published",
+     "label": "Published",
+     "type": "text"
+    }
+   ],
+   "may_be_empty": false
+  }
+ ],
+ "sample_url": "https://news.google.com/rss/search?q=charleston&hl=en-US&gl=US&ceid=US:en",
+ "checked": "2026-09-28"
+}

@@ -1,0 +1,64 @@
+{
+ "source_id": "fred-gdp",
+ "answers": [
+  {
+   "name": "latest",
+   "label": "Latest",
+   "kind": "value",
+   "primary": true,
+   "words": [
+    "gross domestic product",
+    "us gdp",
+    "latest",
+    "current",
+    "now",
+    "today"
+   ],
+   "path": "rows[0].GDP",
+   "type": "number"
+  },
+  {
+   "name": "as_of",
+   "label": "As of",
+   "kind": "value",
+   "words": [
+    "as of",
+    "when",
+    "date",
+    "last updated",
+    "updated"
+   ],
+   "path": "rows[0].observation_date",
+   "type": "text"
+  },
+  {
+   "name": "recent",
+   "label": "Recent",
+   "kind": "list",
+   "words": [
+    "recent",
+    "history",
+    "trend",
+    "past",
+    "over time",
+    "chart",
+    "last few"
+   ],
+   "path": "rows",
+   "row": [
+    {
+     "path": "observation_date",
+     "label": "Date",
+     "type": "text"
+    },
+    {
+     "path": "GDP",
+     "label": "Gross domestic product",
+     "type": "number"
+    }
+   ]
+  }
+ ],
+ "sample_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=GDP",
+ "checked": "2026-09-28"
+}

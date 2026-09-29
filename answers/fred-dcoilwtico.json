@@ -1,0 +1,67 @@
+{
+ "source_id": "fred-dcoilwtico",
+ "answers": [
+  {
+   "name": "latest",
+   "label": "Latest",
+   "kind": "value",
+   "primary": true,
+   "words": [
+    "wti crude oil price",
+    "oil price",
+    "crude oil today",
+    "latest",
+    "current",
+    "now",
+    "today"
+   ],
+   "path": "rows[0].DCOILWTICO",
+   "type": "number",
+   "unit": "USD"
+  },
+  {
+   "name": "as_of",
+   "label": "As of",
+   "kind": "value",
+   "words": [
+    "as of",
+    "when",
+    "date",
+    "last updated",
+    "updated"
+   ],
+   "path": "rows[0].observation_date",
+   "type": "text"
+  },
+  {
+   "name": "recent",
+   "label": "Recent",
+   "kind": "list",
+   "words": [
+    "recent",
+    "history",
+    "trend",
+    "past",
+    "over time",
+    "chart",
+    "last few"
+   ],
+   "path": "rows",
+   "row": [
+    {
+     "path": "observation_date",
+     "label": "Date",
+     "type": "text"
+    },
+    {
+     "path": "DCOILWTICO",
+     "label": "WTI crude oil price",
+     "type": "number",
+     "unit": "USD"
+    }
+   ]
+  }
+ ],
+ "sample_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DCOILWTICO",
+ "checked": "2026-09-28"
+}

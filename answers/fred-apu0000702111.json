@@ -1,0 +1,66 @@
+{
+ "source_id": "fred-apu0000702111",
+ "answers": [
+  {
+   "name": "latest",
+   "label": "Latest",
+   "kind": "value",
+   "primary": true,
+   "words": [
+    "average price of white bread",
+    "bread price",
+    "latest",
+    "current",
+    "now",
+    "today"
+   ],
+   "path": "rows[0].APU0000702111",
+   "type": "number",
+   "unit": "USD"
+  },
+  {
+   "name": "as_of",
+   "label": "As of",
+   "kind": "value",
+   "words": [
+    "as of",
+    "when",
+    "date",
+    "last updated",
+    "updated"
+   ],
+   "path": "rows[0].observation_date",
+   "type": "text"
+  },
+  {
+   "name": "recent",
+   "label": "Recent",
+   "kind": "list",
+   "words": [
+    "recent",
+    "history",
+    "trend",
+    "past",
+    "over time",
+    "chart",
+    "last few"
+   ],
+   "path": "rows",
+   "row": [
+    {
+     "path": "observation_date",
+     "label": "Date",
+     "type": "text"
+    },
+    {
+     "path": "APU0000702111",
+     "label": "Average price of white bread",
+     "type": "number",
+     "unit": "USD"
+    }
+   ]
+  }
+ ],
+ "sample_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=APU0000702111",
+ "checked": "2026-09-28"
+}

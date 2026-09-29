@@ -1,0 +1,38 @@
+{
+ "source_id": "github-releases-atom",
+ "answers": [
+  {
+   "name": "latest",
+   "label": "Latest",
+   "kind": "list",
+   "primary": true,
+   "words": [
+    "github",
+    "release",
+    "stars",
+    "commits",
+    "issues",
+    "pull requests",
+    "headlines",
+    "news",
+    "latest"
+   ],
+   "path": "items",
+   "row": [
+    {
+     "path": "title",
+     "label": "Title",
+     "type": "text"
+    },
+    {
+     "path": "published",
+     "label": "Published",
+     "type": "time"
+    }
+   ],
+   "may_be_empty": false
+  }
+ ],
+ "sample_url": "https://github.com/ollama/ollama/releases.atom",
+ "checked": "2026-09-28"
+}

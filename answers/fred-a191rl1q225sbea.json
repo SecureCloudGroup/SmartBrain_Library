@@ -1,0 +1,67 @@
+{
+ "source_id": "fred-a191rl1q225sbea",
+ "answers": [
+  {
+   "name": "latest",
+   "label": "Latest",
+   "kind": "value",
+   "primary": true,
+   "words": [
+    "real gdp growth rate",
+    "gdp growth",
+    "are we in a recession",
+    "latest",
+    "current",
+    "now",
+    "today"
+   ],
+   "path": "rows[0].A191RL1Q225SBEA",
+   "type": "number",
+   "unit": "%"
+  },
+  {
+   "name": "as_of",
+   "label": "As of",
+   "kind": "value",
+   "words": [
+    "as of",
+    "when",
+    "date",
+    "last updated",
+    "updated"
+   ],
+   "path": "rows[0].observation_date",
+   "type": "text"
+  },
+  {
+   "name": "recent",
+   "label": "Recent",
+   "kind": "list",
+   "words": [
+    "recent",
+    "history",
+    "trend",
+    "past",
+    "over time",
+    "chart",
+    "last few"
+   ],
+   "path": "rows",
+   "row": [
+    {
+     "path": "observation_date",
+     "label": "Date",
+     "type": "text"
+    },
+    {
+     "path": "A191RL1Q225SBEA",
+     "label": "Real GDP growth rate",
+     "type": "number",
+     "unit": "%"
+    }
+   ]
+  }
+ ],
+ "sample_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=A191RL1Q225SBEA",
+ "checked": "2026-09-28"
+}
