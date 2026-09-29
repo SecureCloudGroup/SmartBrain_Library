@@ -30,7 +30,7 @@
         {
           "path": "RecallDate",
           "label": "Recalled",
-          "type": "time"
+          "type": "date"
         }
       ]
     },

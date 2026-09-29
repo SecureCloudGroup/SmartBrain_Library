@@ -48,6 +48,9 @@ _PARAM = re.compile(r"\{([a-z_][a-z0-9_]*)\}")
 _NUMBER = re.compile(r"-?\d+(\.\d+)?")
 _ISO_TIME = re.compile(r"\d{4}-\d{2}-\d{2}[T ]\d{2}:\d{2}")
 _DATE = re.compile(r"\d{4}-\d{2}-\d{2}")
+# a date-only value: YYYY-MM-DD, or a MIDNIGHT timestamp whose day is the value ("2026-04-23T00:00:00.000Z";
+# the app shows its day as written). A timestamp with a real clock time is a time, never a date.
+_DATE_VALUE = re.compile(r"\d{4}-\d{2}-\d{2}(?:[T ]00:00(?::00(?:\.0+)?)?(?:Z|[+-]\d{2}:?\d{2})?)?")
 # RFC 2822, as RSS publishes dates: "Tue, 29 Sep 2026 01:00:00 GMT" (weekday optional, seconds optional)
 _RFC2822 = re.compile(r"(?:[A-Za-z]{3}, *)?\d{1,2} [A-Za-z]{3} \d{2,4} \d{2}:\d{2}(?::\d{2})?(?: +\S+)?")
 
@@ -243,8 +246,8 @@ def type_ok(v, typ: str) -> bool:
                                                           and parsedate_tz(v) is not None)):
             return True
         return _is_number(v) and float(v) > 1e8
-    if typ == "date":
-        return isinstance(v, str) and bool(_DATE.fullmatch(v))
+    if typ == "date":  # a calendar date, or a midnight-style timestamp whose DAY is the value (as the app reads it)
+        return isinstance(v, str) and bool(_DATE_VALUE.fullmatch(v))
     if typ == "count":
         return isinstance(v, list)
     return False

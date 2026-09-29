@@ -115,6 +115,13 @@ def test_primary_limits():
     assert answer_problems([value(str(c)) for c in "abcd"]) == []
 
 
+def test_a_date_may_be_a_midnight_timestamp():
+    from sourcetool.answers import type_ok
+    assert type_ok("2026-04-23", "date") and type_ok("2026-04-23T00:00:00.000Z", "date")
+    assert type_ok("2026-09-24T00:00:00", "date") and not type_ok("Sep 24", "date")
+    assert not type_ok("2026-09-24T14:00", "date")  # a real clock time is a time
+
+
 def test_utc_marks_a_zoneless_time_as_utc():
     assert answer_problems([value(type="time", utc=True)]) == []
     bad([value(type="text", utc=True)], "utc must be true or false, on a time only")

@@ -35,7 +35,7 @@
         {
           "path": "declarationDate",
           "label": "Declared",
-          "type": "time"
+          "type": "date"
         }
       ]
     },
