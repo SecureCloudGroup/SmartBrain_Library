@@ -1,0 +1,38 @@
+{
+ "source_id": "mlb-team-results",
+ "answers": [
+  {
+   "name": "results",
+   "label": "Recent results",
+   "words": ["score", "scores", "result", "results", "final", "last game", "did they win", "won", "lost", "last night"],
+   "primary": true,
+   "kind": "list",
+   "path": "dates",
+   "row": [
+    {"path": "games[0].teams.away.team.name", "label": "Away", "type": "text"},
+    {"path": "games[0].teams.away.score", "label": "Away runs", "type": "number"},
+    {"path": "games[0].teams.home.team.name", "label": "Home", "type": "text"},
+    {"path": "games[0].teams.home.score", "label": "Home runs", "type": "number"}
+   ],
+   "newest_first": true,
+   "may_be_empty": true
+  },
+  {
+   "name": "recent_games",
+   "label": "Recent games",
+   "words": ["when", "date", "which day", "last week", "status", "postponed", "cancelled", "rained out"],
+   "kind": "list",
+   "path": "dates",
+   "row": [
+    {"path": "date", "label": "Date", "type": "date"},
+    {"path": "games[0].teams.away.team.name", "label": "Away", "type": "text"},
+    {"path": "games[0].teams.home.team.name", "label": "Home", "type": "text"},
+    {"path": "games[0].status.detailedState", "label": "Status", "type": "text"}
+   ],
+   "newest_first": true,
+   "may_be_empty": true
+  }
+ ],
+ "sample_url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147&startDate=2026-09-21&endDate=2026-09-28",
+ "checked": "2026-09-29"
+}

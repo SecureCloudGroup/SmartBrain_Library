@@ -22,7 +22,8 @@ A resolver is a table of entries, one per line in `resolvers/<name>.jsonl`, all 
 | crypto | 21,655 | CoinGecko (popularity from market cap) |
 | kraken_pair | Kraken USD pairs | Kraken |
 | currency | 31 | ISO 4217 |
-| team_espn / team_mlb / team_nhl | teams | ESPN, MLB, NHL |
+| team_espn / team_mlb / team_nhl | teams | ESPN, MLB, NHL; `team_espn` pro teams carry TheSportsDB's team id (`attrs.tsdb_id`) |
+| sports_league | 15 leagues | TheSportsDB league ids (NFL, NBA, WNBA, MLB, NHL, MLS, NWSL, college football and basketball, top European soccer) |
 | soccer_competition | competition codes | football-data.org |
 | statuspage | 30 services | curated |
 | fr_agency / spending_agency | federal agencies | Federal Register, USAspending |

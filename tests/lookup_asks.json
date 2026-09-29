@@ -28,7 +28,7 @@
   {"ask": "national debt", "ok": ["treasury-debt-to-penny", "fred-gfdebtn"]},
   {"ask": "power demand in Texas", "ok": ["eia-grid-demand", "ercot-supply-demand"]},
   {"ask": "EV chargers near me", "ok": ["nrel-ev-nearest"]},
-  {"ask": "Dodgers game", "ok": ["mlb-team-schedule", "mlb-schedule", "espn-scoreboard"]},
+  {"ask": "Dodgers game", "ok": ["mlb-team-schedule", "mlb-team-results", "mlb-schedule", "espn-scoreboard"]},
   {"ask": "Bruins schedule", "ok": ["nhl-club-schedule"]},
   {"ask": "Lakers score", "ok": ["espn-scoreboard", "nba-scoreboard-today"]},
   {"ask": "premier league table", "ok": ["football-data-standings"]},

@@ -1,0 +1,53 @@
+{
+ "source_id": "thesportsdb-last-league",
+ "answers": [
+  {
+   "name": "result",
+   "label": "Latest game",
+   "words": ["score", "scores", "result", "final", "final score", "who won", "won", "latest game", "last game", "game"],
+   "primary": true,
+   "kind": "list",
+   "path": "events",
+   "row": [
+    {"path": "strHomeTeam", "label": "Home", "type": "text"},
+    {"path": "intHomeScore", "label": "Home pts", "type": "number"},
+    {"path": "strAwayTeam", "label": "Away", "type": "text"},
+    {"path": "intAwayScore", "label": "Away pts", "type": "number"}
+   ]
+  },
+  {
+   "name": "status",
+   "label": "Status",
+   "words": ["status", "final", "live", "quarter", "over", "still playing"],
+   "kind": "value",
+   "path": "events[0].strStatus",
+   "type": "text"
+  },
+  {
+   "name": "start",
+   "label": "Started",
+   "words": ["when", "what time", "start time", "kickoff", "date"],
+   "kind": "value",
+   "path": "events[0].strTimestamp",
+   "type": "time"
+  },
+  {
+   "name": "venue",
+   "label": "Venue",
+   "words": ["where", "venue", "stadium", "arena", "field"],
+   "kind": "value",
+   "path": "events[0].strVenue",
+   "type": "text"
+  },
+  {
+   "name": "round",
+   "label": "Week / round",
+   "words": ["week", "round", "matchday", "which week"],
+   "kind": "value",
+   "path": "events[0].intRound",
+   "type": "number"
+  }
+ ],
+ "sample_url": "https://www.thesportsdb.com/api/v1/json/123/eventspastleague.php?id=4391",
+ "checked": "2026-09-29"
+}
