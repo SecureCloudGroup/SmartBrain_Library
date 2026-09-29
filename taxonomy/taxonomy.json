@@ -914,7 +914,9 @@
       "station"
      ],
      "keywords": [
-      "current",
+      "currents",
+      "tidal current",
+      "current prediction",
       "slack water",
       "ebb",
       "flood current"
@@ -1388,7 +1390,10 @@
       "8-k",
       "earnings",
       "edgar",
-      "insider"
+      "insider",
+      "eps",
+      "earnings per share",
+      "net income"
      ],
      "policy": {
       "prefer": [

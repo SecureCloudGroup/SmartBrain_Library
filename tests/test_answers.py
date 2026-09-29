@@ -55,7 +55,7 @@ def test_well_formed_answers_pass():
 def test_list_shape_and_names():
     bad([], "non-empty list")
     bad("x", "non-empty list")
-    bad([value(str(i)) for i in range(11)], "at most 10")
+    bad([value(str(i)) for i in range(13)], "at most 12")
     bad([value(name="Temp")], "slug")
     bad([value(name="t" * 41)], "slug")
     bad([value(), value(primary=False)], "duplicate name")

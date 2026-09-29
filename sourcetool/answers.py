@@ -37,7 +37,7 @@ KEYS = {"value": COMMON | {"path", "type", "unit", "unit_path", "codes", "utc"},
 ROW_KEYS = {"path", "label", "type", "unit", "unit_path", "utc"}  # utc: zoneless times are UTC
 COLUMN_KEYS = ROW_KEYS | {"codes"}
 FILE_KEYS = {"source_id", "answers", "sample_url", "checked"}
-MAX_ANSWERS = 10
+MAX_ANSWERS = 12
 
 _NAME = re.compile(r"[a-z][a-z0-9_]{0,39}")
 # a segment is a key or a whole `{param}` (filled from the record's params), optionally indexed: rates.{quote}

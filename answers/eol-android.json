@@ -1,0 +1,71 @@
+{
+  "source_id": "eol-android",
+  "answers": [
+    {
+      "name": "release",
+      "label": "Latest version",
+      "words": [
+        "release",
+        "release name",
+        "codename",
+        "name",
+        "latest version",
+        "latest",
+        "current version",
+        "newest",
+        "version",
+        "latest release",
+        "update",
+        "what version"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "result.releases[0].label",
+      "type": "text"
+    },
+    {
+      "name": "first_released",
+      "label": "First released",
+      "words": [
+        "first released",
+        "release date",
+        "launched",
+        "came out",
+        "when"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "result.releases[0].releaseDate",
+      "type": "date"
+    },
+    {
+      "name": "releases",
+      "label": "Releases",
+      "words": [
+        "releases",
+        "all versions",
+        "older versions",
+        "version history",
+        "supported versions",
+        "which versions"
+      ],
+      "primary": false,
+      "kind": "list",
+      "path": "result.releases",
+      "row": [
+        {
+          "path": "label",
+          "label": "Release",
+          "type": "text"
+        },
+        {
+          "path": "releaseDate",
+          "label": "First released",
+          "type": "date"
+        }
+      ]
+    }
+  ],
+  "sample_url": "https://endoflife.date/api/v1/products/android/",
+  "checked": "2026-09-29"
+}

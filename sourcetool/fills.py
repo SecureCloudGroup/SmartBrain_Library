@@ -39,6 +39,10 @@ BY_PROVIDER = {
     ("coingecko", "coin"): R("crypto"),
     ("coinbase", "pair"): R("crypto", "symbol_usd_pair", format="{SYMBOL}-USD"),
     ("kraken", "pair"): R("kraken_pair"),
+    ("goldapi", "metal"): R("metal"),
+    # a launch site or provider the ask names narrows the list; none named = every upcoming launch (empty filter)
+    ("thespacedevs", "site"): R("launch_site", fallback=DEFAULT("")),
+    ("thespacedevs", "provider"): R("launch_provider", fallback=DEFAULT("")),
     ("frankfurter", "base"): R("currency", many_index=0),
     ("frankfurter", "quote"): R("currency", many_index=1),
     ("mlb", "team"): R("team_mlb"),

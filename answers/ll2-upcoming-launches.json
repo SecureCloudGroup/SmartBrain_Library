@@ -33,7 +33,8 @@
           "label": "Status",
           "type": "text"
         }
-      ]
+      ],
+      "may_be_empty": true
     },
     {
       "name": "total",
@@ -50,6 +51,6 @@
       "type": "number"
     }
   ],
-  "sample_url": "https://ll.thespacedevs.com/2.3.0/launches/upcoming/?limit=10&mode=list",
-  "checked": "2026-09-28"
+  "sample_url": "https://ll.thespacedevs.com/2.3.0/launches/upcoming/?limit=10&mode=list&hide_recent_previous=true&location__ids=12,27&lsp__id=121",
+  "checked": "2026-09-29"
 }

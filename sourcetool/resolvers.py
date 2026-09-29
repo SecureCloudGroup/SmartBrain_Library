@@ -341,6 +341,38 @@ def h_currency() -> list[dict]:
             for i, (code, name, alias) in enumerate(CURRENCIES)]
 
 
+# precious metals priced per troy ounce (gold-api.com symbols; copper is priced per pound, so it is left out)
+METALS = [("XAU", "Gold", ["xau"]), ("XAG", "Silver", ["xag"]), ("XPT", "Platinum", ["xpt"]),
+          ("XPD", "Palladium", ["xpd"])]
+
+
+def h_metal() -> list[dict]:
+    return [_e("metal", "commodity", code, name, alts, rank=len(METALS) - i)
+            for i, (code, name, alts) in enumerate(METALS)]
+
+
+# Launch Library 2 location ids (lldev.thespacedevs.com/2.3.0/locations/) for the US launch sites people name
+LAUNCH_SITES = [("12,27", "Cape Canaveral and Kennedy Space Center (Florida)",
+                 ["cape canaveral", "canaveral", "kennedy space center", "kennedy", "ksc", "space coast", "florida"]),
+                ("11", "Vandenberg (California)", ["vandenberg", "vandenberg sfb", "california"]),
+                ("143", "Starbase (Texas)", ["starbase", "boca chica", "texas"]),
+                ("21", "Wallops (Virginia)", ["wallops", "wallops island", "virginia"])]
+# Launch Library 2 launch service provider ids (lldev.thespacedevs.com/2.3.0/agencies/)
+LAUNCH_PROVIDERS = [("121", "SpaceX", ["space x", "falcon 9", "falcon heavy", "starship"]),
+                    ("147", "Rocket Lab", ["rocketlab", "electron rocket"]),
+                    ("124", "United Launch Alliance", ["ula", "vulcan", "atlas v"]),
+                    ("141", "Blue Origin", ["new glenn", "new shepard"]),
+                    ("265", "Firefly Aerospace", ["firefly"])]
+
+
+def h_launch_site() -> list[dict]:
+    return [_e("launch_site", "station", key, name, alts, rank=1) for key, name, alts in LAUNCH_SITES]
+
+
+def h_launch_provider() -> list[dict]:
+    return [_e("launch_provider", "organization", key, name, alts, rank=1) for key, name, alts in LAUNCH_PROVIDERS]
+
+
 _ESPN_LEAGUES = [("football", "nfl"), ("basketball", "nba"), ("baseball", "mlb"), ("hockey", "nhl"),
                  ("basketball", "wnba"), ("soccer", "usa.1"), ("football", "college-football"),
                  ("basketball", "mens-college-basketball")]
@@ -527,6 +559,7 @@ def h_nwps_gauge() -> list[dict]:
 HARVEST = {"place": h_place, "zip": h_zip, "county": h_county, "us_state": h_us_state, "airport": h_airport,
            "tide_station": h_tide_station, "buoy": h_buoy, "ticker": h_ticker, "crypto": h_crypto,
            "currency": h_currency, "team_espn": h_team_espn, "team_mlb": h_team_mlb, "team_nhl": h_team_nhl,
+           "metal": h_metal, "launch_site": h_launch_site, "launch_provider": h_launch_provider,
            "statuspage": h_statuspage, "fr_agency": h_fr_agency, "spending_agency": h_spending_agency,
            "radar_site": h_radar_site, "soccer_competition": h_soccer_competition, "kraken_pair": h_kraken_pair,
            "sports_league": h_sports_league,
