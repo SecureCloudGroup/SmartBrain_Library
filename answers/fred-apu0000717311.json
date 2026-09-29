@@ -3,11 +3,12 @@
  "answers": [
   {
    "name": "latest",
-   "label": "Latest",
+   "label": "Ground coffee price (per pound)",
    "kind": "value",
    "primary": true,
    "words": [
     "average price of coffee",
+    "ground coffee price (per pound)",
     "coffee price",
     "latest",
     "current",
@@ -16,7 +17,7 @@
    ],
    "path": "rows[0].APU0000717311",
    "type": "number",
-   "unit": "USD"
+   "unit": "$/lb"
   },
   {
    "name": "as_of",
@@ -34,7 +35,7 @@
   },
   {
    "name": "recent",
-   "label": "Recent",
+   "label": "Recent readings",
    "kind": "list",
    "words": [
     "recent",
@@ -54,9 +55,9 @@
     },
     {
      "path": "APU0000717311",
-     "label": "Average price of coffee",
+     "label": "Ground coffee price (per pound)",
      "type": "number",
-     "unit": "USD"
+     "unit": "$/lb"
     }
    ]
   }

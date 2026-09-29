@@ -7,7 +7,7 @@
   {"ask": "geomagnetic storm now", "ok": ["swpc-kp", "swpc-alerts", "swpc-aurora"]},
   {"ask": "active volcanoes", "ok": ["usgs-elevated-volcanoes", "nasa-eonet-events"]},
   {"ask": "low tide times in Galveston", "ok": ["coops-tide-hilo"]},
-  {"ask": "moon phase today", "ok": ["usno-oneday", "usno-moon-phases"]},
+  {"ask": "moon phase today", "ok": ["usno-moon-today", "usno-oneday", "usno-moon-phases"]},
   {"ask": "how many people are in space", "ok": ["people-in-space"]},
   {"ask": "microsoft stock", "ok": ["stooq-quote", "finnhub-quote", "alphavantage-quote"]},
   {"ask": "solana price", "ok": ["coingecko-price", "coinbase-spot", "kraken-ticker"]},

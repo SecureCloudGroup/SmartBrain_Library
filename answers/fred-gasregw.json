@@ -3,11 +3,12 @@
  "answers": [
   {
    "name": "latest",
-   "label": "Latest",
+   "label": "Regular gas price (US average)",
    "kind": "value",
    "primary": true,
    "words": [
     "us regular gasoline price",
+    "regular gas price (us average)",
     "gas prices",
     "national average gas price",
     "latest",
@@ -17,7 +18,7 @@
    ],
    "path": "rows[0].GASREGW",
    "type": "number",
-   "unit": "USD"
+   "unit": "$/gal"
   },
   {
    "name": "as_of",
@@ -35,7 +36,7 @@
   },
   {
    "name": "recent",
-   "label": "Recent",
+   "label": "Recent readings",
    "kind": "list",
    "words": [
     "recent",
@@ -55,9 +56,9 @@
     },
     {
      "path": "GASREGW",
-     "label": "US regular gasoline price",
+     "label": "Regular gas price (US average)",
      "type": "number",
-     "unit": "USD"
+     "unit": "$/gal"
     }
    ]
   }

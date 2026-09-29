@@ -3,11 +3,12 @@
  "answers": [
   {
    "name": "latest",
-   "label": "Latest",
+   "label": "30-year mortgage rate",
    "kind": "value",
    "primary": true,
    "words": [
     "30-year fixed mortgage rate",
+    "30-year mortgage rate",
     "mortgage rates",
     "30 year mortgage rate",
     "latest",
@@ -35,7 +36,7 @@
   },
   {
    "name": "recent",
-   "label": "Recent",
+   "label": "Recent readings",
    "kind": "list",
    "words": [
     "recent",
@@ -55,7 +56,7 @@
     },
     {
      "path": "MORTGAGE30US",
-     "label": "30-year fixed mortgage rate",
+     "label": "30-year mortgage rate",
      "type": "number",
      "unit": "%"
     }

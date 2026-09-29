@@ -13,9 +13,9 @@ A resolver is a table of entries, one per line in `resolvers/<name>.jsonl`, all 
 | place | 32,333 | Census gazetteer plus population estimates; nicknames from Wikidata and `resolvers/place_nicknames.json` |
 | zip | 33,791 | Census ZIP code areas (ZCTAs) |
 | county | 3,222 | Census gazetteer |
-| us_state | 56 | fixed list |
+| us_state | 56 | fixed list, with each state's FIPS code and bounding box from Census TIGERweb |
 | airport | 13,491 | OurAirports |
-| tide_station | 3,499 | NOAA CO-OPS |
+| tide_station | 1,181 | NOAA CO-OPS: primary stations (a reference for other stations' predictions, or an active water-level station), plus secondary stations only where no primary is within 50 km |
 | buoy | 1,354 | NOAA NDBC |
 | radar_site | NEXRAD sites | NWS |
 | ticker | 13,243 | Nasdaq symbol directories plus the S&P 500 list (popularity, CIK) |

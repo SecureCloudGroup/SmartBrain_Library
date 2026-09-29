@@ -1,5 +1,5 @@
 {
- "source_id": "nyt-science",
+ "source_id": "bbc-world",
  "answers": [
   {
    "name": "latest",
@@ -39,6 +39,6 @@
    "may_be_empty": false
   }
  ],
- "sample_url": "https://rss.nytimes.com/services/xml/rss/nyt/Science.xml",
+ "sample_url": "https://feeds.bbci.co.uk/news/world/rss.xml",
  "checked": "2026-09-28"
 }

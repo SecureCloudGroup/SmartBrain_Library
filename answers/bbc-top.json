@@ -1,5 +1,5 @@
 {
- "source_id": "nyt-science",
+ "source_id": "bbc-top",
  "answers": [
   {
    "name": "latest",
@@ -7,20 +7,10 @@
    "kind": "list",
    "primary": true,
    "words": [
-    "business news",
-    "entertainment news",
-    "health news",
-    "latest on",
-    "news about",
-    "politics",
-    "politics news",
-    "science news",
-    "sports news",
-    "tech news",
-    "technology news",
-    "world news",
     "headlines",
     "news",
+    "breaking",
+    "top stories",
     "latest"
    ],
    "path": "items",
@@ -39,6 +29,6 @@
    "may_be_empty": false
   }
  ],
- "sample_url": "https://rss.nytimes.com/services/xml/rss/nyt/Science.xml",
+ "sample_url": "https://feeds.bbci.co.uk/news/rss.xml?edition=us",
  "checked": "2026-09-28"
 }

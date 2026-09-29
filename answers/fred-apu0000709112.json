@@ -3,11 +3,12 @@
  "answers": [
   {
    "name": "latest",
-   "label": "Latest",
+   "label": "Whole milk price (per gallon)",
    "kind": "value",
    "primary": true,
    "words": [
     "average price of a gallon of milk",
+    "whole milk price (per gallon)",
     "milk price",
     "latest",
     "current",
@@ -16,7 +17,7 @@
    ],
    "path": "rows[0].APU0000709112",
    "type": "number",
-   "unit": "USD"
+   "unit": "$/gal"
   },
   {
    "name": "as_of",
@@ -34,7 +35,7 @@
   },
   {
    "name": "recent",
-   "label": "Recent",
+   "label": "Recent readings",
    "kind": "list",
    "words": [
     "recent",
@@ -54,9 +55,9 @@
     },
     {
      "path": "APU0000709112",
-     "label": "Average price of a gallon of milk",
+     "label": "Whole milk price (per gallon)",
      "type": "number",
-     "unit": "USD"
+     "unit": "$/gal"
     }
    ]
   }

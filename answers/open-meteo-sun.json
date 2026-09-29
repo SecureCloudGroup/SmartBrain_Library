@@ -1,0 +1,102 @@
+{
+  "source_id": "open-meteo-sun",
+  "answers": [
+    {
+      "name": "sunrise_today",
+      "label": "Sunrise today",
+      "words": [
+        "sunrise",
+        "sunrise today",
+        "sun up",
+        "dawn",
+        "what time is sunrise",
+        "when is sunrise",
+        "morning"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "daily.sunrise[0]",
+      "type": "time"
+    },
+    {
+      "name": "sunset_today",
+      "label": "Sunset today",
+      "words": [
+        "sunset",
+        "sunset today",
+        "sundown",
+        "dusk",
+        "what time is sunset",
+        "when is sunset",
+        "evening"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "daily.sunset[0]",
+      "type": "time"
+    },
+    {
+      "name": "sunrise_tomorrow",
+      "label": "Sunrise tomorrow",
+      "words": [
+        "tomorrow",
+        "sunrise tomorrow",
+        "dawn tomorrow",
+        "sun up tomorrow"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "daily.sunrise[1]",
+      "type": "time"
+    },
+    {
+      "name": "sunset_tomorrow",
+      "label": "Sunset tomorrow",
+      "words": [
+        "tomorrow",
+        "sunset tomorrow",
+        "sundown tomorrow",
+        "dusk tomorrow"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "daily.sunset[1]",
+      "type": "time"
+    },
+    {
+      "name": "sun_week",
+      "label": "Sunrise and sunset by day",
+      "words": [
+        "this week",
+        "week",
+        "next few days",
+        "7 day",
+        "daily",
+        "by day",
+        "sun times"
+      ],
+      "primary": false,
+      "kind": "columns",
+      "columns": [
+        {
+          "path": "daily.time",
+          "label": "Day",
+          "type": "date"
+        },
+        {
+          "path": "daily.sunrise",
+          "label": "Sunrise",
+          "type": "time"
+        },
+        {
+          "path": "daily.sunset",
+          "label": "Sunset",
+          "type": "time"
+        }
+      ],
+      "limit": 7
+    }
+  ],
+  "sample_url": "https://api.open-meteo.com/v1/forecast?latitude=32.7765&longitude=-79.9311&daily=sunrise,sunset&timezone=auto&forecast_days=7",
+  "checked": "2026-09-28"
+}

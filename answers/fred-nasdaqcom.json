@@ -3,11 +3,12 @@
  "answers": [
   {
    "name": "latest",
-   "label": "Latest",
+   "label": "Nasdaq Composite (close)",
    "kind": "value",
    "primary": true,
    "words": [
     "nasdaq composite (daily close)",
+    "nasdaq composite (close)",
     "nasdaq composite",
     "latest",
     "current",
@@ -33,7 +34,7 @@
   },
   {
    "name": "recent",
-   "label": "Recent",
+   "label": "Recent readings",
    "kind": "list",
    "words": [
     "recent",
@@ -53,7 +54,7 @@
     },
     {
      "path": "NASDAQCOM",
-     "label": "Nasdaq Composite (daily close)",
+     "label": "Nasdaq Composite (close)",
      "type": "number"
     }
    ]

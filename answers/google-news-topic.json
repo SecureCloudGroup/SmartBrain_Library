@@ -3,7 +3,7 @@
  "answers": [
   {
    "name": "latest",
-   "label": "Latest",
+   "label": "Headlines",
    "kind": "list",
    "primary": true,
    "words": [

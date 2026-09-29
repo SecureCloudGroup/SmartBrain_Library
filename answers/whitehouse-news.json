@@ -3,7 +3,7 @@
  "answers": [
   {
    "name": "latest",
-   "label": "Latest",
+   "label": "Press releases",
    "kind": "list",
    "primary": true,
    "words": [

@@ -3,7 +3,7 @@
  "answers": [
   {
    "name": "latest",
-   "label": "Latest",
+   "label": "Latest filings",
    "kind": "list",
    "primary": true,
    "words": [

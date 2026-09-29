@@ -3,20 +3,22 @@
  "answers": [
   {
    "name": "latest",
-   "label": "Latest",
+   "label": "Consumer Price Index (all items)",
    "kind": "value",
    "primary": true,
    "words": [
     "consumer price index (all items)",
-    "inflation rate",
+    "consumer price index",
     "cpi this month",
+    "cpi index level",
     "latest",
     "current",
     "now",
     "today"
    ],
    "path": "rows[0].CPIAUCSL",
-   "type": "number"
+   "type": "number",
+   "unit": "index 1982-84=100"
   },
   {
    "name": "as_of",
@@ -34,7 +36,7 @@
   },
   {
    "name": "recent",
-   "label": "Recent",
+   "label": "Recent readings",
    "kind": "list",
    "words": [
     "recent",
@@ -55,7 +57,8 @@
     {
      "path": "CPIAUCSL",
      "label": "Consumer Price Index (all items)",
-     "type": "number"
+     "type": "number",
+     "unit": "index 1982-84=100"
     }
    ]
   }

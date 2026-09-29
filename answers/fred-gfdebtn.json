@@ -3,11 +3,12 @@
  "answers": [
   {
    "name": "latest",
-   "label": "Latest",
+   "label": "Total federal debt",
    "kind": "value",
    "primary": true,
    "words": [
     "federal debt total",
+    "total federal debt",
     "national debt trend",
     "latest",
     "current",
@@ -15,7 +16,8 @@
     "today"
    ],
    "path": "rows[0].GFDEBTN",
-   "type": "number"
+   "type": "number",
+   "unit": "million USD"
   },
   {
    "name": "as_of",
@@ -33,7 +35,7 @@
   },
   {
    "name": "recent",
-   "label": "Recent",
+   "label": "Recent readings",
    "kind": "list",
    "words": [
     "recent",
@@ -53,8 +55,9 @@
     },
     {
      "path": "GFDEBTN",
-     "label": "Federal debt total",
-     "type": "number"
+     "label": "Total federal debt",
+     "type": "number",
+     "unit": "million USD"
     }
    ]
   }

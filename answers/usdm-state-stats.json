@@ -149,6 +149,6 @@
       ]
     }
   ],
-  "sample_url": "https://usdmdataservices.unl.edu/api/StateStatistics/GetDroughtSeverityStatisticsByAreaPercent?aoi=45&startdate=8/1/2026&enddate=9/25/2026&statisticsType=1",
+  "sample_url": "https://usdmdataservices.unl.edu/api/StateStatistics/GetDroughtSeverityStatisticsByAreaPercent?aoi=48&startdate=8/3/2026&enddate=9/28/2026&statisticsType=1",
   "checked": "2026-09-28"
 }

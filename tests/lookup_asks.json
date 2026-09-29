@@ -15,7 +15,7 @@
   {"ask": "tides for Melbourne FL", "ok": ["coops-tide-hilo"]},
   {"ask": "water temperature at the beach", "ok": ["coops-water-temp", "open-meteo-marine", "ndbc-buoy-realtime"]},
   {"ask": "next SpaceX launch", "ok": ["ll2-upcoming-launches", "rocketlaunch-next5"]},
-  {"ask": "what time is sunset", "ok": ["sunrise-sunset", "usno-oneday", "open-meteo-forecast"]},
+  {"ask": "what time is sunset", "ok": ["open-meteo-sun", "usno-oneday", "open-meteo-forecast"]},
   {"ask": "where is the ISS", "ok": ["wheretheiss-now"]},
   {"ask": "NVDA price", "ok": ["stooq-quote", "finnhub-quote", "alphavantage-quote"]},
   {"ask": "bitcoin price", "ok": ["coingecko-price", "coinbase-spot"]},

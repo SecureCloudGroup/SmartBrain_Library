@@ -64,7 +64,11 @@ BY_PROVIDER = {
     ("amtraker", "train"): {"from": "text", "pattern": r"\b(?:train|amtrak|number|no\.?|#)\s*#?\s*(\d{1,4})\b"},
     ("wikimedia", "yyyy"): CLOCK("%Y"), ("wikimedia", "mm"): CLOCK("%m"), ("wikimedia", "dd"): CLOCK("%d"),
     ("coops", "begin"): CLOCK("%Y%m%d"),
+    ("usdm", "state"): R("us_state", "attrs.fips"),  # the Drought Monitor's area id is the state FIPS code
     ("usdm", "start"): CLOCK("%-m/%-d/%Y", -56), ("usdm", "end"): CLOCK("%-m/%-d/%Y"),
+    # a state's bounding box: a regional USGS earthquake query ("earthquakes in Alaska")
+    ("usgs", "min_lat"): R("us_state", "attrs.min_lat"), ("usgs", "max_lat"): R("us_state", "attrs.max_lat"),
+    ("usgs", "min_lon"): R("us_state", "attrs.min_lon"), ("usgs", "max_lon"): R("us_state", "attrs.max_lon"),
     ("nyt", "list"): DEFAULT("hardcover-fiction"), ("nytapi", "list"): DEFAULT("hardcover-fiction"),
     ("usno", "tz"): GAP("a place's UTC offset needs a time-zone lookup (places carry no zone yet)"),
     ("cms", "city"): R("place", "name", format="{UPPER}"),

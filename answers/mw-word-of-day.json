@@ -3,7 +3,7 @@
  "answers": [
   {
    "name": "latest",
-   "label": "Latest",
+   "label": "Word of the day",
    "kind": "list",
    "primary": true,
    "words": [

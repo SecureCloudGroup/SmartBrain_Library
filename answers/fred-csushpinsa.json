@@ -3,11 +3,12 @@
  "answers": [
   {
    "name": "latest",
-   "label": "Latest",
+   "label": "Case-Shiller home price index",
    "kind": "value",
    "primary": true,
    "words": [
     "case-shiller us home price index",
+    "case-shiller home price index",
     "home prices",
     "house prices trend",
     "latest",
@@ -16,7 +17,8 @@
     "today"
    ],
    "path": "rows[0].CSUSHPINSA",
-   "type": "number"
+   "type": "number",
+   "unit": "index Jan 2000=100"
   },
   {
    "name": "as_of",
@@ -34,7 +36,7 @@
   },
   {
    "name": "recent",
-   "label": "Recent",
+   "label": "Recent readings",
    "kind": "list",
    "words": [
     "recent",
@@ -54,8 +56,9 @@
     },
     {
      "path": "CSUSHPINSA",
-     "label": "Case-Shiller US home price index",
-     "type": "number"
+     "label": "Case-Shiller home price index",
+     "type": "number",
+     "unit": "index Jan 2000=100"
     }
    ]
   }

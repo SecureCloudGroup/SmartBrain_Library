@@ -96,6 +96,6 @@
       "limit": 24
     }
   ],
-  "sample_url": "https://marine-api.open-meteo.com/v1/marine?latitude=32.7765&longitude=-79.80&current=wave_height,wave_period,sea_surface_temperature&hourly=wave_height&length_unit=imperial&timezone=auto",
+  "sample_url": "https://marine-api.open-meteo.com/v1/marine?latitude=32.7765&longitude=-79.80&current=wave_height,wave_period,sea_surface_temperature&hourly=wave_height&length_unit=imperial&temperature_unit=fahrenheit&timezone=auto",
   "checked": "2026-09-28"
 }

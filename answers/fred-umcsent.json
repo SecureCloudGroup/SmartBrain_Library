@@ -3,7 +3,7 @@
  "answers": [
   {
    "name": "latest",
-   "label": "Latest",
+   "label": "Consumer sentiment",
    "kind": "value",
    "primary": true,
    "words": [
@@ -14,7 +14,8 @@
     "today"
    ],
    "path": "rows[0].UMCSENT",
-   "type": "number"
+   "type": "number",
+   "unit": "index 1966 Q1=100"
   },
   {
    "name": "as_of",
@@ -32,7 +33,7 @@
   },
   {
    "name": "recent",
-   "label": "Recent",
+   "label": "Recent readings",
    "kind": "list",
    "words": [
     "recent",
@@ -53,7 +54,8 @@
     {
      "path": "UMCSENT",
      "label": "Consumer sentiment",
-     "type": "number"
+     "type": "number",
+     "unit": "index 1966 Q1=100"
     }
    ]
   }
