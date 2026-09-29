@@ -1,0 +1,50 @@
+{
+ "source_id": "thesportsdb-team-next",
+ "answers": [
+  {
+   "name": "next_game",
+   "label": "Next game",
+   "words": ["next game", "next match", "who do they play", "opponent", "play next", "matchup", "next"],
+   "primary": true,
+   "kind": "value",
+   "path": "events[0].strEvent",
+   "type": "text"
+  },
+  {
+   "name": "start",
+   "label": "Start",
+   "words": ["when", "what time", "start time", "kickoff", "tip-off", "date", "game time"],
+   "primary": true,
+   "kind": "value",
+   "path": "events[0].strTimestamp",
+   "type": "time"
+  },
+  {
+   "name": "venue",
+   "label": "Venue",
+   "words": ["where", "venue", "stadium", "arena", "field"],
+   "primary": true,
+   "kind": "value",
+   "path": "events[0].strVenue",
+   "type": "text"
+  },
+  {
+   "name": "home",
+   "label": "Home team",
+   "words": ["home", "home team", "home game", "at home"],
+   "kind": "value",
+   "path": "events[0].strHomeTeam",
+   "type": "text"
+  },
+  {
+   "name": "away",
+   "label": "Away team",
+   "words": ["away", "away team", "away game", "on the road", "visitors"],
+   "kind": "value",
+   "path": "events[0].strAwayTeam",
+   "type": "text"
+  }
+ ],
+ "sample_url": "https://www.thesportsdb.com/api/v1/json/123/eventsnext.php?id=134949",
+ "checked": "2026-09-29"
+}

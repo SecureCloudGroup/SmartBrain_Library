@@ -24,7 +24,7 @@ import zipfile
 from urllib.parse import quote
 from xml.etree import ElementTree
 
-from .common import ROOT, get, get_json, uncache, write_jsonl
+from .common import ROOT, get, get_json, read_jsonl, uncache, write_jsonl
 
 RES = ROOT / "resolvers"
 
@@ -315,7 +315,7 @@ _ESPN_LEAGUES = [("football", "nfl"), ("basketball", "nba"), ("baseball", "mlb")
                  ("basketball", "mens-college-basketball")]
 
 
-def h_team_espn() -> list[dict]:
+def _espn_teams() -> list[dict]:
     out = []
     for sport, league in _ESPN_LEAGUES:
         d = get_json(f"https://site.api.espn.com/apis/site/v2/sports/{sport}/{league}/teams?limit=1000",
@@ -328,6 +328,40 @@ def h_team_espn() -> list[dict]:
                           attrs={"sport": sport, "league": league, "espn_id": t["id"],
                                  "abbrev": t.get("abbreviation", "")},
                           rank=0 if league.startswith(("college", "mens-college")) else 1))
+    return out
+
+
+# ESPN league -> TheSportsDB league id, for the team ids TheSportsDB's team sources take (attrs.tsdb_id)
+_TSDB_LEAGUE = {"nfl": "4391", "nba": "4387", "wnba": "4516", "mlb": "4424", "nhl": "4380", "usa.1": "4346"}
+
+
+def _add_tsdb_ids(teams: list[dict]) -> None:
+    """TheSportsDB's id for each pro team, found by its name (searchteams.php; the free key allows 30
+    requests a minute, so one search every 2.1 s) and kept only when the team found plays in the same league."""
+    import time
+    for t in teams:
+        want = _TSDB_LEAGUE.get(t["attrs"].get("league", ""))
+        if not want:
+            continue
+        # ESPN's name first, then the spellings TheSportsDB uses ("LA Clippers" -> "Los Angeles Clippers",
+        # "Seattle Sounders FC" -> "Seattle Sounders")
+        names = [t["name"], re.sub(r"^LA ", "Los Angeles ", t["name"]), re.sub(r" FC$", "", t["name"])]
+        for name in dict.fromkeys(names):
+            url = f"https://www.thesportsdb.com/api/v1/json/123/searchteams.php?t={quote(name.replace(' ', '_'))}"
+            body = get(url, cache_hours=720, api=True)[1]
+            time.sleep(2.1)
+            found = [x for x in (json.loads(body or b"{}") or {}).get("teams") or [] if x.get("idLeague") == want]
+            if found:
+                t["attrs"]["tsdb_id"] = found[0]["idTeam"]
+                break
+
+
+def h_team_espn() -> list[dict]:
+    try:
+        out = _espn_teams()
+    except RuntimeError:  # ESPN refuses SmartBrain's User-Agent since 2026-09-28: keep its last harvest
+        out = read_jsonl(RES / "team_espn.jsonl")
+    _add_tsdb_ids(out)
     return out
 
 
@@ -393,6 +427,46 @@ def h_soccer_competition() -> list[dict]:
             for i, (code, name, alt) in enumerate(SOCCER)]
 
 
+# TheSportsDB league ids (lookupleague.php) with the names people use; the harvest confirms each id live
+SPORTS_LEAGUES = [
+    ("4391", "nfl", "football", ["nfl", "national football league", "pro football"]),
+    ("4387", "nba", "basketball", ["nba", "national basketball association", "pro basketball"]),
+    ("4424", "mlb", "baseball", ["mlb", "major league baseball"]),
+    ("4380", "nhl", "hockey", ["nhl", "national hockey league", "pro hockey"]),
+    ("4479", "college-football", "football", ["college football", "ncaa football", "ncaaf", "cfb", "fbs"]),
+    ("4607", "mens-college-basketball", "basketball",
+     ["college basketball", "ncaa basketball", "ncaab", "mens college basketball", "march madness"]),
+    ("4516", "wnba", "basketball", ["wnba", "womens national basketball association"]),
+    ("4346", "mls", "soccer", ["mls", "major league soccer"]),
+    ("4521", "nwsl", "soccer", ["nwsl", "national womens soccer league"]),
+    ("4328", "premier-league", "soccer", ["premier league", "english premier league", "epl", "prem"]),
+    ("4480", "champions-league", "soccer", ["champions league", "uefa champions league", "ucl"]),
+    ("4335", "la-liga", "soccer", ["la liga", "laliga", "spanish league"]),
+    ("4331", "bundesliga", "soccer", ["bundesliga", "german bundesliga"]),
+    ("4332", "serie-a", "soccer", ["serie a", "italian serie a"]),
+    ("4334", "ligue-1", "soccer", ["ligue 1", "french ligue 1"]),
+]
+
+
+def h_sports_league() -> list[dict]:
+    out = []
+    for i, (lid, slug, sport, said) in enumerate(SPORTS_LEAGUES):
+        d = get_json(f"https://www.thesportsdb.com/api/v1/json/123/lookupleague.php?id={lid}", cache_hours=720,
+                     api=True)
+        lg = (d.get("leagues") or [{}])[0]
+        if str(lg.get("idLeague")) != lid:
+            raise RuntimeError(f"TheSportsDB league {lid} is gone")
+        # the provider's own alternates, when they name a league and not a country or a word ("Women")
+        alts = [a.strip() for a in (lg.get("strLeagueAlternate") or "").split(",")
+                if len(a.split()) >= 2 and a.isascii()]
+        # the provider keeps league tables for soccer leagues only (lookuptable.php), and none for the Champions
+        # League's league phase (empty body, 2026-09-29): those leagues have no table id
+        table = {"table_id": lid} if sport == "soccer" and slug != "champions-league" else {}
+        out.append(_e("sports_league", "league", lid, lg.get("strLeague") or slug, [*said, *alts],
+                      attrs={"sport": sport, "league": slug, **table}, rank=len(SPORTS_LEAGUES) - i))
+    return out
+
+
 def h_kraken_pair() -> list[dict]:
     d = get_json("https://api.kraken.com/0/public/AssetPairs", cache_hours=720, api=True)
     out = []
@@ -424,6 +498,7 @@ HARVEST = {"place": h_place, "zip": h_zip, "county": h_county, "us_state": h_us_
            "currency": h_currency, "team_espn": h_team_espn, "team_mlb": h_team_mlb, "team_nhl": h_team_nhl,
            "statuspage": h_statuspage, "fr_agency": h_fr_agency, "spending_agency": h_spending_agency,
            "radar_site": h_radar_site, "soccer_competition": h_soccer_competition, "kraken_pair": h_kraken_pair,
+           "sports_league": h_sports_league,
            "nwps_gauge": h_nwps_gauge}
 
 

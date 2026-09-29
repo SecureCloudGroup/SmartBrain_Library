@@ -1984,7 +1984,8 @@
       "resolvers": [
        "team_mlb",
        "team_nhl",
-       "team_espn"
+       "team_espn",
+       "sports_league"
       ],
       "max_km": null,
       "differ_on": [],
@@ -2022,7 +2023,8 @@
       "resolvers": [
        "team_mlb",
        "team_nhl",
-       "team_espn"
+       "team_espn",
+       "sports_league"
       ],
       "max_km": null,
       "differ_on": [],
@@ -2057,7 +2059,8 @@
       "resolvers": [
        "team_mlb",
        "team_nhl",
-       "team_espn"
+       "team_espn",
+       "sports_league"
       ],
       "max_km": null,
       "differ_on": [],
@@ -2094,7 +2097,8 @@
       "resolvers": [
        "team_mlb",
        "team_nhl",
-       "team_espn"
+       "team_espn",
+       "sports_league"
       ],
       "max_km": null,
       "differ_on": [],
@@ -2129,7 +2133,8 @@
       "resolvers": [
        "team_mlb",
        "team_nhl",
-       "team_espn"
+       "team_espn",
+       "sports_league"
       ],
       "max_km": null,
       "differ_on": [],
@@ -2164,7 +2169,8 @@
       "resolvers": [
        "team_mlb",
        "team_nhl",
-       "team_espn"
+       "team_espn",
+       "sports_league"
       ],
       "max_km": null,
       "differ_on": [],
@@ -2200,7 +2206,8 @@
       ],
       "match": "name",
       "resolvers": [
-       "team_espn"
+       "team_espn",
+       "sports_league"
       ],
       "max_km": null,
       "differ_on": [],
