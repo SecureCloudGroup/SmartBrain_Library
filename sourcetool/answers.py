@@ -31,10 +31,10 @@ VALUE_TYPES = ("number", "text", "time", "date", "count")
 ROW_TYPES = ("number", "text", "time", "date")
 CODES = ("wmo_weather",)
 COMMON = {"name", "label", "words", "primary", "kind"}
-KEYS = {"value": COMMON | {"path", "type", "unit", "unit_path", "codes"},
+KEYS = {"value": COMMON | {"path", "type", "unit", "unit_path", "codes", "utc"},
         "list": COMMON | {"path", "row", "newest_first", "may_be_empty", "filter"},
         "columns": COMMON | {"columns", "limit"}}
-ROW_KEYS = {"path", "label", "type", "unit", "unit_path"}
+ROW_KEYS = {"path", "label", "type", "unit", "unit_path", "utc"}  # utc: zoneless times are UTC
 COLUMN_KEYS = ROW_KEYS | {"codes"}
 FILE_KEYS = {"source_id", "answers", "sample_url", "checked"}
 MAX_ANSWERS = 10
@@ -87,7 +87,7 @@ def _field_problems(where: str, f, keys: set[str], types: tuple) -> list[str]:
         errs.append(f"{where}: type must be one of {'/'.join(types)}")
     if "codes" in f and f["codes"] not in CODES:
         errs.append(f"{where}: codes must be \"wmo_weather\"")
-    return errs + _unit_problems(where, f)
+    return errs + _unit_problems(where, f) + _utc_problems(where, f)
 
 
 def _param_problems(w: str, a: dict, params) -> list[str]:
@@ -112,6 +112,15 @@ def _filter_problems(w: str, flt) -> list[str]:
                                                   or _FILTER_LITERAL.fullmatch(flt["equals"])):
         errs.append(f"{w}: filter equals must be a {{param}} or a short fixed value")
     return errs
+
+
+def _utc_problems(where: str, f: dict) -> list[str]:
+    """`utc: true` says a time's zoneless values are UTC (TheSportsDB strTimestamp); time only."""
+    if "utc" not in f:
+        return []
+    if not isinstance(f["utc"], bool) or f.get("type") != "time":
+        return [f"{where}: utc must be true or false, on a time only"]
+    return []
 
 
 def answer_problems(answers, params=()) -> list[str]:
@@ -159,7 +168,7 @@ def answer_problems(answers, params=()) -> list[str]:
                 errs.append(f"{w}: type must be one of {'/'.join(VALUE_TYPES)}")
             if "codes" in a and a["codes"] not in CODES:
                 errs.append(f"{w}: codes must be \"wmo_weather\"")
-            errs += _unit_problems(w, a)
+            errs += _unit_problems(w, a) + _utc_problems(w, a)
         elif kind == "list":
             rows = a.get("row")
             if not isinstance(rows, list) or not 1 <= len(rows) <= 4:

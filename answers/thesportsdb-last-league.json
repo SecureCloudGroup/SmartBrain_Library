@@ -29,7 +29,7 @@
    "words": ["when", "what time", "start time", "kickoff", "date"],
    "kind": "value",
    "path": "events[0].strTimestamp",
-   "type": "time"
+   "type": "time", "utc": true
   },
   {
    "name": "venue",

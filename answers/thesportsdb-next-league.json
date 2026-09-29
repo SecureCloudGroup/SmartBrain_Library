@@ -29,7 +29,7 @@
       "primary": true,
       "kind": "value",
       "path": "events[0].strTimestamp",
-      "type": "time"
+      "type": "time", "utc": true
     },
     {
       "name": "next_venue",
@@ -68,7 +68,7 @@
         {
           "path": "strTimestamp",
           "label": "Start",
-          "type": "time"
+          "type": "time", "utc": true
         },
         {
           "path": "strVenue",

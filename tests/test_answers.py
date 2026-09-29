@@ -115,6 +115,12 @@ def test_primary_limits():
     assert answer_problems([value(str(c)) for c in "abcd"]) == []
 
 
+def test_utc_marks_a_zoneless_time_as_utc():
+    assert answer_problems([value(type="time", utc=True)]) == []
+    bad([value(type="text", utc=True)], "utc must be true or false, on a time only")
+    bad([value(type="time", utc="yes")], "utc must be true or false, on a time only")
+
+
 def test_validate_record_runs_answer_problems():
     r = {"id": "x-source", "name": "x", "description": "d", "provider": {"name": "P", "authority": "official"},
          "tier": "curated", "categories": ["weather/current"], "kinds": ["current_value"], "coverage": {"geo": "US"},
