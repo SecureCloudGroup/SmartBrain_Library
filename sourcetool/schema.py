@@ -97,6 +97,10 @@ def validate_record(r: dict) -> list[str]:
             errs.append("access needs url_template or docs_url")
         else:
             errs += url_problems(url)
+    for name, value in (a.get("headers") or {}).items():  # the app sends only a key slot, never a fixed header
+        if not _PARAM.search(str(value)):
+            errs.append(f"access.headers.{name}: a fixed header is never sent by the app — use an address "
+                        "or format that needs none")
     names = set(_PARAM.findall(a.get("url_template") or ""))
     declared = {q["name"] for q in a.get("params", [])}
     if names - declared:

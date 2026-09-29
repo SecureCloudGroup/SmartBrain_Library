@@ -15,6 +15,7 @@
     {"path": "games[0].teams.home.score", "label": "Home runs", "type": "number"}
    ],
    "newest_first": true,
+   "filter": {"path": "games[0].status.abstractGameState", "equals": "Final"},
    "may_be_empty": true
   },
   {

@@ -100,12 +100,17 @@ def _param_problems(w: str, a: dict, params) -> list[str]:
     return [f"{w}: {{{n}}} is not a parameter of this source" for n in sorted(names - set(params))]
 
 
+# a fixed filter value: a status word the response uses ("Final"), never a user's value
+_FILTER_LITERAL = re.compile(r"[A-Za-z0-9][A-Za-z0-9 _.:-]{0,39}")
+
+
 def _filter_problems(w: str, flt) -> list[str]:
     if not isinstance(flt, dict) or set(flt) != {"path", "equals"}:
         return [f"{w}: filter must be {{path, equals}}"]
     errs = [] if _path_ok(flt["path"]) else [f"{w}: bad filter path {flt['path']!r}"]
-    if not isinstance(flt["equals"], str) or not _PARAM.fullmatch(flt["equals"]):
-        errs.append(f"{w}: filter equals must be a {{param}}")
+    if not isinstance(flt["equals"], str) or not (_PARAM.fullmatch(flt["equals"])
+                                                  or _FILTER_LITERAL.fullmatch(flt["equals"])):
+        errs.append(f"{w}: filter equals must be a {{param}} or a short fixed value")
     return errs
 
 
@@ -267,7 +272,8 @@ def check_sample(answers: list, sample, examples: dict | None = None) -> list[st
         elif a["kind"] == "list":
             items = resolve(sample, a["path"], ex)
             if isinstance(items, list) and "filter" in a:
-                want = ex.get(_PARAM.fullmatch(a["filter"]["equals"]).group(1))
+                param = _PARAM.fullmatch(a["filter"]["equals"])
+                want = ex.get(param.group(1)) if param else a["filter"]["equals"]
                 if want is None:
                     errs.append(f"{w}: filter {a['filter']['equals']} has no example value")
                     continue

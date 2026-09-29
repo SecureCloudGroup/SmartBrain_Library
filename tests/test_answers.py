@@ -125,6 +125,12 @@ def test_validate_record_runs_answer_problems():
     assert any(e.startswith("answers:") for e in validate_record({**r, "answers": [value(label="")]}))
     # a {param} segment must name one of the record's own params
     assert any("not a parameter" in e for e in validate_record({**r, "answers": [value(path="rates.{quote}")]}))
+    # the app never sends a fixed header (a JSON API that needs Accept served CSV in the app): refused
+    fixed = {**r, "access": {**r["access"], "headers": {"Accept": "application/json"}}}
+    assert any("fixed header" in e for e in validate_record(fixed))
+    keyed = {**r, "access": {**r["access"], "headers": {"X-Api-Key": "{key}"},
+                             "params": [{"name": "key", "kind": "key"}]}}
+    assert not any("fixed header" in e for e in validate_record(keyed))
     r["access"] = {**r["access"], "url_template": "https://api.example.org/x?q={quote}",
                    "params": [{"name": "quote", "kind": "currency_pair", "example": "EUR"}]}
     assert validate_record({**r, "answers": [value(path="rates.{quote}")]}) == []
@@ -164,7 +170,9 @@ def test_row_filter():
     ps = {"airport": "JFK"}
     assert answer_problems([rows(filter=flt)], ps) == []
     bad([rows(filter=flt)], "{airport} is not a parameter")
-    bad([rows(filter={"path": "ARPT", "equals": "JFK"})], "equals must be a {param}", ps)
+    assert answer_problems([rows(filter={"path": "status", "equals": "Final"})], ps) == []  # a fixed status word
+    bad([rows(filter={"path": "ARPT", "equals": "{JFK"})], "equals must be a {param} or a short fixed value", ps)
+    bad([rows(filter={"path": "ARPT", "equals": ""})], "equals must be a {param} or a short fixed value", ps)
     bad([rows(filter={"path": "ARPT"})], "filter must be", ps)
     bad([rows(filter={**flt, "op": "eq"})], "filter must be", ps)
     bad([rows(filter={"path": "a[*]", "equals": "{airport}"})], "bad filter path", ps)

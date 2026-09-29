@@ -13,7 +13,7 @@
   {
    "name": "start",
    "label": "Start",
-   "words": ["when", "what time", "start time", "kickoff", "tip-off", "date", "game time"],
+   "words": ["when", "what time", "start time", "kickoff", "tip-off", "date", "game time", "next game", "play next"],
    "primary": true,
    "kind": "value",
    "path": "events[0].strTimestamp",
@@ -22,7 +22,7 @@
   {
    "name": "venue",
    "label": "Venue",
-   "words": ["where", "venue", "stadium", "arena", "field"],
+   "words": ["where", "venue", "stadium", "arena", "field", "next game", "play next"],
    "primary": true,
    "kind": "value",
    "path": "events[0].strVenue",

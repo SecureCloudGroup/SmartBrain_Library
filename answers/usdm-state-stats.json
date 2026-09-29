@@ -13,7 +13,7 @@
       ],
       "primary": true,
       "kind": "value",
-      "path": "items[0].d0",
+      "path": "rows[0].D0",
       "type": "number",
       "unit": "%"
     },
@@ -29,7 +29,7 @@
       ],
       "primary": true,
       "kind": "value",
-      "path": "items[0].d1",
+      "path": "rows[0].D1",
       "type": "number",
       "unit": "%"
     },
@@ -44,7 +44,7 @@
       ],
       "primary": true,
       "kind": "value",
-      "path": "items[0].d2",
+      "path": "rows[0].D2",
       "type": "number",
       "unit": "%"
     },
@@ -59,7 +59,7 @@
       ],
       "primary": true,
       "kind": "value",
-      "path": "items[0].d3",
+      "path": "rows[0].D3",
       "type": "number",
       "unit": "%"
     },
@@ -74,7 +74,7 @@
       ],
       "primary": false,
       "kind": "value",
-      "path": "items[0].d4",
+      "path": "rows[0].D4",
       "type": "number",
       "unit": "%"
     },
@@ -89,7 +89,7 @@
       ],
       "primary": false,
       "kind": "value",
-      "path": "items[0].none",
+      "path": "rows[0].None",
       "type": "number",
       "unit": "%"
     },
@@ -105,8 +105,8 @@
       ],
       "primary": false,
       "kind": "value",
-      "path": "items[0].mapDate",
-      "type": "time"
+      "path": "rows[0].ValidStart",
+      "type": "date"
     },
     {
       "name": "weekly",
@@ -121,27 +121,27 @@
       ],
       "primary": false,
       "kind": "list",
-      "path": "items",
+      "path": "rows",
       "row": [
         {
-          "path": "mapDate",
+          "path": "ValidStart",
           "label": "Week",
-          "type": "time"
+          "type": "date"
         },
         {
-          "path": "d1",
+          "path": "D1",
           "label": "Moderate or worse",
           "type": "number",
           "unit": "%"
         },
         {
-          "path": "d2",
+          "path": "D2",
           "label": "Severe or worse",
           "type": "number",
           "unit": "%"
         },
         {
-          "path": "d3",
+          "path": "D3",
           "label": "Extreme or worse",
           "type": "number",
           "unit": "%"
@@ -150,5 +150,5 @@
     }
   ],
   "sample_url": "https://usdmdataservices.unl.edu/api/StateStatistics/GetDroughtSeverityStatisticsByAreaPercent?aoi=48&startdate=8/3/2026&enddate=9/28/2026&statisticsType=1",
-  "checked": "2026-09-28"
+  "checked": "2026-09-29"
 }

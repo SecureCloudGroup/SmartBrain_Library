@@ -78,7 +78,12 @@
       "snow",
       "hourly",
       "daily",
-      "wind"
+      "wind",
+      "temp",
+      "hot",
+      "cold",
+      "degrees",
+      "warm"
      ],
      "policy": {
       "prefer": [

@@ -14,10 +14,10 @@
       ],
       "primary": true,
       "kind": "value",
-      "path": "joke",
+      "path": "attachments[0].text",
       "type": "text"
     }
   ],
-  "sample_url": "https://icanhazdadjoke.com/",
-  "checked": "2026-09-28"
+  "sample_url": "https://icanhazdadjoke.com/slack",
+  "checked": "2026-09-29"
 }
