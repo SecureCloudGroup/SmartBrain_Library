@@ -51,10 +51,13 @@ BY_PROVIDER = {
     ("thesportsdb", "table_league"): R("sports_league", "attrs.table_id"),
     ("thesportsdb", "team"): R("team_espn", "attrs.tsdb_id"),
     ("statuspage", "status_host"): R("statuspage"),
+    ("local-newsrooms", "feed"): R("local_news"),  # the named metro's newsroom feeds (https://{feed})
     ("sec", "cik"): R("ticker", "attrs.cik", fallback=GAP("CIK known for S&P 500 companies only; others need SEC's mapping (contact User-Agent, R11)")),
     ("sec", "form"): DEFAULT("8-K"),
     ("eia", "ba"): GAP("no balancing-authority resolver yet"),
-    ("eia", "area"): DEFAULT("NUS"),
+    # the state's own weekly gas price where EIA has one, else its PADD region; no state named: the US average
+    ("eia", "area"): R("us_state", "attrs.eia_gas_area", fallback=DEFAULT("NUS")),
+    ("fred", "gas_series"): R("us_state", "attrs.fred_gas_series"),  # a state EIA has no series for: its region
     ("usgs", "radius_km"): DEFAULT("200"),
     ("usgs", "min_mag"): DEFAULT("2.5"),
     ("coingecko", "days"): DEFAULT("30"),

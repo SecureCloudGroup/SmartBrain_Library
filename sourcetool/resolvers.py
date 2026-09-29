@@ -185,6 +185,9 @@ def _add_nicknames(places: list[dict], gnis: dict[str, str]) -> None:
             raise ValueError(f"place_nicknames.json: no place {e['place']!r} in {e['state']}")
         p = max(named, key=lambda p: p["attrs"].get("pop") or 0)
         p["aliases"] = sorted({*p["aliases"], *(norm(n) for n in e["nicknames"])})
+    for pt in reviewed.get("points", []):  # an area with no Census place in it: its own entry at a representative point
+        places.append(_e("place", "place", "area-" + norm(pt["name"]).replace(" ", "-"), pt["name"], pt["aliases"],
+                         pt["lat"], pt["lon"], pt["state"], {"type": "area", "pop": 0}))
 
 
 def h_zip() -> list[dict]:
@@ -204,6 +207,26 @@ def h_county() -> list[dict]:
     return out
 
 
+# Weekly retail gasoline price areas (EIA's Gasoline and Diesel Fuel Update, eia.gov/petroleum/gasdiesel): EIA
+# publishes nine states on their own; every other state is priced by its PADD sub-region (PADD map:
+# eia.gov/petroleum/marketing/monthly/pdf/paddmap.pdf). `eia_gas_area` is the EIA API duoarea, the state's own
+# when EIA has it; `fred_gas_series` is FRED's keyless copy of the state's PADD region, given only where EIA has
+# no state series (FRED mirrors the national and five PADD series, never a state).
+EIA_GAS_STATES = ("CA", "CO", "FL", "MA", "MN", "NY", "OH", "TX", "WA")
+_PADD = {"R1X": ("CT ME MA NH RI VT", "GASREGECW"), "R1Y": ("DE DC MD NJ NY PA", "GASREGECW"),
+         "R1Z": ("FL GA NC SC VA WV", "GASREGECW"), "R20": ("IL IN IA KS KY MI MN MO NE ND SD OH OK TN WI", "GASREGMWW"),
+         "R30": ("AL AR LA MS NM TX", "GASREGGCW"), "R40": ("CO ID MT UT WY", "GASREGRMW"),
+         "R5XCA": ("AK AZ HI NV OR WA", "GASREGWCW"), "R50": ("CA", "GASREGWCW")}
+
+
+def _gas_attrs(st: str) -> dict:
+    for area, (states, fred) in _PADD.items():
+        if st in states.split():
+            return ({"eia_gas_area": f"S{st}"} if st in EIA_GAS_STATES
+                    else {"eia_gas_area": area, "fred_gas_series": fred})
+    return {}
+
+
 def h_us_state() -> list[dict]:
     """The fixed list, with each state's FIPS code (the US Drought Monitor's area id) and its bounding box
     (a regional USGS earthquake query), from the Census TIGERweb state boundaries (public domain)."""
@@ -218,7 +241,8 @@ def h_us_state() -> list[dict]:
             lons = [x - 360 if x > 0 else x for x in lons]
         attrs[f["attributes"]["STUSAB"]] = {"fips": f["attributes"]["GEOID"], "min_lat": min(lats),
                                             "max_lat": max(lats), "min_lon": min(lons), "max_lon": max(lons)}
-    return [_e("us_state", "us_state", k, v, [k], state=k, attrs=attrs.get(k)) for k, v in US_STATES.items()]
+    return [_e("us_state", "us_state", k, v, [k], state=k, attrs={**(attrs.get(k) or {}), **_gas_attrs(k)})
+            for k, v in US_STATES.items()]
 
 
 def h_airport() -> list[dict]:
@@ -421,6 +445,22 @@ def h_statuspage() -> list[dict]:
             for e in d["entries"]]
 
 
+def h_local_news() -> list[dict]:
+    """Each metro's local newsrooms from the reviewed list: one entry per outlet feed, named by the outlet and
+    found by the names people call the metro; the first-listed outlet ranks first."""
+    d = json.loads((RES / "local_news_feeds.json").read_text())
+    out = []
+    for m in d["entries"]:
+        slug = norm(m["metro"]).replace(" ", "-")
+        for i, o in enumerate(m["outlets"]):
+            e = _e("local_news", "feed", o["feed"], o["name"], m["names"], state=m["state"],
+                   attrs={"metro": m["metro"]}, rank=len(m["outlets"]) - i)
+            e["aliases"] = sorted({norm(n) for n in m["names"]})  # the metro's names, not the outlet's
+            e["id"] = f"local_news:{slug}:{i + 1}"
+            out.append(e)
+    return out
+
+
 def h_fr_agency() -> list[dict]:
     d = get_json("https://www.federalregister.gov/api/v1/agencies", cache_hours=720, api=True)
     return [_e("fr_agency", "agency", a["slug"], a["name"], [a.get("short_name") or "", a.get("display_name") or ""],
@@ -527,7 +567,7 @@ def h_nwps_gauge() -> list[dict]:
 HARVEST = {"place": h_place, "zip": h_zip, "county": h_county, "us_state": h_us_state, "airport": h_airport,
            "tide_station": h_tide_station, "buoy": h_buoy, "ticker": h_ticker, "crypto": h_crypto,
            "currency": h_currency, "team_espn": h_team_espn, "team_mlb": h_team_mlb, "team_nhl": h_team_nhl,
-           "statuspage": h_statuspage, "fr_agency": h_fr_agency, "spending_agency": h_spending_agency,
+           "statuspage": h_statuspage, "local_news": h_local_news, "fr_agency": h_fr_agency, "spending_agency": h_spending_agency,
            "radar_site": h_radar_site, "soccer_competition": h_soccer_competition, "kraken_pair": h_kraken_pair,
            "sports_league": h_sports_league,
            "nwps_gauge": h_nwps_gauge}

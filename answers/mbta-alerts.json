@@ -1,0 +1,61 @@
+{
+ "source_id": "mbta-alerts",
+ "answers": [
+  {
+   "name": "alerts",
+   "label": "MBTA alerts now",
+   "kind": "list",
+   "primary": true,
+   "words": [
+    "delays",
+    "delay",
+    "advisory",
+    "advisories",
+    "service alert",
+    "alerts",
+    "running",
+    "disruption",
+    "status",
+    "is it running",
+    "mbta",
+    "the t",
+    "red line",
+    "orange line",
+    "green line"
+   ],
+   "path": "data",
+   "row": [
+    {
+     "path": "attributes.service_effect",
+     "label": "Service",
+     "type": "text"
+    },
+    {
+     "path": "attributes.header",
+     "label": "Details",
+     "type": "text"
+    },
+    {
+     "path": "attributes.updated_at",
+     "label": "Updated",
+     "type": "time"
+    }
+   ],
+   "may_be_empty": true
+  },
+  {
+   "name": "count",
+   "label": "Alerts in effect",
+   "kind": "value",
+   "words": [
+    "how many",
+    "number of alerts",
+    "count"
+   ],
+   "path": "data",
+   "type": "count"
+  }
+ ],
+ "sample_url": "https://api-v3.mbta.com/alerts?filter[route_type]=0,1,2&filter[datetime]=NOW&sort=-severity&fields[alert]=header,service_effect,effect,severity,updated_at",
+ "checked": "2026-09-29"
+}

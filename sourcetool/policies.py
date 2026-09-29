@@ -99,6 +99,8 @@ OVERRIDES = {
     "sports/college": {"resolvers": ["team_espn", "sports_league"], "max_age": "1h"},
     "sports/motorsport_golf_other": {"resolvers": ["team_espn"]},
     "news/local_news": {"match": "geo", "resolvers": ["place", "us_state"], "max_km": 80},
+    # a place named with "news" asks for that place's news: a national feed is not an answer to "Seattle news"
+    "news/headlines": {"match": "geo", "resolvers": ["place", "us_state"], "max_km": 80},
     "news/podcasts": {"max_age": "1d"},
     "news/fact_checks": {"max_age": "1d"},
     "travel/flights": {"prefer": PRIMARY, "resolvers": ["airport"], "max_age": "15m"},

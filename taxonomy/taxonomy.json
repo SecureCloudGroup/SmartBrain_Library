@@ -629,10 +629,13 @@
      "keywords": [
       "aurora",
       "northern lights",
+      "aurora forecast",
+      "northern lights forecast",
       "geomagnetic",
       "kp index",
       "solar flare",
-      "space weather"
+      "space weather",
+      "space weather forecast"
      ],
      "policy": {
       "prefer": [
@@ -2295,9 +2298,12 @@
        "aggregator",
        "community"
       ],
-      "match": "none",
-      "resolvers": [],
-      "max_km": null,
+      "match": "geo",
+      "resolvers": [
+       "place",
+       "us_state"
+      ],
+      "max_km": 80,
       "differ_on": [],
       "max_age": "1h",
       "cross_check": false,
@@ -2624,7 +2630,8 @@
       "service alert",
       "delay",
       "disruption",
-      "planned work"
+      "planned work",
+      "line running"
      ],
      "policy": {
       "prefer": [

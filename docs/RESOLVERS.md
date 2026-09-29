@@ -10,10 +10,10 @@ A resolver is a table of entries, one per line in `resolvers/<name>.jsonl`, all 
 
 | Resolver | Entries | Open source |
 |---|---|---|
-| place | 32,333 | Census gazetteer plus population estimates; nicknames from Wikidata and `resolvers/place_nicknames.json` |
+| place | 32,334 | Census gazetteer plus population estimates; nicknames from Wikidata and `resolvers/place_nicknames.json` (with well-known areas) |
 | zip | 33,791 | Census ZIP code areas (ZCTAs) |
 | county | 3,222 | Census gazetteer |
-| us_state | 56 | fixed list, with each state's FIPS code and bounding box from Census TIGERweb |
+| us_state | 56 | fixed list, with each state's FIPS code and bounding box from Census TIGERweb, and its weekly gas-price area (EIA's state series or the state's PADD region) |
 | airport | 13,491 | OurAirports |
 | tide_station | 1,181 | NOAA CO-OPS: primary stations (a reference for other stations' predictions, or an active water-level station), plus secondary stations only where no primary is within 50 km |
 | buoy | 1,354 | NOAA NDBC |
@@ -26,6 +26,7 @@ A resolver is a table of entries, one per line in `resolvers/<name>.jsonl`, all 
 | sports_league | 15 leagues | TheSportsDB league ids (NFL, NBA, WNBA, MLB, NHL, MLS, NWSL, college football and basketball, top European soccer) |
 | soccer_competition | competition codes | football-data.org |
 | statuspage | 30 services | curated |
+| local_news | 147 feeds, 52 metros | reviewed list `resolvers/local_news_feeds.json`: each metro's newsrooms (local TV, public radio, the daily paper) by their public RSS/Atom feed, found by the names people call the metro |
 | fr_agency / spending_agency | federal agencies | Federal Register, USAspending |
 | nwps_gauge | river gauges | NOAA NWPS (pending: rate-limited during harvest) |
 
@@ -38,6 +39,7 @@ The single matcher is `sourcetool/resolve.py`. It works in three ways:
 People say "NYC", "LA", "Philly", "Vegas", "NOLA", "Chi-town" or "the Big Apple". These are extra aliases on the place:
 - **Wikidata**: English short names (P1813) and nicknames (P1449) of items with a GNIS id (P590), joined to the Census place by the gazetteer's GNIS code (ANSICODE). The join keeps only items that are a Census place. A nickname is kept when it is a code typed in capitals ("NYC", "L.A."), a single word of five or more letters ("Philly"), or a phrase of up to three words ("Mile High City"); slogans, anything with a digit, short everyday words ("Jeff", "The Hub") and state names are dropped. A Wikidata nickname never shadows another place's own name ("Frisco" stays Frisco, Texas).
 - **Reviewed list** `resolvers/place_nicknames.json`: the common ones Wikidata lacks (it has none for Chicago), plus an `exclude` list for Wikidata nicknames we refuse.
+- **Areas that are not Census places** ("Outer Banks", "Tahoe", "Cape Cod", "Bay Area", "Twin Cities") are reviewed nicknames of the place that represents them: the area's main town, the one its forecasts name. An area with no Census place in it ("Big Sur") is a `points` entry: its own place at a representative point.
 
 Two matcher rules keep short nicknames honest:
 - A **two-letter** place alias counts only when typed in capitals: "LA weather" is Los Angeles, the word "la" never is.

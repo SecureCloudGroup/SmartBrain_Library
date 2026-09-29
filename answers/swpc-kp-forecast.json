@@ -1,0 +1,46 @@
+{
+ "source_id": "swpc-kp-forecast",
+ "answers": [
+  {
+   "name": "forecast",
+   "label": "Forecast Kp (3-hour windows)",
+   "words": ["forecast", "tonight", "tomorrow", "aurora", "northern lights", "kp forecast", "kp", "geomagnetic storm", "will i see", "next 3 days"],
+   "primary": true,
+   "kind": "list",
+   "path": "items",
+   "filter": {"path": "observed", "equals": "predicted"},
+   "row": [
+    {"path": "time_tag", "label": "Window starts", "type": "time", "utc": true},
+    {"path": "kp", "label": "Kp", "type": "number"}
+   ]
+  },
+  {
+   "name": "today",
+   "label": "Kp estimate today",
+   "words": ["today", "right now", "now", "current kp", "estimated"],
+   "kind": "list",
+   "path": "items",
+   "filter": {"path": "observed", "equals": "estimated"},
+   "row": [
+    {"path": "time_tag", "label": "Window starts", "type": "time", "utc": true},
+    {"path": "kp", "label": "Kp", "type": "number"}
+   ],
+   "may_be_empty": true
+  },
+  {
+   "name": "observed",
+   "label": "Kp observed (last week)",
+   "words": ["observed", "last night", "past week", "history", "recent"],
+   "kind": "list",
+   "path": "items",
+   "filter": {"path": "observed", "equals": "observed"},
+   "row": [
+    {"path": "time_tag", "label": "Window starts", "type": "time", "utc": true},
+    {"path": "kp", "label": "Kp", "type": "number"}
+   ],
+   "newest_first": true
+  }
+ ],
+ "sample_url": "https://services.swpc.noaa.gov/products/noaa-planetary-k-index-forecast.json",
+ "checked": "2026-09-29"
+}

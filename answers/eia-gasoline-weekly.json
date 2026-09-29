@@ -33,7 +33,7 @@
       "primary": true,
       "kind": "value",
       "path": "response.data[0].period",
-      "type": "text"
+      "type": "date"
     },
     {
       "name": "area",
@@ -68,17 +68,17 @@
         {
           "path": "period",
           "label": "Week of",
-          "type": "text"
+          "type": "date"
         },
         {
           "path": "value",
           "label": "Price",
           "type": "number",
-          "unit_path": "units"
+          "unit": "$/gal"
         }
       ]
     }
   ],
   "sample_url": "https://api.eia.gov/v2/petroleum/pri/gnd/data/?api_key=DEMO_KEY&frequency=weekly&data[0]=value&facets[product][]=EPMR&facets[duoarea][]=NUS&sort[0][column]=period&sort[0][direction]=desc&length=12",
-  "checked": "2026-09-28"
+  "checked": "2026-09-29"
 }
