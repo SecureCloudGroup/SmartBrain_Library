@@ -61,6 +61,7 @@ BY_PROVIDER = {
     ("congress", "congress"): DEFAULT("119"),
     ("congress", "bill_type"): {"from": "text", "pattern": r"\b(hr|s|hjres|sjres)\b"},
     ("congress", "number"): {"from": "text", "pattern": r"\b(?:hr|s)\s*(\d{1,5})\b"},
+    ("amtraker", "train"): {"from": "text", "pattern": r"\b(?:train|amtrak|number|no\.?|#)\s*#?\s*(\d{1,4})\b"},
     ("wikimedia", "yyyy"): CLOCK("%Y"), ("wikimedia", "mm"): CLOCK("%m"), ("wikimedia", "dd"): CLOCK("%d"),
     ("coops", "begin"): CLOCK("%Y%m%d"),
     ("usdm", "start"): CLOCK("%-m/%-d/%Y", -56), ("usdm", "end"): CLOCK("%-m/%-d/%Y"),
