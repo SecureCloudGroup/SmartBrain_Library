@@ -359,7 +359,9 @@ def h_crypto() -> list[dict]:
     top = get_json("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc"
                    "&per_page=250&page=1", cache_hours=168, api=True)
     rank = {c["id"]: 1000 - (c.get("market_cap_rank") or 999) for c in top}
-    return [_e("crypto", "crypto_asset", c["id"], c["name"], [c["symbol"]], rank=rank.get(c["id"], 0))
+    return [_e("crypto", "crypto_asset", c["id"], c["name"], [c["symbol"]],
+               attrs={"symbol": c["symbol"].upper()} if c.get("symbol") and " " not in c["symbol"] else {},
+               rank=rank.get(c["id"], 0))
             for c in coins if c.get("id") and c.get("name")]
 
 

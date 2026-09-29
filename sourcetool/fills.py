@@ -37,7 +37,7 @@ BY_PROVIDER = {
     ("usgs", "site"): GAP("no USGS gauge resolver yet"),
     ("aviationweather", "airport"): R("airport", "attrs.icao"),
     ("coingecko", "coin"): R("crypto"),
-    ("coinbase", "pair"): R("crypto", "symbol_usd_pair", format="{SYMBOL}-USD"),
+    ("coinbase", "pair"): R("crypto", "attrs.symbol", format="{UPPER}-USD"),
     ("kraken", "pair"): R("kraken_pair"),
     ("goldapi", "metal"): R("metal"),
     # a launch site or provider the ask names narrows the list; none named = every upcoming launch (empty filter)
