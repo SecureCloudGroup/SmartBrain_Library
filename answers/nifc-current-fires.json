@@ -1,0 +1,63 @@
+{
+  "source_id": "nifc-current-fires",
+  "answers": [
+    {
+      "name": "fires",
+      "label": "Current wildfires",
+      "words": [
+        "wildfires",
+        "fires",
+        "burning",
+        "biggest fires",
+        "acres",
+        "containment",
+        "contained",
+        "fire size"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "features",
+      "row": [
+        {
+          "path": "attributes.IncidentName",
+          "label": "Fire",
+          "type": "text"
+        },
+        {
+          "path": "attributes.IncidentSize",
+          "label": "Size",
+          "type": "number",
+          "unit": "acres"
+        },
+        {
+          "path": "attributes.PercentContained",
+          "label": "Contained",
+          "type": "number",
+          "unit": "%"
+        },
+        {
+          "path": "attributes.FireDiscoveryDateTime",
+          "label": "Discovered",
+          "type": "time"
+        }
+      ],
+      "may_be_empty": true
+    },
+    {
+      "name": "fire_count",
+      "label": "Fires listed (up to 25)",
+      "words": [
+        "how many fires",
+        "count",
+        "number of fires",
+        "any fires"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "features",
+      "type": "count"
+    }
+  ],
+  "sample_url": "https://services3.arcgis.com/T4QMspbfLg3qTGWY/arcgis/rest/services/WFIGS_Incident_Locations_Current/FeatureServer/0/query?where=POOState%3D%27US-CA%27&outFields=IncidentName,IncidentSize,PercentContained,FireDiscoveryDateTime,POOCounty&orderByFields=IncidentSize+DESC&resultRecordCount=25&f=json",
+  "checked": "2026-09-28"
+}

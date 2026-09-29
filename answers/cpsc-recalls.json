@@ -1,0 +1,85 @@
+{
+  "source_id": "cpsc-recalls",
+  "answers": [
+    {
+      "name": "recalls",
+      "label": "Product recalls",
+      "words": [
+        "product recalls",
+        "recalls",
+        "recall",
+        "recalled",
+        "toy recalls",
+        "this month",
+        "unsafe products"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "items",
+      "row": [
+        {
+          "path": "Title",
+          "label": "Recall",
+          "type": "text"
+        },
+        {
+          "path": "Products[0].NumberOfUnits",
+          "label": "Units",
+          "type": "text"
+        },
+        {
+          "path": "RecallDate",
+          "label": "Recalled",
+          "type": "time"
+        }
+      ]
+    },
+    {
+      "name": "hazards",
+      "label": "Hazards and remedies",
+      "words": [
+        "hazard",
+        "danger",
+        "why",
+        "remedy",
+        "refund",
+        "what to do"
+      ],
+      "primary": false,
+      "kind": "list",
+      "path": "items",
+      "row": [
+        {
+          "path": "Products[0].Name",
+          "label": "Product",
+          "type": "text"
+        },
+        {
+          "path": "Hazards[0].Name",
+          "label": "Hazard",
+          "type": "text"
+        },
+        {
+          "path": "Remedies[0].Name",
+          "label": "Remedy",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "recall_count",
+      "label": "Recalls in the period",
+      "words": [
+        "how many recalls",
+        "number of recalls",
+        "count"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "items",
+      "type": "count"
+    }
+  ],
+  "sample_url": "https://www.saferproducts.gov/RestWebServices/Recall?format=json&RecallDateStart=2026-09-01",
+  "checked": "2026-09-28"
+}

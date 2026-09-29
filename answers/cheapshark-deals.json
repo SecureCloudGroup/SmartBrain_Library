@@ -1,0 +1,76 @@
+{
+  "source_id": "cheapshark-deals",
+  "answers": [
+    {
+      "name": "deals",
+      "label": "Game deals",
+      "words": [
+        "game deals",
+        "deals",
+        "cheap games",
+        "cheap steam games",
+        "sale",
+        "discount",
+        "on sale",
+        "games"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "items",
+      "row": [
+        {
+          "path": "title",
+          "label": "Game",
+          "type": "text"
+        },
+        {
+          "path": "salePrice",
+          "label": "Sale price",
+          "type": "number",
+          "unit": "USD"
+        },
+        {
+          "path": "normalPrice",
+          "label": "Regular price",
+          "type": "number",
+          "unit": "USD"
+        },
+        {
+          "path": "savings",
+          "label": "Savings",
+          "type": "number",
+          "unit": "%"
+        }
+      ]
+    },
+    {
+      "name": "top_deal",
+      "label": "Top deal",
+      "words": [
+        "top deal",
+        "best deal",
+        "best game deal"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "items[0].title",
+      "type": "text"
+    },
+    {
+      "name": "top_deal_price",
+      "label": "Top deal price",
+      "words": [
+        "price",
+        "how much",
+        "top deal price"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "items[0].salePrice",
+      "type": "number",
+      "unit": "USD"
+    }
+  ],
+  "sample_url": "https://www.cheapshark.com/api/1.0/deals?pageSize=15&sortBy=Deal%20Rating",
+  "checked": "2026-09-28"
+}

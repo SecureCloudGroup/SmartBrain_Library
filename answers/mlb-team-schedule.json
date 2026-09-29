@@ -1,0 +1,109 @@
+{
+ "source_id": "mlb-team-schedule",
+ "answers": [
+  {
+   "name": "next_game_time",
+   "label": "Game time",
+   "words": [
+    "game time",
+    "start time",
+    "what time",
+    "first pitch",
+    "when"
+   ],
+   "primary": false,
+   "kind": "value",
+   "path": "dates[0].games[0].gameDate",
+   "type": "time"
+  },
+  {
+   "name": "next_away",
+   "label": "Away team",
+   "words": [
+    "opponent",
+    "against",
+    "who",
+    "versus",
+    "vs",
+    "away"
+   ],
+   "primary": false,
+   "kind": "value",
+   "path": "dates[0].games[0].teams.away.team.name",
+   "type": "text"
+  },
+  {
+   "name": "next_home",
+   "label": "Home team",
+   "words": [
+    "opponent",
+    "against",
+    "who",
+    "versus",
+    "vs",
+    "home"
+   ],
+   "primary": false,
+   "kind": "value",
+   "path": "dates[0].games[0].teams.home.team.name",
+   "type": "text"
+  },
+  {
+   "name": "next_venue",
+   "label": "Venue",
+   "words": [
+    "where",
+    "venue",
+    "stadium",
+    "ballpark",
+    "park"
+   ],
+   "primary": false,
+   "kind": "value",
+   "path": "dates[0].games[0].venue.name",
+   "type": "text"
+  },
+  {
+   "name": "upcoming",
+   "label": "Next games",
+   "words": [
+    "next game",
+    "next games",
+    "next",
+    "schedule",
+    "upcoming",
+    "play next",
+    "games",
+    "fixtures",
+    "this week"
+   ],
+   "primary": true,
+   "kind": "list",
+   "path": "dates",
+   "row": [
+    {
+     "path": "games[0].gameDate",
+     "label": "Start",
+     "type": "time"
+    },
+    {
+     "path": "games[0].teams.away.team.name",
+     "label": "Away",
+     "type": "text"
+    },
+    {
+     "path": "games[0].teams.home.team.name",
+     "label": "Home",
+     "type": "text"
+    },
+    {
+     "path": "games[0].venue.name",
+     "label": "Venue",
+     "type": "text"
+    }
+   ]
+  }
+ ],
+ "sample_url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=144&startDate=2026-09-28&endDate=2026-10-28",
+ "checked": "2026-09-28"
+}

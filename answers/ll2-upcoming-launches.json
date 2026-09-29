@@ -1,0 +1,55 @@
+{
+  "source_id": "ll2-upcoming-launches",
+  "answers": [
+    {
+      "name": "launches",
+      "label": "Upcoming launches",
+      "words": [
+        "upcoming launches",
+        "next launch",
+        "rocket launches",
+        "launches this week",
+        "spacex",
+        "schedule",
+        "when is the next launch",
+        "launch"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "results",
+      "row": [
+        {
+          "path": "name",
+          "label": "Launch",
+          "type": "text"
+        },
+        {
+          "path": "net",
+          "label": "Time",
+          "type": "time"
+        },
+        {
+          "path": "status.name",
+          "label": "Status",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "total",
+      "label": "Upcoming launches listed",
+      "words": [
+        "how many",
+        "count",
+        "total",
+        "number of launches"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "count",
+      "type": "number"
+    }
+  ],
+  "sample_url": "https://ll.thespacedevs.com/2.3.0/launches/upcoming/?limit=10&mode=list",
+  "checked": "2026-09-28"
+}

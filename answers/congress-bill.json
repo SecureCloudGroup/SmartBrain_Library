@@ -1,0 +1,92 @@
+{
+  "source_id": "congress-bill",
+  "answers": [
+    {
+      "name": "title",
+      "label": "Bill",
+      "words": [
+        "bill",
+        "title",
+        "what is",
+        "name of the bill"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "bill.title",
+      "type": "text"
+    },
+    {
+      "name": "latest_action",
+      "label": "Latest action",
+      "words": [
+        "status",
+        "latest action",
+        "where is",
+        "passed",
+        "signed",
+        "law"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "bill.latestAction.text",
+      "type": "text"
+    },
+    {
+      "name": "latest_action_date",
+      "label": "Latest action date",
+      "words": [
+        "when",
+        "last action",
+        "date",
+        "updated"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "bill.latestAction.actionDate",
+      "type": "date"
+    },
+    {
+      "name": "sponsor",
+      "label": "Sponsor",
+      "words": [
+        "sponsor",
+        "who wrote",
+        "who introduced",
+        "author"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "bill.sponsors[0].fullName",
+      "type": "text"
+    },
+    {
+      "name": "introduced",
+      "label": "Introduced",
+      "words": [
+        "introduced",
+        "when introduced",
+        "filed"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "bill.introducedDate",
+      "type": "date"
+    },
+    {
+      "name": "policy_area",
+      "label": "Policy area",
+      "words": [
+        "policy area",
+        "topic",
+        "subject",
+        "about"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "bill.policyArea.name",
+      "type": "text"
+    }
+  ],
+  "sample_url": "https://api.congress.gov/v3/bill/119/hr/1?api_key=DEMO_KEY&format=json",
+  "checked": "2026-09-28"
+}

@@ -1,0 +1,56 @@
+{
+  "source_id": "nps-alerts",
+  "answers": [
+    {
+      "name": "alerts",
+      "label": "Park alerts",
+      "words": [
+        "alerts",
+        "closures",
+        "road closures",
+        "park alerts",
+        "closed",
+        "danger",
+        "caution",
+        "information"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "data",
+      "row": [
+        {
+          "path": "title",
+          "label": "Alert",
+          "type": "text"
+        },
+        {
+          "path": "category",
+          "label": "Category",
+          "type": "text"
+        },
+        {
+          "path": "description",
+          "label": "Details",
+          "type": "text"
+        }
+      ],
+      "may_be_empty": true
+    },
+    {
+      "name": "alert_count",
+      "label": "Number of alerts",
+      "words": [
+        "how many alerts",
+        "count",
+        "number of alerts",
+        "any alerts"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "data",
+      "type": "count"
+    }
+  ],
+  "sample_url": "https://developer.nps.gov/api/v1/alerts?parkCode=yell&api_key=DEMO_KEY",
+  "checked": "2026-09-28"
+}

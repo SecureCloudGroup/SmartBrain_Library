@@ -1,0 +1,103 @@
+{
+  "source_id": "rocketlaunch-next5",
+  "answers": [
+    {
+      "name": "next_name",
+      "label": "Next launch",
+      "words": [
+        "next launch",
+        "launch",
+        "rocket",
+        "mission",
+        "what launches next"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "result[0].name",
+      "type": "text"
+    },
+    {
+      "name": "next_description",
+      "label": "Launch details",
+      "words": [
+        "when is the next launch",
+        "when",
+        "details",
+        "what time",
+        "date"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "result[0].launch_description",
+      "type": "text"
+    },
+    {
+      "name": "next_vehicle",
+      "label": "Rocket",
+      "words": [
+        "rocket",
+        "vehicle",
+        "launcher",
+        "which rocket"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "result[0].vehicle.name",
+      "type": "text"
+    },
+    {
+      "name": "next_site",
+      "label": "Launch site",
+      "words": [
+        "where",
+        "launch site",
+        "pad",
+        "location",
+        "from where"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "result[0].pad.location.name",
+      "type": "text"
+    },
+    {
+      "name": "launches",
+      "label": "Next five launches",
+      "words": [
+        "upcoming launches",
+        "launches",
+        "schedule",
+        "next five",
+        "list",
+        "this week"
+      ],
+      "primary": false,
+      "kind": "list",
+      "path": "result",
+      "row": [
+        {
+          "path": "name",
+          "label": "Mission",
+          "type": "text"
+        },
+        {
+          "path": "vehicle.name",
+          "label": "Rocket",
+          "type": "text"
+        },
+        {
+          "path": "pad.location.name",
+          "label": "Site",
+          "type": "text"
+        },
+        {
+          "path": "date_str",
+          "label": "Date",
+          "type": "text"
+        }
+      ]
+    }
+  ],
+  "sample_url": "https://fdo.rocketlaunch.live/json/launches/next/5",
+  "checked": "2026-09-28"
+}

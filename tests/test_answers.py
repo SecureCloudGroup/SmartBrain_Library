@@ -81,8 +81,9 @@ def test_value_rules():
 
 
 def test_paths():
-    for p in ("a[*]", "a[1:2]", "a[-1]", "a..b", "0abc", "a[x]", "a[0][1]", "", "a.b.", "$.a"):
+    for p in ("a[*]", "a[1:2]", "a[-1]", "a..b", "0abc", "a[x]", "", "a.b.", "$.a"):
         bad([value(path=p)], "bad path")
+    assert answer_problems([value(path="data[0][3]")]) == []  # a list of lists, as the app's engine reads
     assert answer_problems([value(path="daily.precipitation_probability_max[1]")]) == []
     assert answer_problems([value(path="data-set_1.x[12].y")]) == []
 

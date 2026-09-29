@@ -1,0 +1,59 @@
+{
+  "source_id": "usgs-quakes-25-day",
+  "answers": [
+    {
+      "name": "quakes",
+      "label": "Earthquakes",
+      "words": [
+        "earthquakes",
+        "quakes",
+        "earthquake",
+        "magnitude",
+        "where",
+        "latest",
+        "recent",
+        "shaking",
+        "today",
+        "past day"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "features",
+      "row": [
+        {
+          "path": "properties.mag",
+          "label": "Magnitude",
+          "type": "number"
+        },
+        {
+          "path": "properties.place",
+          "label": "Place",
+          "type": "text"
+        },
+        {
+          "path": "properties.time",
+          "label": "Time",
+          "type": "time"
+        }
+      ],
+      "may_be_empty": true
+    },
+    {
+      "name": "quake_count",
+      "label": "Number of earthquakes",
+      "words": [
+        "how many",
+        "count",
+        "number of earthquakes",
+        "any earthquakes",
+        "total"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "features",
+      "type": "count"
+    }
+  ],
+  "sample_url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
+  "checked": "2026-09-28"
+}

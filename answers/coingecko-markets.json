@@ -1,0 +1,78 @@
+{
+  "source_id": "coingecko-markets",
+  "answers": [
+    {
+      "name": "top_coins",
+      "label": "Top coins by market cap",
+      "words": [
+        "top coins",
+        "top cryptocurrencies",
+        "crypto market",
+        "biggest coins",
+        "market cap",
+        "ranking",
+        "top 10",
+        "crypto prices",
+        "price",
+        "change"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "items",
+      "row": [
+        {
+          "path": "name",
+          "label": "Coin",
+          "type": "text"
+        },
+        {
+          "path": "current_price",
+          "label": "Price",
+          "type": "number",
+          "unit": "USD"
+        },
+        {
+          "path": "price_change_percentage_24h",
+          "label": "24h change",
+          "type": "number",
+          "unit": "%"
+        },
+        {
+          "path": "market_cap",
+          "label": "Market cap",
+          "type": "number",
+          "unit": "USD"
+        }
+      ]
+    },
+    {
+      "name": "volume",
+      "label": "24h trading volume",
+      "words": [
+        "volume",
+        "trading volume",
+        "most traded",
+        "24h volume",
+        "liquidity"
+      ],
+      "primary": false,
+      "kind": "list",
+      "path": "items",
+      "row": [
+        {
+          "path": "name",
+          "label": "Coin",
+          "type": "text"
+        },
+        {
+          "path": "total_volume",
+          "label": "24h volume",
+          "type": "number",
+          "unit": "USD"
+        }
+      ]
+    }
+  ],
+  "sample_url": "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=20&page=1",
+  "checked": "2026-09-28"
+}

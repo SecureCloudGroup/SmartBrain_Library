@@ -1,0 +1,55 @@
+{
+  "source_id": "hf-trending-models",
+  "answers": [
+    {
+      "name": "top_model",
+      "label": "Top trending model",
+      "words": [
+        "top model",
+        "number one",
+        "most trending",
+        "most liked",
+        "hottest model"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "items[0].id",
+      "type": "text"
+    },
+    {
+      "name": "models",
+      "label": "Trending models",
+      "words": [
+        "trending",
+        "models",
+        "ai models",
+        "popular models",
+        "top models",
+        "hugging face",
+        "most liked"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "items",
+      "row": [
+        {
+          "path": "id",
+          "label": "Model",
+          "type": "text"
+        },
+        {
+          "path": "likes",
+          "label": "Likes",
+          "type": "number"
+        },
+        {
+          "path": "createdAt",
+          "label": "Created",
+          "type": "time"
+        }
+      ]
+    }
+  ],
+  "sample_url": "https://huggingface.co/api/models?sort=likes7d&limit=20",
+  "checked": "2026-09-28"
+}

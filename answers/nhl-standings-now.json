@@ -1,0 +1,58 @@
+{
+  "source_id": "nhl-standings-now",
+  "answers": [
+    {
+      "name": "standings",
+      "label": "League standings",
+      "words": [
+        "standings",
+        "nhl standings",
+        "table",
+        "points",
+        "ranking",
+        "who leads",
+        "first place"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "standings",
+      "row": [
+        {
+          "path": "teamName.default",
+          "label": "Team",
+          "type": "text"
+        },
+        {
+          "path": "points",
+          "label": "Pts",
+          "type": "number"
+        },
+        {
+          "path": "wins",
+          "label": "W",
+          "type": "number"
+        },
+        {
+          "path": "losses",
+          "label": "L",
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "name": "as_of",
+      "label": "As of",
+      "words": [
+        "as of",
+        "updated",
+        "when"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "standingsDateTimeUtc",
+      "type": "time"
+    }
+  ],
+  "sample_url": "https://api-web.nhle.com/v1/standings/now",
+  "checked": "2026-09-28"
+}

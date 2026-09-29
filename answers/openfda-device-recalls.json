@@ -1,0 +1,58 @@
+{
+  "source_id": "openfda-device-recalls",
+  "answers": [
+    {
+      "name": "recalls",
+      "label": "Medical device recalls",
+      "words": [
+        "medical device recalls",
+        "device recalls",
+        "recalls",
+        "recall",
+        "medical device",
+        "device"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "results",
+      "row": [
+        {
+          "path": "openfda.device_name",
+          "label": "Device",
+          "type": "text"
+        },
+        {
+          "path": "reason_for_recall",
+          "label": "Reason",
+          "type": "text"
+        },
+        {
+          "path": "recalling_firm",
+          "label": "Firm",
+          "type": "text"
+        },
+        {
+          "path": "event_date_initiated",
+          "label": "Recall started",
+          "type": "date"
+        }
+      ]
+    },
+    {
+      "name": "total",
+      "label": "Recalls on record",
+      "words": [
+        "how many recalls",
+        "total recalls",
+        "count",
+        "number of recalls"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "meta.results.total",
+      "type": "number"
+    }
+  ],
+  "sample_url": "https://api.fda.gov/device/recall.json?sort=event_date_initiated:desc&limit=20",
+  "checked": "2026-09-28"
+}

@@ -1,0 +1,59 @@
+{
+  "source_id": "eia-fuel-mix",
+  "answers": [
+    {
+      "name": "fuel_mix",
+      "label": "Generation by fuel",
+      "words": [
+        "energy mix",
+        "fuel mix",
+        "solar",
+        "wind",
+        "natural gas",
+        "nuclear",
+        "hydro",
+        "coal",
+        "generation",
+        "grid",
+        "renewables"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "response.data",
+      "row": [
+        {
+          "path": "type-name",
+          "label": "Fuel",
+          "type": "text"
+        },
+        {
+          "path": "value",
+          "label": "Generation",
+          "type": "number",
+          "unit_path": "value-units"
+        },
+        {
+          "path": "period",
+          "label": "Hour (UTC)",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "region",
+      "label": "Grid operator",
+      "words": [
+        "grid operator",
+        "region",
+        "balancing authority",
+        "which grid"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "response.data[0].respondent-name",
+      "type": "text"
+    }
+  ],
+  "sample_url": "https://api.eia.gov/v2/electricity/rto/fuel-type-data/data/?api_key=DEMO_KEY&frequency=hourly&data[0]=value&facets[respondent][]=CISO&sort[0][column]=period&sort[0][direction]=desc&length=48",
+  "checked": "2026-09-28"
+}

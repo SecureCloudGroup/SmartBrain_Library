@@ -1,0 +1,38 @@
+{
+  "source_id": "frankfurter-series",
+  "answers": [
+    {
+      "name": "history",
+      "label": "Exchange rate history",
+      "words": [
+        "trend",
+        "history",
+        "over time",
+        "this year",
+        "past month",
+        "chart",
+        "daily",
+        "exchange rate",
+        "rate"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "items",
+      "row": [
+        {
+          "path": "date",
+          "label": "Date",
+          "type": "date"
+        },
+        {
+          "path": "rate",
+          "label": "Rate",
+          "type": "number"
+        }
+      ],
+      "newest_first": true
+    }
+  ],
+  "sample_url": "https://api.frankfurter.dev/v2/rates?base=USD&quotes=EUR&from=2026-06-01",
+  "checked": "2026-09-28"
+}

@@ -1,0 +1,100 @@
+{
+  "source_id": "awc-taf",
+  "answers": [
+    {
+      "name": "raw_taf",
+      "label": "TAF",
+      "words": [
+        "taf",
+        "raw taf",
+        "terminal forecast",
+        "aerodrome forecast",
+        "airport forecast"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "items[0].rawTAF",
+      "type": "text"
+    },
+    {
+      "name": "issued",
+      "label": "Issued",
+      "words": [
+        "issued",
+        "issue time",
+        "when",
+        "latest",
+        "updated"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "items[0].issueTime",
+      "type": "time"
+    },
+    {
+      "name": "valid_from",
+      "label": "Valid from",
+      "words": [
+        "valid",
+        "valid from",
+        "start",
+        "period",
+        "begins"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "items[0].validTimeFrom",
+      "type": "time"
+    },
+    {
+      "name": "valid_to",
+      "label": "Valid until",
+      "words": [
+        "valid",
+        "valid until",
+        "end",
+        "expires",
+        "period"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "items[0].validTimeTo",
+      "type": "time"
+    },
+    {
+      "name": "forecast_groups",
+      "label": "Forecast groups",
+      "words": [
+        "groups",
+        "changes",
+        "wind forecast",
+        "from",
+        "timeline",
+        "breakdown"
+      ],
+      "primary": false,
+      "kind": "list",
+      "path": "items[0].fcsts",
+      "row": [
+        {
+          "path": "timeFrom",
+          "label": "From",
+          "type": "time"
+        },
+        {
+          "path": "timeTo",
+          "label": "To",
+          "type": "time"
+        },
+        {
+          "path": "wspd",
+          "label": "Wind",
+          "type": "number",
+          "unit": "kt"
+        }
+      ]
+    }
+  ],
+  "sample_url": "https://aviationweather.gov/api/data/taf?ids=KCHS&format=json",
+  "checked": "2026-09-28"
+}

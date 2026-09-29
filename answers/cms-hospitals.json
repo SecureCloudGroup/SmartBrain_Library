@@ -1,0 +1,88 @@
+{
+  "source_id": "cms-hospitals",
+  "answers": [
+    {
+      "name": "hospitals",
+      "label": "Hospitals",
+      "words": [
+        "hospitals",
+        "hospital",
+        "hospital ratings",
+        "rating",
+        "stars",
+        "near me",
+        "medical center"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "results",
+      "row": [
+        {
+          "path": "facility_name",
+          "label": "Hospital",
+          "type": "text"
+        },
+        {
+          "path": "hospital_overall_rating",
+          "label": "Star rating (of 5)",
+          "type": "text"
+        },
+        {
+          "path": "hospital_type",
+          "label": "Type",
+          "type": "text"
+        },
+        {
+          "path": "state",
+          "label": "State",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "emergency",
+      "label": "Emergency services",
+      "words": [
+        "emergency",
+        "er",
+        "emergency room",
+        "emergency services"
+      ],
+      "primary": false,
+      "kind": "list",
+      "path": "results",
+      "row": [
+        {
+          "path": "facility_name",
+          "label": "Hospital",
+          "type": "text"
+        },
+        {
+          "path": "emergency_services",
+          "label": "Emergency services",
+          "type": "text"
+        },
+        {
+          "path": "telephone_number",
+          "label": "Phone",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "hospital_count",
+      "label": "Hospitals found",
+      "words": [
+        "how many hospitals",
+        "number of hospitals",
+        "count"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "results",
+      "type": "count"
+    }
+  ],
+  "sample_url": "https://data.cms.gov/provider-data/api/1/datastore/query/xubh-q36u/0?limit=20&conditions[0][property]=citytown&conditions[0][value]=CHARLESTON&conditions[0][operator]==",
+  "checked": "2026-09-28"
+}

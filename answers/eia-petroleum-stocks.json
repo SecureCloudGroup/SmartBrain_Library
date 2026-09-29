@@ -1,0 +1,57 @@
+{
+  "source_id": "eia-petroleum-stocks",
+  "answers": [
+    {
+      "name": "stocks",
+      "label": "Petroleum inventories",
+      "words": [
+        "crude oil inventories",
+        "oil stocks",
+        "inventories",
+        "crude",
+        "gasoline",
+        "distillate",
+        "stockpile",
+        "spr",
+        "weekly report"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "response.data",
+      "row": [
+        {
+          "path": "series-description",
+          "label": "Series",
+          "type": "text"
+        },
+        {
+          "path": "value",
+          "label": "Stocks",
+          "type": "number",
+          "unit_path": "units"
+        },
+        {
+          "path": "period",
+          "label": "Week ending",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "week",
+      "label": "Latest week",
+      "words": [
+        "week",
+        "latest week",
+        "report date",
+        "when"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "response.data[0].period",
+      "type": "text"
+    }
+  ],
+  "sample_url": "https://api.eia.gov/v2/petroleum/stoc/wstk/data/?api_key=DEMO_KEY&frequency=weekly&data[0]=value&sort[0][column]=period&sort[0][direction]=desc&length=20",
+  "checked": "2026-09-28"
+}

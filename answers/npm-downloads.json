@@ -1,0 +1,49 @@
+{
+  "source_id": "npm-downloads",
+  "answers": [
+    {
+      "name": "downloads_last_week",
+      "label": "Downloads last week",
+      "words": [
+        "downloads",
+        "download count",
+        "weekly downloads",
+        "how many downloads",
+        "popularity",
+        "installs"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "downloads",
+      "type": "number"
+    },
+    {
+      "name": "period_start",
+      "label": "Week starting",
+      "words": [
+        "start",
+        "from",
+        "period"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "start",
+      "type": "date"
+    },
+    {
+      "name": "period_end",
+      "label": "Week ending",
+      "words": [
+        "end",
+        "until",
+        "period"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "end",
+      "type": "date"
+    }
+  ],
+  "sample_url": "https://api.npmjs.org/downloads/point/last-week/react",
+  "checked": "2026-09-28"
+}

@@ -1,0 +1,150 @@
+{
+  "source_id": "nws-forecast",
+  "answers": [
+    {
+      "name": "periods",
+      "label": "Forecast",
+      "words": [
+        "forecast",
+        "this week",
+        "7 day",
+        "week",
+        "weekend",
+        "next few days",
+        "daily forecast",
+        "outlook",
+        "will it rain tomorrow",
+        "tonight",
+        "tomorrow"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "properties.periods",
+      "row": [
+        {
+          "path": "name",
+          "label": "Period",
+          "type": "text"
+        },
+        {
+          "path": "temperature",
+          "label": "Temperature",
+          "type": "number",
+          "unit": "°F"
+        },
+        {
+          "path": "shortForecast",
+          "label": "Conditions",
+          "type": "text"
+        },
+        {
+          "path": "probabilityOfPrecipitation.value",
+          "label": "Rain chance",
+          "type": "number",
+          "unit": "%"
+        }
+      ]
+    },
+    {
+      "name": "next_period",
+      "label": "Next forecast period",
+      "words": [
+        "now",
+        "next",
+        "today",
+        "tonight",
+        "this afternoon"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "properties.periods[0].name",
+      "type": "text"
+    },
+    {
+      "name": "next_temp",
+      "label": "Temperature (next period)",
+      "words": [
+        "temperature",
+        "temp",
+        "degrees",
+        "hot",
+        "cold",
+        "warm",
+        "how hot",
+        "how cold"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "properties.periods[0].temperature",
+      "type": "number",
+      "unit": "°F"
+    },
+    {
+      "name": "next_conditions",
+      "label": "Conditions (next period)",
+      "words": [
+        "conditions",
+        "sky",
+        "sunny",
+        "cloudy",
+        "clear",
+        "outside",
+        "what's it like"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "properties.periods[0].shortForecast",
+      "type": "text"
+    },
+    {
+      "name": "next_rain",
+      "label": "Rain chance (next period)",
+      "words": [
+        "rain",
+        "rain chance",
+        "chance of rain",
+        "precipitation",
+        "umbrella",
+        "showers",
+        "rain today"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "properties.periods[0].probabilityOfPrecipitation.value",
+      "type": "number",
+      "unit": "%"
+    },
+    {
+      "name": "next_wind",
+      "label": "Wind (next period)",
+      "words": [
+        "wind",
+        "windy",
+        "breeze",
+        "wind speed",
+        "gusts"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "properties.periods[0].windSpeed",
+      "type": "text"
+    },
+    {
+      "name": "next_detail",
+      "label": "Forecast details (next period)",
+      "words": [
+        "details",
+        "detailed forecast",
+        "summary",
+        "describe",
+        "full forecast"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "properties.periods[0].detailedForecast",
+      "type": "text"
+    }
+  ],
+  "sample_url": "https://api.weather.gov/gridpoints/CHS/87,77/forecast",
+  "checked": "2026-09-28"
+}

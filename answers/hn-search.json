@@ -1,0 +1,60 @@
+{
+  "source_id": "hn-search",
+  "answers": [
+    {
+      "name": "stories",
+      "label": "Newest matching stories",
+      "words": [
+        "posts",
+        "stories",
+        "latest",
+        "newest",
+        "hacker news",
+        "hn",
+        "discussions",
+        "articles"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "hits",
+      "row": [
+        {
+          "path": "title",
+          "label": "Story",
+          "type": "text"
+        },
+        {
+          "path": "created_at",
+          "label": "Posted",
+          "type": "time"
+        },
+        {
+          "path": "points",
+          "label": "Points",
+          "type": "number"
+        },
+        {
+          "path": "objectID",
+          "label": "Item id",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "match_count",
+      "label": "Matching stories",
+      "words": [
+        "how many",
+        "count",
+        "number of posts",
+        "total"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "nbHits",
+      "type": "number"
+    }
+  ],
+  "sample_url": "https://hn.algolia.com/api/v1/search_by_date?query=rust&tags=story",
+  "checked": "2026-09-28"
+}

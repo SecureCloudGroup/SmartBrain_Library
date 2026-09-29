@@ -1,0 +1,77 @@
+{
+  "source_id": "tvmaze-show-next",
+  "answers": [
+    {
+      "name": "next_airs",
+      "label": "Next episode airs",
+      "words": [
+        "next episode",
+        "when",
+        "new episode",
+        "airs",
+        "air date",
+        "next"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "_embedded.nextepisode.airstamp",
+      "type": "time"
+    },
+    {
+      "name": "next_title",
+      "label": "Next episode",
+      "words": [
+        "next episode title",
+        "episode name",
+        "called"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "_embedded.nextepisode.name",
+      "type": "text"
+    },
+    {
+      "name": "show",
+      "label": "Show",
+      "words": [
+        "show",
+        "series",
+        "name"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "name",
+      "type": "text"
+    },
+    {
+      "name": "status",
+      "label": "Show status",
+      "words": [
+        "status",
+        "running",
+        "ended",
+        "cancelled",
+        "renewed"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "status",
+      "type": "text"
+    },
+    {
+      "name": "last_title",
+      "label": "Last episode",
+      "words": [
+        "last episode",
+        "previous episode",
+        "latest episode"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "_links.previousepisode.name",
+      "type": "text"
+    }
+  ],
+  "sample_url": "https://api.tvmaze.com/singlesearch/shows?q=the%20simpsons&embed=nextepisode",
+  "checked": "2026-09-28"
+}

@@ -1,0 +1,78 @@
+{
+  "source_id": "itunes-podcast-search",
+  "answers": [
+    {
+      "name": "podcast",
+      "label": "Podcast",
+      "words": [
+        "podcast",
+        "show",
+        "name"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "results[0].collectionName",
+      "type": "text"
+    },
+    {
+      "name": "latest_episode",
+      "label": "Latest episode released",
+      "words": [
+        "latest episode",
+        "new episode",
+        "last episode",
+        "when",
+        "most recent"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "results[0].releaseDate",
+      "type": "time"
+    },
+    {
+      "name": "episode_count",
+      "label": "Episodes",
+      "words": [
+        "how many episodes",
+        "episodes",
+        "episode count"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "results[0].trackCount",
+      "type": "number"
+    },
+    {
+      "name": "matches",
+      "label": "Matching podcasts",
+      "words": [
+        "podcasts",
+        "search",
+        "matching",
+        "which podcast"
+      ],
+      "primary": false,
+      "kind": "list",
+      "path": "results",
+      "row": [
+        {
+          "path": "collectionName",
+          "label": "Podcast",
+          "type": "text"
+        },
+        {
+          "path": "artistName",
+          "label": "Publisher",
+          "type": "text"
+        },
+        {
+          "path": "releaseDate",
+          "label": "Latest episode",
+          "type": "time"
+        }
+      ]
+    }
+  ],
+  "sample_url": "https://itunes.apple.com/search?term=hard%20fork&media=podcast&limit=5",
+  "checked": "2026-09-28"
+}

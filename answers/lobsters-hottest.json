@@ -1,0 +1,59 @@
+{
+  "source_id": "lobsters-hottest",
+  "answers": [
+    {
+      "name": "top_story",
+      "label": "Hottest story",
+      "words": [
+        "top story",
+        "number one",
+        "hottest story",
+        "first story"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "items[0].title",
+      "type": "text"
+    },
+    {
+      "name": "stories",
+      "label": "Hottest stories",
+      "words": [
+        "lobsters",
+        "hottest",
+        "top stories",
+        "front page",
+        "stories",
+        "headlines",
+        "trending"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "items",
+      "row": [
+        {
+          "path": "title",
+          "label": "Story",
+          "type": "text"
+        },
+        {
+          "path": "score",
+          "label": "Score",
+          "type": "number"
+        },
+        {
+          "path": "comment_count",
+          "label": "Comments",
+          "type": "number"
+        },
+        {
+          "path": "short_id_url",
+          "label": "Link",
+          "type": "text"
+        }
+      ]
+    }
+  ],
+  "sample_url": "https://lobste.rs/hottest.json",
+  "checked": "2026-09-28"
+}

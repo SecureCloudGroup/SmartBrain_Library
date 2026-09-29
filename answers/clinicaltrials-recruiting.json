@@ -1,0 +1,59 @@
+{
+  "source_id": "clinicaltrials-recruiting",
+  "answers": [
+    {
+      "name": "latest_trial",
+      "label": "Most recently updated trial",
+      "words": [
+        "latest trial",
+        "newest trial",
+        "most recent",
+        "just updated"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "studies[0].protocolSection.identificationModule.briefTitle",
+      "type": "text"
+    },
+    {
+      "name": "trials",
+      "label": "Recruiting trials",
+      "words": [
+        "clinical trials",
+        "trials",
+        "studies",
+        "recruiting",
+        "enrolling",
+        "research studies",
+        "participate"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "studies",
+      "row": [
+        {
+          "path": "protocolSection.identificationModule.briefTitle",
+          "label": "Trial",
+          "type": "text"
+        },
+        {
+          "path": "protocolSection.identificationModule.nctId",
+          "label": "NCT id",
+          "type": "text"
+        },
+        {
+          "path": "protocolSection.identificationModule.organization.fullName",
+          "label": "Sponsor",
+          "type": "text"
+        },
+        {
+          "path": "protocolSection.statusModule.lastUpdatePostDateStruct.date",
+          "label": "Updated",
+          "type": "date"
+        }
+      ]
+    }
+  ],
+  "sample_url": "https://clinicaltrials.gov/api/v2/studies?query.cond=diabetes&filter.overallStatus=RECRUITING&pageSize=10&sort=LastUpdatePostDate:desc",
+  "checked": "2026-09-28"
+}

@@ -41,9 +41,9 @@ MAX_ANSWERS = 10
 
 _NAME = re.compile(r"[a-z][a-z0-9_]{0,39}")
 # a segment is a key or a whole `{param}` (filled from the record's params), optionally indexed: rates.{quote}
-_SEG_SRC = r"(?:[A-Za-z_][\w-]*|\{[a-z_][a-z0-9_]*\})(?:\[\d+\])?"
+_SEG_SRC = r"(?:[A-Za-z_][\w-]*|\{[a-z_][a-z0-9_]*\})(?:\[\d+\])*"  # data[0][3]: a list of lists
 _PATH = re.compile(rf"{_SEG_SRC}(?:\.{_SEG_SRC})*", re.ASCII)
-_SEG = re.compile(r"(?:([A-Za-z_][\w-]*)|\{([a-z_][a-z0-9_]*)\})(?:\[(\d+)\])?", re.ASCII)
+_SEG = re.compile(r"(?:([A-Za-z_][\w-]*)|\{([a-z_][a-z0-9_]*)\})((?:\[\d+\])*)", re.ASCII)
 _PARAM = re.compile(r"\{([a-z_][a-z0-9_]*)\}")
 _NUMBER = re.compile(r"-?\d+(\.\d+)?")
 _ISO_TIME = re.compile(r"\d{4}-\d{2}-\d{2}[T ]\d{2}:\d{2}")
@@ -205,8 +205,7 @@ def resolve(data, path: str, examples: dict | None = None):
         if key is None or not isinstance(cur, dict) or str(key) not in cur:
             return _MISSING
         cur = cur[str(key)]
-        if m.group(3) is not None:
-            n = int(m.group(3))
+        for n in (int(x) for x in re.findall(r"\[(\d+)\]", m.group(3) or "")):  # every index, in order
             if not isinstance(cur, list) or n >= len(cur):
                 return _MISSING
             cur = cur[n]

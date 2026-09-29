@@ -1,0 +1,74 @@
+{
+  "source_id": "ll2-upcoming-events",
+  "answers": [
+    {
+      "name": "events",
+      "label": "Upcoming spaceflight events",
+      "words": [
+        "events",
+        "spacewalk",
+        "next spacewalk",
+        "docking",
+        "flyby",
+        "upcoming",
+        "schedule",
+        "space events"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "results",
+      "row": [
+        {
+          "path": "name",
+          "label": "Event",
+          "type": "text"
+        },
+        {
+          "path": "type.name",
+          "label": "Type",
+          "type": "text"
+        },
+        {
+          "path": "date",
+          "label": "Date",
+          "type": "time"
+        },
+        {
+          "path": "location",
+          "label": "Where",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "next_event",
+      "label": "Next event",
+      "words": [
+        "next event",
+        "next",
+        "what's next",
+        "coming up"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "results[0].name",
+      "type": "text"
+    },
+    {
+      "name": "next_event_date",
+      "label": "Next event date",
+      "words": [
+        "when",
+        "date",
+        "time",
+        "next event date"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "results[0].date",
+      "type": "time"
+    }
+  ],
+  "sample_url": "https://ll.thespacedevs.com/2.3.0/events/upcoming/?limit=10",
+  "checked": "2026-09-28"
+}

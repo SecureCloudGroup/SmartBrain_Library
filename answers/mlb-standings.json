@@ -1,0 +1,225 @@
+{
+  "source_id": "mlb-standings",
+  "answers": [
+    {
+      "name": "al_east_standings",
+      "label": "AL East standings",
+      "words": [
+        "al east",
+        "american league east",
+        "al east standings",
+        "standings",
+        "division",
+        "mlb standings",
+        "table"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "records[0].teamRecords",
+      "row": [
+        {
+          "path": "team.name",
+          "label": "Team",
+          "type": "text"
+        },
+        {
+          "path": "wins",
+          "label": "W",
+          "type": "number"
+        },
+        {
+          "path": "losses",
+          "label": "L",
+          "type": "number"
+        },
+        {
+          "path": "gamesBack",
+          "label": "GB",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "al_central_standings",
+      "label": "AL Central standings",
+      "words": [
+        "al central",
+        "american league central",
+        "al central standings",
+        "standings",
+        "division"
+      ],
+      "primary": false,
+      "kind": "list",
+      "path": "records[1].teamRecords",
+      "row": [
+        {
+          "path": "team.name",
+          "label": "Team",
+          "type": "text"
+        },
+        {
+          "path": "wins",
+          "label": "W",
+          "type": "number"
+        },
+        {
+          "path": "losses",
+          "label": "L",
+          "type": "number"
+        },
+        {
+          "path": "gamesBack",
+          "label": "GB",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "al_west_standings",
+      "label": "AL West standings",
+      "words": [
+        "al west",
+        "american league west",
+        "al west standings",
+        "standings",
+        "division"
+      ],
+      "primary": false,
+      "kind": "list",
+      "path": "records[2].teamRecords",
+      "row": [
+        {
+          "path": "team.name",
+          "label": "Team",
+          "type": "text"
+        },
+        {
+          "path": "wins",
+          "label": "W",
+          "type": "number"
+        },
+        {
+          "path": "losses",
+          "label": "L",
+          "type": "number"
+        },
+        {
+          "path": "gamesBack",
+          "label": "GB",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "nl_east_standings",
+      "label": "NL East standings",
+      "words": [
+        "nl east",
+        "national league east",
+        "nl east standings",
+        "standings",
+        "division"
+      ],
+      "primary": false,
+      "kind": "list",
+      "path": "records[3].teamRecords",
+      "row": [
+        {
+          "path": "team.name",
+          "label": "Team",
+          "type": "text"
+        },
+        {
+          "path": "wins",
+          "label": "W",
+          "type": "number"
+        },
+        {
+          "path": "losses",
+          "label": "L",
+          "type": "number"
+        },
+        {
+          "path": "gamesBack",
+          "label": "GB",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "nl_central_standings",
+      "label": "NL Central standings",
+      "words": [
+        "nl central",
+        "national league central",
+        "nl central standings",
+        "standings",
+        "division"
+      ],
+      "primary": false,
+      "kind": "list",
+      "path": "records[4].teamRecords",
+      "row": [
+        {
+          "path": "team.name",
+          "label": "Team",
+          "type": "text"
+        },
+        {
+          "path": "wins",
+          "label": "W",
+          "type": "number"
+        },
+        {
+          "path": "losses",
+          "label": "L",
+          "type": "number"
+        },
+        {
+          "path": "gamesBack",
+          "label": "GB",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "nl_west_standings",
+      "label": "NL West standings",
+      "words": [
+        "nl west",
+        "national league west",
+        "nl west standings",
+        "standings",
+        "division"
+      ],
+      "primary": false,
+      "kind": "list",
+      "path": "records[5].teamRecords",
+      "row": [
+        {
+          "path": "team.name",
+          "label": "Team",
+          "type": "text"
+        },
+        {
+          "path": "wins",
+          "label": "W",
+          "type": "number"
+        },
+        {
+          "path": "losses",
+          "label": "L",
+          "type": "number"
+        },
+        {
+          "path": "gamesBack",
+          "label": "GB",
+          "type": "text"
+        }
+      ]
+    }
+  ],
+  "sample_url": "https://statsapi.mlb.com/api/v1/standings?leagueId=103,104&standingsTypes=regularSeason",
+  "checked": "2026-09-28"
+}

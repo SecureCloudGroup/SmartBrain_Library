@@ -1,0 +1,52 @@
+{
+  "source_id": "epa-uv-daily",
+  "answers": [
+    {
+      "name": "uv_index",
+      "label": "UV index today",
+      "words": [
+        "uv",
+        "uv index",
+        "uv today",
+        "sunscreen",
+        "sunburn",
+        "sun strength"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "items[0].UV_INDEX",
+      "type": "number"
+    },
+    {
+      "name": "uv_alert",
+      "label": "UV alert (1 = alert issued)",
+      "words": [
+        "uv alert",
+        "alert",
+        "warning",
+        "uv warning",
+        "dangerous sun"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "items[0].UV_ALERT",
+      "type": "number"
+    },
+    {
+      "name": "date",
+      "label": "Forecast date",
+      "words": [
+        "date",
+        "day",
+        "which day",
+        "when"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "items[0].DATE",
+      "type": "text"
+    }
+  ],
+  "sample_url": "https://data.epa.gov/efservice/getEnvirofactsUVDAILY/ZIP/29401/JSON",
+  "checked": "2026-09-28"
+}

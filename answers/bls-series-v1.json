@@ -1,0 +1,96 @@
+{
+  "source_id": "bls-series-v1",
+  "answers": [
+    {
+      "name": "value",
+      "label": "Latest value",
+      "words": [
+        "latest",
+        "value",
+        "current",
+        "now",
+        "level",
+        "reading",
+        "index"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "Results.series[0].data[0].value",
+      "type": "number"
+    },
+    {
+      "name": "period",
+      "label": "Month",
+      "words": [
+        "month",
+        "period",
+        "when",
+        "as of"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "Results.series[0].data[0].periodName",
+      "type": "text"
+    },
+    {
+      "name": "year",
+      "label": "Year",
+      "words": [
+        "year",
+        "when",
+        "as of"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "Results.series[0].data[0].year",
+      "type": "text"
+    },
+    {
+      "name": "series",
+      "label": "Series",
+      "words": [
+        "series",
+        "series id",
+        "which series"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "Results.series[0].seriesID",
+      "type": "text"
+    },
+    {
+      "name": "history",
+      "label": "History",
+      "words": [
+        "history",
+        "trend",
+        "over time",
+        "past months",
+        "chart",
+        "monthly"
+      ],
+      "primary": false,
+      "kind": "list",
+      "path": "Results.series[0].data",
+      "row": [
+        {
+          "path": "year",
+          "label": "Year",
+          "type": "text"
+        },
+        {
+          "path": "periodName",
+          "label": "Period",
+          "type": "text"
+        },
+        {
+          "path": "value",
+          "label": "Value",
+          "type": "number"
+        }
+      ]
+    }
+  ],
+  "sample_url": "https://api.bls.gov/publicAPI/v1/timeseries/data/CUUR0000SA0",
+  "checked": "2026-09-28"
+}

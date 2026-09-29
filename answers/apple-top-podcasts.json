@@ -1,0 +1,66 @@
+{
+  "source_id": "apple-top-podcasts",
+  "answers": [
+    {
+      "name": "chart",
+      "label": "Top podcasts",
+      "words": [
+        "top podcasts",
+        "podcasts",
+        "popular podcasts",
+        "top",
+        "chart",
+        "charts",
+        "most popular",
+        "top 25",
+        "best"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "feed.results",
+      "row": [
+        {
+          "path": "name",
+          "label": "Podcast",
+          "type": "text"
+        },
+        {
+          "path": "artistName",
+          "label": "Publisher",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "number_one",
+      "label": "Number one",
+      "words": [
+        "number one",
+        "#1",
+        "top one",
+        "no. 1",
+        "at the top",
+        "first place"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "feed.results[0].name",
+      "type": "text"
+    },
+    {
+      "name": "number_one_by",
+      "label": "Number one publisher",
+      "words": [
+        "who is number one",
+        "#1 by",
+        "top publisher"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "feed.results[0].artistName",
+      "type": "text"
+    }
+  ],
+  "sample_url": "https://rss.marketingtools.apple.com/api/v2/us/podcasts/top/25/podcasts.json",
+  "checked": "2026-09-28"
+}

@@ -1,0 +1,48 @@
+{
+  "source_id": "census-datasets",
+  "answers": [
+    {
+      "name": "datasets",
+      "label": "Census datasets",
+      "words": [
+        "datasets",
+        "census datasets",
+        "census",
+        "data sets",
+        "surveys",
+        "available data"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "dataset",
+      "row": [
+        {
+          "path": "title",
+          "label": "Dataset",
+          "type": "text"
+        },
+        {
+          "path": "modified",
+          "label": "Modified",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "dataset_count",
+      "label": "Datasets",
+      "words": [
+        "how many",
+        "count",
+        "number of datasets",
+        "total"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "dataset",
+      "type": "count"
+    }
+  ],
+  "sample_url": "https://api.census.gov/data.json",
+  "checked": "2026-09-28"
+}

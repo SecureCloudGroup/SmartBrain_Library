@@ -1,0 +1,71 @@
+{
+  "source_id": "usgs-water-iv",
+  "answers": [
+    {
+      "name": "gauge_height",
+      "label": "Gauge height",
+      "words": [
+        "river level",
+        "how high",
+        "gauge height",
+        "stage",
+        "water level",
+        "height",
+        "depth"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "value.timeSeries[1].values[0].value[0].value",
+      "type": "number",
+      "unit_path": "value.timeSeries[1].variable.unit.unitCode"
+    },
+    {
+      "name": "streamflow",
+      "label": "Streamflow",
+      "words": [
+        "streamflow",
+        "flow",
+        "discharge",
+        "cfs",
+        "how fast",
+        "volume"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "value.timeSeries[0].values[0].value[0].value",
+      "type": "number",
+      "unit_path": "value.timeSeries[0].variable.unit.unitCode"
+    },
+    {
+      "name": "reading_time",
+      "label": "Reading time",
+      "words": [
+        "when",
+        "time",
+        "updated",
+        "last reading"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "value.timeSeries[0].values[0].value[0].dateTime",
+      "type": "time"
+    },
+    {
+      "name": "site",
+      "label": "Site",
+      "words": [
+        "site",
+        "river",
+        "where",
+        "station",
+        "which river"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "value.timeSeries[0].sourceInfo.siteName",
+      "type": "text"
+    }
+  ],
+  "sample_url": "https://waterservices.usgs.gov/nwis/iv/?format=json&sites=02169500&parameterCd=00060,00065&siteStatus=active",
+  "checked": "2026-09-28"
+}

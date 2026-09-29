@@ -1,0 +1,121 @@
+{
+  "source_id": "faa-nas-status",
+  "answers": [
+    {
+      "name": "ground_delay",
+      "label": "Ground delay program",
+      "words": [
+        "delays",
+        "delay",
+        "flight delays",
+        "ground delay",
+        "delayed",
+        "how late",
+        "average delay",
+        "gdp"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "items",
+      "row": [
+        {
+          "path": "groundDelay.impactingCondition",
+          "label": "Reason",
+          "type": "text"
+        },
+        {
+          "path": "groundDelay.avgDelay",
+          "label": "Average delay",
+          "type": "number",
+          "unit": "min"
+        },
+        {
+          "path": "groundDelay.maxDelay",
+          "label": "Max delay",
+          "type": "number",
+          "unit": "min"
+        },
+        {
+          "path": "groundDelay.endTime",
+          "label": "Until",
+          "type": "time"
+        }
+      ],
+      "filter": {
+        "path": "groundDelay.airportId",
+        "equals": "{airport}"
+      },
+      "may_be_empty": true
+    },
+    {
+      "name": "departure_delay",
+      "label": "Departure delays",
+      "words": [
+        "departure delay",
+        "departures",
+        "departing",
+        "leaving",
+        "takeoff",
+        "delays",
+        "flight delays",
+        "late"
+      ],
+      "primary": false,
+      "kind": "list",
+      "path": "items",
+      "row": [
+        {
+          "path": "departureDelay.reason",
+          "label": "Reason",
+          "type": "text"
+        },
+        {
+          "path": "departureDelay.averageDelay",
+          "label": "Average delay",
+          "type": "number",
+          "unit": "min"
+        },
+        {
+          "path": "departureDelay.trend",
+          "label": "Trend",
+          "type": "text"
+        }
+      ],
+      "filter": {
+        "path": "departureDelay.airportId",
+        "equals": "{airport}"
+      },
+      "may_be_empty": true
+    },
+    {
+      "name": "airports_affected",
+      "label": "Airports with FAA delays",
+      "words": [
+        "airport delays",
+        "which airports",
+        "delays nationwide",
+        "all airports",
+        "national airspace",
+        "faa status"
+      ],
+      "primary": false,
+      "kind": "list",
+      "path": "items",
+      "row": [
+        {
+          "path": "airportId",
+          "label": "Airport",
+          "type": "text"
+        },
+        {
+          "path": "airportLongName",
+          "label": "Name",
+          "type": "text"
+        }
+      ],
+      "may_be_empty": true
+    }
+  ],
+  "sample_url": "https://nasstatus.faa.gov/api/airport-events",
+  "checked": "2026-09-28"
+}

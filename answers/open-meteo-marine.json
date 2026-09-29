@@ -1,0 +1,101 @@
+{
+  "source_id": "open-meteo-marine",
+  "answers": [
+    {
+      "name": "wave_height",
+      "label": "Wave height",
+      "words": [
+        "waves",
+        "wave height",
+        "surf",
+        "surf report",
+        "swell",
+        "how big are the waves",
+        "seas"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "current.wave_height",
+      "type": "number",
+      "unit_path": "current_units.wave_height"
+    },
+    {
+      "name": "wave_period",
+      "label": "Wave period",
+      "words": [
+        "wave period",
+        "period",
+        "swell period",
+        "seconds between waves",
+        "surf quality"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "current.wave_period",
+      "type": "number",
+      "unit_path": "current_units.wave_period"
+    },
+    {
+      "name": "water_temp",
+      "label": "Sea surface temperature",
+      "words": [
+        "water temperature",
+        "water temp",
+        "sea temperature",
+        "ocean temperature",
+        "how warm is the water",
+        "sst"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "current.sea_surface_temperature",
+      "type": "number",
+      "unit_path": "current_units.sea_surface_temperature"
+    },
+    {
+      "name": "waves_tomorrow_noon",
+      "label": "Wave height tomorrow noon",
+      "words": [
+        "tomorrow",
+        "wave height tomorrow",
+        "surf tomorrow",
+        "waves tomorrow"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "hourly.wave_height[36]",
+      "type": "number",
+      "unit_path": "hourly_units.wave_height"
+    },
+    {
+      "name": "waves_hourly",
+      "label": "Wave height by hour",
+      "words": [
+        "by hour",
+        "hourly",
+        "later today",
+        "forecast",
+        "surf forecast",
+        "tonight"
+      ],
+      "primary": false,
+      "kind": "columns",
+      "columns": [
+        {
+          "path": "hourly.time",
+          "label": "Time",
+          "type": "time"
+        },
+        {
+          "path": "hourly.wave_height",
+          "label": "Wave height",
+          "type": "number",
+          "unit_path": "hourly_units.wave_height"
+        }
+      ],
+      "limit": 24
+    }
+  ],
+  "sample_url": "https://marine-api.open-meteo.com/v1/marine?latitude=32.7765&longitude=-79.80&current=wave_height,wave_period,sea_surface_temperature&hourly=wave_height&length_unit=imperial&timezone=auto",
+  "checked": "2026-09-28"
+}

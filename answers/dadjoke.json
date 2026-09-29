@@ -1,0 +1,23 @@
+{
+  "source_id": "dadjoke",
+  "answers": [
+    {
+      "name": "joke",
+      "label": "Dad joke",
+      "words": [
+        "joke",
+        "dad joke",
+        "funny",
+        "make me laugh",
+        "tell me a joke",
+        "pun"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "joke",
+      "type": "text"
+    }
+  ],
+  "sample_url": "https://icanhazdadjoke.com/",
+  "checked": "2026-09-28"
+}

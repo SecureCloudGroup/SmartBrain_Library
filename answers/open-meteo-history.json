@@ -1,0 +1,77 @@
+{
+  "source_id": "open-meteo-history",
+  "answers": [
+    {
+      "name": "daily_history",
+      "label": "Daily highs, lows and rain",
+      "words": [
+        "history",
+        "last month",
+        "past",
+        "how hot was",
+        "rainfall",
+        "daily",
+        "record",
+        "this month"
+      ],
+      "primary": true,
+      "kind": "columns",
+      "columns": [
+        {
+          "path": "daily.time",
+          "label": "Day",
+          "type": "text"
+        },
+        {
+          "path": "daily.temperature_2m_max",
+          "label": "High",
+          "type": "number",
+          "unit_path": "daily_units.temperature_2m_max"
+        },
+        {
+          "path": "daily.temperature_2m_min",
+          "label": "Low",
+          "type": "number",
+          "unit_path": "daily_units.temperature_2m_min"
+        },
+        {
+          "path": "daily.precipitation_sum",
+          "label": "Rain",
+          "type": "number",
+          "unit_path": "daily_units.precipitation_sum"
+        }
+      ],
+      "limit": 31
+    },
+    {
+      "name": "rainfall",
+      "label": "Daily rainfall",
+      "words": [
+        "rain",
+        "rainfall",
+        "precipitation",
+        "how much rain",
+        "wet",
+        "dry"
+      ],
+      "primary": false,
+      "kind": "columns",
+      "columns": [
+        {
+          "path": "daily.time",
+          "label": "Day",
+          "type": "text"
+        },
+        {
+          "path": "daily.precipitation_sum",
+          "label": "Rain",
+          "type": "number",
+          "unit_path": "daily_units.precipitation_sum"
+        }
+      ],
+      "limit": 31
+    }
+  ],
+  "sample_url": "https://archive-api.open-meteo.com/v1/archive?latitude=32.7765&longitude=-79.9311&start_date=2026-09-01&end_date=2026-09-20&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&temperature_unit=fahrenheit&precipitation_unit=inch&timezone=auto",
+  "checked": "2026-09-28"
+}

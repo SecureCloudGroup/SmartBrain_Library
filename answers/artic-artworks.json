@@ -1,0 +1,54 @@
+{
+  "source_id": "artic-artworks",
+  "answers": [
+    {
+      "name": "artworks",
+      "label": "Artworks",
+      "words": [
+        "art",
+        "artworks",
+        "art institute",
+        "paintings",
+        "artwork",
+        "museum",
+        "collection"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "data",
+      "row": [
+        {
+          "path": "title",
+          "label": "Title",
+          "type": "text"
+        },
+        {
+          "path": "artist_display",
+          "label": "Artist",
+          "type": "text"
+        },
+        {
+          "path": "date_display",
+          "label": "Date",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "collection_size",
+      "label": "Artworks in the collection",
+      "words": [
+        "how many artworks",
+        "collection size",
+        "total artworks",
+        "how many"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "pagination.total",
+      "type": "number"
+    }
+  ],
+  "sample_url": "https://api.artic.edu/api/v1/artworks?limit=10&fields=id,title,artist_display,date_display,image_id",
+  "checked": "2026-09-28"
+}

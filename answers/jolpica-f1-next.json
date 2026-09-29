@@ -1,0 +1,105 @@
+{
+  "source_id": "jolpica-f1-next",
+  "answers": [
+    {
+      "name": "race_name",
+      "label": "Next race",
+      "words": [
+        "next race",
+        "race",
+        "grand prix",
+        "gp",
+        "next f1",
+        "which race"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "MRData.RaceTable.Races[0].raceName",
+      "type": "text"
+    },
+    {
+      "name": "race_date",
+      "label": "Race date",
+      "words": [
+        "when",
+        "date",
+        "race day",
+        "what day"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "MRData.RaceTable.Races[0].date",
+      "type": "date"
+    },
+    {
+      "name": "race_time",
+      "label": "Race start (UTC)",
+      "words": [
+        "time",
+        "start time",
+        "what time",
+        "lights out"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "MRData.RaceTable.Races[0].time",
+      "type": "text"
+    },
+    {
+      "name": "circuit",
+      "label": "Circuit",
+      "words": [
+        "circuit",
+        "track",
+        "where",
+        "venue"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "MRData.RaceTable.Races[0].Circuit.circuitName",
+      "type": "text"
+    },
+    {
+      "name": "country",
+      "label": "Country",
+      "words": [
+        "country",
+        "where",
+        "location"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "MRData.RaceTable.Races[0].Circuit.Location.country",
+      "type": "text"
+    },
+    {
+      "name": "qualifying_date",
+      "label": "Qualifying date",
+      "words": [
+        "qualifying",
+        "quali",
+        "qualifying date",
+        "pole"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "MRData.RaceTable.Races[0].Qualifying.date",
+      "type": "date"
+    },
+    {
+      "name": "qualifying_time",
+      "label": "Qualifying start (UTC)",
+      "words": [
+        "qualifying time",
+        "quali time",
+        "when is qualifying"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "MRData.RaceTable.Races[0].Qualifying.time",
+      "type": "text"
+    }
+  ],
+  "sample_url": "https://api.jolpi.ca/ergast/f1/current/next/races/",
+  "checked": "2026-09-28"
+}

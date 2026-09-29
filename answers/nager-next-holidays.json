@@ -1,0 +1,61 @@
+{
+  "source_id": "nager-next-holidays",
+  "answers": [
+    {
+      "name": "next_name",
+      "label": "Next holiday",
+      "words": [
+        "next holiday",
+        "next day off",
+        "upcoming holiday",
+        "which holiday"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "items[0].name",
+      "type": "text"
+    },
+    {
+      "name": "next_date",
+      "label": "Date",
+      "words": [
+        "when",
+        "date",
+        "next day off",
+        "how soon"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "items[0].date",
+      "type": "text"
+    },
+    {
+      "name": "upcoming",
+      "label": "Upcoming holidays",
+      "words": [
+        "upcoming holidays",
+        "holidays",
+        "list",
+        "coming up",
+        "next few"
+      ],
+      "primary": false,
+      "kind": "list",
+      "path": "items",
+      "row": [
+        {
+          "path": "date",
+          "label": "Date",
+          "type": "text"
+        },
+        {
+          "path": "name",
+          "label": "Holiday",
+          "type": "text"
+        }
+      ]
+    }
+  ],
+  "sample_url": "https://date.nager.at/api/v3/NextPublicHolidays/US",
+  "checked": "2026-09-28"
+}

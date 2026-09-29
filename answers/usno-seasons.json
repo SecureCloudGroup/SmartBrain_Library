@@ -1,0 +1,62 @@
+{
+  "source_id": "usno-seasons",
+  "answers": [
+    {
+      "name": "seasons",
+      "label": "Equinoxes and solstices",
+      "words": [
+        "solstice",
+        "equinox",
+        "first day of spring",
+        "first day of summer",
+        "first day of fall",
+        "first day of winter",
+        "seasons",
+        "perihelion",
+        "aphelion",
+        "winter solstice",
+        "summer solstice"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "data",
+      "row": [
+        {
+          "path": "phenom",
+          "label": "Event",
+          "type": "text"
+        },
+        {
+          "path": "month",
+          "label": "Month",
+          "type": "number"
+        },
+        {
+          "path": "day",
+          "label": "Day",
+          "type": "number"
+        },
+        {
+          "path": "time",
+          "label": "Time (UTC)",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "year",
+      "label": "Year",
+      "words": [
+        "year",
+        "which year",
+        "for year"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "year",
+      "type": "number"
+    }
+  ],
+  "sample_url": "https://aa.usno.navy.mil/api/seasons?year=2026",
+  "checked": "2026-09-28"
+}

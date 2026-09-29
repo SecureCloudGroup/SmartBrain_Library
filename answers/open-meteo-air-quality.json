@@ -1,0 +1,101 @@
+{
+  "source_id": "open-meteo-air-quality",
+  "answers": [
+    {
+      "name": "us_aqi",
+      "label": "Air quality (US AQI)",
+      "words": [
+        "air quality",
+        "aqi",
+        "air",
+        "is the air safe",
+        "pollution",
+        "smog",
+        "air index"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "current.us_aqi",
+      "type": "number"
+    },
+    {
+      "name": "pm2_5",
+      "label": "PM2.5",
+      "words": [
+        "pm2.5",
+        "pm 2.5",
+        "smoke",
+        "smoke levels",
+        "fine particles",
+        "particulates",
+        "haze"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "current.pm2_5",
+      "type": "number",
+      "unit_path": "current_units.pm2_5"
+    },
+    {
+      "name": "pm10",
+      "label": "PM10",
+      "words": [
+        "pm10",
+        "pm 10",
+        "dust",
+        "coarse particles",
+        "pollen dust"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "current.pm10",
+      "type": "number",
+      "unit_path": "current_units.pm10"
+    },
+    {
+      "name": "ozone",
+      "label": "Ozone",
+      "words": [
+        "ozone",
+        "o3",
+        "smog",
+        "ground level ozone"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "current.ozone",
+      "type": "number",
+      "unit_path": "current_units.ozone"
+    },
+    {
+      "name": "aqi_hourly",
+      "label": "Air quality by hour",
+      "words": [
+        "by hour",
+        "hourly",
+        "later today",
+        "tomorrow",
+        "forecast",
+        "air quality forecast",
+        "tonight"
+      ],
+      "primary": false,
+      "kind": "columns",
+      "columns": [
+        {
+          "path": "hourly.time",
+          "label": "Time",
+          "type": "time"
+        },
+        {
+          "path": "hourly.us_aqi",
+          "label": "US AQI",
+          "type": "number"
+        }
+      ],
+      "limit": 24
+    }
+  ],
+  "sample_url": "https://air-quality-api.open-meteo.com/v1/air-quality?latitude=32.7765&longitude=-79.9311&current=us_aqi,pm2_5,pm10,ozone&hourly=us_aqi&timezone=auto",
+  "checked": "2026-09-28"
+}

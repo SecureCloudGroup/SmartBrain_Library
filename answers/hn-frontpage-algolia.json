@@ -1,0 +1,60 @@
+{
+  "source_id": "hn-frontpage-algolia",
+  "answers": [
+    {
+      "name": "top_story",
+      "label": "Top story",
+      "words": [
+        "top story",
+        "number one",
+        "first story",
+        "biggest story"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "hits[0].title",
+      "type": "text"
+    },
+    {
+      "name": "stories",
+      "label": "Front page stories",
+      "words": [
+        "top stories",
+        "front page",
+        "hacker news",
+        "hn",
+        "stories",
+        "headlines",
+        "news",
+        "trending"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "hits",
+      "row": [
+        {
+          "path": "title",
+          "label": "Story",
+          "type": "text"
+        },
+        {
+          "path": "points",
+          "label": "Points",
+          "type": "number"
+        },
+        {
+          "path": "num_comments",
+          "label": "Comments",
+          "type": "number"
+        },
+        {
+          "path": "url",
+          "label": "Link",
+          "type": "text"
+        }
+      ]
+    }
+  ],
+  "sample_url": "https://hn.algolia.com/api/v1/search?tags=front_page",
+  "checked": "2026-09-28"
+}

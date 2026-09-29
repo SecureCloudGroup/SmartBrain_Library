@@ -1,0 +1,64 @@
+{
+  "source_id": "nasa-neows-feed",
+  "answers": [
+    {
+      "name": "passing_today",
+      "label": "Asteroids passing today",
+      "words": [
+        "asteroids",
+        "near earth",
+        "passing earth",
+        "today",
+        "close approach",
+        "flyby",
+        "near miss",
+        "space rocks"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "near_earth_objects.{date}",
+      "row": [
+        {
+          "path": "name",
+          "label": "Asteroid",
+          "type": "text"
+        },
+        {
+          "path": "close_approach_data[0].epoch_date_close_approach",
+          "label": "Closest approach",
+          "type": "time"
+        },
+        {
+          "path": "close_approach_data[0].miss_distance.miles",
+          "label": "Miss distance",
+          "type": "number",
+          "unit": "mi"
+        },
+        {
+          "path": "estimated_diameter.feet.estimated_diameter_max",
+          "label": "Size (up to)",
+          "type": "number",
+          "unit": "ft"
+        }
+      ]
+    },
+    {
+      "name": "count_week",
+      "label": "Close approaches, next 8 days",
+      "words": [
+        "this week",
+        "how many",
+        "count",
+        "number of asteroids",
+        "week",
+        "next few days"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "element_count",
+      "type": "number"
+    }
+  ],
+  "sample_url": "https://api.nasa.gov/neo/rest/v1/feed?start_date=2026-09-27&api_key=DEMO_KEY",
+  "checked": "2026-09-28"
+}

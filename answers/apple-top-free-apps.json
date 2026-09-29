@@ -1,0 +1,72 @@
+{
+  "source_id": "apple-top-free-apps",
+  "answers": [
+    {
+      "name": "chart",
+      "label": "Top free apps",
+      "words": [
+        "top apps",
+        "apps",
+        "free apps",
+        "app store",
+        "top",
+        "chart",
+        "charts",
+        "most popular",
+        "top 25",
+        "best"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "feed.results",
+      "row": [
+        {
+          "path": "name",
+          "label": "App",
+          "type": "text"
+        },
+        {
+          "path": "artistName",
+          "label": "Developer",
+          "type": "text"
+        },
+        {
+          "path": "releaseDate",
+          "label": "Released",
+          "type": "date"
+        }
+      ]
+    },
+    {
+      "name": "number_one",
+      "label": "Number one",
+      "words": [
+        "number one",
+        "#1",
+        "top one",
+        "no. 1",
+        "at the top",
+        "first place"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "feed.results[0].name",
+      "type": "text"
+    },
+    {
+      "name": "number_one_by",
+      "label": "Number one developer",
+      "words": [
+        "who is number one",
+        "#1 by",
+        "top developer"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "feed.results[0].artistName",
+      "type": "text"
+    }
+  ],
+  "sample_url": "https://rss.marketingtools.apple.com/api/v2/us/apps/top-free/25/apps.json",
+  "checked": "2026-09-28"
+}

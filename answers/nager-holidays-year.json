@@ -1,0 +1,50 @@
+{
+  "source_id": "nager-holidays-year",
+  "answers": [
+    {
+      "name": "holidays",
+      "label": "Public holidays",
+      "words": [
+        "holidays",
+        "public holidays",
+        "federal holidays",
+        "this year",
+        "when is",
+        "day off",
+        "thanksgiving",
+        "christmas",
+        "calendar"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "items",
+      "row": [
+        {
+          "path": "date",
+          "label": "Date",
+          "type": "text"
+        },
+        {
+          "path": "name",
+          "label": "Holiday",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "holiday_count",
+      "label": "Number of holidays",
+      "words": [
+        "how many holidays",
+        "count",
+        "number of holidays"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "items",
+      "type": "count"
+    }
+  ],
+  "sample_url": "https://date.nager.at/api/v3/PublicHolidays/2026/US",
+  "checked": "2026-09-28"
+}

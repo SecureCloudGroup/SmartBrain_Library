@@ -1,0 +1,58 @@
+{
+  "source_id": "eia-spot-crude",
+  "answers": [
+    {
+      "name": "spot_prices",
+      "label": "Oil spot prices",
+      "words": [
+        "oil price",
+        "crude",
+        "crude oil",
+        "brent",
+        "wti",
+        "spot price",
+        "barrel",
+        "oil",
+        "brent crude",
+        "wti crude"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "response.data",
+      "row": [
+        {
+          "path": "product-name",
+          "label": "Product",
+          "type": "text"
+        },
+        {
+          "path": "value",
+          "label": "Price",
+          "type": "number",
+          "unit_path": "units"
+        },
+        {
+          "path": "period",
+          "label": "Date",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "latest_date",
+      "label": "Latest date",
+      "words": [
+        "date",
+        "as of",
+        "when",
+        "latest"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "response.data[0].period",
+      "type": "text"
+    }
+  ],
+  "sample_url": "https://api.eia.gov/v2/petroleum/pri/spt/data/?api_key=DEMO_KEY&frequency=daily&data[0]=value&facets[series][]=RBRTE&facets[series][]=RWTC&sort[0][column]=period&sort[0][direction]=desc&length=20",
+  "checked": "2026-09-28"
+}

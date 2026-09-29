@@ -1,0 +1,67 @@
+{
+  "source_id": "openlibrary-search",
+  "answers": [
+    {
+      "name": "books",
+      "label": "Books",
+      "words": [
+        "books",
+        "book",
+        "by this author",
+        "author",
+        "titles",
+        "written",
+        "novel"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "docs",
+      "row": [
+        {
+          "path": "title",
+          "label": "Title",
+          "type": "text"
+        },
+        {
+          "path": "author_name[0]",
+          "label": "Author",
+          "type": "text"
+        },
+        {
+          "path": "first_publish_year",
+          "label": "First published",
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "name": "match_count",
+      "label": "Matching books",
+      "words": [
+        "how many books",
+        "number of books",
+        "count",
+        "how many"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "numFound",
+      "type": "number"
+    },
+    {
+      "name": "top_author",
+      "label": "Author",
+      "words": [
+        "who wrote",
+        "author of",
+        "writer"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "docs[0].author_name[0]",
+      "type": "text"
+    }
+  ],
+  "sample_url": "https://openlibrary.org/search.json?q=project%20hail%20mary&limit=5",
+  "checked": "2026-09-28"
+}

@@ -1,0 +1,105 @@
+{
+  "source_id": "usno-oneday",
+  "answers": [
+    {
+      "name": "moon_phase",
+      "label": "Moon phase",
+      "words": [
+        "moon phase",
+        "phase",
+        "moon today",
+        "what phase",
+        "full moon",
+        "lunar"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "properties.data.curphase",
+      "type": "text"
+    },
+    {
+      "name": "illumination",
+      "label": "Moon illuminated",
+      "words": [
+        "illumination",
+        "how full",
+        "lit",
+        "brightness",
+        "percent"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "properties.data.fracillum",
+      "type": "text"
+    },
+    {
+      "name": "closest_phase",
+      "label": "Nearest primary phase",
+      "words": [
+        "closest phase",
+        "nearest phase",
+        "last full moon",
+        "recent phase"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "properties.data.closestphase.phase",
+      "type": "text"
+    },
+    {
+      "name": "moon_events",
+      "label": "Moonrise, moonset (local)",
+      "words": [
+        "moonrise",
+        "moonset",
+        "moon rise",
+        "moon set",
+        "moonrise tonight",
+        "when does the moon rise"
+      ],
+      "primary": false,
+      "kind": "list",
+      "path": "properties.data.moondata",
+      "row": [
+        {
+          "path": "phen",
+          "label": "Event",
+          "type": "text"
+        },
+        {
+          "path": "time",
+          "label": "Time",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "sun_events",
+      "label": "Sunrise, sunset (local)",
+      "words": [
+        "sunrise",
+        "sunset",
+        "twilight",
+        "sun",
+        "daylight"
+      ],
+      "primary": false,
+      "kind": "list",
+      "path": "properties.data.sundata",
+      "row": [
+        {
+          "path": "phen",
+          "label": "Event",
+          "type": "text"
+        },
+        {
+          "path": "time",
+          "label": "Time",
+          "type": "text"
+        }
+      ]
+    }
+  ],
+  "sample_url": "https://aa.usno.navy.mil/api/rstt/oneday?date=2026-09-27&coords=32.7765,-79.9311&tz=-4",
+  "checked": "2026-09-28"
+}

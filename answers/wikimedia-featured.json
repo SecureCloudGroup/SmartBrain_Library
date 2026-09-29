@@ -1,0 +1,89 @@
+{
+  "source_id": "wikimedia-featured",
+  "answers": [
+    {
+      "name": "article",
+      "label": "Article of the day",
+      "words": [
+        "article of the day",
+        "featured article",
+        "wikipedia article",
+        "today's article",
+        "featured"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "tfa.normalizedtitle",
+      "type": "text"
+    },
+    {
+      "name": "article_about",
+      "label": "About",
+      "words": [
+        "what is it",
+        "description",
+        "about"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "tfa.description",
+      "type": "text"
+    },
+    {
+      "name": "article_summary",
+      "label": "Summary",
+      "words": [
+        "summary",
+        "extract",
+        "tell me about"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "tfa.extract",
+      "type": "text"
+    },
+    {
+      "name": "most_read",
+      "label": "Most read on Wikipedia",
+      "words": [
+        "most read",
+        "most read on wikipedia",
+        "popular",
+        "trending",
+        "top articles",
+        "views"
+      ],
+      "primary": false,
+      "kind": "list",
+      "path": "mostread.articles",
+      "row": [
+        {
+          "path": "normalizedtitle",
+          "label": "Article",
+          "type": "text"
+        },
+        {
+          "path": "views",
+          "label": "Views yesterday",
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "name": "picture",
+      "label": "Picture of the day",
+      "words": [
+        "picture of the day",
+        "image of the day",
+        "photo",
+        "picture"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "image.description.text",
+      "type": "text"
+    }
+  ],
+  "sample_url": "https://api.wikimedia.org/feed/v1/wikipedia/en/featured/2026/09/27",
+  "checked": "2026-09-28"
+}

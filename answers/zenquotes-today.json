@@ -1,0 +1,37 @@
+{
+  "source_id": "zenquotes-today",
+  "answers": [
+    {
+      "name": "quote",
+      "label": "Quote of the day",
+      "words": [
+        "quote",
+        "quote of the day",
+        "inspiration",
+        "motivational",
+        "saying",
+        "wisdom"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "items[0].q",
+      "type": "text"
+    },
+    {
+      "name": "author",
+      "label": "Author",
+      "words": [
+        "who said",
+        "author",
+        "by whom",
+        "attributed"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "items[0].a",
+      "type": "text"
+    }
+  ],
+  "sample_url": "https://zenquotes.io/api/today",
+  "checked": "2026-09-28"
+}

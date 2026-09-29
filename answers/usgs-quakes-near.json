@@ -1,0 +1,60 @@
+{
+  "source_id": "usgs-quakes-near",
+  "answers": [
+    {
+      "name": "quakes",
+      "label": "Earthquakes",
+      "words": [
+        "earthquakes",
+        "quakes",
+        "earthquake",
+        "magnitude",
+        "where",
+        "latest",
+        "recent",
+        "shaking",
+        "near",
+        "nearby",
+        "within"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "features",
+      "row": [
+        {
+          "path": "properties.mag",
+          "label": "Magnitude",
+          "type": "number"
+        },
+        {
+          "path": "properties.place",
+          "label": "Place",
+          "type": "text"
+        },
+        {
+          "path": "properties.time",
+          "label": "Time",
+          "type": "time"
+        }
+      ],
+      "may_be_empty": true
+    },
+    {
+      "name": "quake_count",
+      "label": "Number of earthquakes",
+      "words": [
+        "how many",
+        "count",
+        "number of earthquakes",
+        "any earthquakes",
+        "total"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "features",
+      "type": "count"
+    }
+  ],
+  "sample_url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&latitude=37.77&longitude=-122.42&maxradiuskm=200&minmagnitude=2.5&starttime=2026-09-01&orderby=time",
+  "checked": "2026-09-28"
+}

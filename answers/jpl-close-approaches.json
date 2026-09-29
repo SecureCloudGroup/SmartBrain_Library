@@ -1,0 +1,83 @@
+{
+  "source_id": "jpl-close-approaches",
+  "answers": [
+    {
+      "name": "next_object",
+      "label": "Next close approach",
+      "words": [
+        "next asteroid",
+        "asteroid",
+        "close approach",
+        "near earth object",
+        "which asteroid",
+        "comet"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "data[0][0]",
+      "type": "text"
+    },
+    {
+      "name": "next_date",
+      "label": "Close approach (TDB)",
+      "words": [
+        "when",
+        "date",
+        "time",
+        "next close approach",
+        "passes"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "data[0][3]",
+      "type": "text"
+    },
+    {
+      "name": "next_distance",
+      "label": "Distance",
+      "words": [
+        "distance",
+        "how close",
+        "miss distance",
+        "how far",
+        "au"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "data[0][4]",
+      "type": "number",
+      "unit": "au"
+    },
+    {
+      "name": "next_speed",
+      "label": "Relative speed",
+      "words": [
+        "speed",
+        "velocity",
+        "how fast",
+        "km/s"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "data[0][7]",
+      "type": "number",
+      "unit": "km/s"
+    },
+    {
+      "name": "count",
+      "label": "Close approaches listed",
+      "words": [
+        "how many",
+        "count",
+        "number of asteroids",
+        "total"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "data",
+      "type": "count"
+    }
+  ],
+  "sample_url": "https://ssd-api.jpl.nasa.gov/cad.api?dist-max=0.05&date-min=now&sort=date&limit=20",
+  "checked": "2026-09-28"
+}

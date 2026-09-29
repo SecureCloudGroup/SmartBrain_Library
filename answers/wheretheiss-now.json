@@ -1,0 +1,101 @@
+{
+  "source_id": "wheretheiss-now",
+  "answers": [
+    {
+      "name": "latitude",
+      "label": "Latitude",
+      "words": [
+        "where is the iss",
+        "space station location",
+        "latitude",
+        "lat",
+        "position",
+        "where"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "latitude",
+      "type": "number",
+      "unit": "°"
+    },
+    {
+      "name": "longitude",
+      "label": "Longitude",
+      "words": [
+        "where is the iss",
+        "space station location",
+        "longitude",
+        "lon",
+        "position",
+        "where"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "longitude",
+      "type": "number",
+      "unit": "°"
+    },
+    {
+      "name": "altitude",
+      "label": "Altitude",
+      "words": [
+        "altitude",
+        "how high",
+        "height",
+        "orbit",
+        "above earth"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "altitude",
+      "type": "number",
+      "unit": "km"
+    },
+    {
+      "name": "velocity",
+      "label": "Speed",
+      "words": [
+        "speed",
+        "velocity",
+        "how fast",
+        "orbital speed"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "velocity",
+      "type": "number",
+      "unit": "km/h"
+    },
+    {
+      "name": "visibility",
+      "label": "Sunlight",
+      "words": [
+        "visible",
+        "visibility",
+        "daylight",
+        "eclipsed",
+        "in sunlight"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "visibility",
+      "type": "text"
+    },
+    {
+      "name": "as_of",
+      "label": "Position time",
+      "words": [
+        "when",
+        "time",
+        "as of",
+        "updated"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "timestamp",
+      "type": "time"
+    }
+  ],
+  "sample_url": "https://api.wheretheiss.at/v1/satellites/25544",
+  "checked": "2026-09-28"
+}

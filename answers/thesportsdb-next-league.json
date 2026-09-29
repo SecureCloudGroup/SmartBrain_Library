@@ -1,0 +1,83 @@
+{
+  "source_id": "thesportsdb-next-league",
+  "answers": [
+    {
+      "name": "next_event",
+      "label": "Next game",
+      "words": [
+        "next game",
+        "next match",
+        "who plays",
+        "matchup",
+        "next"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "events[0].strEvent",
+      "type": "text"
+    },
+    {
+      "name": "next_time",
+      "label": "Start",
+      "words": [
+        "when",
+        "what time",
+        "start time",
+        "date",
+        "kickoff"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "events[0].strTimestamp",
+      "type": "time"
+    },
+    {
+      "name": "next_venue",
+      "label": "Venue",
+      "words": [
+        "where",
+        "venue",
+        "stadium",
+        "arena"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "events[0].strVenue",
+      "type": "text"
+    },
+    {
+      "name": "upcoming",
+      "label": "Upcoming games",
+      "words": [
+        "schedule",
+        "upcoming games",
+        "upcoming",
+        "next games",
+        "fixtures",
+        "this week"
+      ],
+      "primary": false,
+      "kind": "list",
+      "path": "events",
+      "row": [
+        {
+          "path": "strEvent",
+          "label": "Game",
+          "type": "text"
+        },
+        {
+          "path": "strTimestamp",
+          "label": "Start",
+          "type": "time"
+        },
+        {
+          "path": "strVenue",
+          "label": "Venue",
+          "type": "text"
+        }
+      ]
+    }
+  ],
+  "sample_url": "https://www.thesportsdb.com/api/v1/json/123/eventsnextleague.php?id=4391",
+  "checked": "2026-09-28"
+}

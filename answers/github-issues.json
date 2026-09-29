@@ -1,0 +1,59 @@
+{
+  "source_id": "github-issues",
+  "answers": [
+    {
+      "name": "latest_issue",
+      "label": "Newest issue",
+      "words": [
+        "newest issue",
+        "latest issue",
+        "most recent",
+        "just opened"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "items[0].title",
+      "type": "text"
+    },
+    {
+      "name": "issues",
+      "label": "Open issues",
+      "words": [
+        "issues",
+        "open issues",
+        "bugs",
+        "pull requests",
+        "prs",
+        "tickets",
+        "latest issues"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "items",
+      "row": [
+        {
+          "path": "title",
+          "label": "Issue",
+          "type": "text"
+        },
+        {
+          "path": "number",
+          "label": "Number",
+          "type": "number"
+        },
+        {
+          "path": "created_at",
+          "label": "Opened",
+          "type": "time"
+        },
+        {
+          "path": "comments",
+          "label": "Comments",
+          "type": "number"
+        }
+      ]
+    }
+  ],
+  "sample_url": "https://api.github.com/repos/python/cpython/issues?state=open&per_page=20",
+  "checked": "2026-09-28"
+}

@@ -1,0 +1,64 @@
+{
+  "source_id": "nhc-current-storms",
+  "answers": [
+    {
+      "name": "storms",
+      "label": "Active tropical storms",
+      "words": [
+        "hurricanes",
+        "hurricane",
+        "tropical storms",
+        "storms",
+        "cyclones",
+        "name",
+        "category",
+        "wind",
+        "active storms"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "activeStorms",
+      "row": [
+        {
+          "path": "name",
+          "label": "Storm",
+          "type": "text"
+        },
+        {
+          "path": "classification",
+          "label": "Type",
+          "type": "text"
+        },
+        {
+          "path": "intensity",
+          "label": "Max wind",
+          "type": "number",
+          "unit": "kt"
+        },
+        {
+          "path": "lastUpdate",
+          "label": "Updated",
+          "type": "time"
+        }
+      ],
+      "may_be_empty": true
+    },
+    {
+      "name": "storm_count",
+      "label": "Active storms",
+      "words": [
+        "how many",
+        "any hurricanes",
+        "any storms",
+        "count",
+        "number of storms"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "activeStorms",
+      "type": "count"
+    }
+  ],
+  "sample_url": "https://www.nhc.noaa.gov/CurrentStorms.json",
+  "checked": "2026-09-28"
+}

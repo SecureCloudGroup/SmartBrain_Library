@@ -1,0 +1,59 @@
+{
+  "source_id": "jolpica-f1-standings",
+  "answers": [
+    {
+      "name": "drivers",
+      "label": "Driver standings",
+      "words": [
+        "standings",
+        "championship",
+        "who leads",
+        "leader",
+        "points",
+        "drivers",
+        "table",
+        "ranking"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "MRData.StandingsTable.StandingsLists[0].DriverStandings",
+      "row": [
+        {
+          "path": "position",
+          "label": "Pos",
+          "type": "number"
+        },
+        {
+          "path": "Driver.familyName",
+          "label": "Driver",
+          "type": "text"
+        },
+        {
+          "path": "Constructors[0].name",
+          "label": "Team",
+          "type": "text"
+        },
+        {
+          "path": "points",
+          "label": "Points",
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "name": "round",
+      "label": "After round",
+      "words": [
+        "round",
+        "after round",
+        "races run"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "MRData.StandingsTable.round",
+      "type": "number"
+    }
+  ],
+  "sample_url": "https://api.jolpi.ca/ergast/f1/current/driverstandings/",
+  "checked": "2026-09-28"
+}

@@ -1,0 +1,24 @@
+{
+  "source_id": "swpc-3day",
+  "answers": [
+    {
+      "name": "forecast_text",
+      "label": "3-day space weather forecast",
+      "words": [
+        "space weather",
+        "forecast",
+        "geomagnetic",
+        "kp forecast",
+        "solar storm",
+        "radio blackout",
+        "next 3 days"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "text",
+      "type": "text"
+    }
+  ],
+  "sample_url": "https://services.swpc.noaa.gov/text/3-day-forecast.txt",
+  "checked": "2026-09-28"
+}

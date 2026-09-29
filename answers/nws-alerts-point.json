@@ -1,0 +1,62 @@
+{
+  "source_id": "nws-alerts-point",
+  "answers": [
+    {
+      "name": "alerts",
+      "label": "Active weather alerts",
+      "words": [
+        "alerts",
+        "warnings",
+        "watches",
+        "advisories",
+        "severe weather",
+        "weather warnings",
+        "any warnings",
+        "near me"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "features",
+      "row": [
+        {
+          "path": "properties.event",
+          "label": "Alert",
+          "type": "text"
+        },
+        {
+          "path": "properties.severity",
+          "label": "Severity",
+          "type": "text"
+        },
+        {
+          "path": "properties.areaDesc",
+          "label": "Area",
+          "type": "text"
+        },
+        {
+          "path": "properties.expires",
+          "label": "Expires",
+          "type": "time"
+        }
+      ],
+      "may_be_empty": true
+    },
+    {
+      "name": "alert_count",
+      "label": "Active alerts",
+      "words": [
+        "how many",
+        "count",
+        "number of alerts",
+        "how many warnings",
+        "any alerts"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "features",
+      "type": "count"
+    }
+  ],
+  "sample_url": "https://api.weather.gov/alerts/active?point=63.45,-145.75",
+  "checked": "2026-09-28"
+}

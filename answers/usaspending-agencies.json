@@ -1,0 +1,71 @@
+{
+  "source_id": "usaspending-agencies",
+  "answers": [
+    {
+      "name": "agencies",
+      "label": "Spending by agency",
+      "words": [
+        "federal spending by agency",
+        "spending",
+        "agencies",
+        "agency",
+        "budget",
+        "obligations",
+        "outlays",
+        "federal spending"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "results",
+      "row": [
+        {
+          "path": "agency_name",
+          "label": "Agency",
+          "type": "text"
+        },
+        {
+          "path": "obligated_amount",
+          "label": "Obligated",
+          "type": "number",
+          "unit": "USD"
+        },
+        {
+          "path": "outlay_amount",
+          "label": "Outlays",
+          "type": "number",
+          "unit": "USD"
+        }
+      ]
+    },
+    {
+      "name": "total_budget",
+      "label": "Total federal budget authority",
+      "words": [
+        "total budget",
+        "federal budget",
+        "budget authority",
+        "total spending"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "results[0].current_total_budget_authority_amount",
+      "type": "number",
+      "unit": "USD"
+    },
+    {
+      "name": "fiscal_year",
+      "label": "Fiscal year",
+      "words": [
+        "fiscal year",
+        "year",
+        "fy"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "results[0].active_fy",
+      "type": "text"
+    }
+  ],
+  "sample_url": "https://api.usaspending.gov/api/v2/references/toptier_agencies/?sort=obligated_amount&order=desc",
+  "checked": "2026-09-28"
+}

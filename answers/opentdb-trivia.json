@@ -1,0 +1,64 @@
+{
+  "source_id": "opentdb-trivia",
+  "answers": [
+    {
+      "name": "questions",
+      "label": "Trivia questions",
+      "words": [
+        "trivia",
+        "trivia question",
+        "quiz",
+        "questions",
+        "question"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "results",
+      "row": [
+        {
+          "path": "question",
+          "label": "Question",
+          "type": "text"
+        },
+        {
+          "path": "correct_answer",
+          "label": "Answer",
+          "type": "text"
+        },
+        {
+          "path": "category",
+          "label": "Category",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "question",
+      "label": "Trivia question",
+      "words": [
+        "one question",
+        "ask me",
+        "quiz me"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "results[0].question",
+      "type": "text"
+    },
+    {
+      "name": "answer",
+      "label": "Answer",
+      "words": [
+        "answer",
+        "correct answer",
+        "solution"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "results[0].correct_answer",
+      "type": "text"
+    }
+  ],
+  "sample_url": "https://opentdb.com/api.php?amount=5",
+  "checked": "2026-09-28"
+}
