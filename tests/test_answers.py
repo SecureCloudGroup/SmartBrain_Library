@@ -115,6 +115,15 @@ def test_primary_limits():
     assert answer_problems([value(str(c)) for c in "abcd"]) == []
 
 
+def test_a_quoted_key_reaches_what_plain_names_cannot():
+    from sourcetool.answers import resolve
+    doc = {"root": {"bsa": [{"description": {"#cdata-section": "Expect delays"}}]}}
+    assert resolve(doc, 'root.bsa[0].description["#cdata-section"]') == "Expect delays"
+    assert answer_problems([value(type="text", path='root.bsa[0].description["#cdata-section"]')]) == []
+    for bad_path in ('a["x.y"]', 'a.["x"]', 'a["x"'):
+        bad([value(path=bad_path)], "bad path")
+
+
 def test_a_date_may_be_a_midnight_timestamp():
     from sourcetool.answers import type_ok
     assert type_ok("2026-04-23", "date") and type_ok("2026-04-23T00:00:00.000Z", "date")

@@ -41,9 +41,12 @@ MAX_ANSWERS = 12
 
 _NAME = re.compile(r"[a-z][a-z0-9_]{0,39}")
 # a segment is a key or a whole `{param}` (filled from the record's params), optionally indexed: rates.{quote}
-_SEG_SRC = r"(?:[A-Za-z_][\w-]*|\{[a-z_][a-z0-9_]*\})(?:\[\d+\])*"  # data[0][3]: a list of lists
+# data[0][3] (a list of lists); description["#cdata-section"] (a key the plain names can't spell, as the app
+# reads it: quoted, no dot, quote or control character inside)
+_SUB_SRC = r'(?:\[\d+\]|\["[^".\x00-\x1f]{1,200}"\])'
+_SEG_SRC = rf"(?:[A-Za-z_][\w-]*|\{{[a-z_][a-z0-9_]*\}}){_SUB_SRC}*"
 _PATH = re.compile(rf"{_SEG_SRC}(?:\.{_SEG_SRC})*", re.ASCII)
-_SEG = re.compile(r"(?:([A-Za-z_][\w-]*)|\{([a-z_][a-z0-9_]*)\})((?:\[\d+\])*)", re.ASCII)
+_SEG = re.compile(rf"(?:([A-Za-z_][\w-]*)|\{{([a-z_][a-z0-9_]*)\}})({_SUB_SRC}*)", re.ASCII)
 _PARAM = re.compile(r"\{([a-z_][a-z0-9_]*)\}")
 _NUMBER = re.compile(r"-?\d+(\.\d+)?")
 _ISO_TIME = re.compile(r"\d{4}-\d{2}-\d{2}[T ]\d{2}:\d{2}")
@@ -222,7 +225,13 @@ def resolve(data, path: str, examples: dict | None = None):
         if key is None or not isinstance(cur, dict) or str(key) not in cur:
             return _MISSING
         cur = cur[str(key)]
-        for n in (int(x) for x in re.findall(r"\[(\d+)\]", m.group(3) or "")):  # every index, in order
+        for idx, quoted in re.findall(r'\[(\d+)\]|\["([^"]*)"\]', m.group(3) or ""):  # every subscript, in order
+            if quoted:
+                if not isinstance(cur, dict) or quoted not in cur:
+                    return _MISSING
+                cur = cur[quoted]
+                continue
+            n = int(idx)
             if not isinstance(cur, list) or n >= len(cur):
                 return _MISSING
             cur = cur[n]

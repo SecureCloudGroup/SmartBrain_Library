@@ -19,7 +19,7 @@
     "is it running",
     "bart"
    ],
-   "path": "root.bsa.description._text",
+   "path": "root.bsa[0].description[\"#cdata-section\"]",
    "type": "text"
   },
   {
@@ -32,7 +32,7 @@
     "kind",
     "delay or emergency"
    ],
-   "path": "root.bsa.type._text",
+   "path": "root.bsa[0].type",
    "type": "text"
   },
   {
@@ -47,10 +47,22 @@
     "as of",
     "updated"
    ],
-   "path": "root.bsa.posted._text",
+   "path": "root.bsa[0].posted",
    "type": "text"
+  },
+  {
+   "name": "advisory_count",
+   "label": "Advisories now",
+   "kind": "value",
+   "words": [
+    "how many advisories",
+    "how many alerts",
+    "number of advisories"
+   ],
+   "path": "root.bsa",
+   "type": "count"
   }
  ],
- "sample_url": "https://api.bart.gov/api/bsa.aspx?cmd=bsa&key=MW9S-E7SL-26DU-VV8V",
+ "sample_url": "https://api.bart.gov/api/bsa.aspx?cmd=bsa&key=MW9S-E7SL-26DU-VV8V&json=y",
  "checked": "2026-09-29"
 }
