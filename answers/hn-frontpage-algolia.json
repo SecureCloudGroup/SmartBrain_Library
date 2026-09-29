@@ -40,17 +40,14 @@
         {
           "path": "points",
           "label": "Points",
-          "type": "number"
+          "type": "number",
+          "unit": "points"
         },
         {
           "path": "num_comments",
           "label": "Comments",
-          "type": "number"
-        },
-        {
-          "path": "url",
-          "label": "Link",
-          "type": "text"
+          "type": "number",
+          "unit": "comments"
         }
       ]
     }

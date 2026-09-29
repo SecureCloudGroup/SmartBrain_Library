@@ -18,15 +18,13 @@
     },
     {
       "name": "image_url",
-      "label": "Image",
+      "label": "Image link",
       "words": [
-        "image",
-        "picture",
-        "photo",
-        "space photo today",
-        "show me"
+        "image link",
+        "image url",
+        "link to the image"
       ],
-      "primary": true,
+      "primary": false,
       "kind": "value",
       "path": "url",
       "type": "text"
