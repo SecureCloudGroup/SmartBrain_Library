@@ -185,9 +185,12 @@ def _add_nicknames(places: list[dict], gnis: dict[str, str]) -> None:
             raise ValueError(f"place_nicknames.json: no place {e['place']!r} in {e['state']}")
         p = max(named, key=lambda p: p["attrs"].get("pop") or 0)
         p["aliases"] = sorted({*p["aliases"], *(norm(n) for n in e["nicknames"])})
+        # reviewed nicknames are deliberate place names: the app takes "Tahoe weather" as a place without "in"
+        p["attrs"]["nicknames"] = sorted({*p["attrs"].get("nicknames", []), *(norm(n) for n in e["nicknames"])})
     for pt in reviewed.get("points", []):  # an area with no Census place in it: its own entry at a representative point
         places.append(_e("place", "place", "area-" + norm(pt["name"]).replace(" ", "-"), pt["name"], pt["aliases"],
-                         pt["lat"], pt["lon"], pt["state"], {"type": "area", "pop": 0}))
+                         pt["lat"], pt["lon"], pt["state"],
+                         {"type": "area", "pop": 0, "nicknames": sorted(norm(a) for a in pt["aliases"])}))
 
 
 def h_zip() -> list[dict]:

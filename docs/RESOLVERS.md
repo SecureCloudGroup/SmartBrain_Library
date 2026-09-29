@@ -42,6 +42,8 @@ People say "NYC", "LA", "Philly", "Vegas", "NOLA", "Chi-town" or "the Big Apple"
 - **Wikidata**: English short names (P1813) and nicknames (P1449) of items with a GNIS id (P590), joined to the Census place by the gazetteer's GNIS code (ANSICODE). The join keeps only items that are a Census place. A nickname is kept when it is a code typed in capitals ("NYC", "L.A."), a single word of five or more letters ("Philly"), or a phrase of up to three words ("Mile High City"); slogans, anything with a digit, short everyday words ("Jeff", "The Hub") and state names are dropped. A Wikidata nickname never shadows another place's own name ("Frisco" stays Frisco, Texas).
 - **Reviewed list** `resolvers/place_nicknames.json`: the common ones Wikidata lacks (it has none for Chicago), plus an `exclude` list for Wikidata nicknames we refuse.
 - **Areas that are not Census places** ("Outer Banks", "Tahoe", "Cape Cod", "Bay Area", "Twin Cities") are reviewed nicknames of the place that represents them: the area's main town, the one its forecasts name. An area with no Census place in it ("Big Sur") is a `points` entry: its own place at a representative point.
+  Reviewed nicknames are also listed in the place's `attrs.nicknames`: the app takes one as the ask's place on its
+  own ("Tahoe weather"), while a small town's plain name still needs "in" / "at" / "near" / "for" / "around".
 
 Two matcher rules keep short nicknames honest:
 - A **two-letter** place alias counts only when typed in capitals: "LA weather" is Los Angeles, the word "la" never is.
