@@ -1,80 +1,80 @@
 {
-  "source_id": "open-meteo-uv",
-  "answers": [
+ "source_id": "open-meteo-uv",
+ "answers": [
+  {
+   "name": "uv_now",
+   "label": "UV index now",
+   "words": [
+    "uv",
+    "uv index",
+    "uv now",
+    "sunscreen",
+    "do i need sunscreen",
+    "sunburn",
+    "sun strength"
+   ],
+   "primary": true,
+   "kind": "value",
+   "path": "current.uv_index",
+   "type": "number"
+  },
+  {
+   "name": "uv_max_today",
+   "label": "Max UV today",
+   "words": [
+    "uv today",
+    "uv index today",
+    "max uv",
+    "peak uv",
+    "sunscreen today",
+    "strongest sun"
+   ],
+   "primary": true,
+   "kind": "value",
+   "path": "daily.uv_index_max[0]",
+   "type": "number"
+  },
+  {
+   "name": "uv_max_tomorrow",
+   "label": "Max UV tomorrow",
+   "words": [
+    "tomorrow",
+    "uv tomorrow",
+    "sunscreen tomorrow",
+    "uv index tomorrow"
+   ],
+   "primary": false,
+   "kind": "value",
+   "path": "daily.uv_index_max[1]",
+   "type": "number"
+  },
+  {
+   "name": "uv_daily",
+   "label": "Max UV by day",
+   "words": [
+    "this week",
+    "forecast",
+    "daily",
+    "week",
+    "next few days"
+   ],
+   "primary": false,
+   "kind": "columns",
+   "columns": [
     {
-      "name": "uv_now",
-      "label": "UV index now",
-      "words": [
-        "uv",
-        "uv index",
-        "uv now",
-        "sunscreen",
-        "do i need sunscreen",
-        "sunburn",
-        "sun strength"
-      ],
-      "primary": true,
-      "kind": "value",
-      "path": "current.uv_index",
-      "type": "number"
+     "path": "daily.time",
+     "label": "Day",
+     "type": "date"
     },
     {
-      "name": "uv_max_today",
-      "label": "Max UV today",
-      "words": [
-        "uv today",
-        "uv index today",
-        "max uv",
-        "peak uv",
-        "sunscreen today",
-        "strongest sun"
-      ],
-      "primary": true,
-      "kind": "value",
-      "path": "daily.uv_index_max[0]",
-      "type": "number"
-    },
-    {
-      "name": "uv_max_tomorrow",
-      "label": "Max UV tomorrow",
-      "words": [
-        "tomorrow",
-        "uv tomorrow",
-        "sunscreen tomorrow",
-        "uv index tomorrow"
-      ],
-      "primary": false,
-      "kind": "value",
-      "path": "daily.uv_index_max[1]",
-      "type": "number"
-    },
-    {
-      "name": "uv_daily",
-      "label": "Max UV by day",
-      "words": [
-        "this week",
-        "forecast",
-        "daily",
-        "week",
-        "next few days"
-      ],
-      "primary": false,
-      "kind": "columns",
-      "columns": [
-        {
-          "path": "daily.time",
-          "label": "Day",
-          "type": "text"
-        },
-        {
-          "path": "daily.uv_index_max",
-          "label": "Max UV",
-          "type": "number"
-        }
-      ],
-      "limit": 7
+     "path": "daily.uv_index_max",
+     "label": "Max UV",
+     "type": "number"
     }
-  ],
-  "sample_url": "https://api.open-meteo.com/v1/forecast?latitude=32.7765&longitude=-79.9311&current=uv_index&daily=uv_index_max&timezone=auto",
-  "checked": "2026-09-28"
+   ],
+   "limit": 7
+  }
+ ],
+ "sample_url": "https://api.open-meteo.com/v1/forecast?latitude=32.7765&longitude=-79.9311&current=uv_index&daily=uv_index_max&timezone=auto",
+ "checked": "2026-09-28"
 }
