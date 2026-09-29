@@ -22,7 +22,7 @@
   {"ask": "dollar to euro", "ok": ["frankfurter-latest", "fred-dexuseu"]},
   {"ask": "10 year treasury yield", "ok": ["fred-dgs10", "treasury-yield-curve"]},
   {"ask": "latest SEC filings for Apple", "ok": ["sec-submissions", "sec-latest-8k"]},
-  {"ask": "inflation rate", "ok": ["fred-cpiaucsl", "fred-cpilfesl", "bls-series-v1"]},
+  {"ask": "inflation rate", "ok": ["fred-inflation-rate", "fred-cpilfesl", "bls-series-v1"]},
   {"ask": "gas prices", "ok": ["fred-gasregw", "eia-gasoline-weekly"]},
   {"ask": "egg prices", "ok": ["fred-apu0000708111"]},
   {"ask": "national debt", "ok": ["treasury-debt-to-penny", "fred-gfdebtn"]},
