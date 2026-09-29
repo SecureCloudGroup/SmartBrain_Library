@@ -12,6 +12,8 @@
   python -m sourcetool evalres [resolution_asks|resolution_holdout|resolution_sealed]  resolver accuracy
   python -m sourcetool evallookup [lookup_asks|...]                     is the first source offered the right one
   python -m sourcetool ingest [--dry-run] [--no-probe] [--commit]      pull the Library API's votes + suggestions
+  python -m sourcetool answers-check [ID ...]                           fetch samples, check answers/ paths (live)
+  python -m sourcetool answers-generate                                 write answers for curated feeds + FRED series
 
 Writes only to this checkout. Publishing is a PR the operator merges.
 """
@@ -63,7 +65,12 @@ def cmd_check(_args) -> int:
             if errs:
                 bad += 1
                 print(f"{f.name}:{r['id']}: {'; '.join(errs)}")
-    print(f"{len(seen)} records, {bad} invalid")
+    from .answers import load_answers
+    answers, errs = load_answers(seen)  # schema only; `answers-check` verifies them against live samples
+    for e in errs:
+        print(f"answers/{e}")
+    bad += len(errs)
+    print(f"{len(seen)} records, {len(answers)} with answers, {bad} invalid")
     return 1 if bad else 0
 
 
@@ -166,12 +173,23 @@ def cmd_ingest(args) -> int:
     return ingest.main(args)
 
 
+def cmd_answers_check(args) -> int:
+    from . import answers
+    return answers.cmd_check(args)
+
+
+def cmd_answers_generate(args) -> int:
+    from . import answers
+    return answers.cmd_generate(args)
+
+
 def main(argv: list[str]) -> int:
     if not argv or argv[0] not in {"check", "validate", "harvest", "build", "lookup", "coverage", "resolvers",
-                                   "policies", "fills", "evalres", "evallookup", "ingest"}:
+                                   "policies", "fills", "evalres", "evallookup", "ingest", "answers-check",
+                                   "answers-generate"}:
         print(__doc__)
         return 2
-    return globals()["cmd_" + argv[0]](argv[1:])
+    return globals()["cmd_" + argv[0].replace("-", "_")](argv[1:])
 
 
 if __name__ == "__main__":

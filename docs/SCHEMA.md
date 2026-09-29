@@ -26,6 +26,7 @@ Each source is one JSON object per line in `sources/**/*.jsonl`. Users' suggesti
 | `votes` | `{yes, no}`, aggregated from users' Yes/No answers through the Library API. |
 | `signals` | Harvest evidence: monthly views, last data update, column names. |
 | `origin` | Who or what created the record, and when. |
+| `answers` | Curated sources: which paths of the response answer which questions, so the app builds cards without guessing paths. Authored in `answers/<id>.json` (`{source_id, answers, sample_url, checked}`) and merged into the record by `sourcetool build`. Each answer is `{name, label, words, primary?, kind: value\|list\|columns, ...}`; the closed keys, types and limits are in `sourcetool/answers.py` (`answer_problems`), and every path must resolve in a real sample (`check_sample`, run live by `sourcetool answers-check`). |
 
 Rules that reject a record:
 - non-https URLs;
@@ -33,4 +34,5 @@ Rules that reject a record:
 - a credential embedded in the URL (a key parameter or `user:password@`);
 - unknown categories, kinds or parameter kinds;
 - undeclared `{params}`;
-- duplicate ids.
+- duplicate ids;
+- malformed `answers`, or an `answers/` file whose id has no record.

@@ -63,6 +63,7 @@ def build() -> str:
         DB.unlink()
     recs = [r for d in ("curated", "harvested", "suggested") for f in sorted((SOURCES / d).glob("*.jsonl"))
             for r in read_jsonl(f)]
+    n_answers = merge_answers(recs)
     con = duckdb.connect(str(DB))
     con.execute("""CREATE TABLE library_sources(
         id VARCHAR PRIMARY KEY, name VARCHAR, description VARCHAR, provider_id VARCHAR, provider_name VARCHAR,
@@ -126,8 +127,9 @@ def build() -> str:
                         (c["id"], s["id"], f"{c['label']} › {s['label']}", s["kinds"], s["params"], s["keywords"],
                          json.dumps(s.get("policy") or {})))
     n_res = _load_resolvers(con)
-    con.execute("INSERT INTO library_meta VALUES ('built_at', ?), ('records', ?), ('schema', '1')",
-                (time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()), str(n)))
+    con.execute("INSERT INTO library_meta VALUES ('built_at', ?), ('records', ?), ('schema', '1'), "
+                "('sources_with_answers', ?)", (time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()), str(n),
+                                                str(n_answers)))
     con.execute("CREATE INDEX lt_term ON library_terms(term)")
     con.execute("CREATE INDEX lra_alias ON library_resolver_aliases(alias)")
     con.execute("CREATE INDEX lre_resolver ON library_resolver_entries(resolver)")
@@ -135,6 +137,18 @@ def build() -> str:
     con.close()
     return (f"built {DB.relative_to(BUILD.parent)}: {n} sources, {len(term_rows)} index terms, {n_res} resolver "
             f"entries in {time.time() - t0:.1f}s")
+
+
+def merge_answers(recs: list[dict], directory=None) -> int:
+    """Put each answers/<id>.json file's answers on its record; refuse orphans and malformed answers."""
+    from .answers import ANSWERS, load_answers
+    loaded, errs = load_answers({r["id"] for r in recs}, directory or ANSWERS)
+    if errs:
+        raise SystemExit("answers files refused:\n  " + "\n  ".join(errs))
+    for r in recs:
+        if r["id"] in loaded:
+            r["answers"] = loaded[r["id"]]
+    return sum(1 for r in recs if r.get("answers"))
 
 
 def _copy(con, table: str, rows: list[tuple]) -> None:

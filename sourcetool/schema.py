@@ -9,6 +9,7 @@ import ipaddress
 import re
 from urllib.parse import urlsplit
 
+from .answers import answer_problems
 from .common import taxonomy
 
 TIERS = ("curated", "provider_trusted", "harvested", "local")
@@ -110,6 +111,8 @@ def validate_record(r: dict) -> list[str]:
     v = r.get("validation", {})
     if v and v.get("status") not in VALIDATION:
         errs.append(f"validation.status {v.get('status')!r}")
+    if "answers" in r:
+        errs += [f"answers: {e}" for e in answer_problems(r["answers"])]
     return errs
 
 
