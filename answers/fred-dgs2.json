@@ -3,7 +3,7 @@
  "answers": [
   {
    "name": "latest",
-   "label": "Latest",
+   "label": "2-year Treasury yield",
    "kind": "value",
    "primary": true,
    "words": [
@@ -34,7 +34,7 @@
   },
   {
    "name": "recent",
-   "label": "Recent",
+   "label": "Recent readings",
    "kind": "list",
    "words": [
     "recent",

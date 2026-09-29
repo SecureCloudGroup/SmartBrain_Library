@@ -3,7 +3,7 @@
  "answers": [
   {
    "name": "latest",
-   "label": "Latest",
+   "label": "WTI crude oil price",
    "kind": "value",
    "primary": true,
    "words": [
@@ -17,7 +17,7 @@
    ],
    "path": "rows[0].DCOILWTICO",
    "type": "number",
-   "unit": "USD"
+   "unit": "$/barrel"
   },
   {
    "name": "as_of",
@@ -35,7 +35,7 @@
   },
   {
    "name": "recent",
-   "label": "Recent",
+   "label": "Recent readings",
    "kind": "list",
    "words": [
     "recent",
@@ -57,7 +57,7 @@
      "path": "DCOILWTICO",
      "label": "WTI crude oil price",
      "type": "number",
-     "unit": "USD"
+     "unit": "$/barrel"
     }
    ]
   }

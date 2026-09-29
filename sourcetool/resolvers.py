@@ -205,7 +205,20 @@ def h_county() -> list[dict]:
 
 
 def h_us_state() -> list[dict]:
-    return [_e("us_state", "us_state", k, v, [k], state=k) for k, v in US_STATES.items()]
+    """The fixed list, with each state's FIPS code (the US Drought Monitor's area id) and its bounding box
+    (a regional USGS earthquake query), from the Census TIGERweb state boundaries (public domain)."""
+    d = get_json("https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/0/query"
+                 "?where=1%3D1&outFields=STUSAB,GEOID&returnGeometry=true&maxAllowableOffset=0.01"
+                 "&geometryPrecision=3&outSR=4326&f=json", cache_hours=720, api=True)
+    attrs = {}
+    for f in d["features"]:
+        pts = [p for ring in f["geometry"]["rings"] for p in ring]
+        lats, lons = [p[1] for p in pts], [p[0] for p in pts]
+        if max(lons) - min(lons) > 180:  # Alaska's Aleutians cross the date line: west of it counts below -180
+            lons = [x - 360 if x > 0 else x for x in lons]
+        attrs[f["attributes"]["STUSAB"]] = {"fips": f["attributes"]["GEOID"], "min_lat": min(lats),
+                                            "max_lat": max(lats), "min_lon": min(lons), "max_lon": max(lons)}
+    return [_e("us_state", "us_state", k, v, [k], state=k, attrs=attrs.get(k)) for k, v in US_STATES.items()]
 
 
 def h_airport() -> list[dict]:
@@ -235,16 +248,34 @@ def h_airport() -> list[dict]:
     return out
 
 
+PRIMARY_TIDE_KM = 50  # a secondary station this close to a primary one is left out (the primary answers there)
+
+
 def h_tide_station() -> list[dict]:
-    d = get_json("https://api.tidesandcurrents.noaa.gov/mdapi/prod/webapi/stations.json?type=tidepredictions",
-                 cache_hours=720, api=True)
+    """NOAA's tide prediction stations, primary stations first: a city resolves to the nearest station, so a
+    city ringed by small creek stations (Savannah: 1-ft tides up the Ogeechee) would never reach the station
+    that serves it (Fort Pulaski, 7-8 ft). A station is PRIMARY when other stations' predictions are made from
+    it (a reference station) or when it is an active water-level station (it also measures water temperature
+    and levels). Secondary stations are kept only where no primary station is within PRIMARY_TIDE_KM, so the
+    coast keeps its coverage (the tides policy searches max_km >= 30 + PRIMARY_TIDE_KM)."""
+    from .resolve import km  # resolve imports this module
+    base = "https://api.tidesandcurrents.noaa.gov/mdapi/prod/webapi/stations.json?type="
+    d = get_json(base + "tidepredictions&expand=tidepredoffsets", cache_hours=720, api=True)
+    levels = {s["id"] for s in get_json(base + "waterlevels", cache_hours=720, api=True)["stations"]}
+    refs = {s.get("reference_id") for s in d["stations"] if s.get("type") == "S"}
+    primary = [s for s in d["stations"] if s["id"] in refs or s["id"] in levels]
     out = []
     for s in d["stations"]:
+        lat, lon = float(s["lat"]), float(s["lng"])
+        is_primary = s["id"] in refs or s["id"] in levels
+        if not is_primary and min(km(lat, lon, float(p["lat"]), float(p["lng"])) for p in primary) <= PRIMARY_TIDE_KM:
+            continue
         name = s.get("name", "")
         place, _, water = name.partition(",")
-        out.append(_e("tide_station", "station", s["id"], name, [place], float(s["lat"]), float(s["lng"]),
+        out.append(_e("tide_station", "station", s["id"], name, [place], lat, lon,
                       s.get("state") or "", {"water": water.strip(), "place": place.strip(),
-                                             "type": s.get("type", "")}, rank=2 if s.get("type") == "R" else 1))
+                                             "type": s.get("type", ""), "primary": is_primary},
+                      rank=3 if is_primary else 2 if s.get("type") == "R" else 1))
     return out
 
 

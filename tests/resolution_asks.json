@@ -396,7 +396,7 @@
    "ask": "tides for Melbourne FL",
    "from": "place",
    "resolver": "tide_station",
-   "max_km": 30,
+   "max_km": 80,
    "differ_on": [
     "water"
    ],
@@ -409,7 +409,7 @@
    "ask": "tides at Charleston SC",
    "from": "place",
    "resolver": "tide_station",
-   "max_km": 30,
+   "max_km": 80,
    "differ_on": [
     "water"
    ],
@@ -422,7 +422,7 @@
    "ask": "tides in Denver CO",
    "from": "place",
    "resolver": "tide_station",
-   "max_km": 30,
+   "max_km": 80,
    "differ_on": [
     "water"
    ],
@@ -444,7 +444,7 @@
    "ask": "tides in Seattle WA",
    "from": "place",
    "resolver": "tide_station",
-   "max_km": 30,
+   "max_km": 80,
    "differ_on": [
     "water"
    ],
@@ -457,7 +457,7 @@
    "ask": "tides at Galveston TX",
    "from": "place",
    "resolver": "tide_station",
-   "max_km": 30,
+   "max_km": 80,
    "differ_on": [
     "water"
    ],

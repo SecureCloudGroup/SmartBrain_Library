@@ -4,7 +4,7 @@ Each source is one JSON object per line in `sources/**/*.jsonl`. Users' suggesti
 
 | Field | Meaning |
 |---|---|
-| `id` | Lowercase slug. It is stable forever; a retired source gets `replaced_by`, never a reused id. |
+| `id` | Lowercase slug. It is stable forever; a retired source gets `replaced_by` (the id of the source that replaces it), never a reused id. `sourcetool build` leaves retired sources out of the pack. |
 | `name`, `description` | Human-readable. |
 | `provider` | `{id, name, url, authority: official\|primary\|aggregator\|community, wikidata?}` |
 | `tier` | `curated`, `provider_trusted`, `harvested` or `local` (user-only, never published). |

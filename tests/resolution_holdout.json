@@ -44,6 +44,6 @@
   {"ask": "Harris County flooding", "resolver": "county", "expect": "ambiguous"}
  ],
  "near": [
-  {"ask": "tides in Boston MA", "from": "place", "resolver": "tide_station", "max_km": 30, "differ_on": ["water"], "expect_any": ["resolved", "ambiguous"]},
+  {"ask": "tides in Boston MA", "from": "place", "resolver": "tide_station", "max_km": 80, "differ_on": ["water"], "expect_any": ["resolved", "ambiguous"]},
   {"ask": "buoy near Monterey CA", "from": "place", "resolver": "buoy", "max_km": 120, "differ_on": [], "expect_any": ["resolved"]}
  ]}

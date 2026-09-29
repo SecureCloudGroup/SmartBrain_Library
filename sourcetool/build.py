@@ -62,7 +62,7 @@ def build() -> str:
     if DB.exists():
         DB.unlink()
     recs = [r for d in ("curated", "harvested", "suggested") for f in sorted((SOURCES / d).glob("*.jsonl"))
-            for r in read_jsonl(f)]
+            for r in read_jsonl(f) if not r.get("replaced_by")]  # a retired source never competes again
     n_answers = merge_answers(recs)
     con = duckdb.connect(str(DB))
     con.execute("""CREATE TABLE library_sources(

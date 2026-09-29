@@ -3,11 +3,12 @@
  "answers": [
   {
    "name": "latest",
-   "label": "Latest",
+   "label": "GDP (annual rate)",
    "kind": "value",
    "primary": true,
    "words": [
     "gross domestic product",
+    "gdp (annual rate)",
     "us gdp",
     "latest",
     "current",
@@ -15,7 +16,8 @@
     "today"
    ],
    "path": "rows[0].GDP",
-   "type": "number"
+   "type": "number",
+   "unit": "billion USD"
   },
   {
    "name": "as_of",
@@ -33,7 +35,7 @@
   },
   {
    "name": "recent",
-   "label": "Recent",
+   "label": "Recent readings",
    "kind": "list",
    "words": [
     "recent",
@@ -53,8 +55,9 @@
     },
     {
      "path": "GDP",
-     "label": "Gross domestic product",
-     "type": "number"
+     "label": "GDP (annual rate)",
+     "type": "number",
+     "unit": "billion USD"
     }
    ]
   }

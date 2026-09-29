@@ -456,12 +456,50 @@ def cmd_check(ids: list[str]) -> int:
 
 # --- code-generated answers (no model) -------------------------------------------------------------
 
-# FRED's own units for the curated series whose unit is a plain percent or U.S. dollars (from each
-# series' FRED page). Index levels, counts and millions/billions of dollars carry no unit.
-FRED_UNITS = {"A191RL1Q225SBEA": "%", "APU0000702111": "USD", "APU0000708111": "USD", "APU0000709112": "USD",
-              "APU0000717311": "USD", "DCOILWTICO": "USD", "DEXUSEU": "USD", "DGS10": "%", "DGS2": "%",
-              "DHHNGSP": "USD", "FEDFUNDS": "%", "GASREGW": "USD", "MORTGAGE30US": "%", "MSPUS": "USD",
-              "T10Y2Y": "%", "UNRATE": "%"}
+# What each curated FRED series is called on a card and the unit it is in, from the series' own FRED page
+# (fred.stlouisfed.org/series/<ID>, "Units:"), keyed by series id (plus the transformation when the record
+# asks FRED for one: pc1 = percent change from a year ago). A plain index level ("Index") carries no unit; a
+# series missing here is not generated (a card never reads "Latest | 4.1").
+FRED_SERIES = {
+    "A191RL1Q225SBEA": ("Real GDP growth (annual rate)", "%"),
+    "APU0000702111": ("White bread price (per pound)", "$/lb"),
+    "APU0000708111": ("Egg price (a dozen, grade A large)", "$/dozen"),
+    "APU0000709112": ("Whole milk price (per gallon)", "$/gal"),
+    "APU0000717311": ("Ground coffee price (per pound)", "$/lb"),
+    "BOPGSTB": ("Trade balance (goods and services)", "million USD"),
+    "CPIAUCSL": ("Consumer Price Index (all items)", "index 1982-84=100"),
+    "CPILFESL/pc1": ("Core inflation (year over year)", "%"),
+    "CSUSHPINSA": ("Case-Shiller home price index", "index Jan 2000=100"),
+    "DCOILWTICO": ("WTI crude oil price", "$/barrel"),
+    "DEXUSEU": ("One euro in US dollars", "USD"),
+    "DGS10": ("10-year Treasury yield", "%"),
+    "DGS2": ("2-year Treasury yield", "%"),
+    "DHHNGSP": ("Henry Hub natural gas price", "$/MMBtu"),
+    "DJIA": ("Dow Jones Industrial Average (close)", None),
+    "FEDFUNDS": ("Federal funds rate", "%"),
+    "GASREGW": ("Regular gas price (US average)", "$/gal"),
+    "GDP": ("GDP (annual rate)", "billion USD"),
+    "GFDEBTN": ("Total federal debt", "million USD"),
+    "HOUST": ("Housing starts (annual rate)", "thousand units"),
+    "ICSA": ("Initial jobless claims (weekly)", "claims"),
+    "MORTGAGE30US": ("30-year mortgage rate", "%"),
+    "MSPUS": ("Median price of new houses sold", "USD"),
+    "NASDAQCOM": ("Nasdaq Composite (close)", None),
+    "PAYEMS": ("Nonfarm payroll jobs", "thousand jobs"),
+    "PCEPI/pc1": ("PCE inflation (year over year)", "%"),
+    "SP500": ("S&P 500 (close)", None),
+    "T10Y2Y": ("10-year minus 2-year Treasury yield", "%"),
+    "UMCSENT": ("Consumer sentiment", "index 1966 Q1=100"),
+    "UNRATE": ("Unemployment rate", "%"),
+    "VIXCLS": ("VIX volatility index (close)", None),
+}
+
+# what a feed's items are, by the record's first subcategory (a news feed's items are headlines)
+FEED_LABELS = {"news/fact_checks": "Fact checks", "news/press_releases": "Press releases",
+               "science/papers": "Latest papers", "tech/repos_releases": "Releases",
+               "culture/reference_daily": "Word of the day", "hazards/tropical_storms": "Latest advisories",
+               "hazards/tsunami": "Tsunami messages", "markets/filings": "Latest filings",
+               "shopping/deals": "Deals", "travel/parks_travel": "Travel advisories"}
 
 
 def _words(*groups) -> list[str]:
@@ -485,26 +523,29 @@ def feed_answers(rec: dict, sample: dict) -> list[dict]:
         row.append({"path": "published", "label": "Published", "type": "time"})
     elif type_ok(first.get("published"), "text"):
         row.append({"path": "published", "label": "Published", "type": "text"})
-    return [{"name": "latest", "label": "Latest", "kind": "list", "primary": True, "words": words,
+    label = FEED_LABELS.get(rec["categories"][0], "Headlines")
+    return [{"name": "latest", "label": label, "kind": "list", "primary": True, "words": words,
              "path": "items", "row": row, "may_be_empty": False}]
 
 
 def fred_answers(rec: dict, sample: dict) -> list[dict]:
     date_col, value_col = sample["columns"][0], sample["columns"][1]
-    series = parse_qs(urlsplit(rec["access"]["url_template"]).query).get("id", [""])[0]
-    unit = {"unit": FRED_UNITS[series]} if series in FRED_UNITS else {}
+    q = parse_qs(urlsplit(rec["access"]["url_template"]).query)
+    series = q.get("id", [""])[0] + "".join(f"/{t}" for t in q.get("transformation", []))
+    label, unit = FRED_SERIES[series]  # KeyError: name the series in FRED_SERIES first
+    unit = {"unit": unit} if unit else {}
     name = re.sub(r"\s*\(FRED\)\s*$", "", rec["name"])
     return [
-        {"name": "latest", "label": "Latest", "kind": "value", "primary": True,
-         "words": _words([name], rec.get("examples", []), ["latest", "current", "now", "today"]),
+        {"name": "latest", "label": label, "kind": "value", "primary": True,
+         "words": _words([name, label], rec.get("examples", []), ["latest", "current", "now", "today"]),
          "path": f"rows[0].{value_col}", "type": "number", **unit},
         {"name": "as_of", "label": "As of", "kind": "value",
          "words": ["as of", "when", "date", "last updated", "updated"],
          "path": f"rows[0].{date_col}", "type": "date"},
-        {"name": "recent", "label": "Recent", "kind": "list",
+        {"name": "recent", "label": "Recent readings", "kind": "list",
          "words": ["recent", "history", "trend", "past", "over time", "chart", "last few"],
          "path": "rows", "row": [{"path": date_col, "label": "Date", "type": "date"},
-                                 {"path": value_col, "label": name[:40].rstrip(), "type": "number", **unit}]},
+                                 {"path": value_col, "label": label, "type": "number", **unit}]},
     ]
 
 

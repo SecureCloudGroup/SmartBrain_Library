@@ -3,11 +3,12 @@
  "answers": [
   {
    "name": "latest",
-   "label": "Latest",
+   "label": "10-year minus 2-year Treasury yield",
    "kind": "value",
    "primary": true,
    "words": [
     "10y-2y yield spread",
+    "10-year minus 2-year treasury yield",
     "yield curve inversion",
     "latest",
     "current",
@@ -34,7 +35,7 @@
   },
   {
    "name": "recent",
-   "label": "Recent",
+   "label": "Recent readings",
    "kind": "list",
    "words": [
     "recent",
@@ -54,7 +55,7 @@
     },
     {
      "path": "T10Y2Y",
-     "label": "10Y-2Y yield spread",
+     "label": "10-year minus 2-year Treasury yield",
      "type": "number",
      "unit": "%"
     }

@@ -713,7 +713,7 @@
        "place",
        "tide_station"
       ],
-      "max_km": 30,
+      "max_km": 80,
       "differ_on": [
        "water"
       ],
@@ -749,7 +749,7 @@
        "place",
        "tide_station"
       ],
-      "max_km": 30,
+      "max_km": 80,
       "differ_on": [
        "water"
       ],
@@ -805,7 +805,10 @@
      ],
      "keywords": [
       "water temperature",
-      "sea temperature"
+      "sea temperature",
+      "water temp",
+      "ocean temperature",
+      "sea surface temperature"
      ],
      "policy": {
       "prefer": [
@@ -820,7 +823,7 @@
        "tide_station",
        "buoy"
       ],
-      "max_km": 30,
+      "max_km": 80,
       "differ_on": [
        "water"
       ],
@@ -986,7 +989,10 @@
       "sunset",
       "moon phase",
       "moonrise",
-      "daylight"
+      "daylight",
+      "day length",
+      "sundown",
+      "moon"
      ],
      "policy": {
       "prefer": [
@@ -1483,7 +1489,9 @@
       "inflation",
       "cpi",
       "consumer price",
-      "pce"
+      "pce",
+      "consumer price index",
+      "price index"
      ],
      "policy": {
       "prefer": [

@@ -3,11 +3,12 @@
  "answers": [
   {
    "name": "latest",
-   "label": "Latest",
+   "label": "White bread price (per pound)",
    "kind": "value",
    "primary": true,
    "words": [
     "average price of white bread",
+    "white bread price (per pound)",
     "bread price",
     "latest",
     "current",
@@ -16,7 +17,7 @@
    ],
    "path": "rows[0].APU0000702111",
    "type": "number",
-   "unit": "USD"
+   "unit": "$/lb"
   },
   {
    "name": "as_of",
@@ -34,7 +35,7 @@
   },
   {
    "name": "recent",
-   "label": "Recent",
+   "label": "Recent readings",
    "kind": "list",
    "words": [
     "recent",
@@ -54,9 +55,9 @@
     },
     {
      "path": "APU0000702111",
-     "label": "Average price of white bread",
+     "label": "White bread price (per pound)",
      "type": "number",
-     "unit": "USD"
+     "unit": "$/lb"
     }
    ]
   }

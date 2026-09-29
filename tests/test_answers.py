@@ -300,3 +300,29 @@ def test_generated_answers_are_well_formed():
     from sourcetool.answers import ANSWERS, _records
     loaded, errs = load_answers({k: params_of(r) for k, r in _records().items()}, ANSWERS)
     assert errs == [] and loaded
+
+
+def _fred(template, name="Unemployment rate (FRED)"):
+    return {"name": name, "examples": [], "access": {"url_template": template}}
+
+
+def test_fred_answers_carry_the_series_label_and_unit():
+    """A FRED card reads "Unemployment rate | 4.1 %", never "Latest | 4.1"; pc1 series are named as rates."""
+    from sourcetool.answers import fred_answers
+    got = fred_answers(_fred("https://fred.stlouisfed.org/graph/fredgraph.csv?id=UNRATE"),
+                       {"columns": ["observation_date", "UNRATE"]})
+    assert (got[0]["label"], got[0]["unit"]) == ("Unemployment rate", "%")
+    assert got[2]["row"][1]["label"] == "Unemployment rate"
+    core = fred_answers(_fred("https://fred.stlouisfed.org/graph/fredgraph.csv?id=CPILFESL&transformation=pc1"),
+                        {"columns": ["observation_date", "CPILFESL_PC1"]})
+    assert core[0]["label"] == "Core inflation (year over year)" and core[0]["path"] == "rows[0].CPILFESL_PC1"
+    with pytest.raises(KeyError):  # a series nobody named is not generated with a generic label
+        fred_answers(_fred("https://fred.stlouisfed.org/graph/fredgraph.csv?id=NOPE"),
+                     {"columns": ["observation_date", "NOPE"]})
+
+
+def test_feed_answers_name_what_the_items_are():
+    from sourcetool.answers import feed_answers
+    sample = {"items": [{"title": "t", "published": "2026-09-28T10:00:00Z"}]}
+    assert feed_answers({"categories": ["news/topic_news"]}, sample)[0]["label"] == "Headlines"
+    assert feed_answers({"categories": ["science/papers"]}, sample)[0]["label"] == "Latest papers"

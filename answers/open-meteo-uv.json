@@ -2,31 +2,19 @@
  "source_id": "open-meteo-uv",
  "answers": [
   {
-   "name": "uv_now",
-   "label": "UV index now",
+   "name": "uv_max_today",
+   "label": "UV index today (max)",
    "words": [
     "uv",
     "uv index",
-    "uv now",
-    "sunscreen",
-    "do i need sunscreen",
-    "sunburn",
-    "sun strength"
-   ],
-   "primary": true,
-   "kind": "value",
-   "path": "current.uv_index",
-   "type": "number"
-  },
-  {
-   "name": "uv_max_today",
-   "label": "Max UV today",
-   "words": [
     "uv today",
     "uv index today",
     "max uv",
     "peak uv",
+    "sunscreen",
+    "do i need sunscreen",
     "sunscreen today",
+    "sunburn",
     "strongest sun"
    ],
    "primary": true,
@@ -35,8 +23,24 @@
    "type": "number"
   },
   {
+   "name": "uv_now",
+   "label": "UV index right now",
+   "words": [
+    "uv now",
+    "uv index now",
+    "uv index",
+    "right now",
+    "current uv",
+    "at the moment"
+   ],
+   "primary": true,
+   "kind": "value",
+   "path": "current.uv_index",
+   "type": "number"
+  },
+  {
    "name": "uv_max_tomorrow",
-   "label": "Max UV tomorrow",
+   "label": "UV index tomorrow (max)",
    "words": [
     "tomorrow",
     "uv tomorrow",
@@ -50,7 +54,7 @@
   },
   {
    "name": "uv_daily",
-   "label": "Max UV by day",
+   "label": "UV index by day (max)",
    "words": [
     "this week",
     "forecast",

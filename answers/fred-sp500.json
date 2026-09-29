@@ -3,11 +3,12 @@
  "answers": [
   {
    "name": "latest",
-   "label": "Latest",
+   "label": "S&P 500 (close)",
    "kind": "value",
    "primary": true,
    "words": [
     "s&p 500 index (daily close)",
+    "s&p 500 (close)",
     "s&p 500 today",
     "stock market",
     "latest",
@@ -34,7 +35,7 @@
   },
   {
    "name": "recent",
-   "label": "Recent",
+   "label": "Recent readings",
    "kind": "list",
    "words": [
     "recent",
@@ -54,7 +55,7 @@
     },
     {
      "path": "SP500",
-     "label": "S&P 500 index (daily close)",
+     "label": "S&P 500 (close)",
      "type": "number"
     }
    ]

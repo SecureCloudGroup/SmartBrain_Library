@@ -76,22 +76,6 @@
    "unit_path": "daily_units.temperature_2m_min"
   },
   {
-   "name": "feels_like",
-   "label": "Feels like",
-   "words": [
-    "feels like",
-    "apparent temperature",
-    "heat index",
-    "wind chill",
-    "real feel"
-   ],
-   "primary": false,
-   "kind": "value",
-   "path": "current.apparent_temperature",
-   "type": "number",
-   "unit_path": "current_units.apparent_temperature"
-  },
-  {
    "name": "humidity",
    "label": "Humidity",
    "words": [
@@ -199,8 +183,51 @@
     }
    ],
    "limit": 7
+  },
+  {
+   "name": "snow_forecast",
+   "label": "Snow forecast",
+   "words": [
+    "snow",
+    "snowfall",
+    "snow forecast",
+    "flurries",
+    "how much snow",
+    "will it snow",
+    "snow accumulation",
+    "inches of snow",
+    "blizzard"
+   ],
+   "primary": false,
+   "kind": "columns",
+   "columns": [
+    {
+     "path": "daily.time",
+     "label": "Day",
+     "type": "date"
+    },
+    {
+     "path": "daily.snowfall_sum",
+     "label": "Snowfall",
+     "type": "number",
+     "unit_path": "daily_units.snowfall_sum"
+    },
+    {
+     "path": "daily.temperature_2m_min",
+     "label": "Low",
+     "type": "number",
+     "unit_path": "daily_units.temperature_2m_min"
+    },
+    {
+     "path": "daily.weather_code",
+     "label": "Conditions",
+     "type": "number",
+     "codes": "wmo_weather"
+    }
+   ],
+   "limit": 7
   }
  ],
- "sample_url": "https://api.open-meteo.com/v1/forecast?latitude=32.7765&longitude=-79.9311&current=temperature_2m,apparent_temperature,relative_humidity_2m,weather_code,wind_speed_10m&hourly=temperature_2m,precipitation_probability&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,sunrise,sunset&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&timezone=auto",
+ "sample_url": "https://api.open-meteo.com/v1/forecast?latitude=32.7765&longitude=-79.9311&current=temperature_2m,apparent_temperature,relative_humidity_2m,weather_code,wind_speed_10m&hourly=temperature_2m,precipitation_probability&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,snowfall_sum,sunrise,sunset&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&timezone=auto",
  "checked": "2026-09-28"
 }

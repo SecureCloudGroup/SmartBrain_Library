@@ -3,19 +3,22 @@
  "answers": [
   {
    "name": "latest",
-   "label": "Latest",
+   "label": "Core inflation (year over year)",
    "kind": "value",
    "primary": true,
    "words": [
-    "core cpi (ex food & energy)",
+    "core inflation (year over year)",
     "core inflation",
+    "core inflation rate",
+    "core cpi inflation",
     "latest",
     "current",
     "now",
     "today"
    ],
-   "path": "rows[0].CPILFESL",
-   "type": "number"
+   "path": "rows[0].CPILFESL_PC1",
+   "type": "number",
+   "unit": "%"
   },
   {
    "name": "as_of",
@@ -33,7 +36,7 @@
   },
   {
    "name": "recent",
-   "label": "Recent",
+   "label": "Recent readings",
    "kind": "list",
    "words": [
     "recent",
@@ -52,13 +55,14 @@
      "type": "date"
     },
     {
-     "path": "CPILFESL",
-     "label": "Core CPI (ex food & energy)",
-     "type": "number"
+     "path": "CPILFESL_PC1",
+     "label": "Core inflation (year over year)",
+     "type": "number",
+     "unit": "%"
     }
    ]
   }
  ],
- "sample_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=CPILFESL",
+ "sample_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=CPILFESL&transformation=pc1",
  "checked": "2026-09-28"
 }

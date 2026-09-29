@@ -3,11 +3,12 @@
  "answers": [
   {
    "name": "latest",
-   "label": "Latest",
+   "label": "Trade balance (goods and services)",
    "kind": "value",
    "primary": true,
    "words": [
     "us trade balance",
+    "trade balance (goods and services)",
     "trade deficit",
     "latest",
     "current",
@@ -15,7 +16,8 @@
     "today"
    ],
    "path": "rows[0].BOPGSTB",
-   "type": "number"
+   "type": "number",
+   "unit": "million USD"
   },
   {
    "name": "as_of",
@@ -33,7 +35,7 @@
   },
   {
    "name": "recent",
-   "label": "Recent",
+   "label": "Recent readings",
    "kind": "list",
    "words": [
     "recent",
@@ -53,8 +55,9 @@
     },
     {
      "path": "BOPGSTB",
-     "label": "US trade balance",
-     "type": "number"
+     "label": "Trade balance (goods and services)",
+     "type": "number",
+     "unit": "million USD"
     }
    ]
   }

@@ -3,7 +3,7 @@
  "answers": [
   {
    "name": "latest",
-   "label": "Latest",
+   "label": "Releases",
    "kind": "list",
    "primary": true,
    "words": [

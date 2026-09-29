@@ -3,7 +3,7 @@
  "answers": [
   {
    "name": "latest",
-   "label": "Latest",
+   "label": "Travel advisories",
    "kind": "list",
    "primary": true,
    "words": [

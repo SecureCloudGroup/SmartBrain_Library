@@ -3,18 +3,20 @@
  "answers": [
   {
    "name": "latest",
-   "label": "Latest",
+   "label": "Housing starts (annual rate)",
    "kind": "value",
    "primary": true,
    "words": [
     "housing starts",
+    "housing starts (annual rate)",
     "latest",
     "current",
     "now",
     "today"
    ],
    "path": "rows[0].HOUST",
-   "type": "number"
+   "type": "number",
+   "unit": "thousand units"
   },
   {
    "name": "as_of",
@@ -32,7 +34,7 @@
   },
   {
    "name": "recent",
-   "label": "Recent",
+   "label": "Recent readings",
    "kind": "list",
    "words": [
     "recent",
@@ -52,8 +54,9 @@
     },
     {
      "path": "HOUST",
-     "label": "Housing starts",
-     "type": "number"
+     "label": "Housing starts (annual rate)",
+     "type": "number",
+     "unit": "thousand units"
     }
    ]
   }

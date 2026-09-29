@@ -3,11 +3,12 @@
  "answers": [
   {
    "name": "latest",
-   "label": "Latest",
+   "label": "Nonfarm payroll jobs",
    "kind": "value",
    "primary": true,
    "words": [
     "nonfarm payrolls",
+    "nonfarm payroll jobs",
     "jobs report",
     "payrolls",
     "latest",
@@ -16,7 +17,8 @@
     "today"
    ],
    "path": "rows[0].PAYEMS",
-   "type": "number"
+   "type": "number",
+   "unit": "thousand jobs"
   },
   {
    "name": "as_of",
@@ -34,7 +36,7 @@
   },
   {
    "name": "recent",
-   "label": "Recent",
+   "label": "Recent readings",
    "kind": "list",
    "words": [
     "recent",
@@ -54,8 +56,9 @@
     },
     {
      "path": "PAYEMS",
-     "label": "Nonfarm payrolls",
-     "type": "number"
+     "label": "Nonfarm payroll jobs",
+     "type": "number",
+     "unit": "thousand jobs"
     }
    ]
   }

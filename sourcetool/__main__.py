@@ -66,6 +66,12 @@ def cmd_check(_args) -> int:
             if errs:
                 bad += 1
                 print(f"{f.name}:{r['id']}: {'; '.join(errs)}")
+    for f in _files(None):  # a retired source names a live replacement
+        for r in read_jsonl(f):
+            to = r.get("replaced_by")
+            if to is not None and (to not in seen or to == r["id"]):
+                bad += 1
+                print(f"{f.name}:{r['id']}: replaced_by {to!r} is not another record")
     answers, errs = load_answers(seen)  # schema only; `answers-check` verifies them against live samples
     for e in errs:
         print(f"answers/{e}")

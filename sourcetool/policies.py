@@ -65,10 +65,12 @@ OVERRIDES = {
     "hazards/tsunami": {"match": "none", "resolvers": [], "max_age": "15m"},
     "hazards/space_weather": {"match": "none", "resolvers": []},
     "hazards/emergencies": {"match": "name", "resolvers": ["us_state"], "max_age": "1d"},
-    "water/tides": {"resolvers": ["place", "tide_station"], "max_age": "1d"},
-    "water/water_levels": {"resolvers": ["place", "tide_station"], "max_age": "15m"},
+    # the tide_station table keeps secondary stations only 50 km from a primary one (resolvers.h_tide_station):
+    # 30 km + 50 km keeps every place that had a station within 30 km covered
+    "water/tides": {"resolvers": ["place", "tide_station"], "max_km": 80, "max_age": "1d"},
+    "water/water_levels": {"resolvers": ["place", "tide_station"], "max_km": 80, "max_age": "15m"},
     "water/surf_waves": {"resolvers": ["place", "buoy"], "max_km": 80, "differ_on": []},
-    "water/water_temperature": {"resolvers": ["place", "tide_station", "buoy"]},
+    "water/water_temperature": {"resolvers": ["place", "tide_station", "buoy"], "max_km": 80},
     "water/marine_forecast": {"max_km": 60, "differ_on": []},
     "water/beach_quality": {"max_age": "1d", "differ_on": []},
     "water/currents": {"max_age": "1d"},

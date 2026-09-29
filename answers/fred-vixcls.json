@@ -3,11 +3,12 @@
  "answers": [
   {
    "name": "latest",
-   "label": "Latest",
+   "label": "VIX volatility index (close)",
    "kind": "value",
    "primary": true,
    "words": [
     "vix volatility index",
+    "vix volatility index (close)",
     "vix",
     "market fear index",
     "latest",
@@ -34,7 +35,7 @@
   },
   {
    "name": "recent",
-   "label": "Recent",
+   "label": "Recent readings",
    "kind": "list",
    "words": [
     "recent",
@@ -54,7 +55,7 @@
     },
     {
      "path": "VIXCLS",
-     "label": "VIX volatility index",
+     "label": "VIX volatility index (close)",
      "type": "number"
     }
    ]

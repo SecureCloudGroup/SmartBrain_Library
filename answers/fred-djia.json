@@ -3,10 +3,11 @@
  "answers": [
   {
    "name": "latest",
-   "label": "Latest",
+   "label": "Dow Jones Industrial Average (close)",
    "kind": "value",
    "primary": true,
    "words": [
+    "dow jones industrial average (close)",
     "dow jones",
     "latest",
     "current",
@@ -32,7 +33,7 @@
   },
   {
    "name": "recent",
-   "label": "Recent",
+   "label": "Recent readings",
    "kind": "list",
    "words": [
     "recent",
@@ -52,7 +53,7 @@
     },
     {
      "path": "DJIA",
-     "label": "Dow Jones Industrial Average (daily clos",
+     "label": "Dow Jones Industrial Average (close)",
      "type": "number"
     }
    ]
