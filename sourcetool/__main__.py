@@ -51,9 +51,10 @@ def _check_taxonomy_and_resolvers() -> int:
 
 
 def cmd_check(_args) -> int:
+    from .answers import load_answers, params_of
     from .schema import validate_record
     bad = _check_taxonomy_and_resolvers()
-    seen: set[str] = set()
+    seen: dict[str, dict] = {}
     for f in _files(None):
         for r in read_jsonl(f):
             errs = validate_record(r)
@@ -61,11 +62,10 @@ def cmd_check(_args) -> int:
                 errs += [f"param {p['name']} has no fill" for p in r["access"].get("params", []) if "fill" not in p]
             if r["id"] in seen:
                 errs.append("duplicate id")
-            seen.add(r["id"])
+            seen[r["id"]] = params_of(r)
             if errs:
                 bad += 1
                 print(f"{f.name}:{r['id']}: {'; '.join(errs)}")
-    from .answers import load_answers
     answers, errs = load_answers(seen)  # schema only; `answers-check` verifies them against live samples
     for e in errs:
         print(f"answers/{e}")

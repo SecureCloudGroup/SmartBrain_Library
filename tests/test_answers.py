@@ -5,7 +5,7 @@ import json
 
 import pytest
 
-from sourcetool.answers import answer_problems, check_sample, load_answers
+from sourcetool.answers import answer_problems, check_sample, load_answers, params_of
 from sourcetool.build import merge_answers
 from sourcetool.schema import validate_record
 
@@ -36,8 +36,8 @@ def cols(**kw):
     return a
 
 
-def bad(answers, needle):
-    errs = answer_problems(answers)
+def bad(answers, needle, params=()):
+    errs = answer_problems(answers, params)
     assert any(needle in e for e in errs), errs
 
 
@@ -107,7 +107,7 @@ def test_columns_rules():
 
 
 def test_primary_limits():
-    bad([value(primary=False)], "must be primary")
+    assert answer_problems([value(primary=False)]) == []  # primary is a maximum, not a minimum (v1.1)
     bad([value(str(c)) for c in "abcde"], "at most 4")
     bad([rows(), cols()], "at most one list")
     bad([rows(), value()], "not both")
@@ -122,6 +122,58 @@ def test_validate_record_runs_answer_problems():
     assert validate_record(r) == []
     assert validate_record({**r, "answers": [value()]}) == []
     assert any(e.startswith("answers:") for e in validate_record({**r, "answers": [value(label="")]}))
+    # a {param} segment must name one of the record's own params
+    assert any("not a parameter" in e for e in validate_record({**r, "answers": [value(path="rates.{quote}")]}))
+    r["access"] = {**r["access"], "url_template": "https://api.example.org/x?q={quote}",
+                   "params": [{"name": "quote", "kind": "currency_pair", "example": "EUR"}]}
+    assert validate_record({**r, "answers": [value(path="rates.{quote}")]}) == []
+
+
+# --- v1.1: {param} segments, date, row filter ------------------------------------------------------------
+
+def test_param_segments():
+    ps = {"quote": "EUR", "coin": "bitcoin"}
+    for p in ("rates.{quote}", "{coin}.usd", "{coin}.usd_24h_change", "data.{coin}[0].price"):
+        assert answer_problems([value(path=p)], ps) == [], p
+    for p in ("rates.x{quote}", "rates.{quote}x", "rates.{Quote}", "rates.{}", "{coin}{quote}"):
+        bad([value(path=p)], "bad path", ps)
+    bad([value(path="rates.{base}")], "{base} is not a parameter", ps)
+    bad([value(unit_path="units.{base}")], "{base} is not a parameter", ps)
+    bad([rows(row=[{"path": "{base}.v", "label": "V", "type": "number"}])], "{base} is not a parameter", ps)
+    sample = {"rates": {"EUR": "0.91"}, "bitcoin": {"usd": 65000}, "units": {"EUR": "EUR"}}
+    assert check_sample([value(path="rates.{quote}", unit_path="units.{quote}"),
+                         value("px", path="{coin}.usd")], sample, ps) == []
+    assert check_sample([value(path="rates.{quote}")], sample, {"quote": "JPY"})
+    assert check_sample([value(path="rates.{quote}")], sample, {})  # no example: nothing to stand for
+
+
+def test_date_type():
+    assert answer_problems([value(type="date", path="rows[0].observation_date")]) == []
+    assert answer_problems([rows(row=[{"path": "d", "label": "Date", "type": "date"}])]) == []
+    c = cols()
+    c["columns"][0]["type"] = "date"
+    assert answer_problems([c]) == []
+    assert chk(value(type="date", path="current.date")) == []
+    for p in ("current.time", "current.epoch", "current.name"):  # a timestamp is not a date-only value
+        assert chk(value(type="date", path=p)), p
+
+
+def test_row_filter():
+    flt = {"path": "ARPT", "equals": "{airport}"}
+    ps = {"airport": "JFK"}
+    assert answer_problems([rows(filter=flt)], ps) == []
+    bad([rows(filter=flt)], "{airport} is not a parameter")
+    bad([rows(filter={"path": "ARPT", "equals": "JFK"})], "equals must be a {param}", ps)
+    bad([rows(filter={"path": "ARPT"})], "filter must be", ps)
+    bad([rows(filter={**flt, "op": "eq"})], "filter must be", ps)
+    bad([rows(filter={"path": "a[*]", "equals": "{airport}"})], "bad filter path", ps)
+    bad([value(filter=flt)], "unknown keys", ps)
+    sample = {"status": [{"ARPT": "LGA", "delay": "true"}, {"ARPT": "JFK", "delay": "15"}]}
+    a = rows(path="status", filter=flt, row=[{"path": "delay", "label": "Delay", "type": "number"}])
+    assert check_sample([a], sample, ps) == []       # the first row AFTER the filter is JFK's
+    assert check_sample([{**a, "filter": {**flt}}], sample, {"airport": "SFO"})  # nothing left: empty
+    assert check_sample([{**a, "may_be_empty": True}], sample, {"airport": "SFO"}) == []
+    assert check_sample([a], sample, {})             # no example value for the filter
 
 
 # --- check_sample -------------------------------------------------------------------------------------
@@ -197,7 +249,7 @@ def write(d, sid, answers, **kw):
 def test_build_merges_answers(tmp_path):
     write(tmp_path, "src-a", [value()])
     (tmp_path / "_skipped.md").write_text("- src-b — broken\n")
-    recs = [{"id": "src-a"}, {"id": "src-b"}]
+    recs = [{"id": "src-a", "access": {}}, {"id": "src-b", "access": {}}]
     assert merge_answers(recs, tmp_path) == 1
     assert recs[0]["answers"] == [value()] and "answers" not in recs[1]
 
@@ -205,11 +257,16 @@ def test_build_merges_answers(tmp_path):
 def test_build_refuses_orphans_and_bad_answers(tmp_path):
     write(tmp_path, "gone", [value()])
     with pytest.raises(SystemExit, match="no record has id"):
-        merge_answers([{"id": "src-a"}], tmp_path)
+        merge_answers([{"id": "src-a", "access": {}}], tmp_path)
     (tmp_path / "gone.json").unlink()
     write(tmp_path, "src-a", [value(label="")])
     with pytest.raises(SystemExit, match="label"):
-        merge_answers([{"id": "src-a"}], tmp_path)
+        merge_answers([{"id": "src-a", "access": {}}], tmp_path)
+    write(tmp_path, "src-a", [value(path="rates.{quote}")])
+    with pytest.raises(SystemExit, match="not a parameter"):
+        merge_answers([{"id": "src-a", "access": {}}], tmp_path)
+    assert merge_answers([{"id": "src-a", "access": {"params": [{"name": "quote", "example": "EUR"}]}}],
+                         tmp_path) == 1
 
 
 def test_answer_files_are_closed(tmp_path):
@@ -217,7 +274,7 @@ def test_answer_files_are_closed(tmp_path):
     write(tmp_path, "src-b", [value()], source_id="src-c")
     write(tmp_path, "src-d", [value()], checked="yesterday")
     (tmp_path / "src-e.json").write_text("{")
-    loaded, errs = load_answers({"src-a", "src-b", "src-c", "src-d", "src-e"}, tmp_path)
+    loaded, errs = load_answers({k: {} for k in ("src-a", "src-b", "src-c", "src-d", "src-e")}, tmp_path)
     assert loaded == {}
     joined = " | ".join(errs)
     for needle in ("src-a.json: must hold exactly", "does not match the file name", "checked must be", "not JSON"):
@@ -227,5 +284,5 @@ def test_answer_files_are_closed(tmp_path):
 def test_generated_answers_are_well_formed():
     """Every committed answers file passes the schema and names a record (what `check` enforces in CI)."""
     from sourcetool.answers import ANSWERS, _records
-    loaded, errs = load_answers(set(_records()), ANSWERS)
+    loaded, errs = load_answers({k: params_of(r) for k, r in _records().items()}, ANSWERS)
     assert errs == [] and loaded

@@ -1,4 +1,4 @@
-"""Source `answers`: which paths of a source's response answer which questions (spec v1).
+"""Source `answers`: which paths of a source's response answer which questions (spec v1.1).
 
 An answer names a path into the response, a label, the words people use to ask for it and the type the
 card shows. `answer_problems` is the schema (closed keys, types, limits); `check_sample` verifies the paths
@@ -26,12 +26,12 @@ APP = Path(os.environ.get("SMARTBRAIN_APP") or ROOT.parent / "SmartBrain_3000" /
 AUTHORING_UA = "SmartBrain-Library-authoring/1 info@securecloudgroup.com"
 
 KINDS = ("value", "list", "columns")
-VALUE_TYPES = ("number", "text", "time", "count")
-ROW_TYPES = ("number", "text", "time")
+VALUE_TYPES = ("number", "text", "time", "date", "count")
+ROW_TYPES = ("number", "text", "time", "date")
 CODES = ("wmo_weather",)
 COMMON = {"name", "label", "words", "primary", "kind"}
 KEYS = {"value": COMMON | {"path", "type", "unit", "unit_path", "codes"},
-        "list": COMMON | {"path", "row", "newest_first", "may_be_empty"},
+        "list": COMMON | {"path", "row", "newest_first", "may_be_empty", "filter"},
         "columns": COMMON | {"columns", "limit"}}
 ROW_KEYS = {"path", "label", "type", "unit", "unit_path"}
 COLUMN_KEYS = ROW_KEYS | {"codes"}
@@ -39,8 +39,11 @@ FILE_KEYS = {"source_id", "answers", "sample_url", "checked"}
 MAX_ANSWERS = 10
 
 _NAME = re.compile(r"[a-z][a-z0-9_]{0,39}")
-_PATH = re.compile(r"[A-Za-z_][\w-]*(\[\d+\])?(\.[A-Za-z_][\w-]*(\[\d+\])?)*", re.ASCII)
-_SEG = re.compile(r"([A-Za-z_][\w-]*)(?:\[(\d+)\])?", re.ASCII)
+# a segment is a key or a whole `{param}` (filled from the record's params), optionally indexed: rates.{quote}
+_SEG_SRC = r"(?:[A-Za-z_][\w-]*|\{[a-z_][a-z0-9_]*\})(?:\[\d+\])?"
+_PATH = re.compile(rf"{_SEG_SRC}(?:\.{_SEG_SRC})*", re.ASCII)
+_SEG = re.compile(r"(?:([A-Za-z_][\w-]*)|\{([a-z_][a-z0-9_]*)\})(?:\[(\d+)\])?", re.ASCII)
+_PARAM = re.compile(r"\{([a-z_][a-z0-9_]*)\}")
 _NUMBER = re.compile(r"-?\d+(\.\d+)?")
 _ISO_TIME = re.compile(r"\d{4}-\d{2}-\d{2}[T ]\d{2}:\d{2}")
 _DATE = re.compile(r"\d{4}-\d{2}-\d{2}")
@@ -84,8 +87,28 @@ def _field_problems(where: str, f, keys: set[str], types: tuple) -> list[str]:
     return errs + _unit_problems(where, f)
 
 
-def answer_problems(answers) -> list[str]:
-    """Problems with a source's `answers` list; an empty list means it is well-formed."""
+def _param_problems(w: str, a: dict, params) -> list[str]:
+    """Every `{param}` an answer names (in any path or filter) is one of the record's access.params."""
+    found = [a.get("path"), a.get("unit_path")]
+    for f in (a.get("row") or []) + (a.get("columns") or []) + [a.get("filter")]:
+        if isinstance(f, dict):
+            found += [f.get("path"), f.get("unit_path"), f.get("equals")]
+    names = {n for x in found if isinstance(x, str) for n in _PARAM.findall(x)}
+    return [f"{w}: {{{n}}} is not a parameter of this source" for n in sorted(names - set(params))]
+
+
+def _filter_problems(w: str, flt) -> list[str]:
+    if not isinstance(flt, dict) or set(flt) != {"path", "equals"}:
+        return [f"{w}: filter must be {{path, equals}}"]
+    errs = [] if _path_ok(flt["path"]) else [f"{w}: bad filter path {flt['path']!r}"]
+    if not isinstance(flt["equals"], str) or not _PARAM.fullmatch(flt["equals"]):
+        errs.append(f"{w}: filter equals must be a {{param}}")
+    return errs
+
+
+def answer_problems(answers, params=()) -> list[str]:
+    """Problems with a source's `answers` list; an empty list means it is well-formed. `params` are the
+    names of the record's access.params (the only names a `{param}` path segment or filter may use)."""
     if not isinstance(answers, list) or not answers:
         return ["answers must be a non-empty list"]
     if len(answers) > MAX_ANSWERS:
@@ -139,6 +162,8 @@ def answer_problems(answers) -> list[str]:
             for flag in ("newest_first", "may_be_empty"):
                 if flag in a and not isinstance(a[flag], bool):
                     errs.append(f"{w}: {flag} must be true or false")
+            if "filter" in a:
+                errs += _filter_problems(w, a["filter"])
         else:
             cols = a.get("columns")
             if not isinstance(cols, list) or not 2 <= len(cols) <= 4:
@@ -149,6 +174,7 @@ def answer_problems(answers) -> list[str]:
             lim = a.get("limit")
             if "limit" in a and (isinstance(lim, bool) or not isinstance(lim, int) or not 1 <= lim <= 100):
                 errs.append(f"{w}: limit must be a whole number 1-100")
+        errs += _param_problems(w, a, params)
     rows_primary = primary["list"] + primary["columns"]
     if rows_primary and primary["value"]:
         errs.append("primary answers are either 1-4 values or exactly 1 list/columns, not both")
@@ -156,8 +182,6 @@ def answer_problems(answers) -> list[str]:
         errs.append("at most one list/columns answer may be primary")
     elif primary["value"] > 4:
         errs.append("at most 4 value answers may be primary")
-    elif not rows_primary and not primary["value"]:
-        errs.append("one answer at least must be primary")
     return errs
 
 
@@ -166,16 +190,20 @@ def answer_problems(answers) -> list[str]:
 _MISSING = object()
 
 
-def resolve(data, path: str):
-    """Walk `a.b[0].c` through dicts and list indexes; _MISSING when any step is absent."""
+def resolve(data, path: str, examples: dict | None = None):
+    """Walk `a.b[0].c` through dicts and list indexes, a `{param}` segment standing for its example
+    value; _MISSING when any step is absent."""
     cur = data
     for seg in path.split("."):
         m = _SEG.fullmatch(seg)
-        if not m or not isinstance(cur, dict) or m.group(1) not in cur:
+        if not m:
             return _MISSING
-        cur = cur[m.group(1)]
-        if m.group(2) is not None:
-            n = int(m.group(2))
+        key = m.group(1) if m.group(1) else (examples or {}).get(m.group(2))
+        if key is None or not isinstance(cur, dict) or str(key) not in cur:
+            return _MISSING
+        cur = cur[str(key)]
+        if m.group(3) is not None:
+            n = int(m.group(3))
             if not isinstance(cur, list) or n >= len(cur):
                 return _MISSING
             cur = cur[n]
@@ -189,7 +217,7 @@ def _is_number(v) -> bool:
 
 
 def type_ok(v, typ: str) -> bool:
-    """Does value `v` hold what `typ` promises (spec v1, "The check")."""
+    """Does value `v` hold what `typ` promises (spec v1.1, "The check")."""
     if typ == "number":
         return _is_number(v)
     if typ == "text":
@@ -198,6 +226,8 @@ def type_ok(v, typ: str) -> bool:
         if isinstance(v, str) and _ISO_TIME.match(v):
             return True
         return _is_number(v) and float(v) > 1e8
+    if typ == "date":
+        return isinstance(v, str) and bool(_DATE.fullmatch(v))
     if typ == "count":
         return isinstance(v, list)
     return False
@@ -208,43 +238,54 @@ def _show(v) -> str:
     return s if len(s) <= 60 else s[:57] + "..."
 
 
-def _check_field(where: str, item, root, f: dict) -> list[str]:
+def _check_field(where: str, item, root, f: dict, ex: dict) -> list[str]:
     errs = []
-    v = resolve(item, f["path"])
+    v = resolve(item, f["path"], ex)
     if not type_ok(v, f["type"]):
         errs.append(f"{where}: {f['path']} is {_show(v)}, not {f['type']}")
-    if "unit_path" in f and not isinstance(resolve(root, f["unit_path"]), str):
-        errs.append(f"{where}: unit_path {f['unit_path']} is {_show(resolve(root, f['unit_path']))}, not text")
+    if "unit_path" in f and not isinstance(resolve(root, f["unit_path"], ex), str):
+        errs.append(f"{where}: unit_path {f['unit_path']} is {_show(resolve(root, f['unit_path'], ex))}, not text")
     return errs
 
 
-def check_sample(answers: list, sample) -> list[str]:
-    """Every path resolves in the sample with the type its answer promises. unit_path always resolves
-    from the response root (units are response metadata, e.g. `daily_units.temperature_2m_max`)."""
+def check_sample(answers: list, sample, examples: dict | None = None) -> list[str]:
+    """Every path resolves in the sample with the type its answer promises. `examples` maps each of the
+    record's params to its `example` (what a `{param}` segment or a filter stands for in the sample).
+    unit_path always resolves from the response root (units are response metadata, e.g.
+    `daily_units.temperature_2m_max`)."""
+    ex = examples or {}
     errs: list[str] = []
     for a in answers:
         w = f"answer {a['name']}"
         if a["kind"] == "value":
-            errs += _check_field(w, sample, sample, a)
+            errs += _check_field(w, sample, sample, a, ex)
         elif a["kind"] == "list":
-            items = resolve(sample, a["path"])
+            items = resolve(sample, a["path"], ex)
+            if isinstance(items, list) and "filter" in a:
+                want = ex.get(_PARAM.fullmatch(a["filter"]["equals"]).group(1))
+                if want is None:
+                    errs.append(f"{w}: filter {a['filter']['equals']} has no example value")
+                    continue
+                items = [it for it in items if (v := resolve(it, a["filter"]["path"], ex)) is not _MISSING
+                         and str(v) == str(want)]
             if not isinstance(items, list):
                 errs.append(f"{w}: {a['path']} is {_show(items)}, not a list")
             elif not items:
                 if not a.get("may_be_empty"):
-                    errs.append(f"{w}: {a['path']} is empty (set may_be_empty when that is a real answer)")
+                    errs.append(f"{w}: {a['path']} is empty{' after the filter' if 'filter' in a else ''} "
+                                "(set may_be_empty when that is a real answer)")
             else:
                 for j, f in enumerate(a["row"]):
-                    errs += _check_field(f"{w} row[{j}]", items[0], sample, f)
+                    errs += _check_field(f"{w} row[{j}]", items[0], sample, f, ex)
         else:
             lengths = set()
             for j, f in enumerate(a["columns"]):
-                col = resolve(sample, f["path"])
+                col = resolve(sample, f["path"], ex)
                 if not isinstance(col, list):
                     errs.append(f"{w} columns[{j}]: {f['path']} is {_show(col)}, not a list")
                     continue
                 lengths.add(len(col))
-                if "unit_path" in f and not isinstance(resolve(sample, f["unit_path"]), str):
+                if "unit_path" in f and not isinstance(resolve(sample, f["unit_path"], ex), str):
                     errs.append(f"{w} columns[{j}]: unit_path {f['unit_path']} is not text")
             if len(lengths) > 1:
                 errs.append(f"{w}: columns have different lengths {sorted(lengths)}")
@@ -255,9 +296,15 @@ def check_sample(answers: list, sample) -> list[str]:
 
 # --- authoring files -------------------------------------------------------------------------------
 
-def load_answers(ids: set[str], directory: Path = ANSWERS) -> tuple[dict[str, list], list[str]]:
-    """Read every answers/<id>.json: ({source_id: answers}, problems). A file whose id has no record, or
-    whose answers fail the schema, is a problem (build refuses it)."""
+def params_of(rec: dict) -> dict:
+    """{param name: example} for a record's access.params."""
+    return {q["name"]: q.get("example") for q in rec["access"].get("params", [])}
+
+
+def load_answers(params_by_id: dict[str, dict], directory: Path = ANSWERS) -> tuple[dict[str, list], list[str]]:
+    """Read every answers/<id>.json: ({source_id: answers}, problems). `params_by_id` maps each record id
+    to its params (`params_of`). A file whose id has no record, or whose answers fail the schema, is a
+    problem (build refuses it)."""
     out: dict[str, list] = {}
     errs: list[str] = []
     for f in sorted(directory.glob("*.json")):
@@ -273,10 +320,10 @@ def load_answers(ids: set[str], directory: Path = ANSWERS) -> tuple[dict[str, li
         if sid != f.stem:
             errs.append(f"{f.name}: source_id {sid!r} does not match the file name")
             continue
-        if sid not in ids:
+        if sid not in params_by_id:
             errs.append(f"{f.name}: no record has id {sid!r}")
             continue
-        bad = answer_problems(d["answers"])
+        bad = answer_problems(d["answers"], params_by_id[sid])
         if not isinstance(d["sample_url"], str) or not d["sample_url"].startswith("https://"):
             bad.append("sample_url must be the https URL fetched")
         if not isinstance(d["checked"], str) or not _DATE.fullmatch(d["checked"]):
@@ -373,7 +420,7 @@ def fetch_sample(rec: dict, cache_hours: float = 12.0):
 
 def cmd_check(ids: list[str]) -> int:
     recs = _records()
-    loaded, errs = load_answers(set(recs))
+    loaded, errs = load_answers({k: params_of(r) for k, r in recs.items()})
     for e in errs:
         print(f"INVALID {e}")
     todo = ids or sorted(loaded)
@@ -392,7 +439,7 @@ def cmd_check(ids: list[str]) -> int:
             print(f"FAIL {sid}: {e}")
             bad += 1
             continue
-        problems = check_sample(loaded[sid], sample)
+        problems = check_sample(loaded[sid], sample, params_of(recs[sid]))
         if problems:
             bad += 1
             print(f"FAIL {sid}: {'; '.join(problems)}")
@@ -448,10 +495,10 @@ def fred_answers(rec: dict, sample: dict) -> list[dict]:
          "path": f"rows[0].{value_col}", "type": "number", **unit},
         {"name": "as_of", "label": "As of", "kind": "value",
          "words": ["as of", "when", "date", "last updated", "updated"],
-         "path": f"rows[0].{date_col}", "type": "text"},
+         "path": f"rows[0].{date_col}", "type": "date"},
         {"name": "recent", "label": "Recent", "kind": "list",
          "words": ["recent", "history", "trend", "past", "over time", "chart", "last few"],
-         "path": "rows", "row": [{"path": date_col, "label": "Date", "type": "text"},
+         "path": "rows", "row": [{"path": date_col, "label": "Date", "type": "date"},
                                  {"path": value_col, "label": name[:40].rstrip(), "type": "number", **unit}]},
     ]
 
@@ -484,7 +531,7 @@ def cmd_generate(_args) -> int:
             print(f"FAIL {sid}: {type(e).__name__}: {e}")
             failed += 1
             continue
-        problems = answer_problems(answers) + check_sample(answers, sample)
+        problems = answer_problems(answers, params_of(rec)) + check_sample(answers, sample, params_of(rec))
         if problems:
             print(f"FAIL {sid}: {'; '.join(problems)}")
             failed += 1

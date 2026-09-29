@@ -141,8 +141,8 @@ def build() -> str:
 
 def merge_answers(recs: list[dict], directory=None) -> int:
     """Put each answers/<id>.json file's answers on its record; refuse orphans and malformed answers."""
-    from .answers import ANSWERS, load_answers
-    loaded, errs = load_answers({r["id"] for r in recs}, directory or ANSWERS)
+    from .answers import ANSWERS, load_answers, params_of
+    loaded, errs = load_answers({r["id"]: params_of(r) for r in recs}, directory or ANSWERS)
     if errs:
         raise SystemExit("answers files refused:\n  " + "\n  ".join(errs))
     for r in recs:

@@ -112,7 +112,7 @@ def validate_record(r: dict) -> list[str]:
     if v and v.get("status") not in VALIDATION:
         errs.append(f"validation.status {v.get('status')!r}")
     if "answers" in r:
-        errs += [f"answers: {e}" for e in answer_problems(r["answers"])]
+        errs += [f"answers: {e}" for e in answer_problems(r["answers"], declared)]
     return errs
 
 

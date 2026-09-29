@@ -29,7 +29,7 @@
     "updated"
    ],
    "path": "rows[0].observation_date",
-   "type": "text"
+   "type": "date"
   },
   {
    "name": "recent",
@@ -49,7 +49,7 @@
     {
      "path": "observation_date",
      "label": "Date",
-     "type": "text"
+     "type": "date"
     },
     {
      "path": "CPILFESL",
