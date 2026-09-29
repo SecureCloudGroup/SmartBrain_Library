@@ -13,6 +13,7 @@ from __future__ import annotations
 import json
 import os
 import re
+from email.utils import parsedate_tz
 import sys
 import time
 from pathlib import Path
@@ -47,6 +48,8 @@ _PARAM = re.compile(r"\{([a-z_][a-z0-9_]*)\}")
 _NUMBER = re.compile(r"-?\d+(\.\d+)?")
 _ISO_TIME = re.compile(r"\d{4}-\d{2}-\d{2}[T ]\d{2}:\d{2}")
 _DATE = re.compile(r"\d{4}-\d{2}-\d{2}")
+# RFC 2822, as RSS publishes dates: "Tue, 29 Sep 2026 01:00:00 GMT" (weekday optional, seconds optional)
+_RFC2822 = re.compile(r"(?:[A-Za-z]{3}, *)?\d{1,2} [A-Za-z]{3} \d{2,4} \d{2}:\d{2}(?::\d{2})?(?: +\S+)?")
 
 
 # --- schema -----------------------------------------------------------------------------------------
@@ -223,7 +226,8 @@ def type_ok(v, typ: str) -> bool:
     if typ == "text":
         return isinstance(v, str) and bool(v.strip())
     if typ == "time":
-        if isinstance(v, str) and _ISO_TIME.match(v):
+        if isinstance(v, str) and (_ISO_TIME.match(v) or (_RFC2822.fullmatch(v.strip())
+                                                          and parsedate_tz(v) is not None)):
             return True
         return _is_number(v) and float(v) > 1e8
     if typ == "date":
@@ -254,6 +258,8 @@ def check_sample(answers: list, sample, examples: dict | None = None) -> list[st
     unit_path always resolves from the response root (units are response metadata, e.g.
     `daily_units.temperature_2m_max`)."""
     ex = examples or {}
+    if isinstance(sample, list):  # the app wraps a top-level list as {"items": [...]} before any path runs
+        sample = {"items": sample}
     errs: list[str] = []
     for a in answers:
         w = f"answer {a['name']}"

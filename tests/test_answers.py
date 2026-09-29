@@ -179,7 +179,9 @@ def test_row_filter():
 # --- check_sample -------------------------------------------------------------------------------------
 
 SAMPLE = {"current": {"temperature_2m": 71.3, "rh": "64", "neg": "-6.904", "time": "2026-09-28T14:00",
-                      "epoch": 1790000000, "epoch_ms": "1790000000000", "date": "2026-09-28", "name": "iss",
+                      "epoch": 1790000000, "rfc": "Tue, 29 Sep 2026 01:00:00 GMT",
+                      "rfc_short": "29 Sep 2026 01:00 -0400", "rfc_bad": "Tue, 29 Foo 2026 01:00:00 GMT",
+                      "prose": "Updated Tue, 29 Sep 2026 01:00:00 GMT by staff", "epoch_ms": "1790000000000", "date": "2026-09-28", "name": "iss",
                       "blank": " ", "flag": True, "small": 12},
           "current_units": {"temperature_2m": "°F"},
           "features": [{"properties": {"mag": 4.2, "place": "10km N of Ridgecrest", "time": 1790000000000}}],
@@ -204,10 +206,21 @@ def test_text_and_time_forms():
     assert chk(value(type="text", path="current.name")) == []
     assert chk(value(type="text", path="current.blank"))
     assert chk(value(type="text", path="current.small"))
-    for p in ("current.time", "current.epoch", "current.epoch_ms"):
+    for p in ("current.time", "current.epoch", "current.epoch_ms", "current.rfc", "current.rfc_short"):
         assert chk(value(type="time", path=p)) == [], p
+    assert chk(value(type="time", path="current.rfc_bad"))  # RFC 2822 shape, impossible month
+    assert chk(value(type="time", path="current.prose"))    # a sentence that merely holds a date
     assert chk(value(type="time", path="current.date"))    # a bare date has no time of day
     assert chk(value(type="time", path="current.small"))   # 12 is not an epoch
+
+
+def test_top_level_list_is_wrapped_as_items():
+    sample = [{"name": "a", "v": "1"}, {"name": "b", "v": "2"}]
+    a = rows(path="items", row=[{"path": "name", "label": "Name", "type": "text"}])
+    assert answer_problems([a]) == []
+    assert check_sample([a, value("first", primary=False, path="items[0].v"),
+                         value("n", primary=False, type="count", path="items")], sample) == []
+    assert check_sample([rows(path="features")], sample)
 
 
 def test_count():

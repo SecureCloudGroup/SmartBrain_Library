@@ -28,7 +28,7 @@
     {
      "path": "published",
      "label": "Published",
-     "type": "text"
+     "type": "time"
     }
    ],
    "may_be_empty": false
