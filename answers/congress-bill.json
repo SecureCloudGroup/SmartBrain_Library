@@ -13,7 +13,8 @@
       "primary": true,
       "kind": "value",
       "path": "bill.title",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "latest_action",
@@ -29,7 +30,8 @@
       "primary": true,
       "kind": "value",
       "path": "bill.latestAction.text",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "latest_action_date",
@@ -43,7 +45,8 @@
       "primary": true,
       "kind": "value",
       "path": "bill.latestAction.actionDate",
-      "type": "date"
+      "type": "date",
+      "window": "latest"
     },
     {
       "name": "sponsor",
@@ -57,7 +60,8 @@
       "primary": false,
       "kind": "value",
       "path": "bill.sponsors[0].fullName",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "introduced",
@@ -70,7 +74,8 @@
       "primary": false,
       "kind": "value",
       "path": "bill.introducedDate",
-      "type": "date"
+      "type": "date",
+      "window": "latest"
     },
     {
       "name": "policy_area",
@@ -84,7 +89,8 @@
       "primary": false,
       "kind": "value",
       "path": "bill.policyArea.name",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     }
   ],
   "sample_url": "https://api.congress.gov/v3/bill/119/hr/1?api_key=DEMO_KEY&format=json",

@@ -42,7 +42,8 @@
       "primary": false,
       "kind": "value",
       "path": "items[0].message",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     }
   ],
   "sample_url": "https://services.swpc.noaa.gov/products/alerts.json",

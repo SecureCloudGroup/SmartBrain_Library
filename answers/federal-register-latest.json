@@ -33,7 +33,11 @@
           "label": "Published",
           "type": "date"
         }
-      ]
+      ],
+      "axis": {
+        "cell": "publication_date",
+        "step": "day"
+      }
     },
     {
       "name": "newest",
@@ -46,7 +50,8 @@
       "primary": false,
       "kind": "value",
       "path": "results[0].title",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "newest_date",
@@ -59,7 +64,8 @@
       "primary": false,
       "kind": "value",
       "path": "results[0].publication_date",
-      "type": "date"
+      "type": "date",
+      "window": "latest"
     }
   ],
   "sample_url": "https://www.federalregister.gov/api/v1/documents.json?per_page=20&order=newest&conditions[agencies][]=environmental-protection-agency",

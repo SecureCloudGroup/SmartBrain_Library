@@ -16,7 +16,8 @@
       "primary": true,
       "kind": "value",
       "path": "Results.series[0].data[0].value",
-      "type": "number"
+      "type": "number",
+      "window": "latest"
     },
     {
       "name": "period",
@@ -30,7 +31,8 @@
       "primary": true,
       "kind": "value",
       "path": "Results.series[0].data[0].periodName",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "year",
@@ -43,7 +45,8 @@
       "primary": true,
       "kind": "value",
       "path": "Results.series[0].data[0].year",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "series",
@@ -56,7 +59,8 @@
       "primary": false,
       "kind": "value",
       "path": "Results.series[0].seriesID",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "history",

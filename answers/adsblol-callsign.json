@@ -57,7 +57,8 @@
       "primary": false,
       "kind": "value",
       "path": "now",
-      "type": "time"
+      "type": "time",
+      "window": "now"
     }
   ],
   "sample_url": "https://api.adsb.lol/v2/callsign/DAL1234",

@@ -1,0 +1,83 @@
+{
+  "source_id": "nps-geyser-predictions",
+  "answers": [
+    {
+      "name": "next_eruption",
+      "label": "Predicted eruption",
+      "words": [
+        "next eruption",
+        "erupt",
+        "eruption",
+        "when",
+        "what time",
+        "prediction",
+        "predicted",
+        "go off",
+        "blow",
+        "next show",
+        "eruption time",
+        "countdown"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "rows[0].prediction_datetime",
+      "type": "time",
+      "window": "latest"
+    },
+    {
+      "name": "margin",
+      "label": "Window (±)",
+      "words": [
+        "window",
+        "plus or minus",
+        "margin",
+        "how accurate",
+        "give or take"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "rows[0].offset_amount",
+      "type": "number",
+      "window": "latest",
+      "unit_path": "rows[0].offset_unit"
+    },
+    {
+      "name": "predictions",
+      "label": "Predictions",
+      "words": [
+        "predictions",
+        "eruption times",
+        "today",
+        "this afternoon",
+        "tonight",
+        "tomorrow"
+      ],
+      "primary": false,
+      "kind": "list",
+      "path": "rows",
+      "row": [
+        {
+          "path": "prediction_datetime",
+          "label": "Predicted",
+          "type": "time"
+        },
+        {
+          "path": "offset_amount",
+          "label": "Window (±)",
+          "type": "number"
+        },
+        {
+          "path": "offset_unit",
+          "label": "Unit",
+          "type": "text"
+        }
+      ],
+      "axis": {
+        "cell": "prediction_datetime",
+        "step": "hour"
+      }
+    }
+  ],
+  "sample_url": "https://carto.nps.gov/user/nps-yell/api/v2/sql?q=SELECT%20prediction_datetime,offset_amount,offset_unit%20FROM%20geyser_eruptions%20WHERE%20npmap_id=%27ee5bf30e-4594-4bc0-91ce-452b603743ea%27%20AND%20archived=false%20ORDER%20BY%20prediction_datetime%20DESC%20LIMIT%201",
+  "checked": "2026-09-29"
+}

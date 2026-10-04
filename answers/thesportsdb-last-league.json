@@ -21,7 +21,8 @@
    "words": ["status", "final", "live", "quarter", "over", "still playing"],
    "kind": "value",
    "path": "events[0].strStatus",
-   "type": "text"
+   "type": "text",
+   "window": "latest"
   },
   {
    "name": "start",
@@ -29,7 +30,8 @@
    "words": ["when", "what time", "start time", "kickoff", "date"],
    "kind": "value",
    "path": "events[0].strTimestamp",
-   "type": "time", "utc": true
+   "type": "time", "utc": true,
+   "window": "latest"
   },
   {
    "name": "venue",
@@ -37,7 +39,8 @@
    "words": ["where", "venue", "stadium", "arena", "field"],
    "kind": "value",
    "path": "events[0].strVenue",
-   "type": "text"
+   "type": "text",
+   "window": "latest"
   },
   {
    "name": "round",
@@ -45,7 +48,8 @@
    "words": ["week", "round", "matchday", "which week"],
    "kind": "value",
    "path": "events[0].intRound",
-   "type": "number"
+   "type": "number",
+   "window": "latest"
   }
  ],
  "sample_url": "https://www.thesportsdb.com/api/v1/json/123/eventspastleague.php?id=4391",

@@ -23,7 +23,7 @@
         {
           "path": "auction_date",
           "label": "Auction date",
-          "type": "text"
+          "type": "date"
         },
         {
           "path": "security_type",
@@ -38,9 +38,13 @@
         {
           "path": "issue_date",
           "label": "Issue date",
-          "type": "text"
+          "type": "date"
         }
-      ]
+      ],
+      "axis": {
+        "cell": "auction_date",
+        "step": "day"
+      }
     },
     {
       "name": "announced",
@@ -54,7 +58,8 @@
       "primary": false,
       "kind": "value",
       "path": "data[0].record_date",
-      "type": "text"
+      "type": "date",
+      "window": "latest"
     }
   ],
   "sample_url": "https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/od/upcoming_auctions?filter=auction_date:gte:2026-09-28&sort=auction_date&page[size]=20",

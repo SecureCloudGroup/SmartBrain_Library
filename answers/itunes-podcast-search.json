@@ -12,7 +12,8 @@
       "primary": true,
       "kind": "value",
       "path": "results[0].collectionName",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "latest_episode",
@@ -27,7 +28,8 @@
       "primary": true,
       "kind": "value",
       "path": "results[0].releaseDate",
-      "type": "time"
+      "type": "time",
+      "window": "latest"
     },
     {
       "name": "episode_count",
@@ -40,7 +42,8 @@
       "primary": true,
       "kind": "value",
       "path": "results[0].trackCount",
-      "type": "number"
+      "type": "number",
+      "window": "latest"
     },
     {
       "name": "matches",

@@ -17,7 +17,8 @@
       "kind": "value",
       "path": "response.data[0].price",
       "type": "number",
-      "unit_path": "response.data[0].price-units"
+      "unit_path": "response.data[0].price-units",
+      "window": "latest"
     },
     {
       "name": "month",
@@ -31,7 +32,8 @@
       "primary": true,
       "kind": "value",
       "path": "response.data[0].period",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "state",
@@ -44,7 +46,8 @@
       "primary": true,
       "kind": "value",
       "path": "response.data[0].stateDescription",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "price_trend",

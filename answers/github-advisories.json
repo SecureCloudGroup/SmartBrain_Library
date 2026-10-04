@@ -13,7 +13,8 @@
       "primary": false,
       "kind": "value",
       "path": "items[0].summary",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "advisories",
@@ -51,7 +52,11 @@
           "label": "GHSA id",
           "type": "text"
         }
-      ]
+      ],
+      "axis": {
+        "cell": "published_at",
+        "step": "hour"
+      }
     }
   ],
   "sample_url": "https://api.github.com/advisories?per_page=20&type=reviewed",

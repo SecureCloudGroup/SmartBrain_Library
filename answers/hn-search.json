@@ -38,7 +38,11 @@
           "label": "Item id",
           "type": "text"
         }
-      ]
+      ],
+      "axis": {
+        "cell": "created_at",
+        "step": "hour"
+      }
     },
     {
       "name": "match_count",
@@ -52,7 +56,8 @@
       "primary": false,
       "kind": "value",
       "path": "nbHits",
-      "type": "number"
+      "type": "number",
+      "window": "latest"
     }
   ],
   "sample_url": "https://hn.algolia.com/api/v1/search_by_date?query=rust&tags=story",

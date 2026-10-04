@@ -15,7 +15,8 @@
       "primary": true,
       "kind": "value",
       "path": "properties.gridId",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "city",
@@ -30,7 +31,8 @@
       "primary": true,
       "kind": "value",
       "path": "properties.relativeLocation.properties.city",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "state",
@@ -44,7 +46,8 @@
       "primary": true,
       "kind": "value",
       "path": "properties.relativeLocation.properties.state",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "grid_x",
@@ -58,7 +61,8 @@
       "primary": false,
       "kind": "value",
       "path": "properties.gridX",
-      "type": "number"
+      "type": "number",
+      "window": "latest"
     },
     {
       "name": "grid_y",
@@ -72,7 +76,8 @@
       "primary": false,
       "kind": "value",
       "path": "properties.gridY",
-      "type": "number"
+      "type": "number",
+      "window": "latest"
     },
     {
       "name": "time_zone",
@@ -86,7 +91,8 @@
       "primary": false,
       "kind": "value",
       "path": "properties.timeZone",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "radar",
@@ -100,7 +106,8 @@
       "primary": false,
       "kind": "value",
       "path": "properties.radarStation",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "forecast_url",
@@ -114,7 +121,8 @@
       "primary": false,
       "kind": "value",
       "path": "properties.forecast",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     }
   ],
   "sample_url": "https://api.weather.gov/points/32.7765,-79.9311",

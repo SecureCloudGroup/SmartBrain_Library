@@ -14,7 +14,8 @@
       "primary": true,
       "kind": "value",
       "path": "data.last_day",
-      "type": "number"
+      "type": "number",
+      "window": "latest"
     },
     {
       "name": "downloads_last_week",
@@ -29,7 +30,8 @@
       "primary": true,
       "kind": "value",
       "path": "data.last_week",
-      "type": "number"
+      "type": "number",
+      "window": "latest"
     },
     {
       "name": "downloads_last_month",
@@ -44,7 +46,8 @@
       "primary": true,
       "kind": "value",
       "path": "data.last_month",
-      "type": "number"
+      "type": "number",
+      "window": "latest"
     }
   ],
   "sample_url": "https://pypistats.org/api/packages/requests/recent",

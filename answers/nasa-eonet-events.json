@@ -34,7 +34,11 @@
           "type": "time"
         }
       ],
-      "may_be_empty": true
+      "may_be_empty": true,
+      "axis": {
+        "cell": "geometry[0].date",
+        "step": "hour"
+      }
     },
     {
       "name": "latest",
@@ -48,7 +52,8 @@
       "primary": false,
       "kind": "value",
       "path": "events[0].title",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     }
   ],
   "sample_url": "https://eonet.gsfc.nasa.gov/api/v3/events?status=open&limit=25",

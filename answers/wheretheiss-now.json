@@ -16,7 +16,8 @@
       "kind": "value",
       "path": "latitude",
       "type": "number",
-      "unit": "°"
+      "unit": "°",
+      "window": "now"
     },
     {
       "name": "longitude",
@@ -33,7 +34,8 @@
       "kind": "value",
       "path": "longitude",
       "type": "number",
-      "unit": "°"
+      "unit": "°",
+      "window": "now"
     },
     {
       "name": "altitude",
@@ -49,7 +51,8 @@
       "kind": "value",
       "path": "altitude",
       "type": "number",
-      "unit": "km"
+      "unit": "km",
+      "window": "now"
     },
     {
       "name": "velocity",
@@ -64,7 +67,8 @@
       "kind": "value",
       "path": "velocity",
       "type": "number",
-      "unit": "km/h"
+      "unit": "km/h",
+      "window": "now"
     },
     {
       "name": "visibility",
@@ -79,7 +83,8 @@
       "primary": false,
       "kind": "value",
       "path": "visibility",
-      "type": "text"
+      "type": "text",
+      "window": "now"
     },
     {
       "name": "as_of",
@@ -93,7 +98,8 @@
       "primary": false,
       "kind": "value",
       "path": "timestamp",
-      "type": "time"
+      "type": "time",
+      "window": "now"
     }
   ],
   "sample_url": "https://api.wheretheiss.at/v1/satellites/25544",

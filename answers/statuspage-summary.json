@@ -17,7 +17,8 @@
       "primary": true,
       "kind": "value",
       "path": "status.description",
-      "type": "text"
+      "type": "text",
+      "window": "now"
     },
     {
       "name": "service_name",
@@ -30,7 +31,8 @@
       "primary": false,
       "kind": "value",
       "path": "page.name",
-      "type": "text"
+      "type": "text",
+      "window": "now"
     },
     {
       "name": "components",
@@ -127,7 +129,11 @@
           "type": "time"
         }
       ],
-      "may_be_empty": true
+      "may_be_empty": true,
+      "axis": {
+        "cell": "scheduled_for",
+        "step": "hour"
+      }
     }
   ],
   "sample_url": "https://www.githubstatus.com/api/v2/summary.json",

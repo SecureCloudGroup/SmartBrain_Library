@@ -17,7 +17,8 @@
    ],
    "path": "rows[0].GFDEBTN",
    "type": "number",
-   "unit": "million USD"
+   "unit": "million USD",
+   "window": "latest"
   },
   {
    "name": "as_of",
@@ -31,7 +32,8 @@
     "updated"
    ],
    "path": "rows[0].observation_date",
-   "type": "date"
+   "type": "date",
+   "window": "latest"
   },
   {
    "name": "recent",
@@ -59,7 +61,11 @@
      "type": "number",
      "unit": "million USD"
     }
-   ]
+   ],
+   "axis": {
+    "cell": "observation_date",
+    "step": "day"
+   }
   }
  ],
  "sample_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=GFDEBTN",

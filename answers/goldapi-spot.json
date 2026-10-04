@@ -20,7 +20,8 @@
       "kind": "value",
       "path": "price",
       "type": "number",
-      "unit": "USD/oz"
+      "unit": "USD/oz",
+      "window": "now"
     },
     {
       "name": "metal",
@@ -35,7 +36,8 @@
       "primary": true,
       "kind": "value",
       "path": "name",
-      "type": "text"
+      "type": "text",
+      "window": "now"
     },
     {
       "name": "updated",
@@ -50,7 +52,8 @@
       "primary": true,
       "kind": "value",
       "path": "updatedAt",
-      "type": "time"
+      "type": "time",
+      "window": "now"
     }
   ],
   "sample_url": "https://api.gold-api.com/price/XAU",

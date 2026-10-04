@@ -16,7 +16,9 @@
       "primary": true,
       "kind": "value",
       "path": "daily.sunrise[0]",
-      "type": "time"
+      "type": "time",
+      "window": "today",
+      "measure": "sunrise"
     },
     {
       "name": "sunset_today",
@@ -33,7 +35,9 @@
       "primary": true,
       "kind": "value",
       "path": "daily.sunset[0]",
-      "type": "time"
+      "type": "time",
+      "window": "today",
+      "measure": "sunset"
     },
     {
       "name": "sunrise_tomorrow",
@@ -47,7 +51,9 @@
       "primary": false,
       "kind": "value",
       "path": "daily.sunrise[1]",
-      "type": "time"
+      "type": "time",
+      "window": "tomorrow",
+      "measure": "sunrise"
     },
     {
       "name": "sunset_tomorrow",
@@ -61,7 +67,9 @@
       "primary": false,
       "kind": "value",
       "path": "daily.sunset[1]",
-      "type": "time"
+      "type": "time",
+      "window": "tomorrow",
+      "measure": "sunset"
     },
     {
       "name": "sun_week",
@@ -94,7 +102,11 @@
           "type": "time"
         }
       ],
-      "limit": 7
+      "limit": 7,
+      "axis": {
+        "cell": "daily.time",
+        "step": "day"
+      }
     }
   ],
   "sample_url": "https://api.open-meteo.com/v1/forecast?latitude=32.7765&longitude=-79.9311&daily=sunrise,sunset&timezone=auto&forecast_days=7",

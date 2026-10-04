@@ -15,7 +15,8 @@
       "primary": true,
       "kind": "value",
       "path": "response.player_count",
-      "type": "number"
+      "type": "number",
+      "window": "now"
     }
   ],
   "sample_url": "https://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v1/?appid=730",

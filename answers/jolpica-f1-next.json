@@ -15,7 +15,8 @@
       "primary": true,
       "kind": "value",
       "path": "MRData.RaceTable.Races[0].raceName",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "race_date",
@@ -29,7 +30,8 @@
       "primary": true,
       "kind": "value",
       "path": "MRData.RaceTable.Races[0].date",
-      "type": "date"
+      "type": "date",
+      "window": "latest"
     },
     {
       "name": "race_time",
@@ -43,7 +45,8 @@
       "primary": true,
       "kind": "value",
       "path": "MRData.RaceTable.Races[0].time",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "circuit",
@@ -57,7 +60,8 @@
       "primary": true,
       "kind": "value",
       "path": "MRData.RaceTable.Races[0].Circuit.circuitName",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "country",
@@ -70,7 +74,8 @@
       "primary": false,
       "kind": "value",
       "path": "MRData.RaceTable.Races[0].Circuit.Location.country",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "qualifying_date",
@@ -84,7 +89,8 @@
       "primary": false,
       "kind": "value",
       "path": "MRData.RaceTable.Races[0].Qualifying.date",
-      "type": "date"
+      "type": "date",
+      "window": "latest"
     },
     {
       "name": "qualifying_time",
@@ -97,7 +103,8 @@
       "primary": false,
       "kind": "value",
       "path": "MRData.RaceTable.Races[0].Qualifying.time",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     }
   ],
   "sample_url": "https://api.jolpi.ca/ergast/f1/current/next/races/",

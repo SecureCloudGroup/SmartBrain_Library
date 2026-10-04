@@ -15,7 +15,8 @@
       "primary": true,
       "kind": "value",
       "path": "downloads",
-      "type": "number"
+      "type": "number",
+      "window": "latest"
     },
     {
       "name": "period_start",
@@ -28,7 +29,8 @@
       "primary": false,
       "kind": "value",
       "path": "start",
-      "type": "date"
+      "type": "date",
+      "window": "latest"
     },
     {
       "name": "period_end",
@@ -41,7 +43,8 @@
       "primary": false,
       "kind": "value",
       "path": "end",
-      "type": "date"
+      "type": "date",
+      "window": "latest"
     }
   ],
   "sample_url": "https://api.npmjs.org/downloads/point/last-week/react",

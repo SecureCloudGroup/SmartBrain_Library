@@ -14,7 +14,8 @@
       "primary": true,
       "kind": "value",
       "path": "items[0].rawOb",
-      "type": "text"
+      "type": "text",
+      "window": "now"
     },
     {
       "name": "temperature",
@@ -33,7 +34,9 @@
       "kind": "value",
       "path": "items[0].temp",
       "type": "number",
-      "unit": "°C"
+      "unit": "°C",
+      "window": "now",
+      "measure": "temperature"
     },
     {
       "name": "wind",
@@ -50,7 +53,9 @@
       "kind": "value",
       "path": "items[0].wspd",
       "type": "number",
-      "unit": "kt"
+      "unit": "kt",
+      "window": "now",
+      "measure": "wind"
     },
     {
       "name": "flight_category",
@@ -66,7 +71,8 @@
       "primary": true,
       "kind": "value",
       "path": "items[0].fltCat",
-      "type": "text"
+      "type": "text",
+      "window": "now"
     },
     {
       "name": "dewpoint",
@@ -82,7 +88,8 @@
       "kind": "value",
       "path": "items[0].dewp",
       "type": "number",
-      "unit": "°C"
+      "unit": "°C",
+      "window": "now"
     },
     {
       "name": "wind_dir",
@@ -98,7 +105,8 @@
       "kind": "value",
       "path": "items[0].wdir",
       "type": "number",
-      "unit": "°"
+      "unit": "°",
+      "window": "now"
     },
     {
       "name": "altimeter",
@@ -114,7 +122,8 @@
       "kind": "value",
       "path": "items[0].altim",
       "type": "number",
-      "unit": "hPa"
+      "unit": "hPa",
+      "window": "now"
     },
     {
       "name": "observed_at",
@@ -129,7 +138,8 @@
       "primary": false,
       "kind": "value",
       "path": "items[0].obsTime",
-      "type": "time"
+      "type": "time",
+      "window": "now"
     },
     {
       "name": "station_name",
@@ -144,7 +154,8 @@
       "primary": false,
       "kind": "value",
       "path": "items[0].name",
-      "type": "text"
+      "type": "text",
+      "window": "now"
     }
   ],
   "sample_url": "https://aviationweather.gov/api/data/metar?ids=KCHS&format=json",

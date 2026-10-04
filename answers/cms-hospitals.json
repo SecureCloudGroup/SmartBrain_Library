@@ -80,7 +80,8 @@
       "primary": false,
       "kind": "value",
       "path": "results",
-      "type": "count"
+      "type": "count",
+      "window": "latest"
     }
   ],
   "sample_url": "https://data.cms.gov/provider-data/api/1/datastore/query/xubh-q36u/0?limit=20&conditions[0][property]=citytown&conditions[0][value]=CHARLESTON&conditions[0][operator]==",

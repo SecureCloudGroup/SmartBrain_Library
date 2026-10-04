@@ -35,7 +35,11 @@
           "type": "number",
           "unit": "ft"
         }
-      ]
+      ],
+      "axis": {
+        "cell": "t",
+        "step": "hour"
+      }
     },
     {
       "name": "first_tide_time",
@@ -50,7 +54,9 @@
       "primary": false,
       "kind": "value",
       "path": "predictions[0].t",
-      "type": "time"
+      "type": "time",
+      "window": "today",
+      "measure": "tide"
     },
     {
       "name": "first_tide_type",
@@ -64,7 +70,9 @@
       "primary": false,
       "kind": "value",
       "path": "predictions[0].type",
-      "type": "text"
+      "type": "text",
+      "window": "today",
+      "measure": "tide"
     }
   ],
   "sample_url": "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?application=SmartBrain&station=8665530&time_zone=lst_ldt&units=english&format=json&product=predictions&datum=MLLW&interval=hilo&begin_date=20260927&range=48",

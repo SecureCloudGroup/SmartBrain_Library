@@ -15,7 +15,8 @@
       "primary": true,
       "kind": "value",
       "path": "version",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "description",
@@ -28,7 +29,8 @@
       "primary": false,
       "kind": "value",
       "path": "description",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "license",
@@ -42,7 +44,8 @@
       "primary": false,
       "kind": "value",
       "path": "license",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "homepage",
@@ -56,7 +59,8 @@
       "primary": false,
       "kind": "value",
       "path": "homepage",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     }
   ],
   "sample_url": "https://registry.npmjs.org/react/latest",

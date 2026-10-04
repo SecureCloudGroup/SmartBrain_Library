@@ -51,7 +51,8 @@
       "primary": false,
       "kind": "value",
       "path": "MRData.StandingsTable.round",
-      "type": "number"
+      "type": "number",
+      "window": "latest"
     }
   ],
   "sample_url": "https://api.jolpi.ca/ergast/f1/current/driverstandings/",

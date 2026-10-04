@@ -12,7 +12,8 @@
    "row": [
     {"path": "time_tag", "label": "Window starts", "type": "time", "utc": true},
     {"path": "kp", "label": "Kp", "type": "number"}
-   ]
+   ],
+   "axis": {"cell": "time_tag", "step": "hour"}
   },
   {
    "name": "today",
@@ -25,7 +26,8 @@
     {"path": "time_tag", "label": "Window starts", "type": "time", "utc": true},
     {"path": "kp", "label": "Kp", "type": "number"}
    ],
-   "may_be_empty": true
+   "may_be_empty": true,
+   "axis": {"cell": "time_tag", "step": "hour"}
   },
   {
    "name": "observed",
@@ -38,7 +40,8 @@
     {"path": "time_tag", "label": "Window starts", "type": "time", "utc": true},
     {"path": "kp", "label": "Kp", "type": "number"}
    ],
-   "newest_first": true
+   "newest_first": true,
+   "axis": {"cell": "time_tag", "step": "hour"}
   }
  ],
  "sample_url": "https://services.swpc.noaa.gov/products/noaa-planetary-k-index-forecast.json",

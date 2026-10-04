@@ -51,7 +51,8 @@
       "primary": false,
       "kind": "value",
       "path": "phasedata[0].phase",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     }
   ],
   "sample_url": "https://aa.usno.navy.mil/api/moon/phases/date?date=2026-09-27&nump=4",

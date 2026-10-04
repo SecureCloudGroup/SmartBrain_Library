@@ -15,7 +15,8 @@
       "primary": true,
       "kind": "value",
       "path": "properties.data.curphase",
-      "type": "text"
+      "type": "text",
+      "window": "today"
     },
     {
       "name": "illumination",
@@ -30,7 +31,8 @@
       "primary": true,
       "kind": "value",
       "path": "properties.data.fracillum",
-      "type": "text"
+      "type": "text",
+      "window": "today"
     },
     {
       "name": "closest_phase",
@@ -44,7 +46,8 @@
       "primary": false,
       "kind": "value",
       "path": "properties.data.closestphase.phase",
-      "type": "text"
+      "type": "text",
+      "window": "today"
     },
     {
       "name": "moon_events",

@@ -15,7 +15,8 @@
       "primary": true,
       "kind": "value",
       "path": "crate.max_stable_version",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "downloads_total",
@@ -29,7 +30,8 @@
       "primary": true,
       "kind": "value",
       "path": "crate.downloads",
-      "type": "number"
+      "type": "number",
+      "window": "latest"
     },
     {
       "name": "downloads_recent",
@@ -43,7 +45,8 @@
       "primary": false,
       "kind": "value",
       "path": "crate.recent_downloads",
-      "type": "number"
+      "type": "number",
+      "window": "latest"
     },
     {
       "name": "updated",
@@ -57,7 +60,8 @@
       "primary": false,
       "kind": "value",
       "path": "crate.updated_at",
-      "type": "time"
+      "type": "time",
+      "window": "latest"
     },
     {
       "name": "description",
@@ -70,7 +74,8 @@
       "primary": false,
       "kind": "value",
       "path": "crate.description",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     }
   ],
   "sample_url": "https://crates.io/api/v1/crates/serde",

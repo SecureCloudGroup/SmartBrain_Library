@@ -30,7 +30,11 @@
      "type": "time"
     }
    ],
-   "may_be_empty": false
+   "may_be_empty": false,
+   "axis": {
+    "cell": "published",
+    "step": "hour"
+   }
   }
  ],
  "sample_url": "https://github.com/ollama/ollama/releases.atom",

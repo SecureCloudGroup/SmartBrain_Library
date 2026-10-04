@@ -31,14 +31,22 @@
         {
           "path": "gameDate",
           "label": "Start",
-          "type": "time"
+          "type": "time",
+          "tbd_if": {
+            "path": "status.startTimeTBD",
+            "equals": true
+          }
         },
         {
           "path": "status.detailedState",
           "label": "Status",
           "type": "text"
         }
-      ]
+      ],
+      "axis": {
+        "cell": "gameDate",
+        "step": "hour"
+      }
     },
     {
       "name": "scores",
@@ -91,7 +99,8 @@
       "primary": false,
       "kind": "value",
       "path": "totalGames",
-      "type": "number"
+      "type": "number",
+      "window": "today"
     }
   ],
   "sample_url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&date=2026-09-27&hydrate=linescore",

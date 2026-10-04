@@ -13,7 +13,8 @@
       "primary": true,
       "kind": "value",
       "path": "items[0].name",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "next_date",
@@ -27,7 +28,8 @@
       "primary": true,
       "kind": "value",
       "path": "items[0].date",
-      "type": "text"
+      "type": "date",
+      "window": "latest"
     },
     {
       "name": "upcoming",
@@ -46,14 +48,18 @@
         {
           "path": "date",
           "label": "Date",
-          "type": "text"
+          "type": "date"
         },
         {
           "path": "name",
           "label": "Holiday",
           "type": "text"
         }
-      ]
+      ],
+      "axis": {
+        "cell": "date",
+        "step": "day"
+      }
     }
   ],
   "sample_url": "https://date.nager.at/api/v3/NextPublicHolidays/US",

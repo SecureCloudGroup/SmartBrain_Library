@@ -30,7 +30,11 @@
           "type": "number"
         }
       ],
-      "newest_first": true
+      "newest_first": true,
+      "axis": {
+        "cell": "date",
+        "step": "day"
+      }
     }
   ],
   "sample_url": "https://api.frankfurter.dev/v2/rates?base=USD&quotes=EUR&from=2026-06-01",

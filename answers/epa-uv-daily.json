@@ -15,7 +15,9 @@
       "primary": true,
       "kind": "value",
       "path": "items[0].UV_INDEX",
-      "type": "number"
+      "type": "number",
+      "window": "today",
+      "measure": "uv"
     },
     {
       "name": "uv_alert",
@@ -30,7 +32,8 @@
       "primary": true,
       "kind": "value",
       "path": "items[0].UV_ALERT",
-      "type": "number"
+      "type": "number",
+      "window": "today"
     },
     {
       "name": "date",
@@ -44,7 +47,8 @@
       "primary": false,
       "kind": "value",
       "path": "items[0].DATE",
-      "type": "text"
+      "type": "text",
+      "window": "today"
     }
   ],
   "sample_url": "https://data.epa.gov/efservice/getEnvirofactsUVDAILY/ZIP/29401/JSON",

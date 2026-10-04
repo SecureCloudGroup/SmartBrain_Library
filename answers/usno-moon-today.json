@@ -17,7 +17,8 @@
       "primary": true,
       "kind": "value",
       "path": "properties.data.curphase",
-      "type": "text"
+      "type": "text",
+      "window": "today"
     },
     {
       "name": "illumination",
@@ -33,7 +34,8 @@
       "primary": true,
       "kind": "value",
       "path": "properties.data.fracillum",
-      "type": "text"
+      "type": "text",
+      "window": "today"
     },
     {
       "name": "closest_phase",
@@ -48,7 +50,8 @@
       "primary": false,
       "kind": "value",
       "path": "properties.data.closestphase.phase",
-      "type": "text"
+      "type": "text",
+      "window": "today"
     }
   ],
   "sample_url": "https://aa.usno.navy.mil/api/rstt/oneday?date=2026-09-28&coords=39.83,-98.58",

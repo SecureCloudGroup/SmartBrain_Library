@@ -49,13 +49,13 @@
       "words": [
         "how many fires",
         "count",
-        "number of fires",
-        "any fires"
+        "number of fires"
       ],
       "primary": false,
       "kind": "value",
       "path": "features",
-      "type": "count"
+      "type": "count",
+      "window": "now"
     }
   ],
   "sample_url": "https://services3.arcgis.com/T4QMspbfLg3qTGWY/arcgis/rest/services/WFIGS_Incident_Locations_Current/FeatureServer/0/query?where=POOState%3D%27US-CA%27&outFields=IncidentName,IncidentSize,PercentContained,FireDiscoveryDateTime,POOCounty&orderByFields=IncidentSize+DESC&resultRecordCount=25&f=json",

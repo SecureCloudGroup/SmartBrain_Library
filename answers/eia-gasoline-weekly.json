@@ -18,7 +18,8 @@
       "kind": "value",
       "path": "response.data[0].value",
       "type": "number",
-      "unit_path": "response.data[0].units"
+      "unit_path": "response.data[0].units",
+      "window": "latest"
     },
     {
       "name": "week",
@@ -33,7 +34,8 @@
       "primary": true,
       "kind": "value",
       "path": "response.data[0].period",
-      "type": "date"
+      "type": "date",
+      "window": "latest"
     },
     {
       "name": "area",
@@ -47,7 +49,8 @@
       "primary": true,
       "kind": "value",
       "path": "response.data[0].area-name",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "history",
@@ -76,7 +79,11 @@
           "type": "number",
           "unit": "$/gal"
         }
-      ]
+      ],
+      "axis": {
+        "cell": "period",
+        "step": "day"
+      }
     }
   ],
   "sample_url": "https://api.eia.gov/v2/petroleum/pri/gnd/data/?api_key=DEMO_KEY&frequency=weekly&data[0]=value&facets[product][]=EPMR&facets[duoarea][]=NUS&sort[0][column]=period&sort[0][direction]=desc&length=12",

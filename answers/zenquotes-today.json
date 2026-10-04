@@ -15,7 +15,8 @@
       "primary": true,
       "kind": "value",
       "path": "items[0].q",
-      "type": "text"
+      "type": "text",
+      "window": "today"
     },
     {
       "name": "author",
@@ -29,7 +30,8 @@
       "primary": true,
       "kind": "value",
       "path": "items[0].a",
-      "type": "text"
+      "type": "text",
+      "window": "today"
     }
   ],
   "sample_url": "https://zenquotes.io/api/today",

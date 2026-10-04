@@ -14,7 +14,8 @@
       "primary": true,
       "kind": "value",
       "path": "time",
-      "type": "text"
+      "type": "text",
+      "window": "now"
     },
     {
       "name": "day",
@@ -28,7 +29,8 @@
       "primary": true,
       "kind": "value",
       "path": "dayOfWeek",
-      "type": "text"
+      "type": "text",
+      "window": "now"
     },
     {
       "name": "date",
@@ -41,7 +43,8 @@
       "primary": true,
       "kind": "value",
       "path": "date",
-      "type": "text"
+      "type": "text",
+      "window": "now"
     },
     {
       "name": "zone",
@@ -54,7 +57,8 @@
       "primary": true,
       "kind": "value",
       "path": "timeZone",
-      "type": "text"
+      "type": "text",
+      "window": "now"
     }
   ],
   "sample_url": "https://timeapi.io/api/time/current/zone?timeZone=Asia/Tokyo",

@@ -20,7 +20,9 @@
    "kind": "value",
    "path": "current.temperature_2m",
    "type": "number",
-   "unit_path": "current_units.temperature_2m"
+   "unit_path": "current_units.temperature_2m",
+   "window": "now",
+   "measure": "temperature"
   },
   {
    "name": "feels_like",
@@ -37,7 +39,9 @@
    "kind": "value",
    "path": "current.apparent_temperature",
    "type": "number",
-   "unit_path": "current_units.apparent_temperature"
+   "unit_path": "current_units.apparent_temperature",
+   "window": "now",
+   "measure": "feels_like"
   },
   {
    "name": "conditions",
@@ -50,13 +54,22 @@
     "clear",
     "outside",
     "what's it like",
-    "weather now"
+    "weather now",
+    "storm",
+    "thunderstorm",
+    "lightning",
+    "hail",
+    "fog",
+    "sleet",
+    "drizzle"
    ],
    "primary": true,
    "kind": "value",
    "path": "current.weather_code",
    "type": "number",
-   "codes": "wmo_weather"
+   "codes": "wmo_weather",
+   "window": "now",
+   "measure": "conditions"
   },
   {
    "name": "high_today",
@@ -73,7 +86,9 @@
    "kind": "value",
    "path": "daily.temperature_2m_max[0]",
    "type": "number",
-   "unit_path": "daily_units.temperature_2m_max"
+   "unit_path": "daily_units.temperature_2m_max",
+   "window": "today",
+   "measure": "temperature"
   },
   {
    "name": "low_today",
@@ -90,7 +105,9 @@
    "kind": "value",
    "path": "daily.temperature_2m_min[0]",
    "type": "number",
-   "unit_path": "daily_units.temperature_2m_min"
+   "unit_path": "daily_units.temperature_2m_min",
+   "window": "today",
+   "measure": "temperature"
   },
   {
    "name": "humidity",
@@ -106,7 +123,9 @@
    "kind": "value",
    "path": "current.relative_humidity_2m",
    "type": "number",
-   "unit_path": "current_units.relative_humidity_2m"
+   "unit_path": "current_units.relative_humidity_2m",
+   "window": "now",
+   "measure": "humidity"
   },
   {
    "name": "wind",
@@ -116,13 +135,17 @@
     "windy",
     "breeze",
     "wind speed",
-    "gusts"
+    "gusts",
+    "gusty",
+    "how windy"
    ],
    "primary": false,
    "kind": "value",
    "path": "current.wind_speed_10m",
    "type": "number",
-   "unit": "mph"
+   "unit": "mph",
+   "window": "now",
+   "measure": "wind"
   },
   {
    "name": "rain_today",
@@ -140,7 +163,9 @@
    "kind": "value",
    "path": "daily.precipitation_probability_max[0]",
    "type": "number",
-   "unit_path": "daily_units.precipitation_probability_max"
+   "unit_path": "daily_units.precipitation_probability_max",
+   "window": "today",
+   "measure": "precip_chance"
   },
   {
    "name": "rain_tomorrow",
@@ -156,7 +181,62 @@
    "kind": "value",
    "path": "daily.precipitation_probability_max[1]",
    "type": "number",
-   "unit_path": "daily_units.precipitation_probability_max"
+   "unit_path": "daily_units.precipitation_probability_max",
+   "window": "tomorrow",
+   "measure": "precip_chance"
+  },
+  {
+   "name": "tonight",
+   "label": "Tonight, hour by hour",
+   "words": [
+    "tonight",
+    "overnight",
+    "this evening",
+    "later tonight",
+    "tonight's forecast",
+    "storm tonight",
+    "thunderstorms tonight",
+    "rain tonight",
+    "frost tonight",
+    "fog tonight",
+    "snow tonight",
+    "hourly",
+    "by hour",
+    "hour by hour",
+    "next few hours"
+   ],
+   "primary": false,
+   "kind": "columns",
+   "columns": [
+    {
+     "path": "hourly.time",
+     "label": "Time",
+     "type": "time"
+    },
+    {
+     "path": "hourly.weather_code",
+     "label": "Conditions",
+     "type": "number",
+     "codes": "wmo_weather"
+    },
+    {
+     "path": "hourly.temperature_2m",
+     "label": "Temperature",
+     "type": "number",
+     "unit_path": "hourly_units.temperature_2m"
+    },
+    {
+     "path": "hourly.precipitation_probability",
+     "label": "Rain chance",
+     "type": "number",
+     "unit_path": "hourly_units.precipitation_probability"
+    }
+   ],
+   "limit": 24,
+   "axis": {
+    "cell": "hourly.time",
+    "step": "hour"
+   }
   },
   {
    "name": "daily_forecast",
@@ -170,7 +250,12 @@
     "next few days",
     "daily forecast",
     "outlook",
-    "rain chance this weekend"
+    "rain chance this weekend",
+    "storms this week",
+    "freeze",
+    "frost",
+    "freezing rain",
+    "ice"
    ],
    "primary": false,
    "kind": "columns",
@@ -199,7 +284,11 @@
      "unit_path": "daily_units.precipitation_probability_max"
     }
    ],
-   "limit": 7
+   "limit": 7,
+   "axis": {
+    "cell": "daily.time",
+    "step": "day"
+   }
   },
   {
    "name": "snow_forecast",
@@ -242,9 +331,13 @@
      "codes": "wmo_weather"
     }
    ],
-   "limit": 7
+   "limit": 7,
+   "axis": {
+    "cell": "daily.time",
+    "step": "day"
+   }
   }
  ],
- "sample_url": "https://api.open-meteo.com/v1/forecast?latitude=32.7765&longitude=-79.9311&current=temperature_2m,apparent_temperature,relative_humidity_2m,weather_code,wind_speed_10m&hourly=temperature_2m,precipitation_probability&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,snowfall_sum,sunrise,sunset&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&timezone=auto",
+ "sample_url": "https://api.open-meteo.com/v1/forecast?latitude=32.7765&longitude=-79.9311&current=temperature_2m,apparent_temperature,relative_humidity_2m,weather_code,wind_speed_10m&hourly=temperature_2m,precipitation_probability,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,snowfall_sum,sunrise,sunset&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&timezone=auto",
  "checked": "2026-09-29"
 }

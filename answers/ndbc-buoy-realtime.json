@@ -2,23 +2,6 @@
   "source_id": "ndbc-buoy-realtime",
   "answers": [
     {
-      "name": "wave_height",
-      "label": "Wave height",
-      "words": [
-        "wave height",
-        "waves",
-        "seas",
-        "swell",
-        "buoy wave height",
-        "how rough"
-      ],
-      "primary": true,
-      "kind": "value",
-      "path": "rows[0].WVHT",
-      "type": "number",
-      "unit": "m"
-    },
-    {
       "name": "wind_speed",
       "label": "Wind speed",
       "words": [
@@ -32,7 +15,9 @@
       "kind": "value",
       "path": "rows[0].WSPD",
       "type": "number",
-      "unit": "m/s"
+      "unit": "m/s",
+      "window": "now",
+      "measure": "wind"
     },
     {
       "name": "water_temp",
@@ -48,7 +33,9 @@
       "kind": "value",
       "path": "rows[0].WTMP",
       "type": "number",
-      "unit": "°C"
+      "unit": "°C",
+      "window": "now",
+      "measure": "water_temp"
     },
     {
       "name": "air_temp",
@@ -64,7 +51,9 @@
       "kind": "value",
       "path": "rows[0].ATMP",
       "type": "number",
-      "unit": "°C"
+      "unit": "°C",
+      "window": "now",
+      "measure": "temperature"
     },
     {
       "name": "gust",
@@ -80,22 +69,9 @@
       "kind": "value",
       "path": "rows[0].GST",
       "type": "number",
-      "unit": "m/s"
-    },
-    {
-      "name": "wave_period",
-      "label": "Dominant wave period",
-      "words": [
-        "wave period",
-        "period",
-        "swell period",
-        "dominant period"
-      ],
-      "primary": false,
-      "kind": "value",
-      "path": "rows[0].DPD",
-      "type": "number",
-      "unit": "s"
+      "unit": "m/s",
+      "window": "now",
+      "measure": "wind"
     },
     {
       "name": "wind_dir",
@@ -110,7 +86,8 @@
       "kind": "value",
       "path": "rows[0].WDIR",
       "type": "number",
-      "unit": "°"
+      "unit": "°",
+      "window": "now"
     },
     {
       "name": "pressure",
@@ -126,7 +103,8 @@
       "kind": "value",
       "path": "rows[0].PRES",
       "type": "number",
-      "unit": "hPa"
+      "unit": "hPa",
+      "window": "now"
     },
     {
       "name": "recent",
@@ -136,8 +114,8 @@
         "trend",
         "history",
         "last few hours",
-        "offshore conditions",
-        "observations"
+        "observations",
+        "offshore conditions"
       ],
       "primary": false,
       "kind": "list",
@@ -149,10 +127,10 @@
           "type": "number"
         },
         {
-          "path": "WVHT",
-          "label": "Wave height",
+          "path": "GST",
+          "label": "Gust",
           "type": "number",
-          "unit": "m"
+          "unit": "m/s"
         },
         {
           "path": "WSPD",
@@ -170,5 +148,5 @@
     }
   ],
   "sample_url": "https://www.ndbc.noaa.gov/data/realtime2/41004.txt",
-  "checked": "2026-09-28"
+  "checked": "2026-09-29"
 }

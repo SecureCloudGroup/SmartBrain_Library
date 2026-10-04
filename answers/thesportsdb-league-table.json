@@ -21,7 +21,8 @@
    "words": ["season", "which season", "year"],
    "kind": "value",
    "path": "table[0].strSeason",
-   "type": "text"
+   "type": "text",
+   "window": "latest"
   },
   {
    "name": "updated",
@@ -29,7 +30,8 @@
    "words": ["updated", "as of", "last updated", "when"],
    "kind": "value",
    "path": "table[0].dateUpdated",
-   "type": "time"
+   "type": "time",
+   "window": "latest"
   }
  ],
  "sample_url": "https://www.thesportsdb.com/api/v1/json/123/lookuptable.php?l=4328",

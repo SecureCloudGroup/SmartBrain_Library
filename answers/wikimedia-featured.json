@@ -14,7 +14,8 @@
       "primary": true,
       "kind": "value",
       "path": "tfa.normalizedtitle",
-      "type": "text"
+      "type": "text",
+      "window": "today"
     },
     {
       "name": "article_about",
@@ -27,7 +28,8 @@
       "primary": true,
       "kind": "value",
       "path": "tfa.description",
-      "type": "text"
+      "type": "text",
+      "window": "today"
     },
     {
       "name": "article_summary",
@@ -40,7 +42,8 @@
       "primary": true,
       "kind": "value",
       "path": "tfa.extract",
-      "type": "text"
+      "type": "text",
+      "window": "today"
     },
     {
       "name": "most_read",
@@ -81,7 +84,8 @@
       "primary": false,
       "kind": "value",
       "path": "image.description.text",
-      "type": "text"
+      "type": "text",
+      "window": "today"
     }
   ],
   "sample_url": "https://api.wikimedia.org/feed/v1/wikipedia/en/featured/2026/09/27",

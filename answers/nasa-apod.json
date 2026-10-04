@@ -14,7 +14,8 @@
       "primary": true,
       "kind": "value",
       "path": "title",
-      "type": "text"
+      "type": "text",
+      "window": "today"
     },
     {
       "name": "image_url",
@@ -27,7 +28,8 @@
       "primary": false,
       "kind": "value",
       "path": "url",
-      "type": "text"
+      "type": "text",
+      "window": "today"
     },
     {
       "name": "explanation",
@@ -42,7 +44,8 @@
       "primary": true,
       "kind": "value",
       "path": "explanation",
-      "type": "text"
+      "type": "text",
+      "window": "today"
     },
     {
       "name": "date",
@@ -56,7 +59,8 @@
       "primary": false,
       "kind": "value",
       "path": "date",
-      "type": "text"
+      "type": "text",
+      "window": "today"
     },
     {
       "name": "media_type",
@@ -70,7 +74,8 @@
       "primary": false,
       "kind": "value",
       "path": "media_type",
-      "type": "text"
+      "type": "text",
+      "window": "today"
     }
   ],
   "sample_url": "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY",

@@ -47,7 +47,8 @@
       "primary": false,
       "kind": "value",
       "path": "count",
-      "type": "number"
+      "type": "number",
+      "window": "latest"
     }
   ],
   "sample_url": "https://hub.docker.com/v2/repositories/library/postgres/tags?page_size=10&ordering=last_updated",

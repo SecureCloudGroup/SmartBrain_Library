@@ -41,7 +41,11 @@
      "unit_path": "daily_units.precipitation_sum"
     }
    ],
-   "limit": 31
+   "limit": 31,
+   "axis": {
+    "cell": "daily.time",
+    "step": "day"
+   }
   },
   {
    "name": "rainfall",
@@ -69,7 +73,11 @@
      "unit_path": "daily_units.precipitation_sum"
     }
    ],
-   "limit": 31
+   "limit": 31,
+   "axis": {
+    "cell": "daily.time",
+    "step": "day"
+   }
   }
  ],
  "sample_url": "https://archive-api.open-meteo.com/v1/archive?latitude=32.7765&longitude=-79.9311&start_date=2026-09-01&end_date=2026-09-20&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&temperature_unit=fahrenheit&precipitation_unit=inch&timezone=auto",

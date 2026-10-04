@@ -13,7 +13,8 @@
       "primary": false,
       "kind": "value",
       "path": "studies[0].protocolSection.identificationModule.briefTitle",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "trials",

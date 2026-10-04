@@ -14,7 +14,8 @@
       "primary": false,
       "kind": "value",
       "path": "items[0].id",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "models",

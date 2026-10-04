@@ -50,7 +50,8 @@
       "kind": "value",
       "path": "results[0].current_total_budget_authority_amount",
       "type": "number",
-      "unit": "USD"
+      "unit": "USD",
+      "window": "latest"
     },
     {
       "name": "fiscal_year",
@@ -63,7 +64,8 @@
       "primary": false,
       "kind": "value",
       "path": "results[0].active_fy",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     }
   ],
   "sample_url": "https://api.usaspending.gov/api/v2/references/toptier_agencies/?sort=obligated_amount&order=desc",

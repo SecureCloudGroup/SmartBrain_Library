@@ -16,7 +16,9 @@
       "primary": true,
       "kind": "value",
       "path": "current.us_aqi",
-      "type": "number"
+      "type": "number",
+      "window": "now",
+      "measure": "air_quality"
     },
     {
       "name": "pm2_5",
@@ -34,7 +36,8 @@
       "kind": "value",
       "path": "current.pm2_5",
       "type": "number",
-      "unit_path": "current_units.pm2_5"
+      "unit_path": "current_units.pm2_5",
+      "window": "now"
     },
     {
       "name": "pm10",
@@ -50,7 +53,8 @@
       "kind": "value",
       "path": "current.pm10",
       "type": "number",
-      "unit_path": "current_units.pm10"
+      "unit_path": "current_units.pm10",
+      "window": "now"
     },
     {
       "name": "ozone",
@@ -65,7 +69,8 @@
       "kind": "value",
       "path": "current.ozone",
       "type": "number",
-      "unit_path": "current_units.ozone"
+      "unit_path": "current_units.ozone",
+      "window": "now"
     },
     {
       "name": "aqi_hourly",
@@ -93,7 +98,11 @@
           "type": "number"
         }
       ],
-      "limit": 24
+      "limit": 24,
+      "axis": {
+        "cell": "hourly.time",
+        "step": "hour"
+      }
     }
   ],
   "sample_url": "https://air-quality-api.open-meteo.com/v1/air-quality?latitude=32.7765&longitude=-79.9311&current=us_aqi,pm2_5,pm10,ozone&hourly=us_aqi&timezone=auto",

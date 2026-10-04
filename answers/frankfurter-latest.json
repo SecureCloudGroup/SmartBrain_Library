@@ -18,7 +18,8 @@
       "primary": true,
       "kind": "value",
       "path": "rates.{quote}",
-      "type": "number"
+      "type": "number",
+      "window": "latest"
     },
     {
       "name": "rate_date",
@@ -33,7 +34,8 @@
       "primary": true,
       "kind": "value",
       "path": "date",
-      "type": "date"
+      "type": "date",
+      "window": "latest"
     }
   ],
   "sample_url": "https://api.frankfurter.dev/v1/latest?base=USD&symbols=EUR",

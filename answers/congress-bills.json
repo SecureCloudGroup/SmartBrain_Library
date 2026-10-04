@@ -32,7 +32,11 @@
           "label": "Action date",
           "type": "date"
         }
-      ]
+      ],
+      "axis": {
+        "cell": "latestAction.actionDate",
+        "step": "day"
+      }
     },
     {
       "name": "introduced",
@@ -62,7 +66,11 @@
           "label": "Introduced",
           "type": "date"
         }
-      ]
+      ],
+      "axis": {
+        "cell": "introducedDate",
+        "step": "day"
+      }
     }
   ],
   "sample_url": "https://api.congress.gov/v3/bill?api_key=DEMO_KEY&limit=20&sort=updateDate+desc&format=json",

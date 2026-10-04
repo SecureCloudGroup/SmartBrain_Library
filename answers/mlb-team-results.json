@@ -31,7 +31,8 @@
     {"path": "games[0].status.detailedState", "label": "Status", "type": "text"}
    ],
    "newest_first": true,
-   "may_be_empty": true
+   "may_be_empty": true,
+   "axis": {"cell": "date", "step": "day"}
   }
  ],
  "sample_url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=147&startDate=2026-09-21&endDate=2026-09-28",

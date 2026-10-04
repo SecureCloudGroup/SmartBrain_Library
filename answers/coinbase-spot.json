@@ -19,7 +19,8 @@
       "kind": "value",
       "path": "data.amount",
       "type": "number",
-      "unit_path": "data.currency"
+      "unit_path": "data.currency",
+      "window": "now"
     },
     {
       "name": "asset",
@@ -34,7 +35,8 @@
       "primary": false,
       "kind": "value",
       "path": "data.base",
-      "type": "text"
+      "type": "text",
+      "window": "now"
     }
   ],
   "sample_url": "https://api.coinbase.com/v2/prices/BTC-USD/spot",

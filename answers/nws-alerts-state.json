@@ -48,13 +48,14 @@
         "count",
         "number of alerts",
         "how many warnings",
-        "right now",
-        "any alerts"
+        "right now"
       ],
       "primary": false,
       "kind": "value",
       "path": "features",
-      "type": "count"
+      "type": "count",
+      "window": "now",
+      "measure": "alerts"
     }
   ],
   "sample_url": "https://api.weather.gov/alerts/active?area=AK",

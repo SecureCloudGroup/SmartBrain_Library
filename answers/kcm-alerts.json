@@ -52,7 +52,8 @@
     "count"
    ],
    "path": "entity",
-   "type": "count"
+   "type": "count",
+   "window": "now"
   }
  ],
  "sample_url": "https://s3.amazonaws.com/kcm-alerts-realtime-prod/alerts_pb.json",

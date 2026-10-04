@@ -32,7 +32,11 @@
           "label": "Recalled",
           "type": "date"
         }
-      ]
+      ],
+      "axis": {
+        "cell": "RecallDate",
+        "step": "day"
+      }
     },
     {
       "name": "hazards",
@@ -77,7 +81,8 @@
       "primary": false,
       "kind": "value",
       "path": "items",
-      "type": "count"
+      "type": "count",
+      "window": "latest"
     }
   ],
   "sample_url": "https://www.saferproducts.gov/RestWebServices/Recall?format=json&RecallDateStart=2026-09-01",

@@ -54,7 +54,8 @@
       "primary": false,
       "kind": "value",
       "path": "items[0].title",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "top_deal_price",
@@ -68,7 +69,8 @@
       "kind": "value",
       "path": "items[0].salePrice",
       "type": "number",
-      "unit": "USD"
+      "unit": "USD",
+      "window": "latest"
     }
   ],
   "sample_url": "https://www.cheapshark.com/api/1.0/deals?pageSize=15&sortBy=Deal%20Rating",

@@ -17,7 +17,8 @@
       "kind": "value",
       "path": "data[0].v",
       "type": "number",
-      "unit": "ft"
+      "unit": "ft",
+      "window": "now"
     },
     {
       "name": "observed_at",
@@ -32,7 +33,8 @@
       "primary": true,
       "kind": "value",
       "path": "data[0].t",
-      "type": "time"
+      "type": "time",
+      "window": "now"
     },
     {
       "name": "station",
@@ -47,7 +49,8 @@
       "primary": false,
       "kind": "value",
       "path": "metadata.name",
-      "type": "text"
+      "type": "text",
+      "window": "now"
     }
   ],
   "sample_url": "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?application=SmartBrain&station=8665530&time_zone=lst_ldt&units=english&format=json&product=water_level&datum=MLLW&date=latest",

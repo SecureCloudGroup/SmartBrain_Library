@@ -37,7 +37,11 @@
           "label": "Declared",
           "type": "date"
         }
-      ]
+      ],
+      "axis": {
+        "cell": "declarationDate",
+        "step": "day"
+      }
     },
     {
       "name": "latest_title",
@@ -51,7 +55,8 @@
       "primary": false,
       "kind": "value",
       "path": "DisasterDeclarationsSummaries[0].declarationTitle",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     }
   ],
   "sample_url": "https://www.fema.gov/api/open/v2/DisasterDeclarationsSummaries?$filter=state%20eq%20%27FL%27&$orderby=declarationDate%20desc&$top=20",

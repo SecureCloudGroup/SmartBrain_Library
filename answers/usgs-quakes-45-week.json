@@ -45,13 +45,13 @@
         "how many",
         "count",
         "number of earthquakes",
-        "any earthquakes",
         "total"
       ],
       "primary": false,
       "kind": "value",
       "path": "features",
-      "type": "count"
+      "type": "count",
+      "window": "latest"
     }
   ],
   "sample_url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson",

@@ -21,7 +21,8 @@
       "primary": true,
       "kind": "value",
       "path": "result.releases[0].label",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "first_released",
@@ -36,7 +37,8 @@
       "primary": true,
       "kind": "value",
       "path": "result.releases[0].releaseDate",
-      "type": "date"
+      "type": "date",
+      "window": "latest"
     },
     {
       "name": "releases",

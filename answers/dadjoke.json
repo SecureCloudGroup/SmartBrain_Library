@@ -15,7 +15,8 @@
       "primary": true,
       "kind": "value",
       "path": "attachments[0].text",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     }
   ],
   "sample_url": "https://icanhazdadjoke.com/slack",

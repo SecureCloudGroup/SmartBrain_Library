@@ -17,7 +17,8 @@
     "today"
    ],
    "path": "rows[0].SP500",
-   "type": "number"
+   "type": "number",
+   "window": "latest"
   },
   {
    "name": "as_of",
@@ -31,7 +32,8 @@
     "updated"
    ],
    "path": "rows[0].observation_date",
-   "type": "date"
+   "type": "date",
+   "window": "latest"
   },
   {
    "name": "recent",
@@ -58,7 +60,11 @@
      "label": "S&P 500 (close)",
      "type": "number"
     }
-   ]
+   ],
+   "axis": {
+    "cell": "observation_date",
+    "step": "day"
+   }
   }
  ],
  "sample_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=SP500",

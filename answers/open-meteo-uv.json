@@ -20,7 +20,9 @@
    "primary": true,
    "kind": "value",
    "path": "daily.uv_index_max[0]",
-   "type": "number"
+   "type": "number",
+   "window": "today",
+   "measure": "uv"
   },
   {
    "name": "uv_now",
@@ -36,7 +38,9 @@
    "primary": true,
    "kind": "value",
    "path": "current.uv_index",
-   "type": "number"
+   "type": "number",
+   "window": "now",
+   "measure": "uv"
   },
   {
    "name": "uv_max_tomorrow",
@@ -50,7 +54,9 @@
    "primary": false,
    "kind": "value",
    "path": "daily.uv_index_max[1]",
-   "type": "number"
+   "type": "number",
+   "window": "tomorrow",
+   "measure": "uv"
   },
   {
    "name": "uv_daily",
@@ -76,7 +82,11 @@
      "type": "number"
     }
    ],
-   "limit": 7
+   "limit": 7,
+   "axis": {
+    "cell": "daily.time",
+    "step": "day"
+   }
   }
  ],
  "sample_url": "https://api.open-meteo.com/v1/forecast?latitude=32.7765&longitude=-79.9311&current=uv_index&daily=uv_index_max&timezone=auto",

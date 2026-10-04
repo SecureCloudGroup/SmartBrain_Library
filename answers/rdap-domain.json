@@ -42,7 +42,8 @@
       "primary": false,
       "kind": "value",
       "path": "ldhName",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "nameservers",

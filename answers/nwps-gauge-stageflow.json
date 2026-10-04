@@ -30,7 +30,11 @@
           "unit": "ft"
         }
       ],
-      "newest_first": true
+      "newest_first": true,
+      "axis": {
+        "cell": "validTime",
+        "step": "hour"
+      }
     },
     {
       "name": "forecast",
@@ -60,7 +64,11 @@
           "unit": "ft"
         }
       ],
-      "may_be_empty": true
+      "may_be_empty": true,
+      "axis": {
+        "cell": "validTime",
+        "step": "hour"
+      }
     },
     {
       "name": "measure",
@@ -73,7 +81,8 @@
       "primary": false,
       "kind": "value",
       "path": "observed.primaryName",
-      "type": "text"
+      "type": "text",
+      "window": "now"
     }
   ],
   "sample_url": "https://api.water.noaa.gov/nwps/v1/gauges/ACFS1/stageflow",

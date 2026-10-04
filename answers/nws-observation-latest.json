@@ -20,7 +20,9 @@
       "kind": "value",
       "path": "properties.temperature.value",
       "type": "number",
-      "unit": "°C"
+      "unit": "°C",
+      "window": "now",
+      "measure": "temperature"
     },
     {
       "name": "conditions",
@@ -38,7 +40,9 @@
       "primary": true,
       "kind": "value",
       "path": "properties.textDescription",
-      "type": "text"
+      "type": "text",
+      "window": "now",
+      "measure": "conditions"
     },
     {
       "name": "humidity",
@@ -54,7 +58,9 @@
       "kind": "value",
       "path": "properties.relativeHumidity.value",
       "type": "number",
-      "unit": "%"
+      "unit": "%",
+      "window": "now",
+      "measure": "humidity"
     },
     {
       "name": "wind",
@@ -70,7 +76,9 @@
       "kind": "value",
       "path": "properties.windSpeed.value",
       "type": "number",
-      "unit": "km/h"
+      "unit": "km/h",
+      "window": "now",
+      "measure": "wind"
     },
     {
       "name": "dewpoint",
@@ -86,7 +94,8 @@
       "kind": "value",
       "path": "properties.dewpoint.value",
       "type": "number",
-      "unit": "°C"
+      "unit": "°C",
+      "window": "now"
     },
     {
       "name": "wind_direction",
@@ -102,7 +111,8 @@
       "kind": "value",
       "path": "properties.windDirection.value",
       "type": "number",
-      "unit": "°"
+      "unit": "°",
+      "window": "now"
     },
     {
       "name": "pressure",
@@ -118,7 +128,8 @@
       "kind": "value",
       "path": "properties.barometricPressure.value",
       "type": "number",
-      "unit": "Pa"
+      "unit": "Pa",
+      "window": "now"
     },
     {
       "name": "observed_at",
@@ -133,7 +144,8 @@
       "primary": false,
       "kind": "value",
       "path": "properties.timestamp",
-      "type": "time"
+      "type": "time",
+      "window": "now"
     },
     {
       "name": "station_name",
@@ -148,7 +160,8 @@
       "primary": false,
       "kind": "value",
       "path": "properties.stationName",
-      "type": "text"
+      "type": "text",
+      "window": "now"
     }
   ],
   "sample_url": "https://api.weather.gov/stations/KCHS/observations/latest",

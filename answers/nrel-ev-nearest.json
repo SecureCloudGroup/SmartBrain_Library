@@ -54,7 +54,8 @@
       "primary": false,
       "kind": "value",
       "path": "total_results",
-      "type": "number"
+      "type": "number",
+      "window": "latest"
     }
   ],
   "sample_url": "https://developer.nlr.gov/api/alt-fuel-stations/v1/nearest.json?api_key=DEMO_KEY&latitude=32.7765&longitude=-79.9311&fuel_type=ELEC&limit=10",

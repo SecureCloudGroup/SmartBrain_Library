@@ -54,7 +54,8 @@
       "primary": false,
       "kind": "value",
       "path": "year",
-      "type": "number"
+      "type": "number",
+      "window": "latest"
     }
   ],
   "sample_url": "https://aa.usno.navy.mil/api/seasons?year=2026",

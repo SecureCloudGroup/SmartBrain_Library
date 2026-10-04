@@ -22,7 +22,7 @@
         {
           "path": "time_tag",
           "label": "Time (UTC)",
-          "type": "text"
+          "type": "time"
         },
         {
           "path": "Kp",
@@ -30,7 +30,11 @@
           "type": "number"
         }
       ],
-      "newest_first": true
+      "newest_first": true,
+      "axis": {
+        "cell": "time_tag",
+        "step": "hour"
+      }
     }
   ],
   "sample_url": "https://services.swpc.noaa.gov/products/noaa-planetary-k-index.json",

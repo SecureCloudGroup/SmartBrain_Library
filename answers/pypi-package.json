@@ -15,7 +15,8 @@
       "primary": true,
       "kind": "value",
       "path": "info.version",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "summary",
@@ -29,7 +30,8 @@
       "primary": false,
       "kind": "value",
       "path": "info.summary",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "requires_python",
@@ -43,7 +45,8 @@
       "primary": false,
       "kind": "value",
       "path": "info.requires_python",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "released",
@@ -58,7 +61,8 @@
       "primary": false,
       "kind": "value",
       "path": "urls[0].upload_time_iso_8601",
-      "type": "time"
+      "type": "time",
+      "window": "latest"
     }
   ],
   "sample_url": "https://pypi.org/pypi/requests/json",

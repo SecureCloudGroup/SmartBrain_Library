@@ -36,7 +36,11 @@
           "label": "Recall started",
           "type": "date"
         }
-      ]
+      ],
+      "axis": {
+        "cell": "event_date_initiated",
+        "step": "day"
+      }
     },
     {
       "name": "total",
@@ -50,7 +54,8 @@
       "primary": false,
       "kind": "value",
       "path": "meta.results.total",
-      "type": "number"
+      "type": "number",
+      "window": "latest"
     }
   ],
   "sample_url": "https://api.fda.gov/device/recall.json?sort=event_date_initiated:desc&limit=20",

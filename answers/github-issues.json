@@ -13,7 +13,8 @@
       "primary": false,
       "kind": "value",
       "path": "items[0].title",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "issues",
@@ -51,7 +52,11 @@
           "label": "Comments",
           "type": "number"
         }
-      ]
+      ],
+      "axis": {
+        "cell": "created_at",
+        "step": "hour"
+      }
     }
   ],
   "sample_url": "https://api.github.com/repos/python/cpython/issues?state=open&per_page=20",

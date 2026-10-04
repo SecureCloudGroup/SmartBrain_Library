@@ -51,7 +51,8 @@
       "primary": false,
       "kind": "value",
       "path": "pagination.count",
-      "type": "number"
+      "type": "number",
+      "window": "latest"
     }
   ],
   "sample_url": "https://api.open.fec.gov/v1/candidates/?api_key=DEMO_KEY&election_year=2026&office=S&per_page=20",

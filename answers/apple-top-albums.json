@@ -50,7 +50,8 @@
       "primary": false,
       "kind": "value",
       "path": "feed.results[0].name",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "number_one_by",
@@ -63,7 +64,8 @@
       "primary": false,
       "kind": "value",
       "path": "feed.results[0].artistName",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     }
   ],
   "sample_url": "https://rss.marketingtools.apple.com/api/v2/us/music/most-played/25/albums.json",

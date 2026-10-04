@@ -22,7 +22,7 @@
         {
           "path": "DATE",
           "label": "Day",
-          "type": "text"
+          "type": "date"
         },
         {
           "path": "TMAX",
@@ -43,7 +43,11 @@
           "unit": "in"
         }
       ],
-      "newest_first": true
+      "newest_first": true,
+      "axis": {
+        "cell": "DATE",
+        "step": "day"
+      }
     },
     {
       "name": "day_count",
@@ -57,7 +61,8 @@
       "primary": false,
       "kind": "value",
       "path": "items",
-      "type": "count"
+      "type": "count",
+      "window": "latest"
     }
   ],
   "sample_url": "https://www.ncei.noaa.gov/access/services/data/v1?dataset=daily-summaries&stations=USW00013880&startDate=2026-09-01&endDate=2026-09-20&dataTypes=TMAX,TMIN,PRCP&units=standard&format=json",

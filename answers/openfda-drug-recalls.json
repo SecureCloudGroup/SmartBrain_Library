@@ -51,7 +51,8 @@
       "primary": false,
       "kind": "value",
       "path": "meta.results.total",
-      "type": "number"
+      "type": "number",
+      "window": "latest"
     }
   ],
   "sample_url": "https://api.fda.gov/drug/enforcement.json?sort=report_date:desc&limit=20",

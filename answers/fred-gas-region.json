@@ -9,7 +9,8 @@
    "words": ["gas prices", "gas price", "regular gas", "gasoline", "price per gallon", "regional average", "latest", "current", "now", "today"],
    "path": "rows[0].{gas_series}",
    "type": "number",
-   "unit": "$/gal"
+   "unit": "$/gal",
+   "window": "latest"
   },
   {
    "name": "as_of",
@@ -18,7 +19,8 @@
    "primary": true,
    "words": ["as of", "when", "date", "week", "last updated"],
    "path": "rows[0].observation_date",
-   "type": "date"
+   "type": "date",
+   "window": "latest"
   },
   {
    "name": "recent",
@@ -29,7 +31,8 @@
    "row": [
     {"path": "observation_date", "label": "Week of", "type": "date"},
     {"path": "{gas_series}", "label": "Regional average", "type": "number", "unit": "$/gal"}
-   ]
+   ],
+   "axis": {"cell": "observation_date", "step": "day"}
   }
  ],
  "sample_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=GASREGMWW",

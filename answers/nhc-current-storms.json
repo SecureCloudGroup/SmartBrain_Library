@@ -13,7 +13,11 @@
         "name",
         "category",
         "wind",
-        "active storms"
+        "active storms",
+        "any hurricanes",
+        "any storms",
+        "tropics",
+        "named storms"
       ],
       "primary": true,
       "kind": "list",
@@ -48,17 +52,18 @@
       "label": "Active storms",
       "words": [
         "how many",
-        "any hurricanes",
-        "any storms",
         "count",
-        "number of storms"
+        "number of storms",
+        "how many hurricanes",
+        "how many storms"
       ],
       "primary": false,
       "kind": "value",
       "path": "activeStorms",
-      "type": "count"
+      "type": "count",
+      "window": "now"
     }
   ],
   "sample_url": "https://www.nhc.noaa.gov/CurrentStorms.json",
-  "checked": "2026-09-28"
+  "checked": "2026-09-29"
 }

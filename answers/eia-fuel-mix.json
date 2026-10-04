@@ -51,7 +51,8 @@
       "primary": false,
       "kind": "value",
       "path": "response.data[0].respondent-name",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     }
   ],
   "sample_url": "https://api.eia.gov/v2/electricity/rto/fuel-type-data/data/?api_key=DEMO_KEY&frequency=hourly&data[0]=value&facets[respondent][]=CISO&sort[0][column]=period&sort[0][direction]=desc&length=48",

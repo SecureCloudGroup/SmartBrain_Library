@@ -72,7 +72,8 @@
       "primary": false,
       "kind": "value",
       "path": "Count",
-      "type": "number"
+      "type": "number",
+      "window": "latest"
     }
   ],
   "sample_url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=honda&model=accord&modelYear=2020",

@@ -50,7 +50,8 @@
       "primary": false,
       "kind": "value",
       "path": "standingsDateTimeUtc",
-      "type": "time"
+      "type": "time",
+      "window": "latest"
     }
   ],
   "sample_url": "https://api-web.nhle.com/v1/standings/now",

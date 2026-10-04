@@ -32,7 +32,11 @@
           "label": "Released",
           "type": "time"
         }
-      ]
+      ],
+      "axis": {
+        "cell": "airstamp",
+        "step": "hour"
+      }
     },
     {
       "name": "episode_count",
@@ -45,7 +49,8 @@
       "primary": false,
       "kind": "value",
       "path": "items",
-      "type": "count"
+      "type": "count",
+      "window": "today"
     }
   ],
   "sample_url": "https://api.tvmaze.com/schedule/web?date=2026-09-27&country=US",

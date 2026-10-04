@@ -56,7 +56,8 @@
       "primary": false,
       "kind": "value",
       "path": "element_count",
-      "type": "number"
+      "type": "number",
+      "window": "latest"
     }
   ],
   "sample_url": "https://api.nasa.gov/neo/rest/v1/feed?start_date=2026-09-27&api_key=DEMO_KEY",

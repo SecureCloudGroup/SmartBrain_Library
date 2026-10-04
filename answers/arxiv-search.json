@@ -29,7 +29,11 @@
      "type": "time"
     }
    ],
-   "may_be_empty": false
+   "may_be_empty": false,
+   "axis": {
+    "cell": "published",
+    "step": "hour"
+   }
   }
  ],
  "sample_url": "https://export.arxiv.org/api/query?search_query=all:diffusion&sortBy=submittedDate&sortOrder=descending&max_results=10",

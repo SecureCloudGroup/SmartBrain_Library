@@ -39,7 +39,11 @@
           "label": "Where",
           "type": "text"
         }
-      ]
+      ],
+      "axis": {
+        "cell": "observed_on",
+        "step": "day"
+      }
     },
     {
       "name": "observation_count",
@@ -53,7 +57,8 @@
       "primary": false,
       "kind": "value",
       "path": "total_results",
-      "type": "number"
+      "type": "number",
+      "window": "latest"
     }
   ],
   "sample_url": "https://api.inaturalist.org/v1/observations?lat=32.7765&lng=-79.9311&radius=10&order_by=observed_on&per_page=20",

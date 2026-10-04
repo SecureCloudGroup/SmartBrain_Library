@@ -78,7 +78,8 @@
       "primary": false,
       "kind": "value",
       "path": "meta.results.total",
-      "type": "number"
+      "type": "number",
+      "window": "latest"
     }
   ],
   "sample_url": "https://api.fda.gov/drug/shortages.json?sort=update_date:desc&limit=20",

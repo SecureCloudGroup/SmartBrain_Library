@@ -40,7 +40,8 @@
       "primary": false,
       "kind": "value",
       "path": "dataset",
-      "type": "count"
+      "type": "count",
+      "window": "latest"
     }
   ],
   "sample_url": "https://api.census.gov/data.json",

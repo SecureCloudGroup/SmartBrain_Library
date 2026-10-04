@@ -38,7 +38,11 @@
           "label": "Where",
           "type": "text"
         }
-      ]
+      ],
+      "axis": {
+        "cell": "date",
+        "step": "day"
+      }
     },
     {
       "name": "next_event",
@@ -52,7 +56,8 @@
       "primary": false,
       "kind": "value",
       "path": "results[0].name",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "next_event_date",
@@ -66,7 +71,8 @@
       "primary": false,
       "kind": "value",
       "path": "results[0].date",
-      "type": "time"
+      "type": "time",
+      "window": "latest"
     }
   ],
   "sample_url": "https://ll.thespacedevs.com/2.3.0/events/upcoming/?limit=10",

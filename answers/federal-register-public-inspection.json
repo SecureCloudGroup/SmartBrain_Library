@@ -32,7 +32,11 @@
           "label": "Publishes",
           "type": "date"
         }
-      ]
+      ],
+      "axis": {
+        "cell": "publication_date",
+        "step": "day"
+      }
     },
     {
       "name": "upcoming_count",
@@ -45,7 +49,8 @@
       "primary": false,
       "kind": "value",
       "path": "count",
-      "type": "number"
+      "type": "number",
+      "window": "latest"
     }
   ],
   "sample_url": "https://www.federalregister.gov/api/v1/public-inspection-documents/current.json",

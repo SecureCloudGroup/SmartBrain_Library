@@ -1,0 +1,166 @@
+{
+  "source_id": "ndbc-buoy-waves",
+  "answers": [
+    {
+      "name": "wave_height",
+      "label": "Wave height",
+      "words": [
+        "wave height",
+        "waves",
+        "surf",
+        "surf report",
+        "seas",
+        "buoy wave height",
+        "how rough",
+        "how big are the waves",
+        "surf height",
+        "wave size"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "rows[0].WVHT",
+      "type": "number",
+      "unit": "m",
+      "window": "now",
+      "measure": "waves"
+    },
+    {
+      "name": "swell_height",
+      "label": "Swell height",
+      "words": [
+        "swell",
+        "swell height",
+        "groundswell",
+        "how big is the swell"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "rows[0].SwH",
+      "type": "number",
+      "unit": "m",
+      "window": "now",
+      "measure": "swell"
+    },
+    {
+      "name": "swell_period",
+      "label": "Swell period",
+      "words": [
+        "swell period",
+        "period",
+        "seconds between waves",
+        "wave period"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "rows[0].SwP",
+      "type": "number",
+      "unit": "s",
+      "window": "now"
+    },
+    {
+      "name": "swell_direction",
+      "label": "Swell direction",
+      "words": [
+        "swell direction",
+        "swell from",
+        "which way is the swell"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "rows[0].SwD",
+      "type": "text",
+      "window": "now",
+      "measure": "wave_direction"
+    },
+    {
+      "name": "wave_direction",
+      "label": "Wave direction",
+      "words": [
+        "wave direction",
+        "waves from",
+        "which way are the waves",
+        "mean wave direction"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "rows[0].MWD",
+      "type": "number",
+      "unit": "°",
+      "window": "now",
+      "measure": "wave_direction"
+    },
+    {
+      "name": "wind_wave_height",
+      "label": "Wind-wave height",
+      "words": [
+        "wind waves",
+        "wind chop",
+        "chop",
+        "choppy"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "rows[0].WWH",
+      "type": "number",
+      "unit": "m",
+      "window": "now"
+    },
+    {
+      "name": "average_period",
+      "label": "Average wave period",
+      "words": [
+        "average period",
+        "average wave period",
+        "mean period"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "rows[0].APD",
+      "type": "number",
+      "unit": "s",
+      "window": "now"
+    },
+    {
+      "name": "recent",
+      "label": "Recent wave readings (UTC hour)",
+      "words": [
+        "recent",
+        "trend",
+        "last few hours",
+        "wave history",
+        "building",
+        "dropping"
+      ],
+      "primary": false,
+      "kind": "list",
+      "path": "rows",
+      "row": [
+        {
+          "path": "hh",
+          "label": "Hour (UTC)",
+          "type": "number"
+        },
+        {
+          "path": "WVHT",
+          "label": "Wave height",
+          "type": "number",
+          "unit": "m"
+        },
+        {
+          "path": "SwH",
+          "label": "Swell",
+          "type": "number",
+          "unit": "m"
+        },
+        {
+          "path": "SwP",
+          "label": "Swell period",
+          "type": "number",
+          "unit": "s"
+        }
+      ]
+    }
+  ],
+  "sample_url": "https://www.ndbc.noaa.gov/data/realtime2/41004.spec",
+  "checked": "2026-09-29"
+}

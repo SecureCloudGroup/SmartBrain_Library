@@ -41,7 +41,9 @@
       "primary": false,
       "kind": "value",
       "path": "items[5].UV_VALUE",
-      "type": "number"
+      "type": "number",
+      "window": "today",
+      "measure": "uv"
     },
     {
       "name": "uv_1pm",
@@ -55,7 +57,9 @@
       "primary": false,
       "kind": "value",
       "path": "items[6].UV_VALUE",
-      "type": "number"
+      "type": "number",
+      "window": "today",
+      "measure": "uv"
     }
   ],
   "sample_url": "https://data.epa.gov/efservice/getEnvirofactsUVHOURLY/ZIP/29401/JSON",

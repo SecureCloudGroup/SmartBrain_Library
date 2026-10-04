@@ -53,7 +53,8 @@
     "count"
    ],
    "path": "data",
-   "type": "count"
+   "type": "count",
+   "window": "now"
   }
  ],
  "sample_url": "https://api-v3.mbta.com/alerts?filter[route_type]=0,1,2&filter[datetime]=NOW&sort=-severity&fields[alert]=header,service_effect,effect,severity,updated_at",

@@ -46,7 +46,8 @@
       "primary": false,
       "kind": "value",
       "path": "numFound",
-      "type": "number"
+      "type": "number",
+      "window": "latest"
     },
     {
       "name": "top_author",
@@ -59,7 +60,8 @@
       "primary": false,
       "kind": "value",
       "path": "docs[0].author_name[0]",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     }
   ],
   "sample_url": "https://openlibrary.org/search.json?q=project%20hail%20mary&limit=5",

@@ -14,7 +14,8 @@
       "primary": true,
       "kind": "value",
       "path": "events[0].strEvent",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "next_time",
@@ -29,7 +30,8 @@
       "primary": true,
       "kind": "value",
       "path": "events[0].strTimestamp",
-      "type": "time", "utc": true
+      "type": "time", "utc": true,
+      "window": "latest"
     },
     {
       "name": "next_venue",
@@ -43,7 +45,8 @@
       "primary": true,
       "kind": "value",
       "path": "events[0].strVenue",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "upcoming",
@@ -75,7 +78,8 @@
           "label": "Venue",
           "type": "text"
         }
-      ]
+      ],
+      "axis": {"cell": "strTimestamp", "step": "day"}
     }
   ],
   "sample_url": "https://www.thesportsdb.com/api/v1/json/123/eventsnextleague.php?id=4391",

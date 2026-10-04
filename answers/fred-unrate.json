@@ -16,7 +16,8 @@
    ],
    "path": "rows[0].UNRATE",
    "type": "number",
-   "unit": "%"
+   "unit": "%",
+   "window": "latest"
   },
   {
    "name": "as_of",
@@ -30,7 +31,8 @@
     "updated"
    ],
    "path": "rows[0].observation_date",
-   "type": "date"
+   "type": "date",
+   "window": "latest"
   },
   {
    "name": "recent",
@@ -58,7 +60,11 @@
      "type": "number",
      "unit": "%"
     }
-   ]
+   ],
+   "axis": {
+    "cell": "observation_date",
+    "step": "day"
+   }
   }
  ],
  "sample_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=UNRATE",

@@ -38,7 +38,11 @@
           "label": "Due",
           "type": "date"
         }
-      ]
+      ],
+      "axis": {
+        "cell": "dateAdded",
+        "step": "day"
+      }
     },
     {
       "name": "catalog_count",
@@ -52,7 +56,8 @@
       "primary": false,
       "kind": "value",
       "path": "count",
-      "type": "number"
+      "type": "number",
+      "window": "latest"
     },
     {
       "name": "catalog_version",
@@ -66,7 +71,8 @@
       "primary": false,
       "kind": "value",
       "path": "catalogVersion",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "catalog_released",
@@ -80,7 +86,8 @@
       "primary": false,
       "kind": "value",
       "path": "dateReleased",
-      "type": "time"
+      "type": "time",
+      "window": "latest"
     }
   ],
   "sample_url": "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json",

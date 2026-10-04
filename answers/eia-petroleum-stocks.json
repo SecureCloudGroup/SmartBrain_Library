@@ -49,7 +49,8 @@
       "primary": false,
       "kind": "value",
       "path": "response.data[0].period",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     }
   ],
   "sample_url": "https://api.eia.gov/v2/petroleum/stoc/wstk/data/?api_key=DEMO_KEY&frequency=weekly&data[0]=value&sort[0][column]=period&sort[0][direction]=desc&length=20",

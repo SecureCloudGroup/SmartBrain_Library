@@ -50,7 +50,8 @@
       "primary": false,
       "kind": "value",
       "path": "name",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "industry",
@@ -64,7 +65,8 @@
       "primary": false,
       "kind": "value",
       "path": "sicDescription",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     }
   ],
   "sample_url": "https://data.sec.gov/submissions/CIK0000320193.json",

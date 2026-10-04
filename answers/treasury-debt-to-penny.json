@@ -17,7 +17,8 @@
       "kind": "value",
       "path": "data[0].tot_pub_debt_out_amt",
       "type": "number",
-      "unit": "USD"
+      "unit": "USD",
+      "window": "latest"
     },
     {
       "name": "as_of",
@@ -32,7 +33,8 @@
       "primary": true,
       "kind": "value",
       "path": "data[0].record_date",
-      "type": "text"
+      "type": "date",
+      "window": "latest"
     },
     {
       "name": "held_by_public",
@@ -47,7 +49,8 @@
       "kind": "value",
       "path": "data[0].debt_held_public_amt",
       "type": "number",
-      "unit": "USD"
+      "unit": "USD",
+      "window": "latest"
     },
     {
       "name": "intragov",
@@ -63,7 +66,8 @@
       "kind": "value",
       "path": "data[0].intragov_hold_amt",
       "type": "number",
-      "unit": "USD"
+      "unit": "USD",
+      "window": "latest"
     },
     {
       "name": "history",
@@ -83,7 +87,7 @@
         {
           "path": "record_date",
           "label": "Date",
-          "type": "text"
+          "type": "date"
         },
         {
           "path": "tot_pub_debt_out_amt",
@@ -91,7 +95,11 @@
           "type": "number",
           "unit": "USD"
         }
-      ]
+      ],
+      "axis": {
+        "cell": "record_date",
+        "step": "day"
+      }
     }
   ],
   "sample_url": "https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/debt_to_penny?sort=-record_date&page[size]=10",

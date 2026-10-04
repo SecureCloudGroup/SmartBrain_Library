@@ -1,0 +1,78 @@
+{
+  "source_id": "ny-pick10",
+  "answers": [
+    {
+      "name": "winning_numbers",
+      "label": "Winning numbers",
+      "words": [
+        "winning numbers",
+        "numbers",
+        "results",
+        "last night",
+        "latest",
+        "what hit",
+        "drawn",
+        "check my ticket",
+        "pick 10",
+        "all 20 numbers"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "items[0].winning_numbers",
+      "type": "text",
+      "window": "latest"
+    },
+    {
+      "name": "draw_date",
+      "label": "Draw date",
+      "words": [
+        "draw date",
+        "when",
+        "which drawing",
+        "last drawing",
+        "date"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "items[0].draw_date",
+      "type": "date",
+      "window": "latest"
+    },
+    {
+      "name": "recent",
+      "label": "Recent draws",
+      "words": [
+        "recent",
+        "past draws",
+        "previous",
+        "history",
+        "last few",
+        "this week",
+        "yesterday",
+        "saturday",
+        "wednesday"
+      ],
+      "primary": false,
+      "kind": "list",
+      "path": "items",
+      "row": [
+        {
+          "path": "draw_date",
+          "label": "Draw",
+          "type": "date"
+        },
+        {
+          "path": "winning_numbers",
+          "label": "Numbers",
+          "type": "text"
+        }
+      ],
+      "axis": {
+        "cell": "draw_date",
+        "step": "day"
+      }
+    }
+  ],
+  "sample_url": "https://data.ny.gov/resource/bycu-cw7c.json?$order=draw_date%20DESC&$limit=10",
+  "checked": "2026-09-29"
+}

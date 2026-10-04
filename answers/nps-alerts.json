@@ -42,13 +42,13 @@
       "words": [
         "how many alerts",
         "count",
-        "number of alerts",
-        "any alerts"
+        "number of alerts"
       ],
       "primary": false,
       "kind": "value",
       "path": "data",
-      "type": "count"
+      "type": "count",
+      "window": "now"
     }
   ],
   "sample_url": "https://developer.nps.gov/api/v1/alerts?parkCode=yell&api_key=DEMO_KEY",

@@ -34,7 +34,11 @@
           "type": "text"
         }
       ],
-      "may_be_empty": true
+      "may_be_empty": true,
+      "axis": {
+        "cell": "net",
+        "step": "day"
+      }
     },
     {
       "name": "total",
@@ -48,7 +52,8 @@
       "primary": false,
       "kind": "value",
       "path": "count",
-      "type": "number"
+      "type": "number",
+      "window": "latest"
     }
   ],
   "sample_url": "https://ll.thespacedevs.com/2.3.0/launches/upcoming/?limit=10&mode=list&hide_recent_previous=true&location__ids=12,27&lsp__id=121",

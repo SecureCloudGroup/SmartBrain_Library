@@ -14,7 +14,8 @@
       "primary": true,
       "kind": "value",
       "path": "result[0].name",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "next_description",
@@ -29,7 +30,8 @@
       "primary": true,
       "kind": "value",
       "path": "result[0].launch_description",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "next_vehicle",
@@ -43,7 +45,8 @@
       "primary": false,
       "kind": "value",
       "path": "result[0].vehicle.name",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "next_site",
@@ -58,7 +61,8 @@
       "primary": false,
       "kind": "value",
       "path": "result[0].pad.location.name",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "launches",

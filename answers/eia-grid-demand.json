@@ -16,7 +16,8 @@
       "kind": "value",
       "path": "response.data[0].value",
       "type": "number",
-      "unit_path": "response.data[0].value-units"
+      "unit_path": "response.data[0].value-units",
+      "window": "latest"
     },
     {
       "name": "hour",
@@ -30,7 +31,8 @@
       "primary": true,
       "kind": "value",
       "path": "response.data[0].period",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "region",
@@ -44,7 +46,8 @@
       "primary": true,
       "kind": "value",
       "path": "response.data[0].respondent-name",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "demand_trend",

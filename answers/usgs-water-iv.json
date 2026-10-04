@@ -17,7 +17,8 @@
       "kind": "value",
       "path": "value.timeSeries[1].values[0].value[0].value",
       "type": "number",
-      "unit_path": "value.timeSeries[1].variable.unit.unitCode"
+      "unit_path": "value.timeSeries[1].variable.unit.unitCode",
+      "window": "now"
     },
     {
       "name": "streamflow",
@@ -34,7 +35,8 @@
       "kind": "value",
       "path": "value.timeSeries[0].values[0].value[0].value",
       "type": "number",
-      "unit_path": "value.timeSeries[0].variable.unit.unitCode"
+      "unit_path": "value.timeSeries[0].variable.unit.unitCode",
+      "window": "now"
     },
     {
       "name": "reading_time",
@@ -48,7 +50,8 @@
       "primary": true,
       "kind": "value",
       "path": "value.timeSeries[0].values[0].value[0].dateTime",
-      "type": "time"
+      "type": "time",
+      "window": "now"
     },
     {
       "name": "site",
@@ -63,7 +66,8 @@
       "primary": true,
       "kind": "value",
       "path": "value.timeSeries[0].sourceInfo.siteName",
-      "type": "text"
+      "type": "text",
+      "window": "now"
     }
   ],
   "sample_url": "https://waterservices.usgs.gov/nwis/iv/?format=json&sites=02169500&parameterCd=00060,00065&siteStatus=active",

@@ -14,7 +14,8 @@
       "primary": true,
       "kind": "value",
       "path": "items[0].rawTAF",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "issued",
@@ -29,7 +30,8 @@
       "primary": false,
       "kind": "value",
       "path": "items[0].issueTime",
-      "type": "time"
+      "type": "time",
+      "window": "latest"
     },
     {
       "name": "valid_from",
@@ -44,7 +46,8 @@
       "primary": false,
       "kind": "value",
       "path": "items[0].validTimeFrom",
-      "type": "time"
+      "type": "time",
+      "window": "latest"
     },
     {
       "name": "valid_to",
@@ -59,7 +62,8 @@
       "primary": false,
       "kind": "value",
       "path": "items[0].validTimeTo",
-      "type": "time"
+      "type": "time",
+      "window": "latest"
     },
     {
       "name": "forecast_groups",

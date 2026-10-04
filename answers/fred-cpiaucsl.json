@@ -18,7 +18,8 @@
    ],
    "path": "rows[0].CPIAUCSL",
    "type": "number",
-   "unit": "index 1982-84=100"
+   "unit": "index 1982-84=100",
+   "window": "latest"
   },
   {
    "name": "as_of",
@@ -32,7 +33,8 @@
     "updated"
    ],
    "path": "rows[0].observation_date",
-   "type": "date"
+   "type": "date",
+   "window": "latest"
   },
   {
    "name": "recent",
@@ -60,7 +62,11 @@
      "type": "number",
      "unit": "index 1982-84=100"
     }
-   ]
+   ],
+   "axis": {
+    "cell": "observation_date",
+    "step": "day"
+   }
   }
  ],
  "sample_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=CPIAUCSL",

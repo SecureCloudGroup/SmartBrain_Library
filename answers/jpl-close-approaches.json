@@ -15,7 +15,8 @@
       "primary": true,
       "kind": "value",
       "path": "data[0][0]",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "next_date",
@@ -30,7 +31,8 @@
       "primary": true,
       "kind": "value",
       "path": "data[0][3]",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "next_distance",
@@ -46,7 +48,8 @@
       "kind": "value",
       "path": "data[0][4]",
       "type": "number",
-      "unit": "au"
+      "unit": "au",
+      "window": "latest"
     },
     {
       "name": "next_speed",
@@ -61,7 +64,8 @@
       "kind": "value",
       "path": "data[0][7]",
       "type": "number",
-      "unit": "km/s"
+      "unit": "km/s",
+      "window": "latest"
     },
     {
       "name": "count",
@@ -75,7 +79,8 @@
       "primary": false,
       "kind": "value",
       "path": "data",
-      "type": "count"
+      "type": "count",
+      "window": "latest"
     }
   ],
   "sample_url": "https://ssd-api.jpl.nasa.gov/cad.api?dist-max=0.05&date-min=now&sort=date&limit=20",

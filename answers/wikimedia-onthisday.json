@@ -40,7 +40,8 @@
       "primary": false,
       "kind": "value",
       "path": "events",
-      "type": "count"
+      "type": "count",
+      "window": "today"
     }
   ],
   "sample_url": "https://api.wikimedia.org/feed/v1/wikipedia/en/onthisday/events/09/27",

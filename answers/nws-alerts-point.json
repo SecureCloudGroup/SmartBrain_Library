@@ -10,9 +10,16 @@
         "watches",
         "advisories",
         "severe weather",
-        "weather warnings",
         "any warnings",
-        "near me"
+        "near me",
+        "tornado warning",
+        "severe thunderstorm warning",
+        "flood warning",
+        "flash flood",
+        "winter storm warning",
+        "blizzard warning",
+        "heat advisory",
+        "red flag warning"
       ],
       "primary": true,
       "kind": "list",
@@ -49,14 +56,16 @@
         "count",
         "number of alerts",
         "how many warnings",
-        "any alerts"
+        "how many alerts"
       ],
       "primary": false,
       "kind": "value",
       "path": "features",
-      "type": "count"
+      "type": "count",
+      "window": "now",
+      "measure": "alerts"
     }
   ],
   "sample_url": "https://api.weather.gov/alerts/active?point=63.45,-145.75",
-  "checked": "2026-09-28"
+  "checked": "2026-09-29"
 }

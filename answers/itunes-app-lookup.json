@@ -12,7 +12,8 @@
       "primary": true,
       "kind": "value",
       "path": "results[0].trackName",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "price",
@@ -27,7 +28,8 @@
       "primary": true,
       "kind": "value",
       "path": "results[0].formattedPrice",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "version",
@@ -41,7 +43,8 @@
       "primary": true,
       "kind": "value",
       "path": "results[0].version",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "version_date",
@@ -55,7 +58,8 @@
       "primary": true,
       "kind": "value",
       "path": "results[0].currentVersionReleaseDate",
-      "type": "time"
+      "type": "time",
+      "window": "latest"
     },
     {
       "name": "rating",
@@ -69,7 +73,8 @@
       "primary": false,
       "kind": "value",
       "path": "results[0].averageUserRating",
-      "type": "number"
+      "type": "number",
+      "window": "latest"
     },
     {
       "name": "release_notes",
@@ -83,7 +88,8 @@
       "primary": false,
       "kind": "value",
       "path": "results[0].releaseNotes",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     }
   ],
   "sample_url": "https://itunes.apple.com/lookup?id=284882215&country=us",

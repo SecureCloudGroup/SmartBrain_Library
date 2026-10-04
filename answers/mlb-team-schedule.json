@@ -14,7 +14,12 @@
    "primary": false,
    "kind": "value",
    "path": "dates[0].games[0].gameDate",
-   "type": "time"
+   "type": "time",
+   "window": "latest",
+   "tbd_if": {
+    "path": "dates[0].games[0].status.startTimeTBD",
+    "equals": true
+   }
   },
   {
    "name": "next_away",
@@ -30,7 +35,8 @@
    "primary": false,
    "kind": "value",
    "path": "dates[0].games[0].teams.away.team.name",
-   "type": "text"
+   "type": "text",
+   "window": "latest"
   },
   {
    "name": "next_home",
@@ -46,7 +52,8 @@
    "primary": false,
    "kind": "value",
    "path": "dates[0].games[0].teams.home.team.name",
-   "type": "text"
+   "type": "text",
+   "window": "latest"
   },
   {
    "name": "next_venue",
@@ -61,7 +68,26 @@
    "primary": false,
    "kind": "value",
    "path": "dates[0].games[0].venue.name",
-   "type": "text"
+   "type": "text",
+   "window": "latest"
+  },
+  {
+   "name": "next_series",
+   "label": "Series",
+   "words": [
+    "series",
+    "playoffs",
+    "postseason",
+    "wild card",
+    "division series",
+    "which game",
+    "game 1"
+   ],
+   "primary": false,
+   "kind": "value",
+   "path": "dates[0].games[0].seriesDescription",
+   "type": "text",
+   "window": "latest"
   },
   {
    "name": "upcoming",
@@ -84,7 +110,11 @@
     {
      "path": "games[0].gameDate",
      "label": "Start",
-     "type": "time"
+     "type": "time",
+     "tbd_if": {
+      "path": "games[0].status.startTimeTBD",
+      "equals": true
+     }
     },
     {
      "path": "games[0].teams.away.team.name",
@@ -101,9 +131,13 @@
      "label": "Venue",
      "type": "text"
     }
-   ]
+   ],
+   "axis": {
+    "cell": "games[0].gameDate",
+    "step": "hour"
+   }
   }
  ],
  "sample_url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId=144&startDate=2026-09-28&endDate=2026-10-28",
- "checked": "2026-09-28"
+ "checked": "2026-09-29"
 }

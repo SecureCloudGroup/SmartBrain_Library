@@ -22,14 +22,18 @@
         {
           "path": "date",
           "label": "Date",
-          "type": "text"
+          "type": "date"
         },
         {
           "path": "name",
           "label": "Holiday",
           "type": "text"
         }
-      ]
+      ],
+      "axis": {
+        "cell": "date",
+        "step": "day"
+      }
     },
     {
       "name": "holiday_count",
@@ -42,7 +46,8 @@
       "primary": false,
       "kind": "value",
       "path": "items",
-      "type": "count"
+      "type": "count",
+      "window": "latest"
     }
   ],
   "sample_url": "https://date.nager.at/api/v3/PublicHolidays/2026/US",

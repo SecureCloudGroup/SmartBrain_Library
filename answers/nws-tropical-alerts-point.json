@@ -1,0 +1,54 @@
+{
+  "source_id": "nws-tropical-alerts-point",
+  "answers": [
+    {
+      "name": "warnings",
+      "label": "Tropical watches and warnings",
+      "words": [
+        "hurricane",
+        "hurricane warning",
+        "hurricane watch",
+        "tropical storm",
+        "tropical storm warning",
+        "storm surge",
+        "surge",
+        "headed for",
+        "coming toward",
+        "going to hit",
+        "landfall",
+        "threat",
+        "in the path",
+        "any hurricanes",
+        "evacuate"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "features",
+      "row": [
+        {
+          "path": "properties.event",
+          "label": "Alert",
+          "type": "text"
+        },
+        {
+          "path": "properties.areaDesc",
+          "label": "Area",
+          "type": "text"
+        },
+        {
+          "path": "properties.severity",
+          "label": "Severity",
+          "type": "text"
+        },
+        {
+          "path": "properties.expires",
+          "label": "Until",
+          "type": "time"
+        }
+      ],
+      "may_be_empty": true
+    }
+  ],
+  "sample_url": "https://api.weather.gov/alerts/active?point=27.9477,-82.4584&event=Hurricane%20Warning,Hurricane%20Watch,Tropical%20Storm%20Warning,Tropical%20Storm%20Watch,Storm%20Surge%20Warning,Storm%20Surge%20Watch,Extreme%20Wind%20Warning,Hurricane%20Local%20Statement",
+  "checked": "2026-09-29"
+}

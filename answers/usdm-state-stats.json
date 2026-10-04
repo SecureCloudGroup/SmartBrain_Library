@@ -15,7 +15,8 @@
       "kind": "value",
       "path": "rows[0].D0",
       "type": "number",
-      "unit": "%"
+      "unit": "%",
+      "window": "latest"
     },
     {
       "name": "d1_plus",
@@ -31,7 +32,8 @@
       "kind": "value",
       "path": "rows[0].D1",
       "type": "number",
-      "unit": "%"
+      "unit": "%",
+      "window": "latest"
     },
     {
       "name": "d2_plus",
@@ -46,7 +48,8 @@
       "kind": "value",
       "path": "rows[0].D2",
       "type": "number",
-      "unit": "%"
+      "unit": "%",
+      "window": "latest"
     },
     {
       "name": "d3_plus",
@@ -61,7 +64,8 @@
       "kind": "value",
       "path": "rows[0].D3",
       "type": "number",
-      "unit": "%"
+      "unit": "%",
+      "window": "latest"
     },
     {
       "name": "d4",
@@ -76,7 +80,8 @@
       "kind": "value",
       "path": "rows[0].D4",
       "type": "number",
-      "unit": "%"
+      "unit": "%",
+      "window": "latest"
     },
     {
       "name": "no_drought",
@@ -91,7 +96,8 @@
       "kind": "value",
       "path": "rows[0].None",
       "type": "number",
-      "unit": "%"
+      "unit": "%",
+      "window": "latest"
     },
     {
       "name": "map_date",
@@ -106,7 +112,8 @@
       "primary": false,
       "kind": "value",
       "path": "rows[0].ValidStart",
-      "type": "date"
+      "type": "date",
+      "window": "latest"
     },
     {
       "name": "weekly",
@@ -146,7 +153,11 @@
           "type": "number",
           "unit": "%"
         }
-      ]
+      ],
+      "axis": {
+        "cell": "ValidStart",
+        "step": "day"
+      }
     }
   ],
   "sample_url": "https://usdmdataservices.unl.edu/api/StateStatistics/GetDroughtSeverityStatisticsByAreaPercent?aoi=48&startdate=8/3/2026&enddate=9/28/2026&statisticsType=1",

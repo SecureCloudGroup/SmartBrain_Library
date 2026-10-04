@@ -47,13 +47,13 @@
       "words": [
         "how many",
         "count",
-        "number of volcanoes",
-        "any volcano"
+        "number of volcanoes"
       ],
       "primary": false,
       "kind": "value",
       "path": "items",
-      "type": "count"
+      "type": "count",
+      "window": "now"
     }
   ],
   "sample_url": "https://volcanoes.usgs.gov/hans-public/api/volcano/getElevatedVolcanoes",

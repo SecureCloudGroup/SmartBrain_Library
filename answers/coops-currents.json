@@ -35,7 +35,11 @@
           "type": "number",
           "unit": "kt"
         }
-      ]
+      ],
+      "axis": {
+        "cell": "Time",
+        "step": "hour"
+      }
     },
     {
       "name": "flood_dir",
@@ -51,7 +55,8 @@
       "kind": "value",
       "path": "current_predictions.cp[0].meanFloodDir",
       "type": "number",
-      "unit": "°"
+      "unit": "°",
+      "window": "latest"
     },
     {
       "name": "ebb_dir",
@@ -67,7 +72,8 @@
       "kind": "value",
       "path": "current_predictions.cp[0].meanEbbDir",
       "type": "number",
-      "unit": "°"
+      "unit": "°",
+      "window": "latest"
     }
   ],
   "sample_url": "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?application=SmartBrain&station=ACT6651&product=currents_predictions&interval=MAX_SLACK&begin_date=20260927&range=24&time_zone=lst_ldt&units=english&format=json",

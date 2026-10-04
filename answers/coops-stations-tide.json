@@ -50,7 +50,8 @@
       "primary": false,
       "kind": "value",
       "path": "stations",
-      "type": "count"
+      "type": "count",
+      "window": "latest"
     }
   ],
   "sample_url": "https://api.tidesandcurrents.noaa.gov/mdapi/prod/webapi/stations.json?type=tidepredictions",

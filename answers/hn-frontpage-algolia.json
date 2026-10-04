@@ -13,7 +13,8 @@
       "primary": false,
       "kind": "value",
       "path": "hits[0].title",
-      "type": "text"
+      "type": "text",
+      "window": "latest"
     },
     {
       "name": "stories",
