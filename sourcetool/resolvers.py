@@ -92,6 +92,73 @@ def _place_population() -> dict[str, int]:
     return pop
 
 
+# A one-word short form that is an everyday or landscape word is never a place alias: "Lake City" is not "Lake"
+# (whose "<short> <state>" form, "lake michigan", named Lake City MI for the lake), "Mountain City" is not the
+# "mountain" of "Mammoth Mountain", "Atlantic City" is not the ocean. Reviewed from every one-word short form the
+# 2024 gazetteer yields (the lowercase words of a dictionary among them, minus names people do say alone:
+# Butte, Anaconda, Bessemer, Calumet...). The full name, with and without its state, always stays.
+SHORT_FORM_STOP = frozenset("""
+atlantic basin bay beach beaver bell bird bluff boulder bridge brown buffalo bullhead canyon cascade cathedral cave
+cedar cement center central chain challenge chase circle citrus clay coal coffee college commerce copper corral
+cottage cotton coulee cove crescent crook cross crown crystal dale dell delta diamond dodge dow dunes eagle
+electric elk elm empire fairview fall falls farmer fifty floral ford forest fountain garden gas gate golden grace
+granite grant green grove hide highland hill holiday horizon iron island jersey junction king kingdom lake
+lakeside league leisure liberty little lost lumber maple marathon marble marine mass mentor midland midway midwest
+mill mineral mobile mound mountain national neck new north oak ocean oil orange orchard ore pacific palm panama
+paramount park pearl pick pine pines plain plant pleasant plum poplar prairie promise put queen rainbow raisin
+rapid rapids ray redwood reed republican rising rock rose royal rush sale saline sand security sierra silver
+skyline southwest spring springs standard star sterling stone story strong sugar sun sunnyside surf tell temple
+timberline top tower traverse tri tunnel twin union universal university valley west white whites willow windfall
+wood""".split())
+
+
+def place_short_forms(name: str) -> set[str]:
+    """The shorter names people say for a Census place: "Boise City" -> "Boise", "Nashville-Davidson" ->
+    "Nashville", "Louisville/Jefferson County" -> "Louisville". Never a bare state name ("Oklahoma City" keeps
+    its City), a code-length fragment ("Hi-Nella" is not "Hi") or an everyday word (SHORT_FORM_STOP)."""
+    short = {re.split(r"[-/]", name)[0].strip(), re.sub(r"\s+City$", "", name),
+             re.sub(r"^(Urban|Village of|Town of|City of)\s+", "", name)}
+    return {x for x in short if x and x != name and norm(x) not in _STATE_BY_NAME
+            and not (" " not in norm(x) and (len(norm(x)) < 4 or norm(x) in SHORT_FORM_STOP))}
+
+
+def _refine_place(rows: list[dict]) -> list[dict]:
+    """Today's alias rules over an already harvested place table (no gazetteer pull): the aliases an older harvest
+    made from a short form place_short_forms now refuses are removed (a reviewed nickname is never touched),
+    the reviewed POIs are added and the coast marks are set (_add_coast: Natural Earth, cached). h_place's own
+    output passes through unchanged."""
+    for p in rows:
+        if p["attrs"].get("type") == "area":
+            continue
+        sname = US_STATES.get(p["state"], p["state"])
+        old = {x for x in (re.split(r"[-/]", p["name"])[0].strip(), re.sub(r"\s+City$", "", p["name"]),
+                           re.sub(r"^(Urban|Village of|Town of|City of)\s+", "", p["name"])) if x and x != p["name"]}
+        drop = {norm(f"{x} {s}") for x in old - place_short_forms(p["name"]) for s in ("", p["state"], sname)}
+        keep = set(p["attrs"].get("nicknames") or [])
+        p["aliases"] = sorted(a for a in p["aliases"] if a not in drop or a in keep)
+    _add_pois(rows)
+    _add_coast(rows)
+    return rows
+
+
+def _add_pois(places: list[dict]) -> None:
+    """Reviewed points of interest people name instead of their town (`resolvers/place_pois.json`: ski areas),
+    added like a reviewed nickname: an alias of the town that serves them and listed in attrs.nicknames, so
+    "snow forecast Mammoth Mountain" is Mammoth Lakes, CA on its own. Idempotent."""
+    reviewed = json.loads((RES / "place_pois.json").read_text())
+    for e in reviewed["entries"]:
+        named = [p for p in places if p["state"] == e["state"] and norm(e["place"]) in p["aliases"]
+                 and p["attrs"].get("type") != "area"]
+        if not named:
+            raise ValueError(f"place_pois.json: no place {e['place']!r} in {e['state']}")
+        p = max(named, key=lambda p: p["attrs"].get("pop") or 0)
+        said = {norm(n) for n in e["names"]}
+        if clash := sorted(a for q in places if q is not p for a in q["aliases"] if a in said):
+            raise ValueError(f"place_pois.json: {clash} already name another place")
+        p["aliases"] = sorted({*p["aliases"], *said})
+        p["attrs"]["nicknames"] = sorted({*p["attrs"].get("nicknames", []), *said})
+
+
 def h_place() -> list[dict]:
     out = []
     pop = _place_population()
@@ -104,11 +171,7 @@ def h_place() -> list[dict]:
         name = _PLACE_SUFFIX.sub("", re.sub(r"\s*\(balance\)$", "", full)).strip()
         typ = full[len(name):].strip().lower() or "place"
         sname = US_STATES.get(st, st)
-        # the name people say: "Boise City" -> "Boise", "Nashville-Davidson metropolitan government" -> "Nashville",
-        # "Louisville/Jefferson County" -> "Louisville" (never a bare state name: "Oklahoma City" keeps its City)
-        short = {re.split(r"[-/]", name)[0].strip(), re.sub(r"\s+City$", "", name),
-                 re.sub(r"^(Urban|Village of|Town of|City of)\s+", "", name)}
-        short = {x for x in short if x and x != name and norm(x) not in _STATE_BY_NAME}
+        short = place_short_forms(name)
         forms = [name, *short]
         out.append(_e("place", "place", r["GEOID"], name,
                       [f"{f} {x}" for f in forms for x in (st, sname)] + sorted(short),
@@ -116,7 +179,97 @@ def h_place() -> list[dict]:
                       {"type": typ, "land_km2": round(float(r["ALAND"]) / 1e6, 1), "pop": pop.get(r["GEOID"], 0)},
                       rank=round(math.log10(max(pop.get(r["GEOID"], 0), 1)), 2)))
     _add_nicknames(out, gnis)
+    _add_pois(out)
+    _add_coast(out)
     return out
+
+
+# ------------------------------------------------------------------------------------------ place coast
+# Natural Earth (public domain), pinned to a release tag so a re-run reads the same shapes
+NATURAL_EARTH = "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/v5.1.2/geojson/{}.geojson"
+COAST_KM = 25.0  # a place whose point is this close to a shoreline is on that shore
+TIDAL_KM = 150.0  # ... an ocean shoreline only where NOAA predicts tides this close (not the St. Lawrence above tide)
+GREAT_LAKES = ("Lake Superior", "Lake Michigan", "Lake Huron", "Lake Erie", "Lake Ontario", "Lake Saint Clair")
+_CELL = 0.25  # degrees: the grid the shoreline points are bucketed in (0.25 deg of latitude is 27.8 km > COAST_KM)
+
+
+def _ne_rings(layer: str, names: tuple[str, ...] = ()) -> list[list[list[float]]]:
+    """The [lon, lat] rings and lines of a Natural Earth layer (only the features named, when names are given)."""
+    status, body, _ = get(NATURAL_EARTH.format(layer), cache_hours=24 * 365, api=True)
+    if status != 200:
+        raise RuntimeError(f"HTTP {status} for Natural Earth {layer}")
+    out = []
+    for f in json.loads(body)["features"]:
+        if names and (f["properties"] or {}).get("name") not in names:
+            continue
+        g = f["geometry"]
+        parts = {"LineString": [[g["coordinates"]]], "MultiLineString": [g["coordinates"]],
+                 "Polygon": [g["coordinates"]], "MultiPolygon": g["coordinates"]}[g["type"]]
+        out.extend(ring for part in parts for ring in part)
+    return out
+
+
+def _shore_grid(rings: list) -> dict[tuple[int, int], list[tuple[float, float]]]:
+    """Every shoreline point at most ~1 km apart (long straight segments are filled in), by grid cell."""
+    from .resolve import km  # resolve imports this module
+    grid: dict[tuple[int, int], list[tuple[float, float]]] = {}
+    for ring in rings:
+        for (x1, y1), (x2, y2) in zip(ring, ring[1:]):
+            n = max(1, int(km(y1, x1, y2, x2)))
+            for k in range(n):
+                lat, lon = y1 + (y2 - y1) * k / n, x1 + (x2 - x1) * k / n
+                grid.setdefault((math.floor(lat / _CELL), math.floor(lon / _CELL)), []).append((lat, lon))
+    return grid
+
+
+def _cells(lat: float, lon: float, limit: float) -> list[tuple[int, int]]:
+    """The grid cells that hold every point within limit km of (lat, lon)."""
+    a, b = math.floor(lat / _CELL), math.floor(lon / _CELL)
+    di = math.ceil(limit / (111.2 * _CELL))
+    dj = math.ceil(limit / (111.2 * _CELL * max(math.cos(math.radians(lat)), 0.1)))
+    return [(a + i, b + j) for i in range(-di, di + 1) for j in range(-dj, dj + 1)]
+
+
+def _near_shore(grid: dict, lat: float, lon: float, limit: float) -> bool:
+    from .resolve import km
+    return any(km(lat, lon, y, x) <= limit for c in _cells(lat, lon, limit) for y, x in grid.get(c, ()))
+
+
+def _on_land(bands: dict[int, list], lat: float, lon: float) -> bool:
+    """Point in polygon (even-odd ray to the east) over the land rings that cross this latitude."""
+    inside = False
+    for (x1, y1), (x2, y2) in bands.get(math.floor(lat), ()):
+        if (y1 > lat) != (y2 > lat) and x1 + (lat - y1) * (x2 - x1) / (y2 - y1) > lon:
+            inside = not inside
+    return inside
+
+
+def _add_coast(places: list[dict]) -> None:
+    """attrs.coastal: the place's point is on the ocean coast, in the sense of a source with coverage.water
+    "ocean_coastal" (a marine model): within COAST_KM of Natural Earth's 10m ocean coastline, or out on the water
+    itself (San Francisco's point lies off the Golden Gate), and that shoreline is tidal: a NOAA tide prediction
+    station (resolvers/tide_station.jsonl) within TIDAL_KM. attrs.great_lakes: within COAST_KM of a Great Lake's
+    shore (Natural Earth's 10m lakes) — a Great Lakes town is not on the ocean coast. Every place gets coastal
+    true or false (the app refuses a marine source only for an explicit false); great_lakes is written only when
+    true. Rivers that Natural Earth draws as coast up to the head of tide (the Potomac to Washington, the Delaware
+    to Philadelphia) count as coast. Idempotent: the same shapes and stations give the same marks."""
+    from .resolve import km
+    coast = _shore_grid(_ne_rings("ne_10m_coastline"))
+    lakes = _shore_grid(_ne_rings("ne_10m_lakes", GREAT_LAKES))
+    bands: dict[int, list] = {}  # land edges by whole degree of latitude, for the "out on the water" test
+    for ring in _ne_rings("ne_50m_land"):
+        for e in zip(ring, ring[1:]):
+            for band in range(math.floor(min(e[0][1], e[1][1])), math.floor(max(e[0][1], e[1][1])) + 1):
+                bands.setdefault(band, []).append(e)
+    tides = [(t["lat"], t["lon"]) for t in read_jsonl(RES / "tide_station.jsonl")]
+    for p in places:
+        lat, lon = p["lat"], p["lon"]
+        ocean = (_near_shore(coast, lat, lon, COAST_KM)  # or on the water: a coast in reach and not on land
+                 or (any(c in coast for c in _cells(lat, lon, 4 * COAST_KM)) and not _on_land(bands, lat, lon)))
+        p["attrs"]["coastal"] = ocean and any(km(lat, lon, y, x) <= TIDAL_KM for y, x in tides)
+        p["attrs"].pop("great_lakes", None)
+        if _near_shore(lakes, lat, lon, COAST_KM):
+            p["attrs"]["great_lakes"] = True
 
 
 # ------------------------------------------------------------------------------------------ place nicknames
@@ -306,13 +459,78 @@ def h_tide_station() -> list[dict]:
     return out
 
 
-def h_buoy() -> list[dict]:
-    _, body, _ = get("https://www.ndbc.noaa.gov/activestations.xml", cache_hours=720, api=True)
+# Named US lakes, bays, sounds and gulfs, so "Lake Michigan water temp Milwaukee" reads a lake and a city, not
+# Lake City MI. The point is a representative one on the water (for a near() search), not a centroid. A body whose
+# name is also a Census place or a reviewed place nickname (Green Bay, Lake George, Buzzards Bay, Lake Tahoe) is
+# left out by h_water_body: the place keeps its name. Tampa Bay is left out too: it names teams and a metro.
+WATER_BODIES = [
+    ("Lake Superior", "lake", 47.7, -87.5, []), ("Lake Michigan", "lake", 44.0, -87.0, []),
+    ("Lake Huron", "lake", 44.8, -82.4, []), ("Lake Erie", "lake", 42.2, -81.2, []),
+    ("Lake Ontario", "lake", 43.7, -77.9, []), ("Lake St. Clair", "lake", 42.45, -82.68, ["lake saint clair"]),
+    ("Lake Champlain", "lake", 44.53, -73.33, []), ("Great Salt Lake", "lake", 41.1, -112.5, []),
+    ("Lake Okeechobee", "lake", 26.95, -80.8, []), ("Lake Pontchartrain", "lake", 30.18, -90.1, []),
+    ("Lake Mead", "lake", 36.25, -114.4, []), ("Lake Powell", "lake", 37.07, -111.24, []),
+    ("Lake Tahoe", "lake", 39.09, -120.04, []), ("Lake Winnebago", "lake", 44.0, -88.42, []),
+    ("Lake Washington", "lake", 47.62, -122.26, []), ("Flathead Lake", "lake", 47.88, -114.1, []),
+    ("Lake Lanier", "lake", 34.2, -83.95, ["lake sidney lanier"]),
+    ("Chesapeake Bay", "bay", 38.1, -76.2, []), ("Delaware Bay", "bay", 39.1, -75.2, []),
+    ("San Francisco Bay", "bay", 37.7, -122.28, ["sf bay"]), ("Monterey Bay", "bay", 36.8, -121.95, []),
+    ("Galveston Bay", "bay", 29.5, -94.85, []), ("Mobile Bay", "bay", 30.45, -88.0, []),
+    ("Biscayne Bay", "bay", 25.6, -80.2, []), ("Cape Cod Bay", "bay", 41.85, -70.3, []),
+    ("Massachusetts Bay", "bay", 42.35, -70.7, []), ("Narragansett Bay", "bay", 41.6, -71.35, []),
+    ("Santa Monica Bay", "bay", 33.9, -118.6, []), ("San Diego Bay", "bay", 32.67, -117.15, []),
+    ("Saginaw Bay", "bay", 43.9, -83.5, []), ("Grand Traverse Bay", "bay", 44.9, -85.55, []),
+    ("Puget Sound", "sound", 47.6, -122.45, []), ("Long Island Sound", "sound", 41.1, -72.9, []),
+    ("Gulf of Mexico", "gulf", 25.0, -90.0, ["gulf of america"]), ("Gulf of Maine", "gulf", 43.0, -68.5, []),
+]
+
+
+def h_water_body() -> list[dict]:
+    """The reviewed list above, minus any body whose name or alias a place already has (run after `place`)."""
+    taken = {a for p in read_jsonl(RES / "place.jsonl") for a in p["aliases"]}
     out = []
-    for s in ElementTree.fromstring(body).findall("station"):
-        a = s.attrib
-        out.append(_e("buoy", "station", a["id"], a.get("name", a["id"]), [a["id"]], float(a["lat"]), float(a["lon"]),
-                      "", {"owner": a.get("owner", ""), "type": a.get("type", ""), "met": a.get("met", "")}))
+    for name, typ, lat, lon, alts in WATER_BODIES:
+        e = _e("water_body", "place", norm(name).replace(" ", "-"), name, alts, lat, lon, attrs={"type": typ})
+        if not set(e["aliases"]) & taken:
+            out.append(e)
+    return out
+
+
+# NDBC's latest observation from every reporting station: a station missing here reports nothing now
+NDBC_LATEST = "https://www.ndbc.noaa.gov/data/latest_obs/latest_obs.txt"
+
+
+def buoy_measures(head: list[str], row: list[str]) -> list[str]:
+    """The columns a latest_obs.txt row has a reading in ("MM" is missing), after the station, position and time."""
+    return [c for c, v in zip(head[8:], row[8:]) if v != "MM"]
+
+
+def h_buoy() -> list[dict]:
+    """NDBC stations that report now, keyed by the id exactly as NDBC writes it (realtime2/<ID>.txt is
+    case-sensitive: a lowercase C-MAN id is a 404), each with the columns it reports (attrs.measures: WTMP water
+    temperature, WVHT wave height...), so a fill can ask for the nearest station that measures the thing asked.
+    A station with no realtime2 file (the Korean 221xx buoys are in latest_obs only) is dropped too: the
+    source reads realtime2/<ID>.txt."""
+    _, body, _ = get("https://www.ndbc.noaa.gov/activestations.xml", cache_hours=720, api=True)
+    meta = {s.attrib["id"].upper(): s.attrib for s in ElementTree.fromstring(body).findall("station")}
+    _, body, _ = get("https://www.ndbc.noaa.gov/data/realtime2/", cache_hours=12, api=True)
+    realtime = set(re.findall(r'href="([A-Za-z0-9]+)\.txt"', body.decode("latin-1")))
+    _, body, _ = get(NDBC_LATEST, cache_hours=12, api=True)
+    lines = body.decode("latin-1").splitlines()
+    head = lines[0].lstrip("#").split()
+    out = []
+    for line in lines[1:]:
+        row = line.split()
+        if line.startswith("#") or len(row) != len(head):
+            continue
+        sid, measures = row[0], buoy_measures(head, row)
+        a = meta.get(sid.upper(), {})
+        if not measures or sid not in realtime:
+            continue
+        out.append(_e("buoy", "station", sid, a.get("name", sid), [sid], float(a.get("lat", row[1])),
+                      float(a.get("lon", row[2])), "",
+                      {"owner": a.get("owner", ""), "type": a.get("type", ""), "met": a.get("met", ""),
+                       "measures": measures}))
     return out
 
 
@@ -326,6 +544,25 @@ def _sp500() -> dict[str, str]:
 _FIRST_WORD_STOP = {"american", "first", "united", "general", "national", "global", "new", "international",
                     "the", "royal", "western", "eastern", "southern", "northern", "pacific", "capital", "invesco",
                     "ishares", "vanguard", "spdr", "direxion", "proshares", "global", "select"}
+
+
+# words that name a market, an index or an exchange, never one company: "how's the Nasdaq doing" is the index, not
+# Nasdaq, Inc.; "the market" is not Market Technology Acquisition. A company keeps its full name ("nasdaq inc")
+# and its symbol (the matcher wants a short symbol typed like a code: "DOW" is Dow Inc., "dow" alone is not).
+TICKER_STOP = frozenset({"nasdaq", "market", "markets", "dow", "dow jones", "russell", "exchange", "stock exchange",
+                         "nyse", "amex", "cboe", "stock", "stocks", "index", "composite", "s and p", "futures",
+                         "wall street"})
+
+
+def _ticker_aliases(sym: str, aliases: list[str]) -> list[str]:
+    return [a for a in aliases if norm(a) not in TICKER_STOP or norm(a) == norm(sym)]
+
+
+def _refine_ticker(rows: list[dict]) -> list[dict]:
+    """TICKER_STOP over an already harvested ticker table (no network); h_ticker's own output is unchanged."""
+    for r in rows:
+        r["aliases"] = _ticker_aliases(r["key"], r["aliases"])
+    return rows
 
 
 def h_ticker() -> list[dict]:
@@ -343,8 +580,8 @@ def h_ticker() -> list[dict]:
                            r"ordinary shares|the)\b\.?", " ", name, flags=re.I)
             common, cik = sp.get(sym.replace(".", "-"), ("", ""))
             first = norm(common or short).split()[:1]
-            aliases = [sym, short, common] + ([first[0]] if first and len(first[0]) >= 4
-                                              and first[0] not in _FIRST_WORD_STOP else [])
+            aliases = _ticker_aliases(sym, [sym, short, common] + (
+                [first[0]] if first and len(first[0]) >= 4 and first[0] not in _FIRST_WORD_STOP else []))
             big = bool(common) or r.get("Market Category") == "Q"
             out.append(_e("ticker", "ticker", sym, name, aliases, attrs={
                 "exchange": exch or {"A": "NYSE American", "N": "NYSE", "P": "NYSE Arca", "Z": "Cboe BZX",
@@ -407,6 +644,34 @@ _ESPN_LEAGUES = [("football", "nfl"), ("basketball", "nba"), ("baseball", "mlb")
                  ("basketball", "mens-college-basketball")]
 
 
+# An everyday word is never a team alias unless it is a word of the team's own name: ESPN's abbreviation "WIN"
+# made "did the dbacks win" Winthrop (live 2026-10-03), "MIN" would make "min temperature" Minnesota. Reviewed
+# from every team abbreviation that is a lowercase dictionary word (PHI, CHI, TOR stay: nobody says them as
+# words); the nickname words people would like but that are everyday words too ("cards", "pens") are here so
+# team_nicknames.json can't add them.
+TEAM_ABBREV_STOP = frozenset("""
+and as ash bay bell ben bent bow buck cal cam can car cat col con dart day den fair for gen gram ham hard how ill
+lip law long man mass me mil mile mill min mon more most no ore pit port rad rich rid row sam sea ship tar ten van
+wag wash web wide win
+birds bolts canes caps cards cats guards hawks jackets pack pens snakes sox wings wolves
+""".split())
+
+
+def _team_aliases(rows: list[dict]) -> list[dict]:
+    """TEAM_ABBREV_STOP and the reviewed nicknames (resolvers/team_nicknames.json) over a team table: a nickname
+    goes to the team of its league whose aliases have its club name, as an alias and in attrs.nicknames.
+    Idempotent; a club the table doesn't list is skipped (team_nhl has no NBA)."""
+    reviewed = json.loads((RES / "team_nicknames.json").read_text())["entries"]
+    for t in rows:
+        own = set(norm(t["name"]).split())
+        said = {norm(n) for e in reviewed for n in e["nicknames"]
+                if e["league"] == t["attrs"].get("league") and norm(e["club"]) in t["aliases"]}
+        t["aliases"] = sorted({a for a in t["aliases"] if a not in TEAM_ABBREV_STOP or a in own} | said)
+        if said:
+            t["attrs"]["nicknames"] = sorted({*t["attrs"].get("nicknames", []), *said})
+    return rows
+
+
 def _espn_teams() -> list[dict]:
     out = []
     for sport, league in _ESPN_LEAGUES:
@@ -424,27 +689,60 @@ def _espn_teams() -> list[dict]:
 
 
 # ESPN league -> TheSportsDB league id, for the team ids TheSportsDB's team sources take (attrs.tsdb_id)
-_TSDB_LEAGUE = {"nfl": "4391", "nba": "4387", "wnba": "4516", "mlb": "4424", "nhl": "4380", "usa.1": "4346"}
+_TSDB_LEAGUE = {"nfl": "4391", "nba": "4387", "wnba": "4516", "mlb": "4424", "nhl": "4380", "usa.1": "4346",
+                "college-football": "4479", "mens-college-basketball": "4607"}
 
 
 def _add_tsdb_ids(teams: list[dict]) -> None:
-    """TheSportsDB's id for each pro team, found by its name (searchteams.php; the free key allows 30
-    requests a minute, so one search every 2.1 s) and kept only when the team found plays in the same league."""
+    """TheSportsDB's id for each team, found by its name (searchteams.php; the free key allows 30 requests a
+    minute, so one uncached search every 2.1 s) and kept only when the team found plays in the same league. A
+    team that already has an id keeps it.
+
+    A college team is listed under its school ("Alabama" = 136168, NCAA Division 1), so after ESPN's full name
+    the search tries the school (the aliases the full name starts with, longest first), and a hit counts only
+    when its name is one of the team's own aliases. The free search returns one team per name, often another
+    sport's ("Ohio State" is the hockey team): such a team is an honest gap, never a guess. Two schools of a
+    name ("Charlotte 49ers", "Charlotte Saints") find the same team: it goes to the one whose own name has
+    TheSportsDB's other name for it (strTeamAlternate "49ers"); the other is left without an id."""
     import time
+
+    from .common import _cache_path
+    holder = {(t["attrs"].get("league"), t["attrs"]["tsdb_id"]): t for t in teams if t["attrs"].get("tsdb_id")}
     for t in teams:
         want = _TSDB_LEAGUE.get(t["attrs"].get("league", ""))
-        if not want:
+        if not want or t["attrs"].get("tsdb_id"):
             continue
+        college = t["attrs"]["league"].startswith(("college", "mens-college"))
         # ESPN's name first, then the spellings TheSportsDB uses ("LA Clippers" -> "Los Angeles Clippers",
-        # "Seattle Sounders FC" -> "Seattle Sounders")
+        # "Seattle Sounders FC" -> "Seattle Sounders"), then a college team's school
         names = [t["name"], re.sub(r"^LA ", "Los Angeles ", t["name"]), re.sub(r" FC$", "", t["name"])]
+        if college:
+            full = norm(t["name"])
+            names += sorted((a for a in t["aliases"] if full.startswith(a + " ")), key=len, reverse=True)
         for name in dict.fromkeys(names):
             url = f"https://www.thesportsdb.com/api/v1/json/123/searchteams.php?t={quote(name.replace(' ', '_'))}"
-            body = get(url, cache_hours=720, api=True)[1]
-            time.sleep(2.1)
-            found = [x for x in (json.loads(body or b"{}") or {}).get("teams") or [] if x.get("idLeague") == want]
+            cached = _cache_path(url, None).exists()
+            try:
+                status, body, _ = get(url, cache_hours=720, api=True)
+            except Exception:  # a timeout leaves this team without an id; a later run (cached) retries it
+                break
+            if not cached:
+                time.sleep(2.1)
+            if status != 200:
+                raise RuntimeError(f"TheSportsDB HTTP {status} (searches so far are cached; run again later)")
+            found = [x for x in (json.loads(body or b"{}") or {}).get("teams") or [] if x.get("idLeague") == want
+                     and (not college or norm(x.get("strTeam") or "") in t["aliases"])]
             if found:
+                key = (t["attrs"]["league"], found[0]["idTeam"])
+                other = holder.get(key)
+                if other is not None and other["name"] != t["name"]:
+                    hit = found[0]
+                    alt = set(norm(hit.get("strTeamAlternate") or "").split()) - set(norm(hit["strTeam"]).split())
+                    if not alt or not alt <= set(norm(t["name"]).split()) or alt <= set(norm(other["name"]).split()):
+                        break  # the team found is the other school's
+                    del other["attrs"]["tsdb_id"]
                 t["attrs"]["tsdb_id"] = found[0]["idTeam"]
+                holder[key] = t
                 break
 
 
@@ -454,14 +752,16 @@ def h_team_espn() -> list[dict]:
     except RuntimeError:  # ESPN refuses SmartBrain's User-Agent since 2026-09-28: keep its last harvest
         out = read_jsonl(RES / "team_espn.jsonl")
     _add_tsdb_ids(out)
-    return out
+    return _team_aliases(out)
 
 
 def h_team_mlb() -> list[dict]:
     d = get_json("https://statsapi.mlb.com/api/v1/teams?sportId=1", cache_hours=168, api=True)
-    return [_e("team_mlb", "team", t["id"], t["name"], [t.get("teamName", ""), t.get("abbreviation", ""),
-                                                        t.get("locationName", ""), t.get("clubName", "")],
-               attrs={"league": "mlb", "abbrev": t.get("abbreviation", "")}, rank=1) for t in d["teams"]]
+    return _team_aliases([_e("team_mlb", "team", t["id"], t["name"],
+                             [t.get("teamName", ""), t.get("abbreviation", ""), t.get("locationName", ""),
+                              t.get("clubName", "")],
+                             attrs={"league": "mlb", "abbrev": t.get("abbreviation", "")}, rank=1)
+                          for t in d["teams"]])
 
 
 def h_team_nhl() -> list[dict]:
@@ -473,13 +773,68 @@ def h_team_nhl() -> list[dict]:
         out.append(_e("team_nhl", "team", ab, nm, [ab, t.get("teamCommonName", {}).get("default", ""),
                                                   t.get("placeName", {}).get("default", "")],
                       attrs={"league": "nhl", "abbrev": ab}, rank=1))
-    return out
+    return _team_aliases(out)
 
 
 def h_statuspage() -> list[dict]:
     d = json.loads((RES / "statuspage_hosts.json").read_text())
     return [_e("statuspage", "service", e["host"], e["service"], [e["service"].split(" (")[0]], rank=1)
             for e in d["entries"]]
+
+
+def _site(url_or_host: str) -> str:
+    host = (url_or_host.split("://", 1)[-1].split("/", 1)[0]).lower()
+    return host[4:] if host.startswith("www.") else host
+
+
+def h_official_site() -> list[dict]:
+    """A subject's own domains (attrs.domains), so a web result can be told first-party (slack-status.com for
+    Slack) from an aggregator. Three open inputs, merged by name: every Library provider's url (not a project
+    page on a code host: github.com/jolpica is not GitHub's), every Statuspage host, and the reviewed
+    `resolvers/official_sites.json`."""
+    subjects: list[dict] = []
+
+    def add(name: str, aliases: list[str], domains: list[str]) -> None:
+        said = {norm(a) for a in (name, name.split(" (")[0], *aliases) if norm(a)}
+        e = next((s for s in subjects if s["said"] & said), None)
+        if e is None:
+            e = {"name": name, "said": set(), "domains": []}
+            subjects.append(e)
+        e["said"] |= said
+        e["domains"] += [d for d in domains if d not in e["domains"]]
+
+    for p in read_jsonl(ROOT / "providers" / "providers.jsonl"):
+        url = p.get("url") or ""
+        if url and not (_site(url) == "github.com" and url.rstrip("/").count("/") > 2):
+            add(p["name"], [], [_site(url)])
+    for s in json.loads((RES / "statuspage_hosts.json").read_text())["entries"]:
+        add(s["service"], [], [_site(s["host"])])
+    for r in json.loads((RES / "official_sites.json").read_text())["entries"]:
+        add(r["name"], r["aliases"], [_site(d) for d in r["domains"]])
+    return [_e("official_site", "domain", norm(s["name"]).replace(" ", "-"), s["name"], sorted(s["said"]),
+               attrs={"domains": s["domains"]}, rank=1) for s in subjects]
+
+
+# GeyserTimes ids (geysertimes.org/api/v5/geysers, ODbL) of the geysers with predictions, and the NPS ids of the
+# six the park predicts (the nps-yell carto table's npmap_id)
+GEYSERS = {"2": "ee5bf30e-4594-4bc0-91ce-452b603743ea", "5": "56165001-1957-4b70-8e02-9d09ad268fb0",
+           "13": "9e28b793-f2c1-440f-a39f-3e62b74e2c9a", "4": "590211c7-8dd7-44be-83c3-88aa867a75c0",
+           "7": "bf68ab69-5568-48c2-97d0-7debe3f30627", "16": "bdcc6284-9e03-4ee4-a98b-80413474ff96",
+           "1": "", "3": "", "10": "", "14": "", "15": "", "163": "", "8": ""}
+
+
+def h_geyser() -> list[dict]:
+    """Yellowstone's predicted geysers, named "<name> Geyser" (never the bare name: "Grand", "Castle", "Lion" are
+    words) plus "Old Faithful", with attrs.gt_id (GeyserTimes) and attrs.nps_id where the park predicts it."""
+    d = get_json("https://www.geysertimes.org/api/v5/geysers", cache_hours=720, api=True)
+    by_id = {str(g["id"]): g for g in d["geysers"]}
+    out = []
+    for gt, nps in GEYSERS.items():
+        g = by_id[gt]
+        attrs = {"gt_id": gt, **({"nps_id": nps} if nps else {}), "basin": g.get("groupName", "")}
+        out.append(_e("geyser", "station", gt, f"{g['name']} Geyser", ["Old Faithful"] if gt == "2" else [],
+                      float(g["latitude"]), float(g["longitude"]), "WY", attrs, rank=2 if nps else 1))
+    return out
 
 
 def h_local_news() -> list[dict]:
@@ -522,17 +877,20 @@ def h_radar_site() -> list[dict]:
     return out
 
 
-SOCCER = [("PL", "Premier League", "epl english premier league"), ("CL", "UEFA Champions League", "champions league ucl"),
-          ("PD", "La Liga", "laliga spanish league primera division"), ("BL1", "Bundesliga", "german bundesliga"),
-          ("SA", "Serie A", "italian serie a"), ("FL1", "Ligue 1", "french ligue 1"),
-          ("DED", "Eredivisie", "dutch eredivisie"), ("PPL", "Primeira Liga", "portuguese liga"),
-          ("ELC", "EFL Championship", "english championship"), ("BSA", "Brasileirao", "brazilian serie a"),
-          ("EC", "European Championship", "euros euro"), ("WC", "FIFA World Cup", "world cup")]
+# (code, name, the other names people say: each its own alias; never a bare "euro", which is the currency)
+SOCCER = [("PL", "Premier League", ["epl", "english premier league"]),
+          ("CL", "UEFA Champions League", ["champions league", "ucl"]),
+          ("PD", "La Liga", ["laliga", "spanish league", "primera division"]),
+          ("BL1", "Bundesliga", ["german bundesliga"]), ("SA", "Serie A", ["italian serie a"]),
+          ("FL1", "Ligue 1", ["french ligue 1"]), ("DED", "Eredivisie", ["dutch eredivisie"]),
+          ("PPL", "Primeira Liga", ["portuguese liga"]), ("ELC", "EFL Championship", ["english championship"]),
+          ("BSA", "Brasileirao", ["brazilian serie a"]), ("EC", "European Championship", ["euros", "euro championship"]),
+          ("WC", "FIFA World Cup", ["world cup"])]
 
 
 def h_soccer_competition() -> list[dict]:
-    return [_e("soccer_competition", "league", code, name, [code, alt], rank=len(SOCCER) - i)
-            for i, (code, name, alt) in enumerate(SOCCER)]
+    return [_e("soccer_competition", "league", code, name, [code, *alts], rank=len(SOCCER) - i)
+            for i, (code, name, alts) in enumerate(SOCCER)]
 
 
 # TheSportsDB league ids (lookupleague.php) with the names people use; the harvest confirms each id live
@@ -609,14 +967,23 @@ HARVEST = {"place": h_place, "zip": h_zip, "county": h_county, "us_state": h_us_
            "spending_agency": h_spending_agency,
            "radar_site": h_radar_site, "soccer_competition": h_soccer_competition, "kraken_pair": h_kraken_pair,
            "sports_league": h_sports_league,
-           "nwps_gauge": h_nwps_gauge}
+           "nwps_gauge": h_nwps_gauge, "water_body": h_water_body, "official_site": h_official_site,
+           "geyser": h_geyser}
+
+# today's rules over the committed table, without re-pulling the upstream list (a targeted, reproducible
+# regeneration: each function is what the harvester itself applies, so a full harvest gives the same rows)
+REFINE = {"place": _refine_place, "ticker": _refine_ticker,
+          "team_espn": lambda rows: (_add_tsdb_ids(rows), _team_aliases(rows))[1],  # ESPN refuses us
+          "team_mlb": _team_aliases, "team_nhl": _team_aliases}
 
 
-def harvest(names: list[str] | None = None) -> dict[str, int]:
+def harvest(names: list[str] | None = None, refine: bool = False) -> dict[str, int]:
+    """Rebuild resolver tables (all by default). With refine, a table in REFINE is rebuilt from its committed
+    rows by today's rules instead of from its upstream source."""
     counts = {}
     for name in names or list(HARVEST):
         try:
-            rows = HARVEST[name]()
+            rows = REFINE[name](read_jsonl(RES / f"{name}.jsonl")) if refine and name in REFINE else HARVEST[name]()
         except Exception as exc:  # a provider that refuses or rate-limits us: keep the old table, report it
             counts[name] = f"not harvested ({type(exc).__name__}: {str(exc)[:80]})"
             continue

@@ -356,3 +356,145 @@ def test_feed_answers_name_what_the_items_are():
     sample = {"items": [{"title": "t", "published": "2026-09-28T10:00:00Z"}]}
     assert feed_answers({"categories": ["news/topic_news"]}, sample)[0]["label"] == "Headlines"
     assert feed_answers({"categories": ["science/papers"]}, sample)[0]["label"] == "Latest papers"
+
+
+# --- v1.2: window, measure, axis, tbd_if; the `result` kind; coverage.water -------------------------------
+
+def test_window_is_a_closed_enum_on_values():
+    for w in ("now", "today", "tonight", "tomorrow", "latest"):
+        assert answer_problems([value(window=w)]) == [], w
+    for w in ("weekend", "Today", "", 1, None, "dow:sat"):
+        bad([value(window=w)], "window must be one of")
+    bad([rows(window="today")], "unknown keys")
+    bad([cols(window="today")], "unknown keys")
+
+
+def test_measure_is_a_closed_name_on_values():
+    for m in ("temperature", "precip_chance", "thunderstorm", "waves", "water_temp", "kp", "sunset"):
+        assert answer_problems([value(measure=m)]) == [], m
+    for m in ("temp", "Temperature", ["temperature"], "", "wave_height"):
+        bad([value(measure=m)], "measure must be one of")
+    bad([rows(measure="temperature")], "unknown keys")
+
+
+def test_axis_names_a_date_or_time_cell_of_its_rows():
+    c = cols(axis={"cell": "daily.time", "step": "day"})
+    assert answer_problems([c]) == []
+    r = rows(row=[{"path": "startTime", "label": "When", "type": "time"},
+                  {"path": "shortForecast", "label": "Forecast", "type": "text"}],
+             axis={"cell": "startTime", "step": "period"})
+    assert answer_problems([r]) == []
+    bad([cols(axis={"cell": "daily.time", "step": "week"})], "axis step must be")
+    bad([cols(axis={"cell": "daily.time"})], "axis must be {cell, step}")
+    bad([cols(axis={"cell": "daily.time", "step": "day", "tz": "x"})], "axis must be {cell, step}")
+    bad([cols(axis={"cell": "daily.temperature_2m_max", "step": "day"})], "axis cell must be one of its date/time")
+    bad([cols(axis={"cell": "daily.nope", "step": "day"})], "axis cell must be one of its date/time")
+    bad([rows(axis={"cell": "properties.place", "step": "hour"})], "axis cell must be one of its date/time")
+    bad([value(axis={"cell": "current.time", "step": "hour"})], "unknown keys")
+
+
+def test_tbd_if_is_on_a_time_value_or_time_row_cell():
+    t = {"path": "dates[0].games[0].status.startTimeTBD", "equals": True}
+    assert answer_problems([value(type="time", path="dates[0].games[0].gameDate", tbd_if=t)]) == []
+    assert answer_problems([value(type="time", tbd_if={"path": "status", "equals": "TBD"})]) == []
+    row = {"path": "gameDate", "label": "Time", "type": "time", "tbd_if": {"path": "status.startTimeTBD",
+                                                                              "equals": True}}
+    assert answer_problems([rows(row=[row])]) == []
+    bad([value(type="number", tbd_if=t)], "tbd_if is on a time only")
+    bad([value(type="time", tbd_if={"path": "x"})], "tbd_if must be {path, equals}")
+    bad([value(type="time", tbd_if={"path": "x", "equals": False})], "tbd_if equals must be true or")
+    bad([value(type="time", tbd_if={"path": "x", "equals": "{team}"})], "tbd_if equals must be true or")
+    bad([value(type="time", tbd_if={"path": "a[*]", "equals": True})], "bad tbd_if path")
+    c = cols()
+    c["columns"][0]["tbd_if"] = {"path": "x", "equals": True}
+    bad([c], "unknown keys")
+
+
+def test_v12_keys_checked_against_the_sample():
+    sample = {"daily": {"time": ["2026-09-28", "2026-09-29"], "t": [1, 2], "epoch": [1790000000, 1790086400]},
+              "periods": [{"startTime": "2026-09-28T18:00:00-05:00", "name": "Tonight", "ok": True},
+                          {"startTime": "Tomorrow", "name": "Tuesday", "ok": True}],
+              "games": [{"gameDate": "2026-10-03T20:08:00Z", "status": {"startTimeTBD": True}}]}
+    good = cols(axis={"cell": "daily.time", "step": "day"},
+                columns=[{"path": "daily.time", "label": "Day", "type": "date"},
+                         {"path": "daily.t", "label": "T", "type": "number"}])
+    assert check_sample([good], sample) == []
+    epoch = cols(axis={"cell": "daily.epoch", "step": "day"},
+                 columns=[{"path": "daily.epoch", "label": "Day", "type": "time"},
+                          {"path": "daily.t", "label": "T", "type": "number"}])
+    assert any("not an ISO date/time" in e for e in check_sample([epoch], sample))
+    per = rows(path="periods", row=[{"path": "startTime", "label": "When", "type": "time"}],
+               axis={"cell": "startTime", "step": "period"})
+    # every row's cell must be ISO, not only the first one the type check reads
+    assert any("not an ISO date/time" in e for e in check_sample([per], sample))
+    tbd = value(type="time", path="games[0].gameDate",
+                tbd_if={"path": "games[0].status.startTimeTBD", "equals": True})
+    assert check_sample([tbd], sample) == []
+    gone = value(type="time", path="games[0].gameDate", tbd_if={"path": "games[0].status.nope", "equals": True})
+    assert any("tbd_if" in e for e in check_sample([gone], sample))
+
+
+def test_a_time_beside_a_tbd_flag_must_declare_tbd_if():
+    sample = {"games": [{"gameDate": "2026-10-03T20:08:00Z", "status": {"startTimeTBD": False}}],
+              "events": [{"strTimestamp": "2026-10-03T20:00:00", "strTime": "TBA"}],
+              "plain": [{"when": "2026-10-03T20:00:00Z", "name": "x"}]}
+    assert any("TBD/TBA" in e for e in check_sample([value(type="time", path="games[0].gameDate")], sample))
+    ev = rows(path="events", row=[{"path": "strTimestamp", "label": "When", "type": "time"}])
+    assert any("TBD/TBA" in e for e in check_sample([ev], sample))
+    pl = rows(path="plain", row=[{"path": "when", "label": "When", "type": "time"}])
+    assert check_sample([pl], sample) == []
+
+
+def _rec(**kw):
+    r = {"id": "x-source", "name": "x", "description": "d", "provider": {"name": "P", "authority": "official"},
+         "tier": "curated", "categories": ["weather/current"], "kinds": ["current_value"], "coverage": {"geo": "US"},
+         "access": {"kind": "http_json", "url_template": "https://api.example.org/x", "params": [], "auth": "none"},
+         "terms": {"status": "public_domain"}, "freshness": {"cadence": "hourly"}, "origin": {"by": "test"}}
+    r.update(kw)
+    return r
+
+
+def test_result_kind_and_water_coverage():
+    assert validate_record(_rec(kinds=["result", "latest_items"])) == []
+    assert validate_record(_rec(coverage={"geo": "US", "water": "ocean_coastal"})) == []
+    assert any("coverage.water" in e for e in validate_record(_rec(coverage={"geo": "US", "water": "lakes"})))
+
+
+# --- lints (the data's promises agree with its answers) ---------------------------------------------------
+
+def test_count_answers_never_claim_any_words():
+    from sourcetool.answers import answer_lints
+    assert answer_lints(_rec(kinds=["count"], answers=[value(type="count", path="items")])) == []
+    got = answer_lints(_rec(kinds=["count"], answers=[value(type="count", path="items",
+                                                            words=["how many", "count", "any hurricanes"])]))
+    assert any("any hurricanes" in e for e in got)
+
+
+def test_every_declared_kind_is_covered_by_an_answer():
+    from sourcetool.answers import answer_lints
+    nxt = value("next_time", type="time", path="games[0].gameDate")
+    sched = rows(path="games", row=[{"path": "gameDate", "label": "When", "type": "time"}])
+    assert answer_lints(_rec(kinds=["next_event"], answers=[nxt])) == []
+    got = answer_lints(_rec(kinds=["next_event", "schedule"], answers=[nxt]))
+    assert any("schedule" in e for e in got) and not any("next_event" in e for e in got)
+    assert answer_lints(_rec(kinds=["next_event", "schedule"], answers=[nxt, sched])) == []
+    assert any("result" in e for e in answer_lints(_rec(kinds=["result"], answers=[nxt])))
+    score = value("home_score", path="games[0].teams.home.score")
+    assert answer_lints(_rec(kinds=["result"], answers=[score])) == []
+    assert any("latest_items" in e for e in answer_lints(_rec(kinds=["latest_items"], answers=[value()])))
+    # kinds that need no particular shape (lookup, map, image, text_brief, compare) are never flagged
+    assert answer_lints(_rec(kinds=["lookup", "map"], answers=[value()])) == []
+    assert answer_lints(_rec(kinds=["forecast"])) == []  # a record with no answers is not linted
+
+
+def test_every_subcategory_keyword_is_spoken_by_a_source_filed_there():
+    from sourcetool.answers import keyword_lints
+    tax = {"categories": [{"id": "weather", "subcategories": [
+        {"id": "forecast", "keywords": ["forecast", "thunderstorm", "hail"]},
+        {"id": "empty", "keywords": ["nothing filed"]}]}]}
+    recs = [_rec(categories=["weather/forecast"], name="Forecast", description="7-day forecast",
+                 answers=[value(words=["thunderstorms", "rain", "storm"])]),
+            _rec(id="harvested-x", tier="harvested", categories=["weather/forecast"], description="hail reports")]
+    got = keyword_lints(recs, tax)
+    assert got == ["weather/forecast: no curated source filed here speaks to 'hail'"]
+

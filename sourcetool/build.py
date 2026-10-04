@@ -15,7 +15,7 @@ from collections import Counter
 import duckdb
 
 from .common import BUILD, SOURCES, read_jsonl, taxonomy
-from .schema import classify
+from .schema import classify, load_asks
 
 DB = BUILD / "library.duckdb"
 _STOP = set("a an the of in on at for to and or is are was be by with from as it its this that what whats "
@@ -57,6 +57,9 @@ def _fields(r: dict) -> list[tuple[str, float]]:
 
 
 def build() -> str:
+    from .schema import taxonomy_problems
+    if problems := taxonomy_problems(taxonomy()):  # before anything is written: the old build stays usable
+        raise SystemExit("taxonomy refused:\n  " + "\n  ".join(problems))
     t0 = time.time()
     BUILD.mkdir(exist_ok=True)
     if DB.exists():
@@ -64,6 +67,9 @@ def build() -> str:
     recs = [r for d in ("curated", "harvested", "suggested") for f in sorted((SOURCES / d).glob("*.jsonl"))
             for r in read_jsonl(f) if not r.get("replaced_by")]  # a retired source never competes again
     n_answers = merge_answers(recs)
+    src_asks, route_asks, problems = load_asks(recs, taxonomy(), require_all=False)  # coverage is check's gate
+    if problems:
+        raise SystemExit("asks refused:\n  " + "\n  ".join(problems))
     con = duckdb.connect(str(DB))
     con.execute("""CREATE TABLE library_sources(
         id VARCHAR PRIMARY KEY, name VARCHAR, description VARCHAR, provider_id VARCHAR, provider_name VARCHAR,
@@ -82,6 +88,9 @@ def build() -> str:
     # lifts the sources that take one
     con.execute("CREATE TABLE library_source_resolvers(source_id VARCHAR, resolver VARCHAR)")
     con.execute("CREATE TABLE library_meta(key VARCHAR, value VARCHAR)")
+    # example asks (locate v2): the app embeds them with its own embedder for routing and dense retrieval
+    con.execute("CREATE TABLE library_source_asks(source_id VARCHAR, ask VARCHAR)")
+    con.execute("CREATE TABLE library_route_asks(category VARCHAR, subcategory VARCHAR, ask VARCHAR)")
     rows, cats, term_rows, src_res = [], [], [], []
     df = Counter()
     per_rec_terms = []
@@ -121,11 +130,14 @@ def build() -> str:
     con.executemany("INSERT INTO library_source_categories VALUES (?,?,?)", cats)
     _copy(con, "library_terms", term_rows)
     con.executemany("INSERT INTO library_source_resolvers VALUES (?,?)", src_res)
+    for table, ask_rows in (("library_source_asks", src_asks), ("library_route_asks", route_asks)):
+        if ask_rows:  # COPY refuses an empty file
+            _copy(con, table, ask_rows)
     for c in taxonomy()["categories"]:
         for s in c["subcategories"]:
             con.execute("INSERT INTO library_taxonomy VALUES (?,?,?,?,?,?,?)",
                         (c["id"], s["id"], f"{c['label']} › {s['label']}", s["kinds"], s["params"], s["keywords"],
-                         json.dumps(s.get("policy") or {})))
+                         json.dumps(pack_policy(s))))
     n_res = _load_resolvers(con)
     con.execute("INSERT INTO library_meta VALUES ('built_at', ?), ('records', ?), ('schema', '1'), "
                 "('sources_with_answers', ?)", (time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()), str(n),
@@ -137,6 +149,12 @@ def build() -> str:
     con.close()
     return (f"built {DB.relative_to(BUILD.parent)}: {n} sources, {len(term_rows)} index terms, {n_res} resolver "
             f"entries in {time.time() - t0:.1f}s")
+
+
+def pack_policy(sub: dict) -> dict:
+    """A subcategory's library_taxonomy.policy: its policy (with `measure`) plus its `expects`, the one column the
+    app reads a subcategory's facts from."""
+    return {**(sub.get("policy") or {}), **({"expects": sub["expects"]} if sub.get("expects") else {})}
 
 
 def merge_answers(recs: list[dict], directory=None) -> int:
@@ -187,6 +205,9 @@ def _load_resolvers(con) -> int:
     return n
 
 
+# an entity lifts the sources that take it, and a source whose declared subject (coverage.entity) the ask names
+# gets the same lift; it never gates the rest out: a league-wide or index source takes no resolver ("MLB wild
+# card standings", "how's the Nasdaq doing"). The app's library_index._LOOKUP_SQL is this query.
 _LOOKUP = """
 WITH q(term) AS (SELECT unnest(?::VARCHAR[])),
 hits AS (SELECT t.source_id, sum(t.weight) AS rel, count(*) AS matched
@@ -198,15 +219,16 @@ pref(authority, pos) AS (SELECT unnest(?::VARCHAR[]), generate_subscripts(?::VAR
 ent AS (SELECT DISTINCT source_id FROM library_source_resolvers WHERE resolver IN (SELECT unnest(?::VARCHAR[]))),
 geo AS (SELECT DISTINCT r.source_id FROM library_source_resolvers r JOIN catb c ON c.source_id = r.source_id
         WHERE c.cb > 0 AND r.resolver IN (SELECT unnest(?::VARCHAR[]))),
-cand AS (SELECT source_id FROM ent
-         UNION SELECT source_id FROM hits WHERE NOT EXISTS (SELECT 1 FROM ent))
+cand AS (SELECT source_id FROM ent UNION SELECT source_id FROM hits)
 SELECT s.id, s.name, s.tier, s.validation_status, s.provider_name,
        coalesce(h.rel / (SELECT max(rel) FROM hits), 0) * 4
          * (CASE s.tier WHEN 'harvested' THEN 0.7 WHEN 'provider_trusted' THEN 0.9 ELSE 1.0 END)
          + coalesce(c.cb, 0) + s.prior
          - (CASE WHEN s.audience <> '' AND NOT list_contains(?::VARCHAR[], s.audience) THEN 1.5 ELSE 0 END)
          + coalesce((SELECT 0.6 - 0.3 * (p.pos - 1) FROM pref p WHERE p.authority = s.authority), 0)
-         + (CASE WHEN s.id IN (SELECT source_id FROM ent) THEN 3.5 ELSE 0 END)
+         + (CASE WHEN s.id IN (SELECT source_id FROM ent) OR (s.entity <> '' AND strpos(?,
+                 ' ' || trim(regexp_replace(lower(s.entity), '[^a-z0-9]+', ' ', 'g')) || ' ') > 0)
+            THEN 3.5 ELSE 0 END)
          + (CASE WHEN s.id IN (SELECT source_id FROM geo) THEN 1.5 ELSE 0 END)
          + (CASE WHEN list_has_any(s.kinds, ?::VARCHAR[]) THEN 1.0 ELSE 0 END) AS score,
        (SELECT string_agg(category || '/' || subcategory, ',') FROM library_source_categories x WHERE x.source_id = s.id)
@@ -368,7 +390,8 @@ def lookup(ask: str, limit: int = 8) -> list[dict]:
                           [*cats[0].split("/", 1)]).fetchone()
         geo = bool(row and row[0] and json.loads(row[0]).get("match") == "geo")
     geo_lift = list(GEO_RESOLVERS) if (has_place and geo) else []
-    rows = con.execute(_LOOKUP, [terms, cats, prefer, prefer, entities, geo_lift, audiences(ask),
+    from .resolvers import norm
+    rows = con.execute(_LOOKUP, [terms, cats, prefer, prefer, entities, geo_lift, audiences(ask), f" {norm(ask)} ",
                                  question_kinds(ask), limit]).fetchall()
     ms = (time.perf_counter() - t0) * 1000
     con.close()

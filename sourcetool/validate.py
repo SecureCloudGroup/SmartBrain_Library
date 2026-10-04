@@ -3,18 +3,24 @@
 Checks, in order: robots.txt allows the URL; HTTP 200; the body parses as the declared format and is not
 empty. A source that needs the user's own key and has no public demo key is left "unvalidated" (we never
 hold user keys). Internal (on-device) sources are not probed.
+
+Every probe carries the app's own identity (common.probe_headers: its User-Agent, and the JSON Accept for a
+JSON source), so "ok" means the app gets the same answer. A source whose parameters come from a resolver is
+also probed with a few random readings of that resolver (`--samples N`, default 2), not only its example: an
+example that works says nothing about the other 900 buoys (validation.samples).
 """
 from __future__ import annotations
 
 import csv
 import io
 import json
+import random
 import re
 from concurrent.futures import ThreadPoolExecutor
 from urllib.parse import quote, urlsplit
 from xml.etree import ElementTree
 
-from .common import Refused, get, now_iso, robots_allows
+from .common import Refused, decode_body, get, now_iso, probe_headers, robots_allows
 
 # robots.txt is the crawler convention: it governs pages we would crawl or scrape (HTML, search
 # results). Documented API and feed endpoints are governed by the provider's API terms, which each
@@ -26,8 +32,8 @@ _API_KINDS = {"http_json", "http_csv", "http_xml", "rss", "atom", "gtfs", "gtfs_
 _PARAM = re.compile(r"\{([a-z_][a-z0-9_]*)\}")
 
 
-def fill(template: str, params: list[dict]) -> str | None:
-    ex = {p["name"]: p.get("example") for p in params}
+def fill(template: str, params: list[dict], values: dict | None = None) -> str | None:
+    ex = {p["name"]: p.get("example") for p in params} | (values or {})
     missing = [n for n in _PARAM.findall(template) if not ex.get(n)]
     if missing:
         return None
@@ -44,7 +50,7 @@ def _format_ok(kind: str, body: bytes, ctype: str) -> tuple[bool, str]:
         return False, "empty body"
     try:
         if kind in ("http_json", "gbfs"):
-            j = json.loads(body)
+            j = json.loads(decode_body(body, ctype))
             return (bool(j), "json") if j not in ({}, []) else (False, "empty json")
         if kind in ("rss", "atom", "http_xml"):
             root = ElementTree.fromstring(body)
@@ -68,7 +74,66 @@ def _format_ok(kind: str, body: bytes, ctype: str) -> tuple[bool, str]:
         return False, f"parse: {type(e).__name__}"
 
 
-def validate_one(r: dict) -> dict:
+def _field(entry: dict, field: str):
+    v = entry
+    for part in field.split("."):
+        v = v.get(part) if isinstance(v, dict) else None
+    return v
+
+
+def resolver_samples(r: dict, n: int, rng: random.Random) -> list[str]:
+    """Up to n URLs of the record filled from random entries of the resolver its parameters use (one entry
+    fills every parameter of that resolver: a place's lat and lon together); the other parameters keep their
+    examples. A fill whose format the app doesn't apply ({UPPER} only) is not sampled."""
+    params = r["access"].get("params", [])
+    fills = [(p["name"], p["fill"]) for p in params if (p.get("fill") or {}).get("from") == "resolver"]
+    by_res: dict[str, list[tuple[str, dict]]] = {}
+    for name, f in fills:
+        fmt = f.get("format")
+        if fmt and (fmt.count("{") != 1 or "{UPPER}" not in fmt):
+            return []
+        by_res.setdefault(f["resolver"], []).append((name, f))
+    if not by_res or n <= 0:
+        return []
+    from .resolve import load  # the matcher's cached tables
+    tables = {res: [e for e in load(res)[0] if all(_field(e, f["field"]) not in (None, "") for _, f in pf)]
+              for res, pf in by_res.items()}
+    urls = []
+    for _ in range(n):
+        values = {}
+        for res, pf in by_res.items():
+            if not tables[res]:
+                return []
+            e = rng.choice(tables[res])
+            for name, f in pf:
+                v = str(_field(e, f["field"]))
+                values[name] = f["format"].replace("{UPPER}", v.upper()) if f.get("format") else v
+        url = fill(r["access"].get("url_template") or "", params, values)
+        if url and url not in urls:
+            urls.append(url)
+    return urls
+
+
+def _probe_samples(r: dict, headers: dict, n: int, rng: random.Random) -> dict:
+    ok, failed = 0, []
+    documented = r["access"]["kind"] in _API_KINDS and bool(r["access"].get("docs_url"))
+    for url in resolver_samples(r, n, rng):
+        if not documented and not robots_allows(url):
+            continue  # robots governs a page we would crawl; never fetched
+        try:
+            status, body, ctype = get(url, cache_hours=12, headers=headers, api=True)
+        except Exception as e:  # a failed reading is a result
+            failed.append(f"{url} ({type(e).__name__})")
+            continue
+        good = status == 200 and _format_ok(r["access"]["kind"], body, ctype)[0]
+        if good:
+            ok += 1
+        else:
+            failed.append(f"{url} (HTTP {status})" if status != 200 else f"{url} (unparsed)")
+    return {"n": ok + len(failed), "ok": ok, "failed": failed}
+
+
+def validate_one(r: dict, samples: int = 2, rng: random.Random | None = None) -> dict:
     a = r["access"]
     v = {"checked_at": now_iso()}
     if a["kind"] in ("internal", "docs_only"):
@@ -84,6 +149,7 @@ def validate_one(r: dict) -> dict:
         if "{" in hv:
             return {**v, "status": "unvalidated", "note": "needs the user's key in a header"}
         headers[hk] = hv
+    headers = probe_headers(a["kind"], headers)
     allowed = robots_allows(url)
     v["robots"] = "allow" if allowed else "disallow"
     if not allowed and (a["kind"] not in _API_KINDS or not r.get("access", {}).get("docs_url")):
@@ -102,7 +168,15 @@ def validate_one(r: dict) -> dict:
     if status != 200:
         return {**v, "status": "failed", "http": status}
     ok, note = _format_ok(a["kind"], body, ctype)
-    return {**v, "status": "ok" if ok else "degraded", "http": status, "note": note, "bytes": len(body)}
+    v = {**v, "status": "ok" if ok else "degraded", "http": status, "note": note, "bytes": len(body)}
+    if ok and samples > 0:
+        s = _probe_samples(r, headers, samples, rng or random.Random())
+        if s["n"]:
+            v["samples"] = s
+        if s["failed"]:
+            v["status"] = "degraded"
+            v["note"] = f"{note}; {len(s['failed'])} of {s['n']} resolver readings fail"
+    return v
 
 
 def _interleave_by_host(records: list[dict]) -> list[dict]:
@@ -119,10 +193,10 @@ def _interleave_by_host(records: list[dict]) -> list[dict]:
     return out
 
 
-def validate_all(records: list[dict], workers: int = 16) -> list[dict]:
+def validate_all(records: list[dict], workers: int = 16, samples: int = 2) -> list[dict]:
     order = _interleave_by_host(records)
     with ThreadPoolExecutor(workers) as ex:
-        results = list(ex.map(validate_one, order))
+        results = list(ex.map(lambda r: validate_one(r, samples), order))
     for r, v in zip(order, results):
         r["validation"] = v
     return records

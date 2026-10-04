@@ -6,11 +6,12 @@ local source, so a record means the same thing everywhere.
 from __future__ import annotations
 
 import ipaddress
+import json
 import re
 from urllib.parse import urlsplit
 
 from .answers import answer_problems
-from .common import taxonomy
+from .common import ROOT, taxonomy
 
 TIERS = ("curated", "provider_trusted", "harvested", "local")
 AUTHORITY = ("official", "primary", "aggregator", "community")
@@ -20,6 +21,7 @@ AUTH = ("none", "free_key", "oauth", "user_account")
 TERMS = ("public_domain", "open_license", "terms_allow", "unverified")
 CADENCE = ("realtime", "minutes", "hourly", "daily", "weekly", "monthly", "quarterly", "annual", "irregular", "static")
 VALIDATION = ("unvalidated", "ok", "degraded", "failed", "refused")
+WATER = ("ocean_coastal",)  # coverage.water: the source has data only at sea and on the coast (open-meteo-marine)
 
 REQUIRED = ("id", "name", "description", "provider", "tier", "categories", "kinds", "coverage", "access", "terms",
             "freshness", "origin")
@@ -86,6 +88,8 @@ def validate_record(r: dict) -> list[str]:
         errs.append(f"unknown kinds {r['kinds']}")
     if not r["coverage"].get("geo"):
         errs.append("coverage.geo required")
+    if "water" in r["coverage"] and r["coverage"]["water"] not in WATER:
+        errs.append(f"coverage.water must be one of {'/'.join(WATER)}")
     a = r["access"]
     if a.get("kind") not in ACCESS_KINDS:
         errs.append(f"access.kind {a.get('kind')!r}")
@@ -121,14 +125,145 @@ def validate_record(r: dict) -> list[str]:
 
 
 def classify(text: str, limit: int = 3) -> list[str]:
-    """Keyword placement into category/subcategory (a draft for review, never the final word)."""
+    """Keyword placement into category/subcategory, exactly as the app places an ask (library_index.classify):
+    the longest matched keyword wins ("temp" inside a matched "water temp" says nothing about weather), then
+    the most keywords, ties in taxonomy order."""
     t = taxonomy()
-    low = " " + re.sub(r"[^a-z0-9.&+ ]+", " ", text.lower()) + " "
-    scored = []
-    for c in t["categories"]:
-        for s in c["subcategories"]:
-            hits = sum(1 for kw in s["keywords"] if f" {kw} " in low or (len(kw) > 5 and kw in low))
-            if hits:
-                scored.append((hits, f"{c['id']}/{s['id']}"))
-    scored.sort(key=lambda x: -x[0])
-    return [cid for _, cid in scored[:limit]]
+    low = " " + re.sub(r"[^a-z0-9.&+ ]+", " ", (text or "").lower()) + " "
+    matched = [(kw, f"{c['id']}/{s['id']}") for c in t["categories"] for s in c["subcategories"]
+               for kw in s["keywords"] if f" {kw} " in low or (len(kw) > 5 and kw in low)]
+    said = {kw for kw, _ in matched}
+    counts: dict[str, int] = {}
+    for kw, cid in matched:
+        if not any(kw != longer and f" {kw} " in f" {longer} " for longer in said):
+            counts[cid] = counts.get(cid, 0) + 1
+    return [cid for cid, _ in sorted(counts.items(), key=lambda x: -x[1])[:limit]]
+
+
+# --- taxonomy.json: its closed shape (build refuses a taxonomy with problems) ---------------------------
+
+SUB_KEYS = {"id", "label", "kinds", "params", "keywords", "policy", "expects"}
+POLICY_KEYS = {"prefer", "match", "resolvers", "max_km", "differ_on", "max_age", "cross_check", "ask_if_ambiguous",
+               "measure"}
+_KEYWORD = re.compile(r"[a-z0-9.&+]+(?: [a-z0-9.&+]+)*")  # what survives classify's own normalization
+_COLUMN = re.compile(r"[A-Z][A-Z0-9]{1,7}")  # a station column the provider names (NDBC WTMP, WVHT)
+
+
+def taxonomy_problems(t: dict) -> list[str]:
+    """Problems with the taxonomy; an empty list means it is well-formed. `expects` names the components a
+    complete answer holds (answers.COMPONENTS); `policy.measure` maps a station resolver the policy uses to
+    the column a station must report to be offered (water temperature -> buoy WTMP)."""
+    from .answers import COMPONENTS
+    kinds, pkinds = set(t.get("question_kinds") or []), set(t.get("param_kinds") or [])
+    errs, seen = [], set()
+    for c in t.get("categories") or []:
+        for s in c.get("subcategories") or []:
+            cid = f"{c.get('id')}/{s.get('id')}"
+            if cid in seen:
+                errs.append(f"{cid}: duplicate subcategory")
+            seen.add(cid)
+            if set(s) - SUB_KEYS:
+                errs.append(f"{cid}: unknown keys {sorted(set(s) - SUB_KEYS)}")
+            if not s.get("kinds") or set(s["kinds"]) - kinds:
+                errs.append(f"{cid}: kinds must come from question_kinds, got {s.get('kinds')}")
+            if set(s.get("params") or []) - pkinds:
+                errs.append(f"{cid}: unknown params {sorted(set(s['params']) - pkinds)}")
+            kw = s.get("keywords")
+            if not isinstance(kw, list) or any(not isinstance(k, str) or k != k.strip().lower() or not k for k in kw):
+                errs.append(f"{cid}: keywords must be lowercase words or phrases")
+            elif dead := [k for k in kw if not _KEYWORD.fullmatch(k)]:
+                errs.append(f"{cid}: keywords {dead} never match (classify keeps only a-z 0-9 . & + and spaces)")
+            if "expects" in s and (not isinstance(s["expects"], list) or not s["expects"]
+                                   or set(s["expects"]) - set(COMPONENTS)
+                                   or len(set(s["expects"])) != len(s["expects"])):
+                errs.append(f"{cid}: expects must be distinct names from {'/'.join(COMPONENTS)}")
+            pol = s.get("policy") or {}
+            if set(pol) - POLICY_KEYS:
+                errs.append(f"{cid}: unknown policy keys {sorted(set(pol) - POLICY_KEYS)}")
+            m = pol.get("measure")
+            if m is not None and (not isinstance(m, dict) or not m
+                                  or any(r not in (pol.get("resolvers") or []) or not isinstance(col, str)
+                                         or not _COLUMN.fullmatch(col) for r, col in m.items())):
+                errs.append(f"{cid}: policy.measure must map a resolver of this policy to a station column (WTMP)")
+    return errs
+
+
+# --- asks/: example asks for locate v2 (the app embeds them for its router and dense retrieval) -----------
+
+ASKS = ROOT / "asks"
+SOURCE_ASKS, ROUTE_ASKS, ASK_MAX = 10, 12, 80
+
+
+def offerable(r: dict) -> bool:
+    """A curated source the app offers: not failed or refused, not a helper, not retired."""
+    return (r.get("tier") == "curated" and (r.get("validation") or {}).get("status") not in ("failed", "refused")
+            and r.get("role") != "helper" and not r.get("replaced_by"))
+
+
+def _said(text: str) -> str:
+    return " ".join(text.lower().split())
+
+
+def _ask_file(path, key: str, n: int, known, examples: dict) -> tuple[list[tuple[str, str]], list[str]]:
+    """(key value, ask) pairs of one asks file, and its problems."""
+    pairs, errs, seen = [], [], set()
+    for i, line in enumerate(path.read_text().splitlines(), 1):
+        if not line.strip():
+            continue
+        where = f"{path.name}:{i}"
+        try:
+            doc = json.loads(line)
+        except ValueError:
+            errs.append(f"{where}: not JSON")
+            continue
+        if not isinstance(doc, dict) or set(doc) != {key, "asks"}:
+            errs.append(f"{where}: must hold exactly {key} and asks")
+            continue
+        k, asks = doc[key], doc["asks"]
+        if k not in known:
+            errs.append(f"{where}: unknown {key} {k!r}")
+            continue
+        if k in seen:
+            errs.append(f"{where}: {k} appears twice")
+        seen.add(k)
+        if not isinstance(asks, list) or any(not isinstance(a, str) or not a or a != a.strip() for a in asks):
+            errs.append(f"{where}: {k}: asks must be non-empty strings without outer spaces")
+            continue
+        if len(asks) != n:
+            errs.append(f"{where}: {k}: {len(asks)} asks, needs exactly {n}")
+        errs += [f"{where}: {k}: over {ASK_MAX} characters: {a!r}" for a in asks if len(a) > ASK_MAX]
+        if len({_said(a) for a in asks}) != len(asks):
+            errs.append(f"{where}: {k}: a repeated ask")
+        errs += [f"{where}: {k}: copies the record's example {a!r}" for a in asks
+                 if _said(a) in examples.get(k, set())]
+        pairs += [(k, a) for a in asks]
+    return pairs, errs
+
+
+def load_asks(recs: list[dict], tax: dict, directory=None, require_all: bool = True):
+    """asks/sources.jsonl ({source_id, asks: 10 per source}) and asks/routes.jsonl ({route, asks: 12 per
+    subcategory}) as table rows (source_id, ask) and (category, subcategory, ask), with their problems: an unknown
+    source or route, the wrong count, an ask over 80 characters, a repeat, or one of the record's own examples
+    (asks are new phrasings). require_all (check) also wants every offerable curated source and every
+    subcategory covered; build loads what is there."""
+    d = directory or ASKS
+    live = [r for r in recs if not r.get("replaced_by")]  # a retired source's asks go with it
+    examples = {r["id"]: {_said(e) for e in r.get("examples") or [] if isinstance(e, str)} for r in live}
+    routes = [f"{c['id']}/{s['id']}" for c in tax["categories"] for s in c["subcategories"]]
+    got, errs = {}, []
+    for name, key, n, known in (("sources.jsonl", "source_id", SOURCE_ASKS, examples),
+                                ("routes.jsonl", "route", ROUTE_ASKS, set(routes))):
+        if not (d / name).exists():
+            got[name] = []
+            if require_all:
+                errs.append(f"{name}: missing")
+            continue
+        got[name], e = _ask_file(d / name, key, n, known, examples if key == "source_id" else {})
+        errs += e
+    if require_all:
+        have = {k for k, _ in got["sources.jsonl"]}
+        errs += [f"sources.jsonl: no asks for {r['id']}" for r in live if offerable(r) and r["id"] not in have]
+        have = {k for k, _ in got["routes.jsonl"]}
+        errs += [f"routes.jsonl: no asks for {r}" for r in routes if r not in have]
+    route_rows = [(*k.split("/", 1), a) for k, a in got["routes.jsonl"]]
+    return got["sources.jsonl"], route_rows, errs

@@ -19,7 +19,7 @@ import time
 from pathlib import Path
 from urllib.parse import parse_qs, urlsplit
 
-from .common import ROOT, SOURCES, Refused, get, read_jsonl, taxonomy
+from .common import ROOT, SOURCES, Refused, decode_body, get, probe_headers, read_jsonl, taxonomy
 
 ANSWERS = ROOT / "answers"
 # the SmartBrain app checkout beside this one (its parsers give samples the shape the app sees)
@@ -30,12 +30,23 @@ KINDS = ("value", "list", "columns")
 VALUE_TYPES = ("number", "text", "time", "date", "count")
 ROW_TYPES = ("number", "text", "time", "date")
 CODES = ("wmo_weather",)
+# v1.2: what a value delivers. `window` is the stretch of time it is about ("latest" = the newest published
+# reading, not tied to the clock); `measure` is the quantity it reports. Both closed (docs/SCHEMA.md).
+WINDOWS = ("now", "today", "tonight", "tomorrow", "latest")
+MEASURES = ("temperature", "feels_like", "precip_chance", "precip_amount", "conditions", "thunderstorm", "snow",
+            "wind", "humidity", "waves", "swell", "wave_direction", "water_temp", "alerts", "kp", "uv",
+            "air_quality", "tide", "sunrise", "sunset")
+AXIS_STEPS = ("day", "hour", "period")  # rows indexed by local date/time: a day, an hour, a named period
+# taxonomy `expects`: the components a complete answer for a subcategory holds (the measures, plus what a
+# score, a schedule, a table or an observation carries), so a card that lacks one says so
+COMPONENTS = MEASURES + ("observed_time", "wave_period", "score", "opponent", "start_time", "venue", "rank",
+                         "record")
 COMMON = {"name", "label", "words", "primary", "kind"}
-KEYS = {"value": COMMON | {"path", "type", "unit", "unit_path", "codes", "utc"},
-        "list": COMMON | {"path", "row", "newest_first", "may_be_empty", "filter"},
-        "columns": COMMON | {"columns", "limit"}}
-ROW_KEYS = {"path", "label", "type", "unit", "unit_path", "utc"}  # utc: zoneless times are UTC
-COLUMN_KEYS = ROW_KEYS | {"codes"}
+KEYS = {"value": COMMON | {"path", "type", "unit", "unit_path", "codes", "utc", "window", "measure", "tbd_if"},
+        "list": COMMON | {"path", "row", "newest_first", "may_be_empty", "filter", "axis"},
+        "columns": COMMON | {"columns", "limit", "axis"}}
+ROW_KEYS = {"path", "label", "type", "unit", "unit_path", "utc", "tbd_if"}  # utc: zoneless times are UTC
+COLUMN_KEYS = (ROW_KEYS - {"tbd_if"}) | {"codes"}
 FILE_KEYS = {"source_id", "answers", "sample_url", "checked"}
 MAX_ANSWERS = 12
 
@@ -93,15 +104,49 @@ def _field_problems(where: str, f, keys: set[str], types: tuple) -> list[str]:
         errs.append(f"{where}: type must be one of {'/'.join(types)}")
     if "codes" in f and f["codes"] not in CODES:
         errs.append(f"{where}: codes must be \"wmo_weather\"")
-    return errs + _unit_problems(where, f) + _utc_problems(where, f)
+    return errs + _unit_problems(where, f) + _utc_problems(where, f) + _tbd_problems(where, f)
+
+
+def _tbd_problems(where: str, f: dict) -> list[str]:
+    """`tbd_if: {path, equals}` says a time is a placeholder when `path` equals `equals` (MLB's
+    status.startTimeTBD true): the card shows the date and "time TBD". Time only."""
+    if "tbd_if" not in f:
+        return []
+    t = f["tbd_if"]
+    if f.get("type") != "time":
+        return [f"{where}: tbd_if is on a time only"]
+    if not isinstance(t, dict) or set(t) != {"path", "equals"}:
+        return [f"{where}: tbd_if must be {{path, equals}}"]
+    errs = [] if _path_ok(t["path"]) else [f"{where}: bad tbd_if path {t['path']!r}"]
+    if not (t["equals"] is True or (isinstance(t["equals"], str) and _FILTER_LITERAL.fullmatch(t["equals"]))):
+        errs.append(f"{where}: tbd_if equals must be true or a short fixed value")
+    return errs
+
+
+def _axis_problems(w: str, a: dict) -> list[str]:
+    """`axis: {cell, step}` says the rows are indexed by local date/time, so a card can cut them to a window.
+    `cell` is one of the answer's own date/time fields (a column path, or a row-relative list path)."""
+    if "axis" not in a:
+        return []
+    ax = a["axis"]
+    if not isinstance(ax, dict) or set(ax) != {"cell", "step"}:
+        return [f"{w}: axis must be {{cell, step}}"]
+    errs = [] if ax["step"] in AXIS_STEPS else [f"{w}: axis step must be {'/'.join(AXIS_STEPS)}"]
+    fields = a.get("row") if a.get("kind") == "list" else a.get("columns")
+    cells = {f.get("path") for f in fields or [] if isinstance(f, dict) and f.get("type") in ("time", "date")}
+    if ax["cell"] not in cells:
+        errs.append(f"{w}: axis cell must be one of its date/time fields {sorted(c for c in cells if c)}")
+    return errs
 
 
 def _param_problems(w: str, a: dict, params) -> list[str]:
     """Every `{param}` an answer names (in any path or filter) is one of the record's access.params."""
     found = [a.get("path"), a.get("unit_path")]
-    for f in (a.get("row") or []) + (a.get("columns") or []) + [a.get("filter")]:
+    for f in (a.get("row") or []) + (a.get("columns") or []) + [a.get("filter"), a.get("tbd_if")]:
         if isinstance(f, dict):
             found += [f.get("path"), f.get("unit_path"), f.get("equals")]
+            if isinstance(f.get("tbd_if"), dict):
+                found.append(f["tbd_if"].get("path"))
     names = {n for x in found if isinstance(x, str) for n in _PARAM.findall(x)}
     return [f"{w}: {{{n}}} is not a parameter of this source" for n in sorted(names - set(params))]
 
@@ -174,7 +219,11 @@ def answer_problems(answers, params=()) -> list[str]:
                 errs.append(f"{w}: type must be one of {'/'.join(VALUE_TYPES)}")
             if "codes" in a and a["codes"] not in CODES:
                 errs.append(f"{w}: codes must be \"wmo_weather\"")
-            errs += _unit_problems(w, a) + _utc_problems(w, a)
+            errs += _unit_problems(w, a) + _utc_problems(w, a) + _tbd_problems(w, a)
+            if "window" in a and a["window"] not in WINDOWS:
+                errs.append(f"{w}: window must be one of {'/'.join(WINDOWS)}")
+            if "measure" in a and a["measure"] not in MEASURES:
+                errs.append(f"{w}: measure must be one of {'/'.join(MEASURES)}")
         elif kind == "list":
             rows = a.get("row")
             if not isinstance(rows, list) or not 1 <= len(rows) <= 4:
@@ -197,6 +246,8 @@ def answer_problems(answers, params=()) -> list[str]:
             lim = a.get("limit")
             if "limit" in a and (isinstance(lim, bool) or not isinstance(lim, int) or not 1 <= lim <= 100):
                 errs.append(f"{w}: limit must be a whole number 1-100")
+        if kind != "value":
+            errs += _axis_problems(w, a)
         errs += _param_problems(w, a, params)
     rows_primary = primary["list"] + primary["columns"]
     if rows_primary and primary["value"]:
@@ -206,6 +257,86 @@ def answer_problems(answers, params=()) -> list[str]:
     elif primary["value"] > 4:
         errs.append("at most 4 value answers may be primary")
     return errs
+
+
+# --- lints: a record's promises agree with its answers (no network) ---------------------------------
+
+def _dated(a: dict) -> bool:
+    """A list/columns answer whose rows carry a date or time."""
+    fields = a.get("row") if a.get("kind") == "list" else a.get("columns")
+    return any(isinstance(f, dict) and f.get("type") in ("time", "date") for f in fields or [])
+
+
+def _rows(a: dict) -> bool:
+    return a.get("kind") in ("list", "columns")
+
+
+# which answer shapes serve each question kind a record declares; a kind missing here (lookup, map, image,
+# text_brief, compare) promises no particular shape
+KIND_SERVED_BY = {
+    "current_value": lambda a: a.get("kind") == "value",
+    "forecast": lambda a: a.get("window") in ("today", "tonight", "tomorrow") or (_rows(a) and _dated(a)),
+    "next_event": lambda a: a.get("type") in ("time", "date") or (_rows(a) and _dated(a)),
+    "schedule": lambda a: _rows(a) and _dated(a),
+    "result": lambda a: a.get("type") in ("number", "text") or _rows(a),
+    "latest_items": _rows,
+    "ranking": _rows,
+    "trend": lambda a: _rows(a) and _dated(a),
+    "alerts": lambda a: a.get("kind") == "list",
+    "status": lambda a: a.get("type") == "text" or a.get("kind") == "list",
+    "count": lambda a: a.get("type") == "count" or a.get("kind") == "list",
+}
+
+
+def answer_lints(rec: dict) -> list[str]:
+    """Problems between a record and its answers: every declared kind is served by some answer (a
+    next-game-only source never claims `schedule`), and a count never answers an existence question
+    ("any hurricanes?" wants the list, which may be empty — not a bare number)."""
+    answers = [a for a in rec.get("answers") or [] if isinstance(a, dict)]
+    if not answers:
+        return []
+    out = [f"{rec['id']}: kind {k} has no answer that serves it" for k in rec.get("kinds") or []
+           if k in KIND_SERVED_BY and not any(KIND_SERVED_BY[k](a) for a in answers)]
+    for a in answers:
+        if a.get("type") == "count":
+            out += [f"{rec['id']}: count answer {a.get('name')} claims {w!r} (an existence question takes the list)"
+                    for w in a.get("words") or [] if w == "any" or w.startswith("any ")]
+    return out
+
+
+def _fold(text: str) -> str:
+    """Whole lowercase tokens, plurals folded ("thunderstorms" -> "thunderstorm")."""
+    toks = re.findall(r"[a-z0-9.+]+", (text or "").lower())
+    return " " + " ".join(t[:-1] if t.endswith("s") and len(t) > 3 else t for t in toks) + " "
+
+
+def own_words(rec: dict) -> str:
+    """What a source says it is about in ITS OWN words: name, description, examples and declared answers."""
+    parts = [rec.get("name", ""), rec.get("description", ""), " ".join(rec.get("examples") or [])]
+    for a in rec.get("answers") or []:
+        if isinstance(a, dict):
+            parts += [str(a.get("label", "")), " ".join(str(w) for w in a.get("words") or [])]
+    return _fold(" ".join(parts))
+
+
+def keyword_lints(recs: list[dict], tax: dict | None = None) -> list[str]:
+    """Each subcategory keyword is spoken to by at least one curated source filed there, so a keyword never
+    classifies an ask into a subcategory whose sources can't answer it. Subcategories with no curated
+    source are a coverage gap (reported by `coverage`), not a lint."""
+    tax = tax or taxonomy()
+    filed: dict[str, list[str]] = {}
+    for r in recs:
+        if r.get("tier") == "curated" and not r.get("replaced_by"):
+            for c in r.get("categories") or []:
+                filed.setdefault(c, []).append(own_words(r))
+    out = []
+    for c in tax["categories"]:
+        for sc in c["subcategories"]:
+            cid = f"{c['id']}/{sc['id']}"
+            if cid in filed:
+                out += [f"{cid}: no curated source filed here speaks to {kw!r}" for kw in sc["keywords"]
+                        if not any(_fold(kw) in text for text in filed[cid])]
+    return out
 
 
 # --- the check against a real response -------------------------------------------------------------
@@ -274,7 +405,52 @@ def _check_field(where: str, item, root, f: dict, ex: dict) -> list[str]:
         errs.append(f"{where}: {f['path']} is {_show(v)}, not {f['type']}")
     if "unit_path" in f and not isinstance(resolve(root, f["unit_path"], ex), str):
         errs.append(f"{where}: unit_path {f['unit_path']} is {_show(resolve(root, f['unit_path'], ex))}, not text")
+    if f.get("type") == "time":
+        errs += _tbd_check(where, item, f, ex)
     return errs
+
+
+_TBD_KEY = re.compile(r"tb[da]", re.I)  # startTimeTBD, timeTBA, isTBD
+_TBD_VALUE = re.compile(r"\s*(tbd|tba|to be (determined|announced))\s*", re.I)
+
+
+def _tbd_flag(node, depth: int = 3) -> str:
+    """The first key or value near a time that says the time may be a placeholder, or ""."""
+    if isinstance(node, dict):
+        for k, v in node.items():
+            if _TBD_KEY.search(str(k)):
+                return str(k)
+            if depth and (found := _tbd_flag(v, depth - 1)):
+                return found
+    elif isinstance(node, str) and _TBD_VALUE.fullmatch(node):
+        return node
+    return ""
+
+
+def _parent(item, path: str, ex: dict):
+    """The object that holds the last segment of `path` (where a time's TBD flag lives beside it)."""
+    head = path.rsplit(".", 1)[0] if "." in path else ""
+    return resolve(item, head, ex) if head else item
+
+
+def _tbd_check(where: str, item, f: dict, ex: dict) -> list[str]:
+    """A declared tbd_if resolves; an undeclared one is a problem when a TBD/TBA flag sits beside the time."""
+    if "tbd_if" in f:
+        v = resolve(item, f["tbd_if"]["path"], ex)
+        return [] if v is not _MISSING and not isinstance(v, (dict, list)) else \
+            [f"{where}: tbd_if path {f['tbd_if']['path']} is {_show(v)}, not a flag"]
+    flag = _tbd_flag(_parent(item, f["path"], ex))
+    return [f"{where}: a TBD/TBA flag ({flag}) sits beside {f['path']}; declare tbd_if"] if flag else []
+
+
+def _iso(v) -> bool:
+    return isinstance(v, str) and bool(_ISO_TIME.match(v) or _DATE_VALUE.fullmatch(v) or _DATE.fullmatch(v))
+
+
+def _axis_check(w: str, cells: list) -> list[str]:
+    """Every row's axis cell is an ISO date or date-time (what a window cut reads), not only the first."""
+    bad = next((c for c in cells if not _iso(c)), _MISSING)
+    return [] if bad is _MISSING else [f"{w}: axis cell {_show(bad)} is not an ISO date/time"]
 
 
 def check_sample(answers: list, sample, examples: dict | None = None) -> list[str]:
@@ -309,6 +485,8 @@ def check_sample(answers: list, sample, examples: dict | None = None) -> list[st
             else:
                 for j, f in enumerate(a["row"]):
                     errs += _check_field(f"{w} row[{j}]", items[0], sample, f, ex)
+                if "axis" in a:
+                    errs += _axis_check(w, [resolve(it, a["axis"]["cell"], ex) for it in items])
         else:
             lengths = set()
             for j, f in enumerate(a["columns"]):
@@ -323,6 +501,8 @@ def check_sample(answers: list, sample, examples: dict | None = None) -> list[st
                 errs.append(f"{w}: columns have different lengths {sorted(lengths)}")
             elif lengths == {0}:
                 errs.append(f"{w}: columns are empty")
+            if "axis" in a and isinstance(col := resolve(sample, a["axis"]["cell"], ex), list):
+                errs += _axis_check(w, col)
     return errs
 
 
@@ -428,15 +608,15 @@ def fetch_sample(rec: dict, cache_hours: float = 12.0):
     url, headers = sample_url(rec)
     kind = rec["access"]["kind"]
     try:  # documented API/feed endpoints follow the provider's terms (as `validate` does); pages honor robots
-        status, body, _ = get(url, cache_hours=cache_hours, headers=headers or None,
-                              api=kind in _API_KINDS and bool(rec["access"].get("docs_url")))
+        status, body, ctype = get(url, cache_hours=cache_hours, headers=probe_headers(kind, headers),
+                                  api=kind in _API_KINDS and bool(rec["access"].get("docs_url")))
     except Refused:
         raise Failed("robots.txt disallows") from None
     except Exception as e:  # network failure is a result, not a crash
         raise Failed(f"fetch failed: {type(e).__name__}") from None
     if status != 200:
         raise Failed(f"HTTP {status}")
-    text = body.decode("utf-8-sig", "replace")
+    text = decode_body(body, ctype)  # as the app decodes it: BOM, then the declared charset, then UTF-8
     fmt = FORMAT[kind]
     if fmt == "json":
         try:
@@ -450,7 +630,27 @@ def fetch_sample(rec: dict, cache_hours: float = 12.0):
         raise Failed(f"{fmt} did not parse: {e}") from None
 
 
+def lint_report(recs: list[dict], tax: dict | None = None) -> list[str]:
+    """Every lint over records that carry their answers (no network): each record's promises against its
+    answers (answer_lints), then each subcategory keyword against the curated sources filed there."""
+    out = [p for r in recs for p in answer_lints(r)]
+    return out + keyword_lints(recs, tax)
+
+
+def cmd_lint() -> int:
+    recs = _records()
+    loaded, errs = load_answers({k: params_of(r) for k, r in recs.items()})
+    merged = [{**r, "answers": loaded[k]} if k in loaded else r for k, r in recs.items() if not r.get("replaced_by")]
+    problems = [f"INVALID {e}" for e in errs] + [f"LINT {p}" for p in lint_report(merged)]
+    for p in problems:
+        print(p)
+    print(f"{len(merged)} records, {len(loaded)} with answers: {len(problems)} lint problems")
+    return 1 if problems else 0
+
+
 def cmd_check(ids: list[str]) -> int:
+    if "--lint" in ids:  # offline: the lints only, no sample is fetched
+        return cmd_lint()
     recs = _records()
     loaded, errs = load_answers({k: params_of(r) for k, r in recs.items()})
     for e in errs:

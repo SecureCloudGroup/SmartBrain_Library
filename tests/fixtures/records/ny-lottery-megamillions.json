@@ -1,0 +1,56 @@
+{
+ "url": "https://data.ny.gov/resource/5xaw-6ayf.json?$order=draw_date%20DESC&$limit=10",
+ "fetched": "2026-09-29T16:46:06Z",
+ "sample": [
+  {
+   "draw_date": "2026-09-25T00:00:00.000",
+   "winning_numbers": "25 57 58 67 68",
+   "mega_ball": "16"
+  },
+  {
+   "draw_date": "2026-09-22T00:00:00.000",
+   "winning_numbers": "07 13 26 37 68",
+   "mega_ball": "08"
+  },
+  {
+   "draw_date": "2026-09-18T00:00:00.000",
+   "winning_numbers": "04 09 24 56 68",
+   "mega_ball": "01"
+  },
+  {
+   "draw_date": "2026-09-15T00:00:00.000",
+   "winning_numbers": "27 36 43 57 58",
+   "mega_ball": "16"
+  },
+  {
+   "draw_date": "2026-09-11T00:00:00.000",
+   "winning_numbers": "03 30 33 53 62",
+   "mega_ball": "22"
+  },
+  {
+   "draw_date": "2026-09-08T00:00:00.000",
+   "winning_numbers": "17 30 43 58 66",
+   "mega_ball": "20"
+  },
+  {
+   "draw_date": "2026-09-04T00:00:00.000",
+   "winning_numbers": "06 26 34 59 61",
+   "mega_ball": "24"
+  },
+  {
+   "draw_date": "2026-09-01T00:00:00.000",
+   "winning_numbers": "01 22 51 61 63",
+   "mega_ball": "17"
+  },
+  {
+   "draw_date": "2026-08-28T00:00:00.000",
+   "winning_numbers": "08 17 29 42 55",
+   "mega_ball": "02"
+  },
+  {
+   "draw_date": "2026-08-25T00:00:00.000",
+   "winning_numbers": "07 10 47 48 50",
+   "mega_ball": "14"
+  }
+ ]
+}

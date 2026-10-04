@@ -1,0 +1,301 @@
+{
+ "url": "https://statsapi.mlb.com/api/v1/standings?leagueId=103,104&standingsTypes=wildCard",
+ "fetched": "2026-09-29T16:45:57Z",
+ "sample": {
+  "copyright": "Copyright 2026 MLB Advanced Media, L.P.  Use of any content on this page acknowledges agreement to the terms posted here http://gdx.mlb.com/components/copyright.txt",
+  "records": [
+   {
+    "standingsType": "wildCard",
+    "league": {
+     "id": 103,
+     "link": "/api/v1/league/103"
+    },
+    "division": {
+     "id": 201,
+     "link": "/api/v1/divisions/201"
+    },
+    "lastUpdated": "2026-09-28T01:00:50.111Z",
+    "teamRecords": [
+     {
+      "team": {
+       "id": 147,
+       "name": "Yankees",
+       "link": "/api/v1/teams/147"
+      },
+      "wins": 93,
+      "losses": 68,
+      "wildCardGamesBack": "+9.5",
+      "wildCardRank": "1"
+     },
+     {
+      "team": {
+       "id": 111,
+       "name": "Red Sox",
+       "link": "/api/v1/teams/111"
+      },
+      "wins": 87,
+      "losses": 75,
+      "wildCardGamesBack": "+3.0",
+      "wildCardRank": "2"
+     },
+     {
+      "team": {
+       "id": 145,
+       "name": "White Sox",
+       "link": "/api/v1/teams/145"
+      },
+      "wins": 84,
+      "losses": 78,
+      "wildCardGamesBack": "-",
+      "wildCardRank": "3"
+     },
+     {
+      "team": {
+       "id": 140,
+       "name": "Rangers",
+       "link": "/api/v1/teams/140"
+      },
+      "wins": 80,
+      "losses": 82,
+      "wildCardGamesBack": "4.0",
+      "wildCardRank": "4"
+     },
+     {
+      "team": {
+       "id": 110,
+       "name": "Orioles",
+       "link": "/api/v1/teams/110"
+      },
+      "wins": 79,
+      "losses": 82,
+      "wildCardGamesBack": "4.5",
+      "wildCardRank": "5"
+     },
+     {
+      "team": {
+       "id": 141,
+       "name": "Blue Jays",
+       "link": "/api/v1/teams/141"
+      },
+      "wins": 79,
+      "losses": 83,
+      "wildCardGamesBack": "5.0",
+      "wildCardRank": "6"
+     },
+     {
+      "team": {
+       "id": 142,
+       "name": "Twins",
+       "link": "/api/v1/teams/142"
+      },
+      "wins": 77,
+      "losses": 85,
+      "wildCardGamesBack": "7.0",
+      "wildCardRank": "7"
+     },
+     {
+      "team": {
+       "id": 116,
+       "name": "Tigers",
+       "link": "/api/v1/teams/116"
+      },
+      "wins": 76,
+      "losses": 86,
+      "wildCardGamesBack": "8.0",
+      "wildCardRank": "8"
+     },
+     {
+      "team": {
+       "id": 136,
+       "name": "Mariners",
+       "link": "/api/v1/teams/136"
+      },
+      "wins": 76,
+      "losses": 86,
+      "wildCardGamesBack": "8.0",
+      "wildCardRank": "9"
+     },
+     {
+      "team": {
+       "id": 118,
+       "name": "Royals",
+       "link": "/api/v1/teams/118"
+      },
+      "wins": 69,
+      "losses": 93,
+      "wildCardGamesBack": "15.0",
+      "wildCardRank": "10"
+     },
+     {
+      "team": {
+       "id": 133,
+       "name": "Athletics",
+       "link": "/api/v1/teams/133"
+      },
+      "wins": 64,
+      "losses": 98,
+      "wildCardGamesBack": "20.0",
+      "wildCardRank": "11"
+     },
+     {
+      "team": {
+       "id": 108,
+       "name": "Angels",
+       "link": "/api/v1/teams/108"
+      },
+      "wins": 62,
+      "losses": 100,
+      "wildCardGamesBack": "22.0",
+      "wildCardRank": "12"
+     }
+    ]
+   },
+   {
+    "standingsType": "wildCard",
+    "league": {
+     "id": 104,
+     "link": "/api/v1/league/104"
+    },
+    "division": {
+     "id": 203,
+     "link": "/api/v1/divisions/203"
+    },
+    "lastUpdated": "2026-09-28T21:18:03.163Z",
+    "teamRecords": [
+     {
+      "team": {
+       "id": 135,
+       "name": "Padres",
+       "link": "/api/v1/teams/135"
+      },
+      "wins": 91,
+      "losses": 71,
+      "wildCardGamesBack": "+3.0",
+      "wildCardRank": "1"
+     },
+     {
+      "team": {
+       "id": 112,
+       "name": "Cubs",
+       "link": "/api/v1/teams/112"
+      },
+      "wins": 89,
+      "losses": 73,
+      "wildCardGamesBack": "+1.0",
+      "wildCardRank": "2"
+     },
+     {
+      "team": {
+       "id": 143,
+       "name": "Phillies",
+       "link": "/api/v1/teams/143"
+      },
+      "wins": 88,
+      "losses": 74,
+      "wildCardGamesBack": "-",
+      "wildCardRank": "3"
+     },
+     {
+      "team": {
+       "id": 109,
+       "name": "D-backs",
+       "link": "/api/v1/teams/109"
+      },
+      "wins": 86,
+      "losses": 76,
+      "wildCardGamesBack": "2.0",
+      "wildCardRank": "4"
+     },
+     {
+      "team": {
+       "id": 134,
+       "name": "Pirates",
+       "link": "/api/v1/teams/134"
+      },
+      "wins": 82,
+      "losses": 80,
+      "wildCardGamesBack": "6.0",
+      "wildCardRank": "5"
+     },
+     {
+      "team": {
+       "id": 146,
+       "name": "Marlins",
+       "link": "/api/v1/teams/146"
+      },
+      "wins": 80,
+      "losses": 82,
+      "wildCardGamesBack": "8.0",
+      "wildCardRank": "6"
+     },
+     {
+      "team": {
+       "id": 138,
+       "name": "Cardinals",
+       "link": "/api/v1/teams/138"
+      },
+      "wins": 77,
+      "losses": 85,
+      "wildCardGamesBack": "11.0",
+      "wildCardRank": "7"
+     },
+     {
+      "team": {
+       "id": 120,
+       "name": "Nationals",
+       "link": "/api/v1/teams/120"
+      },
+      "wins": 77,
+      "losses": 85,
+      "wildCardGamesBack": "11.0",
+      "wildCardRank": "8"
+     },
+     {
+      "team": {
+       "id": 113,
+       "name": "Reds",
+       "link": "/api/v1/teams/113"
+      },
+      "wins": 75,
+      "losses": 87,
+      "wildCardGamesBack": "13.0",
+      "wildCardRank": "9"
+     },
+     {
+      "team": {
+       "id": 121,
+       "name": "Mets",
+       "link": "/api/v1/teams/121"
+      },
+      "wins": 74,
+      "losses": 88,
+      "wildCardGamesBack": "14.0",
+      "wildCardRank": "10"
+     },
+     {
+      "team": {
+       "id": 137,
+       "name": "Giants",
+       "link": "/api/v1/teams/137"
+      },
+      "wins": 65,
+      "losses": 97,
+      "wildCardGamesBack": "23.0",
+      "wildCardRank": "11"
+     },
+     {
+      "team": {
+       "id": 115,
+       "name": "Rockies",
+       "link": "/api/v1/teams/115"
+      },
+      "wins": 58,
+      "losses": 104,
+      "wildCardGamesBack": "30.0",
+      "wildCardRank": "12"
+     }
+    ]
+   }
+  ]
+ }
+}

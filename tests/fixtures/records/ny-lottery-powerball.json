@@ -1,0 +1,66 @@
+{
+ "url": "https://data.ny.gov/resource/d6yy-54nr.json?$order=draw_date%20DESC&$limit=10",
+ "fetched": "2026-09-29T16:46:04Z",
+ "sample": [
+  {
+   "draw_date": "2026-09-28T00:00:00.000",
+   "winning_numbers": "17 21 29 42 49 07",
+   "multiplier": "3",
+   "double_play_winning_numbers": "11 20 26 43 46 18"
+  },
+  {
+   "draw_date": "2026-09-26T00:00:00.000",
+   "winning_numbers": "14 40 52 55 57 24",
+   "multiplier": "3",
+   "double_play_winning_numbers": "09 23 31 59 69 12"
+  },
+  {
+   "draw_date": "2026-09-23T00:00:00.000",
+   "winning_numbers": "05 15 26 29 30 14",
+   "multiplier": "5",
+   "double_play_winning_numbers": "10 17 19 21 40 06"
+  },
+  {
+   "draw_date": "2026-09-21T00:00:00.000",
+   "winning_numbers": "02 07 09 17 58 20",
+   "multiplier": "2",
+   "double_play_winning_numbers": "03 09 16 26 32 02"
+  },
+  {
+   "draw_date": "2026-09-19T00:00:00.000",
+   "winning_numbers": "18 30 41 45 68 10",
+   "multiplier": "2",
+   "double_play_winning_numbers": "13 30 33 49 53 07"
+  },
+  {
+   "draw_date": "2026-09-16T00:00:00.000",
+   "winning_numbers": "02 21 24 25 64 07",
+   "multiplier": "2",
+   "double_play_winning_numbers": "16 30 44 64 67 03"
+  },
+  {
+   "draw_date": "2026-09-14T00:00:00.000",
+   "winning_numbers": "19 20 57 61 67 22",
+   "multiplier": "2",
+   "double_play_winning_numbers": "12 23 48 61 67 08"
+  },
+  {
+   "draw_date": "2026-09-12T00:00:00.000",
+   "winning_numbers": "14 16 23 58 69 03",
+   "multiplier": "2",
+   "double_play_winning_numbers": "21 24 32 48 51 12"
+  },
+  {
+   "draw_date": "2026-09-09T00:00:00.000",
+   "winning_numbers": "09 40 42 55 65 23",
+   "multiplier": "2",
+   "double_play_winning_numbers": "32 33 58 62 69 18"
+  },
+  {
+   "draw_date": "2026-09-07T00:00:00.000",
+   "winning_numbers": "15 19 28 39 56 03",
+   "multiplier": "3",
+   "double_play_winning_numbers": "20 26 49 56 65 05"
+  }
+ ]
+}

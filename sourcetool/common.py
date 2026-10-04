@@ -28,6 +28,60 @@ BUILD = ROOT / "build"
 USER_AGENT = "SmartBrain-Library/0.1 (+https://github.com/SecureCloudGroup/SmartBrain_Library)"
 MIN_GAP_S = 1.0
 
+# The app's own fetch identity (SmartBrain_3000 netguard: its User-Agent, the JSON readers' Accept, the page and
+# feed reader's Accept). `validate` and `answers-check` probe a source as the app will fetch it, so "validated
+# ok" means the app gets the same answer: a content-negotiating API (Django REST Framework: Launch Library 2,
+# jolpica, usaspending) serves its HTML page to a browser Accept. Harvesting keeps the Library's USER_AGENT.
+APP_USER_AGENT = "SmartBrain/0.24.1 (+https://smartbrain.securecloudgroup.com)"
+JSON_ACCEPT = "application/json, text/plain;q=0.5, */*;q=0.1"
+PAGE_ACCEPT = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+JSON_KINDS = ("http_json", "gbfs")
+
+
+def probe_headers(kind: str, headers: dict | None = None) -> dict:
+    """The headers the app sends for a source of this access kind, under the record's own headers (a record's
+    Accept, in any case, wins; two Accepts are never sent)."""
+    headers = dict(headers or {})
+    out = {"User-Agent": APP_USER_AGENT}
+    if not any(k.lower() == "accept" for k in headers):
+        out["Accept"] = JSON_ACCEPT if kind in JSON_KINDS else PAGE_ACCEPT
+    return {**out, **headers}
+
+
+# a body as text the way the app decodes it (netguard.decode_body): a byte-order mark, then the declared
+# charset, then UTF-8 with replacement (field 2026-09-28: AWS's status feed is application/json;charset=utf-16)
+_BOMS = ((b"\xef\xbb\xbf", "utf-8"), (b"\xff\xfe", "utf-16-le"), (b"\xfe\xff", "utf-16-be"))
+_UTF16 = {"utf-16": None, "utf16": None, "utf-16le": "utf-16-le", "utf-16-le": "utf-16-le",
+          "utf-16be": "utf-16-be", "utf-16-be": "utf-16-be"}
+_EIGHT_BIT = {"latin-1": "latin-1", "latin1": "latin-1", "iso-8859-1": "latin-1", "iso8859-1": "latin-1",
+              "windows-1252": "cp1252", "cp1252": "cp1252"}
+
+
+def decode_body(content: bytes, content_type: str = "") -> str:
+    """BOM -> declared charset -> UTF-8. A declared 8-bit charset over valid UTF-8 is a wrong header; UTF-16
+    without a BOM takes its byte order from where the NULs sit. Never raises."""
+    for bom, codec in _BOMS:
+        if content.startswith(bom):
+            return content[len(bom):].decode(codec, "replace")
+    declared = ""
+    for part in (content_type or "").split(";")[1:]:
+        name, _, value = part.strip().partition("=")
+        if name.strip().lower() == "charset":
+            declared = value.strip().strip("'\"").lower()
+    if declared in _UTF16 or (not declared and b"\x00" in content[:64]):
+        head = content[:64]
+        even = sum(1 for i in range(0, len(head), 2) if head[i] == 0)
+        odd = sum(1 for i in range(1, len(head), 2) if head[i] == 0)
+        order = _UTF16.get(declared) or (None if even == odd else "utf-16-be" if even > odd else "utf-16-le")
+        if order:
+            return content.decode(order, "replace")
+    if declared in _EIGHT_BIT:
+        try:
+            return content.decode("utf-8")
+        except UnicodeDecodeError:
+            return content.decode(_EIGHT_BIT[declared], "replace")
+    return content.decode("utf-8", "replace")
+
 _last_hit: dict[str, float] = {}
 _host_locks: dict[str, threading.Lock] = {}
 _robots: dict[str, urllib.robotparser.RobotFileParser | None] = {}

@@ -1,18 +1,22 @@
 """sourcetool — create, validate, harvest and build the SmartBrain Library.
 
-  python -m sourcetool validate [--only curated|harvested] [--file NAME] [--id ID,ID..]   probe, record results
+  python -m sourcetool validate [--only curated|harvested] [--file NAME] [--id ID,ID..] [--samples N]
+                                                                        probe as the app does, record results
+                                                                        (+ N random resolver readings; default 2)
   python -m sourcetool check                                            schema-check every record (CI)
   python -m sourcetool harvest NAME|all                                 pull candidates from an open catalog
   python -m sourcetool build                                            compile build/library.duckdb (+ term index)
   python -m sourcetool lookup "words"                                   try a lookup against the build
   python -m sourcetool coverage                                         categories x sources report
-  python -m sourcetool resolvers [NAME ...]                             harvest resolver tables (all by default)
+  python -m sourcetool resolvers [--refine] [NAME ...]                  harvest resolver tables (all by default;
+                                                                        --refine: today's rules over the table)
   python -m sourcetool policies                                         write the source policy onto every subcategory
   python -m sourcetool fills                                            declare how every source parameter is filled
   python -m sourcetool evalres [resolution_asks|resolution_holdout|resolution_sealed]  resolver accuracy
   python -m sourcetool evallookup [lookup_asks|...]                     is the first source offered the right one
   python -m sourcetool ingest [--dry-run] [--no-probe] [--commit]      pull the Library API's votes + suggestions
   python -m sourcetool answers-check [ID ...]                           fetch samples, check answers/ paths (live)
+  python -m sourcetool answers-check --lint                             record + keyword lints (offline, no fetch)
   python -m sourcetool answers-generate                                 write answers for curated feeds + FRED series
 
 Writes only to this checkout. Publishing is a PR the operator merges.
@@ -32,10 +36,15 @@ def _files(only: str | None) -> list[Path]:
 
 
 def _check_taxonomy_and_resolvers() -> int:
-    """Every subcategory has a policy; every resolver a policy or a fill names has a table."""
+    """The taxonomy is well-formed (schema.taxonomy_problems), every subcategory has a policy, and every
+    resolver a policy names has a table (a missing one is a noted gap)."""
     from .resolvers import RES
-    bad = 0
+    from .schema import taxonomy_problems
     t = taxonomy()
+    problems = taxonomy_problems(t)  # the closed shape: keys, kinds, params, keywords, expects, policy.measure
+    for p in problems:
+        print(f"taxonomy: {p}")
+    bad = len(problems)
     have = {p.stem for p in RES.glob("*.jsonl")}
     for c in t["categories"]:
         for sc in c["subcategories"]:
@@ -52,11 +61,13 @@ def _check_taxonomy_and_resolvers() -> int:
 
 def cmd_check(_args) -> int:
     from .answers import load_answers, params_of
-    from .schema import validate_record
+    from .schema import load_asks, validate_record
     bad = _check_taxonomy_and_resolvers()
     seen: dict[str, dict] = {}
+    records: list[dict] = []
     for f in _files(None):
         for r in read_jsonl(f):
+            records.append(r)
             errs = validate_record(r)
             if r["tier"] == "curated":
                 errs += [f"param {p['name']} has no fill" for p in r["access"].get("params", []) if "fill" not in p]
@@ -76,6 +87,10 @@ def cmd_check(_args) -> int:
     for e in errs:
         print(f"answers/{e}")
     bad += len(errs)
+    _, _, errs = load_asks(records, taxonomy())  # locate v2's example asks: well-formed, and every source covered
+    for e in errs:
+        print(f"asks/{e}")
+    bad += len(errs)
     print(f"{len(seen)} records, {len(answers)} with answers, {bad} invalid")
     return 1 if bad else 0
 
@@ -85,6 +100,7 @@ def cmd_validate(args) -> int:
     only = args[args.index("--only") + 1] if "--only" in args else None
     file = args[args.index("--file") + 1] if "--file" in args else None
     want = set(args[args.index("--id") + 1].split(",")) if "--id" in args else None
+    samples = int(args[args.index("--samples") + 1]) if "--samples" in args else 2
     for f in _files(only):
         if file and f.stem != file:
             continue
@@ -92,7 +108,7 @@ def cmd_validate(args) -> int:
         todo = [r for r in rows if not want or r["id"] in want]
         if not todo:
             continue  # untouched files are not rewritten
-        validate_all(todo)
+        validate_all(todo, samples=samples)
         write_jsonl(f, rows)
         c = collections.Counter(r["validation"]["status"] for r in todo)
         print(f"{f.relative_to(SOURCES)}: {dict(c)}")
@@ -138,7 +154,8 @@ def cmd_coverage(_args) -> int:
 
 def cmd_resolvers(args) -> int:
     from . import resolvers
-    for k, v in resolvers.harvest(args or None).items():
+    names = [a for a in args if a != "--refine"]
+    for k, v in resolvers.harvest(names or None, refine="--refine" in args).items():
         print(f"{k}: {v}")
     return 0
 

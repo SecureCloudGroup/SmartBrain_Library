@@ -1,0 +1,10 @@
+{
+ "url": "https://slack-status.com/api/v2.0.0/current",
+ "fetched": "2026-09-29T16:46:02Z",
+ "sample": {
+  "status": "ok",
+  "date_created": "2026-09-12T04:04:17-07:00",
+  "date_updated": "2026-09-12T13:00:00-07:00",
+  "active_incidents": []
+ }
+}

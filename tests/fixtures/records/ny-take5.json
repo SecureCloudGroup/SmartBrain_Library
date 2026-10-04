@@ -1,0 +1,56 @@
+{
+ "url": "https://data.ny.gov/resource/dg63-4siq.json?$order=draw_date%20DESC&$limit=10",
+ "fetched": "2026-09-29T16:46:09Z",
+ "sample": [
+  {
+   "draw_date": "2026-09-28T00:00:00.000",
+   "evening_winning_numbers": "12 24 28 30 38",
+   "midday_winning_numbers": "04 15 21 33 37"
+  },
+  {
+   "draw_date": "2026-09-27T00:00:00.000",
+   "evening_winning_numbers": "03 05 22 34 39",
+   "midday_winning_numbers": "16 20 21 25 27"
+  },
+  {
+   "draw_date": "2026-09-26T00:00:00.000",
+   "evening_winning_numbers": "02 07 24 25 36",
+   "midday_winning_numbers": "15 28 29 36 39"
+  },
+  {
+   "draw_date": "2026-09-25T00:00:00.000",
+   "evening_winning_numbers": "09 10 20 29 32",
+   "midday_winning_numbers": "03 09 19 23 26"
+  },
+  {
+   "draw_date": "2026-09-24T00:00:00.000",
+   "evening_winning_numbers": "02 10 14 17 29",
+   "midday_winning_numbers": "13 16 18 21 34"
+  },
+  {
+   "draw_date": "2026-09-23T00:00:00.000",
+   "evening_winning_numbers": "01 15 17 28 30",
+   "midday_winning_numbers": "01 05 10 17 35"
+  },
+  {
+   "draw_date": "2026-09-22T00:00:00.000",
+   "evening_winning_numbers": "10 15 19 22 39",
+   "midday_winning_numbers": "09 14 25 36 37"
+  },
+  {
+   "draw_date": "2026-09-21T00:00:00.000",
+   "evening_winning_numbers": "21 26 27 31 36",
+   "midday_winning_numbers": "01 19 29 31 33"
+  },
+  {
+   "draw_date": "2026-09-20T00:00:00.000",
+   "evening_winning_numbers": "12 16 25 31 36",
+   "midday_winning_numbers": "03 10 24 27 28"
+  },
+  {
+   "draw_date": "2026-09-19T00:00:00.000",
+   "evening_winning_numbers": "05 11 21 24 26",
+   "midday_winning_numbers": "02 04 14 22 37"
+  }
+ ]
+}

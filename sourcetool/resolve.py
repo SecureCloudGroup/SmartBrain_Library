@@ -66,10 +66,31 @@ def load(resolver: str) -> tuple[list[dict], dict[str, list[int]], dict[str, lis
     return rows, index, partial
 
 
+@lru_cache(maxsize=None)
+def _water_names() -> tuple[str, ...]:
+    """Every water-body alias (resolvers/water_body.jsonl), longest first."""
+    return tuple(sorted({a for r in read_jsonl(RES / "water_body.jsonl") for a in r["aliases"]}, key=len, reverse=True))
+
+
+def mask_water(tokens: list[str], index: dict | None = None) -> list[str]:
+    """The ask's words with each named water body replaced by "|", so "Lake Michigan water temp Milwaukee" names
+    neither Michigan the state nor Lake Michigan Beach the CDP. A longer place alias that holds the water name
+    ("lake michigan beach", in ``index``) keeps it."""
+    text = f" {' '.join(tokens)} "
+    for w in _water_names():
+        if f" {w} " not in text:
+            continue
+        grams = [g for _, _, g in _ngrams(text.split())] if index else []
+        if not any(g != w and f" {w} " in f" {g} " and g in index for g in grams):
+            text = text.replace(f" {w} ", " | ")
+    return text.split()
+
+
 def states_in(ask: str) -> set[str]:
-    """US states named in the ask: a two-letter code written in capitals ("FL"), or a full name."""
+    """US states named in the ask: a two-letter code written in capitals ("FL"), or a full name (not one inside a
+    water body's name: "Lake Michigan")."""
     found = {m for m in re.findall(r"\b([A-Z]{2})\b", ask or "") if m in US_STATES}
-    low = f" {norm(ask)} "
+    low = f" {' '.join(mask_water(norm(ask).split()))} "
     # a state name that is part of a place's own name is not a state mention ("Kansas City", "Indiana Dunes")
     found |= {code for name, code in _STATE_BY_NAME.items()
               if f" {name} " in low and not re.search(rf" {re.escape(name)} (city|beach|dunes|harbor)\b", low)}
@@ -86,6 +107,8 @@ def by_name(resolver: str, ask: str, *, raw_case_codes: bool = True, many: bool 
     "compare X and Y") instead of treating two names as an ambiguity."""
     rows, index, partial = load(resolver)
     tokens = norm(ask).split()
+    if resolver == "place":  # a lake or bay is not a place ("|" matches nothing and breaks every phrase)
+        tokens = mask_water(tokens, index)
     upper = set(re.findall(r"\b[A-Z0-9$]{1,6}\b", ask or ""))  # tokens the user typed in capitals
     states = states_in(ask)
     common = _common_words()
