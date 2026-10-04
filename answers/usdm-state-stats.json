@@ -1,0 +1,165 @@
+{
+  "source_id": "usdm-state-stats",
+  "answers": [
+    {
+      "name": "d0_plus",
+      "label": "Abnormally dry or worse",
+      "words": [
+        "dry",
+        "abnormally dry",
+        "d0",
+        "how dry",
+        "dryness"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "rows[0].D0",
+      "type": "number",
+      "unit": "%",
+      "window": "latest"
+    },
+    {
+      "name": "d1_plus",
+      "label": "Moderate drought or worse",
+      "words": [
+        "drought",
+        "moderate drought",
+        "d1",
+        "in drought",
+        "how much drought"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "rows[0].D1",
+      "type": "number",
+      "unit": "%",
+      "window": "latest"
+    },
+    {
+      "name": "d2_plus",
+      "label": "Severe drought or worse",
+      "words": [
+        "severe drought",
+        "d2",
+        "severe",
+        "bad drought"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "rows[0].D2",
+      "type": "number",
+      "unit": "%",
+      "window": "latest"
+    },
+    {
+      "name": "d3_plus",
+      "label": "Extreme drought or worse",
+      "words": [
+        "extreme drought",
+        "d3",
+        "extreme",
+        "worst drought"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "rows[0].D3",
+      "type": "number",
+      "unit": "%",
+      "window": "latest"
+    },
+    {
+      "name": "d4",
+      "label": "Exceptional drought",
+      "words": [
+        "exceptional drought",
+        "d4",
+        "exceptional",
+        "worst"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "rows[0].D4",
+      "type": "number",
+      "unit": "%",
+      "window": "latest"
+    },
+    {
+      "name": "no_drought",
+      "label": "No drought",
+      "words": [
+        "no drought",
+        "normal",
+        "none",
+        "not dry"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "rows[0].None",
+      "type": "number",
+      "unit": "%",
+      "window": "latest"
+    },
+    {
+      "name": "map_date",
+      "label": "Drought map week",
+      "words": [
+        "week",
+        "date",
+        "when",
+        "latest map",
+        "as of"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "rows[0].ValidStart",
+      "type": "date",
+      "window": "latest"
+    },
+    {
+      "name": "weekly",
+      "label": "Drought by week",
+      "words": [
+        "trend",
+        "weekly",
+        "by week",
+        "history",
+        "getting worse",
+        "over time"
+      ],
+      "primary": false,
+      "kind": "list",
+      "path": "rows",
+      "row": [
+        {
+          "path": "ValidStart",
+          "label": "Week",
+          "type": "date"
+        },
+        {
+          "path": "D1",
+          "label": "Moderate or worse",
+          "type": "number",
+          "unit": "%"
+        },
+        {
+          "path": "D2",
+          "label": "Severe or worse",
+          "type": "number",
+          "unit": "%"
+        },
+        {
+          "path": "D3",
+          "label": "Extreme or worse",
+          "type": "number",
+          "unit": "%"
+        }
+      ],
+      "axis": {
+        "cell": "ValidStart",
+        "step": "day"
+      }
+    }
+  ],
+  "sample_url": "https://usdmdataservices.unl.edu/api/StateStatistics/GetDroughtSeverityStatisticsByAreaPercent?aoi=48&startdate=8/3/2026&enddate=9/28/2026&statisticsType=1",
+  "checked": "2026-09-29"
+}

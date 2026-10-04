@@ -1,0 +1,72 @@
+{
+ "source_id": "bart-advisories",
+ "answers": [
+  {
+   "name": "advisory",
+   "label": "BART advisory",
+   "kind": "value",
+   "primary": true,
+   "words": [
+    "delays",
+    "delay",
+    "advisory",
+    "advisories",
+    "service alert",
+    "alerts",
+    "running",
+    "disruption",
+    "status",
+    "is it running",
+    "bart"
+   ],
+   "path": "root.bsa[0].description[\"#cdata-section\"]",
+   "type": "text",
+   "window": "now"
+  },
+  {
+   "name": "type",
+   "label": "Type",
+   "kind": "value",
+   "primary": true,
+   "words": [
+    "type",
+    "kind",
+    "delay or emergency"
+   ],
+   "path": "root.bsa[0].type",
+   "type": "text",
+   "window": "now"
+  },
+  {
+   "name": "posted",
+   "label": "Posted",
+   "kind": "value",
+   "primary": true,
+   "words": [
+    "posted",
+    "when",
+    "since",
+    "as of",
+    "updated"
+   ],
+   "path": "root.bsa[0].posted",
+   "type": "text",
+   "window": "now"
+  },
+  {
+   "name": "advisory_count",
+   "label": "Advisories now",
+   "kind": "value",
+   "words": [
+    "how many advisories",
+    "how many alerts",
+    "number of advisories"
+   ],
+   "path": "root.bsa",
+   "type": "count",
+   "window": "now"
+  }
+ ],
+ "sample_url": "https://api.bart.gov/api/bsa.aspx?cmd=bsa&key=MW9S-E7SL-26DU-VV8V&json=y",
+ "checked": "2026-09-29"
+}

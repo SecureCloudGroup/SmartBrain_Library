@@ -1,0 +1,68 @@
+{
+  "source_id": "npm-latest",
+  "answers": [
+    {
+      "name": "latest_version",
+      "label": "Latest version",
+      "words": [
+        "version",
+        "latest",
+        "latest version",
+        "current version",
+        "release",
+        "newest"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "version",
+      "type": "text",
+      "window": "latest"
+    },
+    {
+      "name": "description",
+      "label": "Description",
+      "words": [
+        "description",
+        "what is",
+        "about"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "description",
+      "type": "text",
+      "window": "latest"
+    },
+    {
+      "name": "license",
+      "label": "License",
+      "words": [
+        "license",
+        "licence",
+        "open source",
+        "terms"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "license",
+      "type": "text",
+      "window": "latest"
+    },
+    {
+      "name": "homepage",
+      "label": "Homepage",
+      "words": [
+        "homepage",
+        "website",
+        "site",
+        "docs"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "homepage",
+      "type": "text",
+      "window": "latest"
+    }
+  ],
+  "sample_url": "https://registry.npmjs.org/react/latest",
+  "checked": "2026-09-28"
+}

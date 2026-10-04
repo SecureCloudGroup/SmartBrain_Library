@@ -1,0 +1,74 @@
+{
+ "source_id": "fred-apu0000708111",
+ "answers": [
+  {
+   "name": "latest",
+   "label": "Egg price (a dozen, grade A large)",
+   "kind": "value",
+   "primary": true,
+   "words": [
+    "average price of a dozen eggs",
+    "egg price (a dozen, grade a large)",
+    "egg prices",
+    "price of eggs",
+    "latest",
+    "current",
+    "now",
+    "today"
+   ],
+   "path": "rows[0].APU0000708111",
+   "type": "number",
+   "unit": "$/dozen",
+   "window": "latest"
+  },
+  {
+   "name": "as_of",
+   "label": "As of",
+   "kind": "value",
+   "words": [
+    "as of",
+    "when",
+    "date",
+    "last updated",
+    "updated"
+   ],
+   "path": "rows[0].observation_date",
+   "type": "date",
+   "window": "latest"
+  },
+  {
+   "name": "recent",
+   "label": "Recent readings",
+   "kind": "list",
+   "words": [
+    "recent",
+    "history",
+    "trend",
+    "past",
+    "over time",
+    "chart",
+    "last few"
+   ],
+   "path": "rows",
+   "row": [
+    {
+     "path": "observation_date",
+     "label": "Date",
+     "type": "date"
+    },
+    {
+     "path": "APU0000708111",
+     "label": "Egg price (a dozen, grade A large)",
+     "type": "number",
+     "unit": "$/dozen"
+    }
+   ],
+   "axis": {
+    "cell": "observation_date",
+    "step": "day"
+   }
+  }
+ ],
+ "sample_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=APU0000708111",
+ "checked": "2026-09-28"
+}

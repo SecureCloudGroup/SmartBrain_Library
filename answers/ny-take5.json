@@ -1,0 +1,99 @@
+{
+  "source_id": "ny-take5",
+  "answers": [
+    {
+      "name": "evening",
+      "label": "Evening numbers",
+      "words": [
+        "winning numbers",
+        "numbers",
+        "results",
+        "last night",
+        "latest",
+        "what hit",
+        "drawn",
+        "check my ticket",
+        "evening",
+        "tonight",
+        "take 5"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "items[0].evening_winning_numbers",
+      "type": "text",
+      "window": "latest"
+    },
+    {
+      "name": "midday",
+      "label": "Midday numbers",
+      "words": [
+        "midday",
+        "afternoon",
+        "lunchtime",
+        "2:30"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "items[0].midday_winning_numbers",
+      "type": "text",
+      "window": "latest"
+    },
+    {
+      "name": "draw_date",
+      "label": "Draw date",
+      "words": [
+        "draw date",
+        "when",
+        "which drawing",
+        "last drawing",
+        "date"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "items[0].draw_date",
+      "type": "date",
+      "window": "latest"
+    },
+    {
+      "name": "recent",
+      "label": "Recent draws",
+      "words": [
+        "recent",
+        "past draws",
+        "previous",
+        "history",
+        "last few",
+        "this week",
+        "yesterday",
+        "saturday",
+        "wednesday"
+      ],
+      "primary": false,
+      "kind": "list",
+      "path": "items",
+      "row": [
+        {
+          "path": "draw_date",
+          "label": "Draw",
+          "type": "date"
+        },
+        {
+          "path": "midday_winning_numbers",
+          "label": "Midday",
+          "type": "text"
+        },
+        {
+          "path": "evening_winning_numbers",
+          "label": "Evening",
+          "type": "text"
+        }
+      ],
+      "axis": {
+        "cell": "draw_date",
+        "step": "day"
+      }
+    }
+  ],
+  "sample_url": "https://data.ny.gov/resource/dg63-4siq.json?$order=draw_date%20DESC&$limit=10",
+  "checked": "2026-09-29"
+}

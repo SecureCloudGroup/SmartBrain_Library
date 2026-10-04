@@ -1,0 +1,24 @@
+{
+  "source_id": "dadjoke",
+  "answers": [
+    {
+      "name": "joke",
+      "label": "Dad joke",
+      "words": [
+        "joke",
+        "dad joke",
+        "funny",
+        "make me laugh",
+        "tell me a joke",
+        "pun"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "attachments[0].text",
+      "type": "text",
+      "window": "latest"
+    }
+  ],
+  "sample_url": "https://icanhazdadjoke.com/slack",
+  "checked": "2026-09-29"
+}

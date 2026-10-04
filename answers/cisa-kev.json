@@ -1,0 +1,95 @@
+{
+  "source_id": "cisa-kev",
+  "answers": [
+    {
+      "name": "exploited",
+      "label": "Recently added exploited vulnerabilities",
+      "words": [
+        "exploited",
+        "actively exploited",
+        "vulnerabilities",
+        "kev",
+        "cve",
+        "zero day",
+        "latest",
+        "new"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "vulnerabilities",
+      "row": [
+        {
+          "path": "cveID",
+          "label": "CVE",
+          "type": "text"
+        },
+        {
+          "path": "vulnerabilityName",
+          "label": "Vulnerability",
+          "type": "text"
+        },
+        {
+          "path": "dateAdded",
+          "label": "Added",
+          "type": "date"
+        },
+        {
+          "path": "dueDate",
+          "label": "Due",
+          "type": "date"
+        }
+      ],
+      "axis": {
+        "cell": "dateAdded",
+        "step": "day"
+      }
+    },
+    {
+      "name": "catalog_count",
+      "label": "Vulnerabilities in catalog",
+      "words": [
+        "how many",
+        "count",
+        "total",
+        "catalog size"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "count",
+      "type": "number",
+      "window": "latest"
+    },
+    {
+      "name": "catalog_version",
+      "label": "Catalog version",
+      "words": [
+        "version",
+        "catalog version",
+        "last updated",
+        "updated"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "catalogVersion",
+      "type": "text",
+      "window": "latest"
+    },
+    {
+      "name": "catalog_released",
+      "label": "Catalog released",
+      "words": [
+        "released",
+        "published",
+        "updated when",
+        "release date"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "dateReleased",
+      "type": "time",
+      "window": "latest"
+    }
+  ],
+  "sample_url": "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json",
+  "checked": "2026-09-28"
+}

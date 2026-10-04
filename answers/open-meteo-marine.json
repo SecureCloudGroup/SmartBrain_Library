@@ -1,0 +1,182 @@
+{
+  "source_id": "open-meteo-marine",
+  "answers": [
+    {
+      "name": "wave_height",
+      "label": "Wave height",
+      "words": [
+        "waves",
+        "wave height",
+        "surf",
+        "surf report",
+        "how big are the waves",
+        "seas",
+        "surf height",
+        "how's the surf",
+        "surf conditions"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "current.wave_height",
+      "type": "number",
+      "unit_path": "current_units.wave_height",
+      "window": "now",
+      "measure": "waves"
+    },
+    {
+      "name": "wave_period",
+      "label": "Wave period",
+      "words": [
+        "wave period",
+        "period",
+        "swell period",
+        "seconds between waves",
+        "surf quality"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "current.wave_period",
+      "type": "number",
+      "unit_path": "current_units.wave_period",
+      "window": "now"
+    },
+    {
+      "name": "wave_direction",
+      "label": "Wave direction",
+      "words": [
+        "wave direction",
+        "direction",
+        "which way",
+        "waves from",
+        "coming from"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "current.wave_direction",
+      "type": "number",
+      "window": "now",
+      "unit": "°",
+      "measure": "wave_direction"
+    },
+    {
+      "name": "swell",
+      "label": "Swell height",
+      "words": [
+        "swell",
+        "swell height",
+        "ground swell",
+        "how big is the swell",
+        "swell size"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "current.swell_wave_height",
+      "type": "number",
+      "window": "now",
+      "unit_path": "current_units.swell_wave_height",
+      "measure": "swell"
+    },
+    {
+      "name": "swell_period",
+      "label": "Swell period",
+      "words": [
+        "swell period",
+        "period",
+        "seconds",
+        "swell interval"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "current.swell_wave_period",
+      "type": "number",
+      "window": "now",
+      "unit_path": "current_units.swell_wave_period"
+    },
+    {
+      "name": "swell_direction",
+      "label": "Swell direction",
+      "words": [
+        "swell direction",
+        "swell from",
+        "swell angle"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "current.swell_wave_direction",
+      "type": "number",
+      "window": "now",
+      "unit": "°",
+      "measure": "wave_direction"
+    },
+    {
+      "name": "water_temp",
+      "label": "Sea surface temperature",
+      "words": [
+        "water temperature",
+        "water temp",
+        "sea temperature",
+        "ocean temperature",
+        "how warm is the water",
+        "sst"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "current.sea_surface_temperature",
+      "type": "number",
+      "unit_path": "current_units.sea_surface_temperature",
+      "window": "now",
+      "measure": "water_temp"
+    },
+    {
+      "name": "waves_tomorrow_noon",
+      "label": "Wave height tomorrow noon",
+      "words": [
+        "tomorrow",
+        "wave height tomorrow",
+        "surf tomorrow",
+        "waves tomorrow"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "hourly.wave_height[36]",
+      "type": "number",
+      "unit_path": "hourly_units.wave_height",
+      "window": "tomorrow",
+      "measure": "waves"
+    },
+    {
+      "name": "waves_hourly",
+      "label": "Wave height by hour",
+      "words": [
+        "by hour",
+        "hourly",
+        "later today",
+        "forecast",
+        "surf forecast",
+        "tonight"
+      ],
+      "primary": false,
+      "kind": "columns",
+      "columns": [
+        {
+          "path": "hourly.time",
+          "label": "Time",
+          "type": "time"
+        },
+        {
+          "path": "hourly.wave_height",
+          "label": "Wave height",
+          "type": "number",
+          "unit_path": "hourly_units.wave_height"
+        }
+      ],
+      "limit": 24,
+      "axis": {
+        "cell": "hourly.time",
+        "step": "hour"
+      }
+    }
+  ],
+  "sample_url": "https://marine-api.open-meteo.com/v1/marine?latitude=32.7765&longitude=-79.80&current=wave_height,wave_direction,wave_period,swell_wave_height,swell_wave_direction,swell_wave_period,sea_surface_temperature&hourly=wave_height&length_unit=imperial&temperature_unit=fahrenheit&timezone=auto",
+  "checked": "2026-09-29"
+}

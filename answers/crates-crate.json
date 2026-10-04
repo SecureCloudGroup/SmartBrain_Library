@@ -1,0 +1,83 @@
+{
+  "source_id": "crates-crate",
+  "answers": [
+    {
+      "name": "latest_version",
+      "label": "Latest version",
+      "words": [
+        "version",
+        "latest",
+        "latest version",
+        "current version",
+        "stable",
+        "release"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "crate.max_stable_version",
+      "type": "text",
+      "window": "latest"
+    },
+    {
+      "name": "downloads_total",
+      "label": "Total downloads",
+      "words": [
+        "downloads",
+        "total downloads",
+        "all time",
+        "popularity"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "crate.downloads",
+      "type": "number",
+      "window": "latest"
+    },
+    {
+      "name": "downloads_recent",
+      "label": "Downloads (90 days)",
+      "words": [
+        "recent downloads",
+        "recent",
+        "last 90 days",
+        "downloads lately"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "crate.recent_downloads",
+      "type": "number",
+      "window": "latest"
+    },
+    {
+      "name": "updated",
+      "label": "Last updated",
+      "words": [
+        "updated",
+        "last update",
+        "when",
+        "released"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "crate.updated_at",
+      "type": "time",
+      "window": "latest"
+    },
+    {
+      "name": "description",
+      "label": "Description",
+      "words": [
+        "description",
+        "what is",
+        "about"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "crate.description",
+      "type": "text",
+      "window": "latest"
+    }
+  ],
+  "sample_url": "https://crates.io/api/v1/crates/serde",
+  "checked": "2026-09-28"
+}

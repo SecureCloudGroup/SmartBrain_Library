@@ -1,0 +1,43 @@
+{
+  "source_id": "frankfurter-latest",
+  "answers": [
+    {
+      "name": "rate",
+      "label": "Exchange rate",
+      "words": [
+        "exchange rate",
+        "rate",
+        "to",
+        "per",
+        "convert",
+        "how many",
+        "worth",
+        "fx",
+        "currency"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "rates.{quote}",
+      "type": "number",
+      "window": "latest"
+    },
+    {
+      "name": "rate_date",
+      "label": "Rate date",
+      "words": [
+        "date",
+        "as of",
+        "when",
+        "updated",
+        "today"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "date",
+      "type": "date",
+      "window": "latest"
+    }
+  ],
+  "sample_url": "https://api.frankfurter.dev/v1/latest?base=USD&symbols=EUR",
+  "checked": "2026-09-28"
+}

@@ -1,0 +1,132 @@
+{
+  "source_id": "amtraker-trains",
+  "answers": [
+    {
+      "name": "stops",
+      "label": "Stops: scheduled vs actual",
+      "words": [
+        "late",
+        "on time",
+        "delayed",
+        "running late",
+        "arrival",
+        "eta",
+        "when",
+        "schedule",
+        "stops",
+        "stations"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "{train}[0].stations",
+      "row": [
+        {
+          "path": "name",
+          "label": "Station",
+          "type": "text"
+        },
+        {
+          "path": "schArr",
+          "label": "Scheduled",
+          "type": "time"
+        },
+        {
+          "path": "arr",
+          "label": "Actual / expected",
+          "type": "time"
+        },
+        {
+          "path": "status",
+          "label": "Status",
+          "type": "text"
+        }
+      ],
+      "axis": {
+        "cell": "schArr",
+        "step": "hour"
+      }
+    },
+    {
+      "name": "route",
+      "label": "Route",
+      "words": [
+        "route",
+        "which train",
+        "name",
+        "line"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "{train}[0].routeName",
+      "type": "text",
+      "window": "now"
+    },
+    {
+      "name": "next_station",
+      "label": "Next / current station",
+      "words": [
+        "where",
+        "next stop",
+        "next station",
+        "location",
+        "now"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "{train}[0].eventName",
+      "type": "text",
+      "window": "latest"
+    },
+    {
+      "name": "state",
+      "label": "Train state",
+      "words": [
+        "status",
+        "running",
+        "active",
+        "departed",
+        "completed",
+        "state"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "{train}[0].trainState",
+      "type": "text",
+      "window": "now"
+    },
+    {
+      "name": "speed",
+      "label": "Speed",
+      "words": [
+        "speed",
+        "how fast",
+        "moving",
+        "velocity",
+        "mph"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "{train}[0].velocity",
+      "type": "number",
+      "unit": "mph",
+      "window": "now"
+    },
+    {
+      "name": "updated",
+      "label": "Last position update",
+      "words": [
+        "updated",
+        "last update",
+        "as of",
+        "last seen"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "{train}[0].lastValTS",
+      "type": "time",
+      "window": "now"
+    }
+  ],
+  "sample_url": "https://api-v3.amtraker.com/v3/trains/5",
+  "checked": "2026-09-28"
+}

@@ -1,0 +1,39 @@
+{
+ "source_id": "whitehouse-news",
+ "answers": [
+  {
+   "name": "latest",
+   "label": "Press releases",
+   "kind": "list",
+   "primary": true,
+   "words": [
+    "press release",
+    "announcement",
+    "newsroom",
+    "federal register",
+    "regulation",
+    "rule",
+    "public comment",
+    "headlines",
+    "news",
+    "latest"
+   ],
+   "path": "items",
+   "row": [
+    {
+     "path": "title",
+     "label": "Title",
+     "type": "text"
+    },
+    {
+     "path": "published",
+     "label": "Published",
+     "type": "time"
+    }
+   ],
+   "may_be_empty": false
+  }
+ ],
+ "sample_url": "https://www.whitehouse.gov/news/feed/",
+ "checked": "2026-09-28"
+}

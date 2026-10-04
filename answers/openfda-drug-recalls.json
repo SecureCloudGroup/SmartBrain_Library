@@ -1,0 +1,60 @@
+{
+  "source_id": "openfda-drug-recalls",
+  "answers": [
+    {
+      "name": "recalls",
+      "label": "Drug recalls",
+      "words": [
+        "drug recalls",
+        "recalls",
+        "recall",
+        "medication recall",
+        "medicine",
+        "pharmacy",
+        "recalled drugs"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "results",
+      "row": [
+        {
+          "path": "product_description",
+          "label": "Product",
+          "type": "text"
+        },
+        {
+          "path": "reason_for_recall",
+          "label": "Reason",
+          "type": "text"
+        },
+        {
+          "path": "recalling_firm",
+          "label": "Firm",
+          "type": "text"
+        },
+        {
+          "path": "classification",
+          "label": "Class",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "total",
+      "label": "Recalls on record",
+      "words": [
+        "how many recalls",
+        "total recalls",
+        "count",
+        "number of recalls"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "meta.results.total",
+      "type": "number",
+      "window": "latest"
+    }
+  ],
+  "sample_url": "https://api.fda.gov/drug/enforcement.json?sort=report_date:desc&limit=20",
+  "checked": "2026-09-28"
+}

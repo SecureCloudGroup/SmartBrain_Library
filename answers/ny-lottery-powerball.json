@@ -1,0 +1,111 @@
+{
+  "source_id": "ny-lottery-powerball",
+  "answers": [
+    {
+      "name": "winning_numbers",
+      "label": "Winning numbers",
+      "words": [
+        "winning numbers",
+        "numbers",
+        "results",
+        "last night",
+        "latest",
+        "what hit",
+        "drawn",
+        "check my ticket",
+        "powerball",
+        "red ball"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "items[0].winning_numbers",
+      "type": "text",
+      "window": "latest"
+    },
+    {
+      "name": "power_play",
+      "label": "Power Play",
+      "words": [
+        "power play",
+        "multiplier",
+        "power play multiplier"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "items[0].multiplier",
+      "type": "number",
+      "window": "latest"
+    },
+    {
+      "name": "double_play",
+      "label": "Double Play numbers",
+      "words": [
+        "double play",
+        "double play numbers",
+        "second drawing"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "items[0].double_play_winning_numbers",
+      "type": "text",
+      "window": "latest"
+    },
+    {
+      "name": "draw_date",
+      "label": "Draw date",
+      "words": [
+        "draw date",
+        "when",
+        "which drawing",
+        "last drawing",
+        "date"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "items[0].draw_date",
+      "type": "date",
+      "window": "latest"
+    },
+    {
+      "name": "recent",
+      "label": "Recent draws",
+      "words": [
+        "recent",
+        "past draws",
+        "previous",
+        "history",
+        "last few",
+        "this week",
+        "yesterday",
+        "saturday",
+        "wednesday"
+      ],
+      "primary": false,
+      "kind": "list",
+      "path": "items",
+      "row": [
+        {
+          "path": "draw_date",
+          "label": "Draw",
+          "type": "date"
+        },
+        {
+          "path": "winning_numbers",
+          "label": "Numbers",
+          "type": "text"
+        },
+        {
+          "path": "multiplier",
+          "label": "Power Play",
+          "type": "number"
+        }
+      ],
+      "axis": {
+        "cell": "draw_date",
+        "step": "day"
+      }
+    }
+  ],
+  "sample_url": "https://data.ny.gov/resource/d6yy-54nr.json?$order=draw_date%20DESC&$limit=10",
+  "checked": "2026-09-29"
+}

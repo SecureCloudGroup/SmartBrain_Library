@@ -1,0 +1,71 @@
+{
+ "source_id": "fred-umcsent",
+ "answers": [
+  {
+   "name": "latest",
+   "label": "Consumer sentiment",
+   "kind": "value",
+   "primary": true,
+   "words": [
+    "consumer sentiment",
+    "latest",
+    "current",
+    "now",
+    "today"
+   ],
+   "path": "rows[0].UMCSENT",
+   "type": "number",
+   "unit": "index 1966 Q1=100",
+   "window": "latest"
+  },
+  {
+   "name": "as_of",
+   "label": "As of",
+   "kind": "value",
+   "words": [
+    "as of",
+    "when",
+    "date",
+    "last updated",
+    "updated"
+   ],
+   "path": "rows[0].observation_date",
+   "type": "date",
+   "window": "latest"
+  },
+  {
+   "name": "recent",
+   "label": "Recent readings",
+   "kind": "list",
+   "words": [
+    "recent",
+    "history",
+    "trend",
+    "past",
+    "over time",
+    "chart",
+    "last few"
+   ],
+   "path": "rows",
+   "row": [
+    {
+     "path": "observation_date",
+     "label": "Date",
+     "type": "date"
+    },
+    {
+     "path": "UMCSENT",
+     "label": "Consumer sentiment",
+     "type": "number",
+     "unit": "index 1966 Q1=100"
+    }
+   ],
+   "axis": {
+    "cell": "observation_date",
+    "step": "day"
+   }
+  }
+ ],
+ "sample_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=UMCSENT",
+ "checked": "2026-09-28"
+}

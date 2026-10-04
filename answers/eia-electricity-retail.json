@@ -1,0 +1,83 @@
+{
+  "source_id": "eia-electricity-retail",
+  "answers": [
+    {
+      "name": "price",
+      "label": "Residential electricity price",
+      "words": [
+        "electricity price",
+        "price",
+        "cost per kwh",
+        "kwh",
+        "rate",
+        "power bill",
+        "electric rate"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "response.data[0].price",
+      "type": "number",
+      "unit_path": "response.data[0].price-units",
+      "window": "latest"
+    },
+    {
+      "name": "month",
+      "label": "Month",
+      "words": [
+        "month",
+        "period",
+        "when",
+        "latest month"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "response.data[0].period",
+      "type": "text",
+      "window": "latest"
+    },
+    {
+      "name": "state",
+      "label": "State",
+      "words": [
+        "state",
+        "where",
+        "which state"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "response.data[0].stateDescription",
+      "type": "text",
+      "window": "latest"
+    },
+    {
+      "name": "price_trend",
+      "label": "Price by month",
+      "words": [
+        "trend",
+        "history",
+        "monthly",
+        "past year",
+        "by month",
+        "over time"
+      ],
+      "primary": false,
+      "kind": "list",
+      "path": "response.data",
+      "row": [
+        {
+          "path": "period",
+          "label": "Month",
+          "type": "text"
+        },
+        {
+          "path": "price",
+          "label": "Price",
+          "type": "number",
+          "unit_path": "price-units"
+        }
+      ]
+    }
+  ],
+  "sample_url": "https://api.eia.gov/v2/electricity/retail-sales/data/?api_key=DEMO_KEY&frequency=monthly&data[0]=price&facets[stateid][]=SC&facets[sectorid][]=RES&sort[0][column]=period&sort[0][direction]=desc&length=12",
+  "checked": "2026-09-28"
+}

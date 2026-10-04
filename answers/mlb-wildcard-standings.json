@@ -1,0 +1,85 @@
+{
+  "source_id": "mlb-wildcard-standings",
+  "answers": [
+    {
+      "name": "al_wildcard",
+      "label": "AL wild card",
+      "words": [
+        "wild card",
+        "wildcard",
+        "wild card standings",
+        "wild card race",
+        "al wild card",
+        "american league",
+        "playoff spots",
+        "games back",
+        "last playoff spot",
+        "postseason berth"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "records[0].teamRecords",
+      "row": [
+        {
+          "path": "team.name",
+          "label": "Team",
+          "type": "text"
+        },
+        {
+          "path": "wins",
+          "label": "W",
+          "type": "number"
+        },
+        {
+          "path": "losses",
+          "label": "L",
+          "type": "number"
+        },
+        {
+          "path": "wildCardGamesBack",
+          "label": "Games back",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "nl_wildcard",
+      "label": "NL wild card",
+      "words": [
+        "nl wild card",
+        "national league",
+        "nl wildcard",
+        "nl wild card race",
+        "nl playoff spots",
+        "national league wild card"
+      ],
+      "primary": false,
+      "kind": "list",
+      "path": "records[1].teamRecords",
+      "row": [
+        {
+          "path": "team.name",
+          "label": "Team",
+          "type": "text"
+        },
+        {
+          "path": "wins",
+          "label": "W",
+          "type": "number"
+        },
+        {
+          "path": "losses",
+          "label": "L",
+          "type": "number"
+        },
+        {
+          "path": "wildCardGamesBack",
+          "label": "Games back",
+          "type": "text"
+        }
+      ]
+    }
+  ],
+  "sample_url": "https://statsapi.mlb.com/api/v1/standings?leagueId=103,104&standingsTypes=wildCard",
+  "checked": "2026-09-29"
+}

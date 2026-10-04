@@ -1,0 +1,74 @@
+{
+  "source_id": "apple-top-books",
+  "answers": [
+    {
+      "name": "chart",
+      "label": "Top free books",
+      "words": [
+        "popular books",
+        "books",
+        "top books",
+        "free books",
+        "top",
+        "chart",
+        "charts",
+        "most popular",
+        "top 25",
+        "best"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "feed.results",
+      "row": [
+        {
+          "path": "name",
+          "label": "Book",
+          "type": "text"
+        },
+        {
+          "path": "artistName",
+          "label": "Author",
+          "type": "text"
+        },
+        {
+          "path": "releaseDate",
+          "label": "Released",
+          "type": "date"
+        }
+      ]
+    },
+    {
+      "name": "number_one",
+      "label": "Number one",
+      "words": [
+        "number one",
+        "#1",
+        "top one",
+        "no. 1",
+        "at the top",
+        "first place"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "feed.results[0].name",
+      "type": "text",
+      "window": "latest"
+    },
+    {
+      "name": "number_one_by",
+      "label": "Number one author",
+      "words": [
+        "who is number one",
+        "#1 by",
+        "top author"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "feed.results[0].artistName",
+      "type": "text",
+      "window": "latest"
+    }
+  ],
+  "sample_url": "https://rss.marketingtools.apple.com/api/v2/us/books/top-free/25/books.json",
+  "checked": "2026-09-28"
+}

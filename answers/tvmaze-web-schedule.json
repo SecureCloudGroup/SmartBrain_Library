@@ -1,0 +1,58 @@
+{
+  "source_id": "tvmaze-web-schedule",
+  "answers": [
+    {
+      "name": "streaming",
+      "label": "New on streaming",
+      "words": [
+        "new on streaming",
+        "streaming",
+        "streaming today",
+        "new episodes",
+        "web",
+        "online shows",
+        "today"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "items",
+      "row": [
+        {
+          "path": "_embedded.show.name",
+          "label": "Show",
+          "type": "text"
+        },
+        {
+          "path": "name",
+          "label": "Episode",
+          "type": "text"
+        },
+        {
+          "path": "airstamp",
+          "label": "Released",
+          "type": "time"
+        }
+      ],
+      "axis": {
+        "cell": "airstamp",
+        "step": "hour"
+      }
+    },
+    {
+      "name": "episode_count",
+      "label": "Streaming episodes today",
+      "words": [
+        "how many",
+        "count",
+        "number of episodes"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "items",
+      "type": "count",
+      "window": "today"
+    }
+  ],
+  "sample_url": "https://api.tvmaze.com/schedule/web?date=2026-09-27&country=US",
+  "checked": "2026-09-28"
+}

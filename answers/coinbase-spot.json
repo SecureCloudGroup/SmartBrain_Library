@@ -1,0 +1,44 @@
+{
+  "source_id": "coinbase-spot",
+  "answers": [
+    {
+      "name": "price",
+      "label": "Price",
+      "words": [
+        "price",
+        "spot price",
+        "spot",
+        "trading at",
+        "worth",
+        "value",
+        "how much",
+        "quote",
+        "cost"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "data.amount",
+      "type": "number",
+      "unit_path": "data.currency",
+      "window": "now"
+    },
+    {
+      "name": "asset",
+      "label": "Asset",
+      "words": [
+        "coin",
+        "asset",
+        "which coin",
+        "symbol",
+        "crypto"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "data.base",
+      "type": "text",
+      "window": "now"
+    }
+  ],
+  "sample_url": "https://api.coinbase.com/v2/prices/BTC-USD/spot",
+  "checked": "2026-09-28"
+}

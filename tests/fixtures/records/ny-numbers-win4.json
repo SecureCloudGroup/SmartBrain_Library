@@ -1,0 +1,78 @@
+{
+ "url": "https://data.ny.gov/resource/hsys-3def.json?$order=draw_date%20DESC&$limit=10",
+ "fetched": "2026-09-29T16:46:11Z",
+ "sample": [
+  {
+   "draw_date": "2026-09-28T00:00:00.000",
+   "midday_daily": "613",
+   "evening_daily": "473",
+   "midday_win_4": "9141",
+   "evening_win_4": "4807"
+  },
+  {
+   "draw_date": "2026-09-27T00:00:00.000",
+   "midday_daily": "980",
+   "evening_daily": "782",
+   "midday_win_4": "9075",
+   "evening_win_4": "9649"
+  },
+  {
+   "draw_date": "2026-09-26T00:00:00.000",
+   "midday_daily": "503",
+   "evening_daily": "043",
+   "midday_win_4": "9961",
+   "evening_win_4": "1804"
+  },
+  {
+   "draw_date": "2026-09-25T00:00:00.000",
+   "midday_daily": "898",
+   "evening_daily": "358",
+   "midday_win_4": "7966",
+   "evening_win_4": "9541"
+  },
+  {
+   "draw_date": "2026-09-24T00:00:00.000",
+   "midday_daily": "039",
+   "evening_daily": "630",
+   "midday_win_4": "0141",
+   "evening_win_4": "2969"
+  },
+  {
+   "draw_date": "2026-09-23T00:00:00.000",
+   "midday_daily": "201",
+   "evening_daily": "351",
+   "midday_win_4": "7204",
+   "evening_win_4": "0354",
+   "midday_win_4_booster": "10",
+   "evening_win_4_booster": "10"
+  },
+  {
+   "draw_date": "2026-09-22T00:00:00.000",
+   "midday_daily": "764",
+   "evening_daily": "956",
+   "midday_win_4": "8401",
+   "evening_win_4": "1174"
+  },
+  {
+   "draw_date": "2026-09-21T00:00:00.000",
+   "midday_daily": "562",
+   "evening_daily": "046",
+   "midday_win_4": "1709",
+   "evening_win_4": "4306"
+  },
+  {
+   "draw_date": "2026-09-20T00:00:00.000",
+   "midday_daily": "936",
+   "evening_daily": "607",
+   "midday_win_4": "1035",
+   "evening_win_4": "4407"
+  },
+  {
+   "draw_date": "2026-09-19T00:00:00.000",
+   "midday_daily": "926",
+   "evening_daily": "980",
+   "midday_win_4": "7486",
+   "evening_win_4": "8488"
+  }
+ ]
+}

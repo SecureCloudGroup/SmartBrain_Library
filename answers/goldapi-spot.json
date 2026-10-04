@@ -1,0 +1,61 @@
+{
+  "source_id": "goldapi-spot",
+  "answers": [
+    {
+      "name": "price",
+      "label": "Spot price",
+      "words": [
+        "price",
+        "spot price",
+        "per ounce",
+        "ounce",
+        "oz",
+        "gold price",
+        "silver price",
+        "how much",
+        "worth",
+        "cost"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "price",
+      "type": "number",
+      "unit": "USD/oz",
+      "window": "now"
+    },
+    {
+      "name": "metal",
+      "label": "Metal",
+      "words": [
+        "metal",
+        "which metal",
+        "gold",
+        "silver",
+        "platinum"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "name",
+      "type": "text",
+      "window": "now"
+    },
+    {
+      "name": "updated",
+      "label": "Updated",
+      "words": [
+        "updated",
+        "as of",
+        "when",
+        "last updated",
+        "time"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "updatedAt",
+      "type": "time",
+      "window": "now"
+    }
+  ],
+  "sample_url": "https://api.gold-api.com/price/XAU",
+  "checked": "2026-09-29"
+}

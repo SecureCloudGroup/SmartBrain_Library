@@ -1,0 +1,44 @@
+{
+ "source_id": "nyt-world",
+ "answers": [
+  {
+   "name": "latest",
+   "label": "Headlines",
+   "kind": "list",
+   "primary": true,
+   "words": [
+    "business news",
+    "entertainment news",
+    "health news",
+    "latest on",
+    "news about",
+    "politics",
+    "politics news",
+    "science news",
+    "sports news",
+    "tech news",
+    "technology news",
+    "world news",
+    "headlines",
+    "news",
+    "latest"
+   ],
+   "path": "items",
+   "row": [
+    {
+     "path": "title",
+     "label": "Title",
+     "type": "text"
+    },
+    {
+     "path": "published",
+     "label": "Published",
+     "type": "time"
+    }
+   ],
+   "may_be_empty": false
+  }
+ ],
+ "sample_url": "https://rss.nytimes.com/services/xml/rss/nyt/World.xml",
+ "checked": "2026-09-28"
+}

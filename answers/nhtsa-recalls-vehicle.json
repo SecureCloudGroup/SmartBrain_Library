@@ -1,0 +1,81 @@
+{
+  "source_id": "nhtsa-recalls-vehicle",
+  "answers": [
+    {
+      "name": "recalls",
+      "label": "Vehicle recalls",
+      "words": [
+        "recalls",
+        "recall",
+        "my car",
+        "vehicle recall",
+        "safety recall",
+        "defect",
+        "honda accord recall"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "results",
+      "row": [
+        {
+          "path": "Component",
+          "label": "Component",
+          "type": "text"
+        },
+        {
+          "path": "Consequence",
+          "label": "Risk",
+          "type": "text"
+        },
+        {
+          "path": "ReportReceivedDate",
+          "label": "Reported (day/month/year)",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "remedies",
+      "label": "Recall remedies",
+      "words": [
+        "remedy",
+        "fix",
+        "what to do",
+        "dealer",
+        "repair"
+      ],
+      "primary": false,
+      "kind": "list",
+      "path": "results",
+      "row": [
+        {
+          "path": "Component",
+          "label": "Component",
+          "type": "text"
+        },
+        {
+          "path": "Remedy",
+          "label": "Remedy",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "recall_count",
+      "label": "Recalls found",
+      "words": [
+        "how many recalls",
+        "number of recalls",
+        "count",
+        "any recalls"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "Count",
+      "type": "number",
+      "window": "latest"
+    }
+  ],
+  "sample_url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=honda&model=accord&modelYear=2020",
+  "checked": "2026-09-28"
+}

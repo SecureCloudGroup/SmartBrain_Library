@@ -1,0 +1,49 @@
+{
+  "source_id": "wikimedia-onthisday",
+  "answers": [
+    {
+      "name": "events",
+      "label": "On this day",
+      "words": [
+        "on this day",
+        "this day in history",
+        "history",
+        "today in history",
+        "happened",
+        "anniversary",
+        "events"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "events",
+      "row": [
+        {
+          "path": "text",
+          "label": "What happened",
+          "type": "text"
+        },
+        {
+          "path": "year",
+          "label": "Year",
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "name": "event_count",
+      "label": "Events listed",
+      "words": [
+        "how many events",
+        "count",
+        "number of events"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "events",
+      "type": "count",
+      "window": "today"
+    }
+  ],
+  "sample_url": "https://api.wikimedia.org/feed/v1/wikipedia/en/onthisday/events/09/27",
+  "checked": "2026-09-28"
+}

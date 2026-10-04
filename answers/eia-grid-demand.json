@@ -1,0 +1,83 @@
+{
+  "source_id": "eia-grid-demand",
+  "answers": [
+    {
+      "name": "demand",
+      "label": "Electricity demand",
+      "words": [
+        "demand",
+        "power demand",
+        "grid load",
+        "load",
+        "electricity use",
+        "consumption"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "response.data[0].value",
+      "type": "number",
+      "unit_path": "response.data[0].value-units",
+      "window": "latest"
+    },
+    {
+      "name": "hour",
+      "label": "Hour (UTC)",
+      "words": [
+        "hour",
+        "when",
+        "time",
+        "latest hour"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "response.data[0].period",
+      "type": "text",
+      "window": "latest"
+    },
+    {
+      "name": "region",
+      "label": "Grid operator",
+      "words": [
+        "grid operator",
+        "region",
+        "balancing authority",
+        "which grid"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "response.data[0].respondent-name",
+      "type": "text",
+      "window": "latest"
+    },
+    {
+      "name": "demand_trend",
+      "label": "Demand by hour",
+      "words": [
+        "trend",
+        "hourly",
+        "past hours",
+        "history",
+        "over time",
+        "last two days"
+      ],
+      "primary": false,
+      "kind": "list",
+      "path": "response.data",
+      "row": [
+        {
+          "path": "period",
+          "label": "Hour (UTC)",
+          "type": "text"
+        },
+        {
+          "path": "value",
+          "label": "Demand",
+          "type": "number",
+          "unit_path": "value-units"
+        }
+      ]
+    }
+  ],
+  "sample_url": "https://api.eia.gov/v2/electricity/rto/region-data/data/?api_key=DEMO_KEY&frequency=hourly&data[0]=value&facets[respondent][]=ERCO&facets[type][]=D&sort[0][column]=period&sort[0][direction]=desc&length=48",
+  "checked": "2026-09-28"
+}

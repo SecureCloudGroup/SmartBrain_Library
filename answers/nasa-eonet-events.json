@@ -1,0 +1,61 @@
+{
+  "source_id": "nasa-eonet-events",
+  "answers": [
+    {
+      "name": "events",
+      "label": "Natural events now",
+      "words": [
+        "natural disasters",
+        "events",
+        "happening now",
+        "wildfires",
+        "storms",
+        "volcanoes",
+        "floods",
+        "hazards"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "events",
+      "row": [
+        {
+          "path": "title",
+          "label": "Event",
+          "type": "text"
+        },
+        {
+          "path": "categories[0].title",
+          "label": "Type",
+          "type": "text"
+        },
+        {
+          "path": "geometry[0].date",
+          "label": "Since",
+          "type": "time"
+        }
+      ],
+      "may_be_empty": true,
+      "axis": {
+        "cell": "geometry[0].date",
+        "step": "hour"
+      }
+    },
+    {
+      "name": "latest",
+      "label": "Newest event",
+      "words": [
+        "latest",
+        "newest",
+        "most recent",
+        "just started"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "events[0].title",
+      "type": "text",
+      "window": "latest"
+    }
+  ],
+  "sample_url": "https://eonet.gsfc.nasa.gov/api/v3/events?status=open&limit=25",
+  "checked": "2026-09-28"
+}

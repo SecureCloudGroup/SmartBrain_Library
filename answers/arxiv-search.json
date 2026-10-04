@@ -1,0 +1,41 @@
+{
+ "source_id": "arxiv-search",
+ "answers": [
+  {
+   "name": "latest",
+   "label": "Latest papers",
+   "kind": "list",
+   "primary": true,
+   "words": [
+    "arxiv",
+    "paper",
+    "preprint",
+    "journal",
+    "study",
+    "headlines",
+    "news",
+    "latest"
+   ],
+   "path": "items",
+   "row": [
+    {
+     "path": "title",
+     "label": "Title",
+     "type": "text"
+    },
+    {
+     "path": "published",
+     "label": "Published",
+     "type": "time"
+    }
+   ],
+   "may_be_empty": false,
+   "axis": {
+    "cell": "published",
+    "step": "hour"
+   }
+  }
+ ],
+ "sample_url": "https://export.arxiv.org/api/query?search_query=all:diffusion&sortBy=submittedDate&sortOrder=descending&max_results=10",
+ "checked": "2026-09-28"
+}

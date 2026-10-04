@@ -1,0 +1,41 @@
+{
+ "source_id": "sec-press",
+ "answers": [
+  {
+   "name": "latest",
+   "label": "Press releases",
+   "kind": "list",
+   "primary": true,
+   "words": [
+    "press release",
+    "announcement",
+    "newsroom",
+    "sec filing",
+    "10-k",
+    "8-k",
+    "earnings",
+    "edgar",
+    "insider",
+    "headlines",
+    "news",
+    "latest"
+   ],
+   "path": "items",
+   "row": [
+    {
+     "path": "title",
+     "label": "Title",
+     "type": "text"
+    },
+    {
+     "path": "published",
+     "label": "Published",
+     "type": "time"
+    }
+   ],
+   "may_be_empty": false
+  }
+ ],
+ "sample_url": "https://www.sec.gov/news/pressreleases.rss",
+ "checked": "2026-09-28"
+}

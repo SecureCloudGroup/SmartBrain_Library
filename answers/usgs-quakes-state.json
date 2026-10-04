@@ -1,0 +1,59 @@
+{
+  "source_id": "usgs-quakes-state",
+  "answers": [
+    {
+      "name": "quakes",
+      "label": "Earthquakes",
+      "words": [
+        "earthquakes",
+        "quakes",
+        "earthquake",
+        "magnitude",
+        "where",
+        "latest",
+        "recent",
+        "shaking",
+        "statewide",
+        "in the state"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "features",
+      "row": [
+        {
+          "path": "properties.mag",
+          "label": "Magnitude",
+          "type": "number"
+        },
+        {
+          "path": "properties.place",
+          "label": "Place",
+          "type": "text"
+        },
+        {
+          "path": "properties.time",
+          "label": "Time",
+          "type": "time"
+        }
+      ],
+      "may_be_empty": true
+    },
+    {
+      "name": "quake_count",
+      "label": "Number of earthquakes",
+      "words": [
+        "how many",
+        "count",
+        "number of earthquakes",
+        "total"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "features",
+      "type": "count",
+      "window": "now"
+    }
+  ],
+  "sample_url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&minlatitude=51.179&maxlatitude=71.435&minlongitude=-187.651&maxlongitude=-129.974&minmagnitude=2.5&starttime=2026-08-29&orderby=time&limit=20",
+  "checked": "2026-09-28"
+}

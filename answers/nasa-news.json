@@ -1,0 +1,40 @@
+{
+ "source_id": "nasa-news",
+ "answers": [
+  {
+   "name": "latest",
+   "label": "Press releases",
+   "kind": "list",
+   "primary": true,
+   "words": [
+    "press release",
+    "announcement",
+    "newsroom",
+    "launch",
+    "rocket",
+    "spacex",
+    "nasa launch",
+    "liftoff",
+    "headlines",
+    "news",
+    "latest"
+   ],
+   "path": "items",
+   "row": [
+    {
+     "path": "title",
+     "label": "Title",
+     "type": "text"
+    },
+    {
+     "path": "published",
+     "label": "Published",
+     "type": "time"
+    }
+   ],
+   "may_be_empty": false
+  }
+ ],
+ "sample_url": "https://www.nasa.gov/news-release/feed/",
+ "checked": "2026-09-28"
+}

@@ -1,0 +1,4 @@
+{"aliases": ["silver", "xag"], "attrs": {}, "id": "metal:XAG", "key": "XAG", "kind": "commodity", "lat": null, "lon": null, "name": "Silver", "rank": 3, "resolver": "metal", "state": ""}
+{"aliases": ["gold", "xau"], "attrs": {}, "id": "metal:XAU", "key": "XAU", "kind": "commodity", "lat": null, "lon": null, "name": "Gold", "rank": 4, "resolver": "metal", "state": ""}
+{"aliases": ["palladium", "xpd"], "attrs": {}, "id": "metal:XPD", "key": "XPD", "kind": "commodity", "lat": null, "lon": null, "name": "Palladium", "rank": 1, "resolver": "metal", "state": ""}
+{"aliases": ["platinum", "xpt"], "attrs": {}, "id": "metal:XPT", "key": "XPT", "kind": "commodity", "lat": null, "lon": null, "name": "Platinum", "rank": 2, "resolver": "metal", "state": ""}

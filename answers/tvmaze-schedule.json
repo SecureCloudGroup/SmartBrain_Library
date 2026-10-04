@@ -1,0 +1,59 @@
+{
+  "source_id": "tvmaze-schedule",
+  "answers": [
+    {
+      "name": "tonight",
+      "label": "TV schedule",
+      "words": [
+        "what's on tv",
+        "tv tonight",
+        "tonight",
+        "tv",
+        "schedule",
+        "on tv",
+        "shows",
+        "broadcast"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "items",
+      "row": [
+        {
+          "path": "show.name",
+          "label": "Show",
+          "type": "text"
+        },
+        {
+          "path": "name",
+          "label": "Episode",
+          "type": "text"
+        },
+        {
+          "path": "airstamp",
+          "label": "Airs",
+          "type": "time"
+        }
+      ],
+      "axis": {
+        "cell": "airstamp",
+        "step": "hour"
+      }
+    },
+    {
+      "name": "episode_count",
+      "label": "Episodes airing",
+      "words": [
+        "how many shows",
+        "count",
+        "number of episodes"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "items",
+      "type": "count",
+      "window": "today"
+    }
+  ],
+  "sample_url": "https://api.tvmaze.com/schedule?country=US&date=2026-09-27",
+  "checked": "2026-09-28"
+}

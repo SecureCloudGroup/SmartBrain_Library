@@ -1,0 +1,81 @@
+{
+  "source_id": "slack-status-current",
+  "answers": [
+    {
+      "name": "status",
+      "label": "Slack status",
+      "words": [
+        "status",
+        "down",
+        "is slack down",
+        "working",
+        "up",
+        "operational",
+        "problems",
+        "issues"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "status",
+      "type": "text",
+      "window": "now"
+    },
+    {
+      "name": "updated",
+      "label": "Last updated",
+      "words": [
+        "updated",
+        "last update",
+        "since when",
+        "as of"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "date_updated",
+      "type": "time",
+      "window": "now"
+    },
+    {
+      "name": "incidents",
+      "label": "Active incidents",
+      "words": [
+        "incident",
+        "incidents",
+        "outage",
+        "outages",
+        "maintenance",
+        "what's broken",
+        "affected",
+        "problems"
+      ],
+      "primary": false,
+      "kind": "list",
+      "path": "active_incidents",
+      "row": [
+        {
+          "path": "title",
+          "label": "Issue",
+          "type": "text"
+        },
+        {
+          "path": "type",
+          "label": "Type",
+          "type": "text"
+        },
+        {
+          "path": "status",
+          "label": "Status",
+          "type": "text"
+        },
+        {
+          "path": "date_updated",
+          "label": "Updated",
+          "type": "time"
+        }
+      ],
+      "may_be_empty": true
+    }
+  ],
+  "sample_url": "https://slack-status.com/api/v2.0.0/current",
+  "checked": "2026-09-29"
+}

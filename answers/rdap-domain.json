@@ -1,0 +1,71 @@
+{
+  "source_id": "rdap-domain",
+  "answers": [
+    {
+      "name": "events",
+      "label": "Registration dates",
+      "words": [
+        "expire",
+        "expiry",
+        "expiration",
+        "expires",
+        "registered",
+        "registration",
+        "renewal",
+        "dates",
+        "created"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "events",
+      "row": [
+        {
+          "path": "eventAction",
+          "label": "Event",
+          "type": "text"
+        },
+        {
+          "path": "eventDate",
+          "label": "Date",
+          "type": "time"
+        }
+      ]
+    },
+    {
+      "name": "domain",
+      "label": "Domain",
+      "words": [
+        "domain",
+        "domain name",
+        "which domain"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "ldhName",
+      "type": "text",
+      "window": "latest"
+    },
+    {
+      "name": "nameservers",
+      "label": "Name servers",
+      "words": [
+        "nameservers",
+        "name servers",
+        "dns",
+        "ns"
+      ],
+      "primary": false,
+      "kind": "list",
+      "path": "nameservers",
+      "row": [
+        {
+          "path": "ldhName",
+          "label": "Name server",
+          "type": "text"
+        }
+      ]
+    }
+  ],
+  "sample_url": "https://rdap.org/domain/example.com",
+  "checked": "2026-09-28"
+}

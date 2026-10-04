@@ -1,0 +1,60 @@
+{
+  "source_id": "usno-moon-phases",
+  "answers": [
+    {
+      "name": "phases",
+      "label": "Upcoming moon phases",
+      "words": [
+        "moon phase",
+        "full moon",
+        "new moon",
+        "next full moon",
+        "quarter moon",
+        "when is the next full moon",
+        "lunar"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "phasedata",
+      "row": [
+        {
+          "path": "phase",
+          "label": "Phase",
+          "type": "text"
+        },
+        {
+          "path": "month",
+          "label": "Month",
+          "type": "number"
+        },
+        {
+          "path": "day",
+          "label": "Day",
+          "type": "number"
+        },
+        {
+          "path": "time",
+          "label": "Time (UT)",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "next_phase",
+      "label": "Next moon phase",
+      "words": [
+        "next phase",
+        "next",
+        "upcoming",
+        "coming up"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "phasedata[0].phase",
+      "type": "text",
+      "window": "latest"
+    }
+  ],
+  "sample_url": "https://aa.usno.navy.mil/api/moon/phases/date?date=2026-09-27&nump=4",
+  "checked": "2026-09-28"
+}

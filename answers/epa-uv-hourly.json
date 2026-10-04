@@ -1,0 +1,67 @@
+{
+  "source_id": "epa-uv-hourly",
+  "answers": [
+    {
+      "name": "uv_by_hour",
+      "label": "UV index by hour",
+      "words": [
+        "by hour",
+        "hourly",
+        "uv by hour",
+        "uv index",
+        "uv",
+        "when is uv highest",
+        "sunscreen"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "items",
+      "row": [
+        {
+          "path": "DATE_TIME",
+          "label": "Hour",
+          "type": "text"
+        },
+        {
+          "path": "UV_VALUE",
+          "label": "UV index",
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "name": "uv_noon",
+      "label": "UV index at noon",
+      "words": [
+        "noon",
+        "midday",
+        "uv at noon",
+        "lunchtime"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "items[5].UV_VALUE",
+      "type": "number",
+      "window": "today",
+      "measure": "uv"
+    },
+    {
+      "name": "uv_1pm",
+      "label": "UV index at 1 PM",
+      "words": [
+        "1 pm",
+        "afternoon",
+        "peak uv",
+        "strongest"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "items[6].UV_VALUE",
+      "type": "number",
+      "window": "today",
+      "measure": "uv"
+    }
+  ],
+  "sample_url": "https://data.epa.gov/efservice/getEnvirofactsUVHOURLY/ZIP/29401/JSON",
+  "checked": "2026-09-28"
+}

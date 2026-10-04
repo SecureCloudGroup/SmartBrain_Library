@@ -1,0 +1,74 @@
+{
+ "source_id": "fred-payems",
+ "answers": [
+  {
+   "name": "latest",
+   "label": "Nonfarm payroll jobs",
+   "kind": "value",
+   "primary": true,
+   "words": [
+    "nonfarm payrolls",
+    "nonfarm payroll jobs",
+    "jobs report",
+    "payrolls",
+    "latest",
+    "current",
+    "now",
+    "today"
+   ],
+   "path": "rows[0].PAYEMS",
+   "type": "number",
+   "unit": "thousand jobs",
+   "window": "latest"
+  },
+  {
+   "name": "as_of",
+   "label": "As of",
+   "kind": "value",
+   "words": [
+    "as of",
+    "when",
+    "date",
+    "last updated",
+    "updated"
+   ],
+   "path": "rows[0].observation_date",
+   "type": "date",
+   "window": "latest"
+  },
+  {
+   "name": "recent",
+   "label": "Recent readings",
+   "kind": "list",
+   "words": [
+    "recent",
+    "history",
+    "trend",
+    "past",
+    "over time",
+    "chart",
+    "last few"
+   ],
+   "path": "rows",
+   "row": [
+    {
+     "path": "observation_date",
+     "label": "Date",
+     "type": "date"
+    },
+    {
+     "path": "PAYEMS",
+     "label": "Nonfarm payroll jobs",
+     "type": "number",
+     "unit": "thousand jobs"
+    }
+   ],
+   "axis": {
+    "cell": "observation_date",
+    "step": "day"
+   }
+  }
+ ],
+ "sample_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=PAYEMS",
+ "checked": "2026-09-28"
+}

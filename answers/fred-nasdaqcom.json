@@ -1,0 +1,71 @@
+{
+ "source_id": "fred-nasdaqcom",
+ "answers": [
+  {
+   "name": "latest",
+   "label": "Nasdaq Composite (close)",
+   "kind": "value",
+   "primary": true,
+   "words": [
+    "nasdaq composite (daily close)",
+    "nasdaq composite (close)",
+    "nasdaq composite",
+    "latest",
+    "current",
+    "now",
+    "today"
+   ],
+   "path": "rows[0].NASDAQCOM",
+   "type": "number",
+   "window": "latest"
+  },
+  {
+   "name": "as_of",
+   "label": "As of",
+   "kind": "value",
+   "words": [
+    "as of",
+    "when",
+    "date",
+    "last updated",
+    "updated"
+   ],
+   "path": "rows[0].observation_date",
+   "type": "date",
+   "window": "latest"
+  },
+  {
+   "name": "recent",
+   "label": "Recent readings",
+   "kind": "list",
+   "words": [
+    "recent",
+    "history",
+    "trend",
+    "past",
+    "over time",
+    "chart",
+    "last few"
+   ],
+   "path": "rows",
+   "row": [
+    {
+     "path": "observation_date",
+     "label": "Date",
+     "type": "date"
+    },
+    {
+     "path": "NASDAQCOM",
+     "label": "Nasdaq Composite (close)",
+     "type": "number"
+    }
+   ],
+   "axis": {
+    "cell": "observation_date",
+    "step": "day"
+   }
+  }
+ ],
+ "sample_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=NASDAQCOM",
+ "checked": "2026-09-28"
+}

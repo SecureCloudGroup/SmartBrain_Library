@@ -1,0 +1,37 @@
+{
+ "source_id": "ntwc-atom",
+ "answers": [
+  {
+   "name": "latest",
+   "label": "Tsunami messages",
+   "kind": "list",
+   "primary": true,
+   "words": [
+    "tsunami",
+    "headlines",
+    "news",
+    "latest"
+   ],
+   "path": "items",
+   "row": [
+    {
+     "path": "title",
+     "label": "Title",
+     "type": "text"
+    },
+    {
+     "path": "published",
+     "label": "Published",
+     "type": "time"
+    }
+   ],
+   "may_be_empty": false,
+   "axis": {
+    "cell": "published",
+    "step": "hour"
+   }
+  }
+ ],
+ "sample_url": "https://www.tsunami.gov/events/xml/PAAQAtom.xml",
+ "checked": "2026-09-28"
+}

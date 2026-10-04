@@ -1,0 +1,55 @@
+{
+  "source_id": "pypistats-recent",
+  "answers": [
+    {
+      "name": "downloads_last_day",
+      "label": "Downloads last day",
+      "words": [
+        "daily downloads",
+        "yesterday",
+        "last day",
+        "today",
+        "per day"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "data.last_day",
+      "type": "number",
+      "window": "latest"
+    },
+    {
+      "name": "downloads_last_week",
+      "label": "Downloads last week",
+      "words": [
+        "weekly downloads",
+        "last week",
+        "this week",
+        "per week",
+        "downloads"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "data.last_week",
+      "type": "number",
+      "window": "latest"
+    },
+    {
+      "name": "downloads_last_month",
+      "label": "Downloads last month",
+      "words": [
+        "monthly downloads",
+        "last month",
+        "this month",
+        "per month",
+        "downloads"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "data.last_month",
+      "type": "number",
+      "window": "latest"
+    }
+  ],
+  "sample_url": "https://pypistats.org/api/packages/requests/recent",
+  "checked": "2026-09-28"
+}

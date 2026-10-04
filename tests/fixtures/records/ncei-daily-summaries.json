@@ -1,0 +1,146 @@
+{
+ "url": "https://www.ncei.noaa.gov/access/services/data/v1?dataset=daily-summaries&stations=USW00013880&startDate=2026-09-01&endDate=2026-09-20&dataTypes=TMAX,TMIN,PRCP&units=standard&format=json",
+ "fetched": "2026-09-29T16:42:15Z",
+ "sample": [
+  {
+   "DATE": "2026-09-01",
+   "STATION": "USW00013880",
+   "TMAX": "93",
+   "TMIN": "74",
+   "PRCP": "0.00"
+  },
+  {
+   "DATE": "2026-09-02",
+   "STATION": "USW00013880",
+   "TMAX": "94",
+   "TMIN": "74",
+   "PRCP": "0.00"
+  },
+  {
+   "DATE": "2026-09-03",
+   "STATION": "USW00013880",
+   "TMAX": "92",
+   "TMIN": "74",
+   "PRCP": "0.00"
+  },
+  {
+   "DATE": "2026-09-04",
+   "STATION": "USW00013880",
+   "TMAX": "92",
+   "TMIN": "76",
+   "PRCP": "0.00"
+  },
+  {
+   "DATE": "2026-09-05",
+   "STATION": "USW00013880",
+   "TMAX": "95",
+   "TMIN": "76",
+   "PRCP": "0.00"
+  },
+  {
+   "DATE": "2026-09-06",
+   "STATION": "USW00013880",
+   "TMAX": "94",
+   "TMIN": "73",
+   "PRCP": "0.00"
+  },
+  {
+   "DATE": "2026-09-07",
+   "STATION": "USW00013880",
+   "TMAX": "87",
+   "TMIN": "73",
+   "PRCP": "0.04"
+  },
+  {
+   "DATE": "2026-09-08",
+   "STATION": "USW00013880",
+   "TMAX": "86",
+   "TMIN": "70",
+   "PRCP": "0.00"
+  },
+  {
+   "DATE": "2026-09-09",
+   "STATION": "USW00013880",
+   "TMAX": "88",
+   "TMIN": "72",
+   "PRCP": "0.00"
+  },
+  {
+   "DATE": "2026-09-10",
+   "STATION": "USW00013880",
+   "TMAX": "90",
+   "TMIN": "75",
+   "PRCP": "0.37"
+  },
+  {
+   "DATE": "2026-09-11",
+   "STATION": "USW00013880",
+   "TMAX": "91",
+   "TMIN": "73",
+   "PRCP": "1.81"
+  },
+  {
+   "DATE": "2026-09-12",
+   "STATION": "USW00013880",
+   "TMAX": "91",
+   "TMIN": "72",
+   "PRCP": "0.00"
+  },
+  {
+   "DATE": "2026-09-13",
+   "STATION": "USW00013880",
+   "TMAX": "93",
+   "TMIN": "76",
+   "PRCP": "0.00"
+  },
+  {
+   "DATE": "2026-09-14",
+   "STATION": "USW00013880",
+   "TMAX": "95",
+   "TMIN": "76",
+   "PRCP": "0.00"
+  },
+  {
+   "DATE": "2026-09-15",
+   "STATION": "USW00013880",
+   "TMAX": "89",
+   "TMIN": "74",
+   "PRCP": "0.00"
+  },
+  {
+   "DATE": "2026-09-16",
+   "STATION": "USW00013880",
+   "TMAX": "88",
+   "TMIN": "67",
+   "PRCP": "0.00"
+  },
+  {
+   "DATE": "2026-09-17",
+   "STATION": "USW00013880",
+   "TMAX": "89",
+   "TMIN": "64",
+   "PRCP": "0.00"
+  },
+  {
+   "DATE": "2026-09-18",
+   "STATION": "USW00013880",
+   "TMAX": "91",
+   "TMIN": "68",
+   "PRCP": "0.00"
+  },
+  {
+   "DATE": "2026-09-19",
+   "STATION": "USW00013880",
+   "TMAX": "90",
+   "TMIN": "72",
+   "PRCP": "1.27"
+  },
+  {
+   "DATE": "2026-09-20",
+   "STATION": "USW00013880",
+   "TMAX": "89",
+   "TMIN": "71",
+   "PRCP": "0.00"
+  }
+ ]
+}

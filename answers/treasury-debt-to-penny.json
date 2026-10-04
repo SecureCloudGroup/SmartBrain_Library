@@ -1,0 +1,107 @@
+{
+  "source_id": "treasury-debt-to-penny",
+  "answers": [
+    {
+      "name": "total_debt",
+      "label": "Total public debt",
+      "words": [
+        "national debt",
+        "us debt",
+        "debt",
+        "total debt",
+        "how much",
+        "federal debt",
+        "public debt"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "data[0].tot_pub_debt_out_amt",
+      "type": "number",
+      "unit": "USD",
+      "window": "latest"
+    },
+    {
+      "name": "as_of",
+      "label": "As of",
+      "words": [
+        "as of",
+        "date",
+        "today",
+        "when",
+        "latest"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "data[0].record_date",
+      "type": "date",
+      "window": "latest"
+    },
+    {
+      "name": "held_by_public",
+      "label": "Debt held by the public",
+      "words": [
+        "held by public",
+        "public holdings",
+        "debt held by the public",
+        "marketable debt"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "data[0].debt_held_public_amt",
+      "type": "number",
+      "unit": "USD",
+      "window": "latest"
+    },
+    {
+      "name": "intragov",
+      "label": "Intragovernmental holdings",
+      "words": [
+        "intragovernmental",
+        "trust funds",
+        "social security",
+        "intragov",
+        "government holdings"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "data[0].intragov_hold_amt",
+      "type": "number",
+      "unit": "USD",
+      "window": "latest"
+    },
+    {
+      "name": "history",
+      "label": "Daily total debt",
+      "words": [
+        "history",
+        "trend",
+        "daily",
+        "over time",
+        "past days",
+        "chart"
+      ],
+      "primary": false,
+      "kind": "list",
+      "path": "data",
+      "row": [
+        {
+          "path": "record_date",
+          "label": "Date",
+          "type": "date"
+        },
+        {
+          "path": "tot_pub_debt_out_amt",
+          "label": "Total debt",
+          "type": "number",
+          "unit": "USD"
+        }
+      ],
+      "axis": {
+        "cell": "record_date",
+        "step": "day"
+      }
+    }
+  ],
+  "sample_url": "https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/debt_to_penny?sort=-record_date&page[size]=10",
+  "checked": "2026-09-28"
+}

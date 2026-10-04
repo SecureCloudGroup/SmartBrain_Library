@@ -1,0 +1,91 @@
+{
+  "source_id": "eia-gasoline-weekly",
+  "answers": [
+    {
+      "name": "price",
+      "label": "Regular gas price",
+      "words": [
+        "gas price",
+        "gas prices",
+        "gasoline",
+        "price",
+        "regular gas",
+        "fuel price",
+        "per gallon",
+        "pump price"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "response.data[0].value",
+      "type": "number",
+      "unit_path": "response.data[0].units",
+      "window": "latest"
+    },
+    {
+      "name": "week",
+      "label": "Week of",
+      "words": [
+        "week",
+        "as of",
+        "date",
+        "when",
+        "latest week"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "response.data[0].period",
+      "type": "date",
+      "window": "latest"
+    },
+    {
+      "name": "area",
+      "label": "Area",
+      "words": [
+        "area",
+        "region",
+        "where",
+        "location"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "response.data[0].area-name",
+      "type": "text",
+      "window": "latest"
+    },
+    {
+      "name": "history",
+      "label": "Weekly gas prices",
+      "words": [
+        "trend",
+        "history",
+        "weekly",
+        "past weeks",
+        "chart",
+        "over time",
+        "gas price trend"
+      ],
+      "primary": false,
+      "kind": "list",
+      "path": "response.data",
+      "row": [
+        {
+          "path": "period",
+          "label": "Week of",
+          "type": "date"
+        },
+        {
+          "path": "value",
+          "label": "Price",
+          "type": "number",
+          "unit": "$/gal"
+        }
+      ],
+      "axis": {
+        "cell": "period",
+        "step": "day"
+      }
+    }
+  ],
+  "sample_url": "https://api.eia.gov/v2/petroleum/pri/gnd/data/?api_key=DEMO_KEY&frequency=weekly&data[0]=value&facets[product][]=EPMR&facets[duoarea][]=NUS&sort[0][column]=period&sort[0][direction]=desc&length=12",
+  "checked": "2026-09-29"
+}

@@ -1,0 +1,185 @@
+{
+ "answers_of": "nws-tropical-alerts-point",
+ "url": "https://api.weather.gov/alerts/active?area=AK",
+ "fetched": "2026-09-29T16:50:00Z",
+ "note": "the example point has no active alert; the same API's GeoJSON with alerts",
+ "sample": {
+  "@context": [
+   "https://geojson.org/geojson-ld/geojson-context.jsonld",
+   {
+    "@version": "1.1",
+    "wx": "https://api.weather.gov/ontology#",
+    "@vocab": "https://api.weather.gov/ontology#"
+   }
+  ],
+  "type": "FeatureCollection",
+  "features": [
+   {
+    "id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.bdb724603f49515c92d52f90287c634d3e2b537d.002.1",
+    "type": "Feature",
+    "geometry": null,
+    "properties": {
+     "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.bdb724603f49515c92d52f90287c634d3e2b537d.002.1",
+     "@type": "wx:Alert",
+     "id": "urn:oid:2.49.0.1.840.0.bdb724603f49515c92d52f90287c634d3e2b537d.002.1",
+     "areaDesc": "Eastern Alaska Range North of Trims Camp; Eastern Alaska Range South of Trims Camp",
+     "geocode": {
+      "SAME": [
+       "002240"
+      ],
+      "UGC": [
+       "AKZ849",
+       "AKZ850"
+      ]
+     },
+     "affectedZones": [
+      "https://api.weather.gov/zones/forecast/AKZ849",
+      "https://api.weather.gov/zones/forecast/AKZ850"
+     ],
+     "references": [],
+     "sent": "2026-09-28T14:42:00-08:00",
+     "effective": "2026-09-28T14:42:00-08:00",
+     "onset": "2026-09-28T14:42:00-08:00",
+     "expires": "2026-09-29T15:15:00-08:00",
+     "ends": null,
+     "status": "Actual",
+     "messageType": "Alert",
+     "category": "Met",
+     "severity": "Moderate",
+     "certainty": "Observed",
+     "urgency": "Expected",
+     "event": "Special Weather Statement",
+     "sender": "w-nws.webmaster@noaa.gov",
+     "senderName": "NWS Fairbanks AK",
+     "headline": "Special Weather Statement issued September 28 at 2:42PM AKDT by NWS Fairbanks AK",
+     "description": "Snowfall beginning Monday night could potentially lead to slick\ntravel conditions in Isabel Pass beginning Monday night. Cooler\ntemperatures are expected to settle in through midweek which\ncould allow for 3\" to 6\" of snow through Wednesday morning.\nAnother round of snow is likely Wednesday evening into Thursday\nmorning. This could be the start of the permanent snow pack.",
+     "instruction": null,
+     "response": "Execute",
+     "note": null,
+     "parameters": {
+      "AWIPSidentifier": [
+       "SPSAFG"
+      ],
+      "WMOidentifier": [
+       "WWAK83 PAFG 282242"
+      ],
+      "NWSheadline": [
+       "Moderate to Heavy Snowfall Expected Across the Eastern Alaska Range"
+      ],
+      "BLOCKCHANNEL": [
+       "EAS",
+       "NWEM",
+       "CMAS"
+      ],
+      "EAS-ORG": [
+       "WXR"
+      ]
+     },
+     "scope": "Public",
+     "code": "IPAWSv1.0",
+     "language": "en-US",
+     "web": "http://www.weather.gov",
+     "eventCode": {
+      "SAME": [
+       "SPS"
+      ],
+      "NationalWeatherService": [
+       "SPS"
+      ]
+     }
+    }
+   },
+   {
+    "id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.bdb724603f49515c92d52f90287c634d3e2b537d.001.1",
+    "type": "Feature",
+    "geometry": null,
+    "properties": {
+     "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.bdb724603f49515c92d52f90287c634d3e2b537d.001.1",
+     "@type": "wx:Alert",
+     "id": "urn:oid:2.49.0.1.840.0.bdb724603f49515c92d52f90287c634d3e2b537d.001.1",
+     "areaDesc": "Dalton Highway Summits; White Mountains and High Terrain South of the Yukon River; Fortymile Country; Upper Chena River Valley; Eielson AFB and Salcha; Chatanika River Valley; Two Rivers; Fairbanks Metro Area",
+     "geocode": {
+      "SAME": [
+       "002290",
+       "002240",
+       "002090"
+      ],
+      "UGC": [
+       "AKZ832",
+       "AKZ834",
+       "AKZ835",
+       "AKZ838",
+       "AKZ840",
+       "AKZ842",
+       "AKZ843",
+       "AKZ844"
+      ]
+     },
+     "affectedZones": [
+      "https://api.weather.gov/zones/forecast/AKZ832",
+      "https://api.weather.gov/zones/forecast/AKZ834",
+      "https://api.weather.gov/zones/forecast/AKZ835",
+      "https://api.weather.gov/zones/forecast/AKZ838",
+      "https://api.weather.gov/zones/forecast/AKZ840",
+      "https://api.weather.gov/zones/forecast/AKZ842",
+      "https://api.weather.gov/zones/forecast/AKZ843",
+      "https://api.weather.gov/zones/forecast/AKZ844"
+     ],
+     "references": [],
+     "sent": "2026-09-28T14:42:00-08:00",
+     "effective": "2026-09-28T14:42:00-08:00",
+     "onset": "2026-09-28T14:42:00-08:00",
+     "expires": "2026-09-29T15:15:00-08:00",
+     "ends": null,
+     "status": "Actual",
+     "messageType": "Alert",
+     "category": "Met",
+     "severity": "Moderate",
+     "certainty": "Observed",
+     "urgency": "Expected",
+     "event": "Special Weather Statement",
+     "sender": "w-nws.webmaster@noaa.gov",
+     "senderName": "NWS Fairbanks AK",
+     "headline": "Special Weather Statement issued September 28 at 2:42PM AKDT by NWS Fairbanks AK",
+     "description": "Light rain and snow will meander around the Interior. Locations\nabove 2000ft have the highest chance for snow through Monday\nnight but snow levels continue to drop to 1000ft Tuesday. Valley\nlocations, including Fairbanks, may see some snowflakes mix in\nwith rain beginning Tuesday night with flurries lingering into\nWednesday. Little to no accumulation is expected in the valleys\nthrough Wednesday afternoon. Between 1000-2000ft, up to 1 inch of\nsnow is possible but there will be melting as the snow reaches the\nground. Above 2000ft, 1 to 3 inches of snow is possible through\nWednesday afternoon. Another round of light snow is becoming more\nlikely Wednesday night into Thursday with minor accumulations\npossible, even in Fairbanks.",
+     "instruction": null,
+     "response": "Execute",
+     "note": null,
+     "parameters": {
+      "AWIPSidentifier": [
+       "SPSAFG"
+      ],
+      "WMOidentifier": [
+       "WWAK83 PAFG 282242"
+      ],
+      "NWSheadline": [
+       "First Round of Snowfall Across Portions of the Interior"
+      ],
+      "BLOCKCHANNEL": [
+       "EAS",
+       "NWEM",
+       "CMAS"
+      ],
+      "EAS-ORG": [
+       "WXR"
+      ]
+     },
+     "scope": "Public",
+     "code": "IPAWSv1.0",
+     "language": "en-US",
+     "web": "http://www.weather.gov",
+     "eventCode": {
+      "SAME": [
+       "SPS"
+      ],
+      "NationalWeatherService": [
+       "SPS"
+      ]
+     }
+    }
+   }
+  ],
+  "title": "Current watches, warnings, and advisories for Alaska",
+  "updated": "2026-09-29T16:46:39+00:00"
+ }
+}

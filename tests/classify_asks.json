@@ -1,0 +1,1953 @@
+{
+ "note": "Blind classify labels (written 2026-09-29 by an agent that never saw the code or the keywords; the gate is `sourcetool evallookup classify_*`). One rule-based remap since: lottery asks the labeler filed under culture/trivia_fun (no lottery subcategory existed then) also accept culture/lottery.",
+ "cases": [
+  {
+   "ask": "russell 2000 today",
+   "sub": "markets/indices",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "water temp lake erie cleveland",
+   "sub": "water/water_temperature",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "grass pollen des moines",
+   "sub": "weather/pollen",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "lake champlain water temp burlington",
+   "sub": "water/water_temperature",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "earthquakes today california",
+   "sub": "hazards/earthquakes",
+   "also": [],
+   "frame_kind": "latest_items"
+  },
+  {
+   "ask": "how's the nasdaq doing",
+   "sub": "markets/indices",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "who won the world series last year",
+   "sub": "sports/results",
+   "also": [],
+   "frame_kind": "result"
+  },
+  {
+   "ask": "solar storm this week",
+   "sub": "hazards/space_weather",
+   "also": [],
+   "frame_kind": "forecast"
+  },
+  {
+   "ask": "next launch from boca chica",
+   "sub": "sky/launches",
+   "also": [],
+   "frame_kind": "next_event"
+  },
+  {
+   "ask": "new madrid fault any quakes lately",
+   "sub": "hazards/earthquakes",
+   "also": [],
+   "frame_kind": "latest_items"
+  },
+  {
+   "ask": "kentucky river level frankfort",
+   "sub": "hazards/floods_rivers",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "is the tide going out at the jersey shore rn",
+   "sub": "water/tides",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "septa regional rail delays",
+   "sub": "travel/transit_alerts",
+   "also": [],
+   "frame_kind": "alerts"
+  },
+  {
+   "ask": "why is amzn down",
+   "sub": "markets/stocks",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "boating forecast lake michigan",
+   "sub": "water/marine_forecast",
+   "also": [],
+   "frame_kind": "forecast"
+  },
+  {
+   "ask": "tsunami warning hawaii",
+   "sub": "hazards/tsunami",
+   "also": [],
+   "frame_kind": "alerts"
+  },
+  {
+   "ask": "msp airport status",
+   "sub": "travel/airport_delays",
+   "also": [],
+   "frame_kind": "status"
+  },
+  {
+   "ask": "is crypto crashing",
+   "sub": "markets/crypto",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "is there a solar flare today",
+   "sub": "hazards/space_weather",
+   "also": [],
+   "frame_kind": "latest_items"
+  },
+  {
+   "ask": "core pce latest",
+   "sub": "economy/inflation",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "top 25 college football poll",
+   "sub": "sports/standings",
+   "also": [
+    "sports/college"
+   ],
+   "frame_kind": "ranking"
+  },
+  {
+   "ask": "new fires in washington state today",
+   "sub": "hazards/wildfires",
+   "also": [],
+   "frame_kind": "latest_items"
+  },
+  {
+   "ask": "up first today",
+   "sub": "news/podcasts",
+   "also": [],
+   "frame_kind": "latest_items"
+  },
+  {
+   "ask": "harvest moon when",
+   "sub": "sky/sun_moon",
+   "also": [],
+   "frame_kind": "next_event"
+  },
+  {
+   "ask": "afc playoff picture",
+   "sub": "sports/standings",
+   "also": [],
+   "frame_kind": "ranking"
+  },
+  {
+   "ask": "iss sighting times phoenix this week",
+   "sub": "sky/iss",
+   "also": [],
+   "frame_kind": "schedule"
+  },
+  {
+   "ask": "did huberman post a new episode",
+   "sub": "news/podcasts",
+   "also": [],
+   "frame_kind": "latest_items"
+  },
+  {
+   "ask": "top stock gainers today",
+   "sub": "markets/stocks",
+   "also": [],
+   "frame_kind": "ranking"
+  },
+  {
+   "ask": "moon phase tonight",
+   "sub": "sky/sun_moon",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "is it gonna hail in wichita tmrw",
+   "sub": "weather/forecast",
+   "also": [],
+   "frame_kind": "forecast"
+  },
+  {
+   "ask": "gale warning long island sound",
+   "sub": "water/marine_forecast",
+   "also": [],
+   "frame_kind": "alerts"
+  },
+  {
+   "ask": "magnitude of the quake in san francisco this morning",
+   "sub": "hazards/earthquakes",
+   "also": [],
+   "frame_kind": "latest_items"
+  },
+  {
+   "ask": "delays at o'hare",
+   "sub": "travel/airport_delays",
+   "also": [],
+   "frame_kind": "status"
+  },
+  {
+   "ask": "how high is the tide right now in seattle",
+   "sub": "water/tides",
+   "also": [
+    "water/water_levels"
+   ],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "is snoqualmie pass open",
+   "sub": "travel/traffic_roads",
+   "also": [],
+   "frame_kind": "status"
+  },
+  {
+   "ask": "severe hail warning dallas fort worth",
+   "sub": "weather/alerts",
+   "also": [],
+   "frame_kind": "alerts"
+  },
+  {
+   "ask": "Miami Heat next game",
+   "sub": "sports/schedules",
+   "also": [],
+   "frame_kind": "next_event"
+  },
+  {
+   "ask": "whats the humidity in houston",
+   "sub": "weather/current",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "trestles surf today",
+   "sub": "water/surf_waves",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "latest eruption in the aleutians",
+   "sub": "hazards/volcanoes",
+   "also": [],
+   "frame_kind": "latest_items"
+  },
+  {
+   "ask": "meta stock chart 5 days",
+   "sub": "markets/stocks",
+   "also": [],
+   "frame_kind": "trend"
+  },
+  {
+   "ask": "Old Faithful next eruption",
+   "sub": "science/geysers",
+   "also": [],
+   "frame_kind": "next_event"
+  },
+  {
+   "ask": "aqi los angeles",
+   "sub": "weather/air_quality",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "cfp rankings",
+   "sub": "sports/college",
+   "also": [
+    "sports/standings"
+   ],
+   "frame_kind": "ranking"
+  },
+  {
+   "ask": "old faithful webcam next eruption time",
+   "sub": "science/geysers",
+   "also": [],
+   "frame_kind": "next_event"
+  },
+  {
+   "ask": "ocean temp myrtle beach",
+   "sub": "water/water_temperature",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "richmond va news",
+   "sub": "news/local_news",
+   "also": [],
+   "frame_kind": "latest_items"
+  },
+  {
+   "ask": "word of the day",
+   "sub": "culture/trivia_fun",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "rust latest version",
+   "sub": "tech/repos_releases",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "days until new years",
+   "sub": "time/holidays",
+   "also": [],
+   "frame_kind": "count"
+  },
+  {
+   "ask": "high tide today charleston",
+   "sub": "water/tides",
+   "also": [],
+   "frame_kind": "next_event"
+  },
+  {
+   "ask": "Tulsa storms tonight",
+   "sub": "weather/forecast",
+   "also": [],
+   "frame_kind": "forecast"
+  },
+  {
+   "ask": "excessive heat warning las vegas",
+   "sub": "weather/alerts",
+   "also": [],
+   "frame_kind": "alerts"
+  },
+  {
+   "ask": "how's the surf at cocoa beach",
+   "sub": "water/surf_waves",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "walmart shares today",
+   "sub": "markets/stocks",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "brush fire in phoenix today",
+   "sub": "hazards/wildfires",
+   "also": [],
+   "frame_kind": "latest_items"
+  },
+  {
+   "ask": "when is the next cpi report",
+   "sub": "economy/inflation",
+   "also": [],
+   "frame_kind": "next_event"
+  },
+  {
+   "ask": "whats the kp tonight",
+   "sub": "hazards/space_weather",
+   "also": [],
+   "frame_kind": "forecast"
+  },
+  {
+   "ask": "road closures in wyoming",
+   "sub": "travel/traffic_roads",
+   "also": [],
+   "frame_kind": "alerts"
+  },
+  {
+   "ask": "natural gas futures",
+   "sub": "markets/commodities",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "beehive geyser eruptions this week",
+   "sub": "science/geysers",
+   "also": [],
+   "frame_kind": "latest_items"
+  },
+  {
+   "ask": "where did the s&p close yesterday",
+   "sub": "markets/indices",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "norfolk tide gauge water level rn",
+   "sub": "water/water_levels",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "surf at Virginia Beach",
+   "sub": "water/surf_waves",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "gas prices near me",
+   "sub": "economy/fuel_prices",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "news about the fed",
+   "sub": "news/headlines",
+   "also": [],
+   "frame_kind": "latest_items"
+  },
+  {
+   "ask": "eastern conference standings nba",
+   "sub": "sports/standings",
+   "also": [],
+   "frame_kind": "ranking"
+  },
+  {
+   "ask": "diesel price today",
+   "sub": "economy/fuel_prices",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "is it foggy in eureka right now",
+   "sub": "weather/current",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "whats the uv index right now in austin",
+   "sub": "weather/uv",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "next red wings game",
+   "sub": "sports/schedules",
+   "also": [],
+   "frame_kind": "next_event"
+  },
+  {
+   "ask": "quake near reno just now?",
+   "sub": "hazards/earthquakes",
+   "also": [],
+   "frame_kind": "latest_items"
+  },
+  {
+   "ask": "ground stop at newark?",
+   "sub": "travel/airport_delays",
+   "also": [],
+   "frame_kind": "status"
+  },
+  {
+   "ask": "packers up or down rn",
+   "sub": "sports/scores",
+   "also": [],
+   "frame_kind": "result"
+  },
+  {
+   "ask": "did the rockies lose again",
+   "sub": "sports/results",
+   "also": [],
+   "frame_kind": "result"
+  },
+  {
+   "ask": "when will power be restored in baton rouge",
+   "sub": "energy/outages",
+   "also": [],
+   "frame_kind": "next_event"
+  },
+  {
+   "ask": "falcon 9 launch time",
+   "sub": "sky/launches",
+   "also": [],
+   "frame_kind": "next_event"
+  },
+  {
+   "ask": "launch schedule vandenberg",
+   "sub": "sky/launches",
+   "also": [],
+   "frame_kind": "schedule"
+  },
+  {
+   "ask": "new moon dates this month",
+   "sub": "sky/sun_moon",
+   "also": [],
+   "frame_kind": "schedule"
+  },
+  {
+   "ask": "my flight to vegas on spirit 101",
+   "sub": "travel/flights",
+   "also": [],
+   "frame_kind": "status"
+  },
+  {
+   "ask": "is dfw on time",
+   "sub": "travel/airport_delays",
+   "also": [],
+   "frame_kind": "status"
+  },
+  {
+   "ask": "stanley cup final result",
+   "sub": "sports/results",
+   "also": [],
+   "frame_kind": "result"
+  },
+  {
+   "ask": "will there be thunderstorms in lubbock this afternoon",
+   "sub": "weather/forecast",
+   "also": [],
+   "frame_kind": "forecast"
+  },
+  {
+   "ask": "uv index tomorrow honolulu",
+   "sub": "weather/uv",
+   "also": [],
+   "frame_kind": "forecast"
+  },
+  {
+   "ask": "github status",
+   "sub": "tech/service_status",
+   "also": [],
+   "frame_kind": "status"
+  },
+  {
+   "ask": "are the eagles playing sunday",
+   "sub": "sports/schedules",
+   "also": [],
+   "frame_kind": "next_event"
+  },
+  {
+   "ask": "when does ohio state play next",
+   "sub": "sports/college",
+   "also": [
+    "sports/schedules"
+   ],
+   "frame_kind": "next_event"
+  },
+  {
+   "ask": "random fact of the day",
+   "sub": "culture/trivia_fun",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "air quality forecast denver tomorrow",
+   "sub": "weather/air_quality",
+   "also": [],
+   "frame_kind": "forecast"
+  },
+  {
+   "ask": "canes game carolina hurricanes score",
+   "sub": "sports/scores",
+   "also": [],
+   "frame_kind": "result"
+  },
+  {
+   "ask": "how did the orioles do yesterday",
+   "sub": "sports/results",
+   "also": [],
+   "frame_kind": "result"
+  },
+  {
+   "ask": "next powerball drawing",
+   "sub": "culture/trivia_fun",
+   "also": [
+    "culture/lottery"
+   ],
+   "frame_kind": "next_event"
+  },
+  {
+   "ask": "phillies magic number",
+   "sub": "sports/standings",
+   "also": [],
+   "frame_kind": "ranking"
+  },
+  {
+   "ask": "xrp price now",
+   "sub": "markets/crypto",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "frost tonight in des moines? need to cover my tomatoes",
+   "sub": "weather/forecast",
+   "also": [],
+   "frame_kind": "forecast"
+  },
+  {
+   "ask": "Dow Inc stock",
+   "sub": "markets/stocks",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "Nasdaq Inc shares",
+   "sub": "markets/stocks",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "sounders upcoming matches",
+   "sub": "sports/schedules",
+   "also": [],
+   "frame_kind": "schedule"
+  },
+  {
+   "ask": "next visible iss pass madison wi",
+   "sub": "sky/iss",
+   "also": [],
+   "frame_kind": "next_event"
+  },
+  {
+   "ask": "public safety power shutoff california",
+   "sub": "energy/outages",
+   "also": [],
+   "frame_kind": "alerts"
+  },
+  {
+   "ask": "perseids peak",
+   "sub": "sky/sky_events",
+   "also": [],
+   "frame_kind": "next_event"
+  },
+  {
+   "ask": "brent crude today",
+   "sub": "markets/commodities",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "how bad is traffic on i-95 in dc",
+   "sub": "travel/traffic_roads",
+   "also": [],
+   "frame_kind": "status"
+  },
+  {
+   "ask": "is the air bad in spokane from the smoke",
+   "sub": "weather/air_quality",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "mega millions drawing time",
+   "sub": "culture/trivia_fun",
+   "also": [
+    "culture/lottery"
+   ],
+   "frame_kind": "next_event"
+  },
+  {
+   "ask": "flight status jetblue 615",
+   "sub": "travel/flights",
+   "also": [],
+   "frame_kind": "status"
+  },
+  {
+   "ask": "node lts version",
+   "sub": "tech/repos_releases",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "geyser eruptions in yellowstone today",
+   "sub": "science/geysers",
+   "also": [],
+   "frame_kind": "latest_items"
+  },
+  {
+   "ask": "bitcoin this week chart",
+   "sub": "markets/crypto",
+   "also": [],
+   "frame_kind": "trend"
+  },
+  {
+   "ask": "is the water cold in maine rn",
+   "sub": "water/water_temperature",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "linux kernel latest stable",
+   "sub": "tech/repos_releases",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "is the hurricane gonna hit tampa",
+   "sub": "hazards/tropical_storms",
+   "also": [],
+   "frame_kind": "forecast"
+  },
+  {
+   "ask": "is the iss over the us rn",
+   "sub": "sky/iss",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "low tide galveston",
+   "sub": "water/tides",
+   "also": [],
+   "frame_kind": "next_event"
+  },
+  {
+   "ask": "react latest version",
+   "sub": "tech/repos_releases",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "is mount shasta active",
+   "sub": "hazards/volcanoes",
+   "also": [],
+   "frame_kind": "status"
+  },
+  {
+   "ask": "bitcoin all time high",
+   "sub": "markets/crypto",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "who won the super bowl",
+   "sub": "sports/results",
+   "also": [],
+   "frame_kind": "result"
+  },
+  {
+   "ask": "how big are the tsunami waves expected in crescent city",
+   "sub": "hazards/tsunami",
+   "also": [],
+   "frame_kind": "forecast"
+  },
+  {
+   "ask": "nws alerts for tulsa county",
+   "sub": "weather/alerts",
+   "also": [],
+   "frame_kind": "alerts"
+  },
+  {
+   "ask": "nearshore forecast charleston sc",
+   "sub": "water/marine_forecast",
+   "also": [],
+   "frame_kind": "forecast"
+  },
+  {
+   "ask": "best night this week to see aurora in north dakota",
+   "sub": "hazards/space_weather",
+   "also": [],
+   "frame_kind": "forecast"
+  },
+  {
+   "ask": "tide times for kennebunkport",
+   "sub": "water/tides",
+   "also": [],
+   "frame_kind": "schedule"
+  },
+  {
+   "ask": "lsu game score",
+   "sub": "sports/college",
+   "also": [
+    "sports/scores"
+   ],
+   "frame_kind": "result"
+  },
+  {
+   "ask": "red flag warning reno",
+   "sub": "weather/alerts",
+   "also": [],
+   "frame_kind": "alerts"
+  },
+  {
+   "ask": "how high will the surge be in new orleans",
+   "sub": "water/water_levels",
+   "also": [],
+   "frame_kind": "forecast"
+  },
+  {
+   "ask": "dow futures",
+   "sub": "markets/indices",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "tornado warning jackson ms",
+   "sub": "weather/alerts",
+   "also": [],
+   "frame_kind": "alerts"
+  },
+  {
+   "ask": "blizzard warning bismarck",
+   "sub": "weather/alerts",
+   "also": [],
+   "frame_kind": "alerts"
+  },
+  {
+   "ask": "what planets are visible tonight",
+   "sub": "sky/sky_events",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "hurricane landfall time new orleans",
+   "sub": "hazards/tropical_storms",
+   "also": [],
+   "frame_kind": "next_event"
+  },
+  {
+   "ask": "uv forecast for the weekend in myrtle beach",
+   "sub": "weather/uv",
+   "also": [],
+   "frame_kind": "forecast"
+  },
+  {
+   "ask": "ap news top stories",
+   "sub": "news/headlines",
+   "also": [],
+   "frame_kind": "latest_items"
+  },
+  {
+   "ask": "whats going on in boise today news",
+   "sub": "news/local_news",
+   "also": [],
+   "frame_kind": "latest_items"
+  },
+  {
+   "ask": "wti rn",
+   "sub": "markets/commodities",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "cme hitting earth when",
+   "sub": "hazards/space_weather",
+   "also": [],
+   "frame_kind": "next_event"
+  },
+  {
+   "ask": "seas out of port aransas saturday",
+   "sub": "water/marine_forecast",
+   "also": [],
+   "frame_kind": "forecast"
+  },
+  {
+   "ask": "Lake Michigan water temp Milwaukee",
+   "sub": "water/water_temperature",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "hawaiian 51 departure time",
+   "sub": "travel/flights",
+   "also": [],
+   "frame_kind": "next_event"
+  },
+  {
+   "ask": "cpi release date october",
+   "sub": "economy/inflation",
+   "also": [],
+   "frame_kind": "next_event"
+  },
+  {
+   "ask": "current weather knoxville",
+   "sub": "weather/current",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "national average gas",
+   "sub": "economy/fuel_prices",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "volcano alert level hawaii",
+   "sub": "hazards/volcanoes",
+   "also": [],
+   "frame_kind": "status"
+  },
+  {
+   "ask": "storm surge forecast tampa bay",
+   "sub": "water/water_levels",
+   "also": [],
+   "frame_kind": "forecast"
+  },
+  {
+   "ask": "how cold does it get in duluth tonight",
+   "sub": "weather/forecast",
+   "also": [],
+   "frame_kind": "forecast"
+  },
+  {
+   "ask": "s&p ytd",
+   "sub": "markets/indices",
+   "also": [],
+   "frame_kind": "trend"
+  },
+  {
+   "ask": "aurora forecast michigan",
+   "sub": "hazards/space_weather",
+   "also": [],
+   "frame_kind": "forecast"
+  },
+  {
+   "ask": "sfo fog delays",
+   "sub": "travel/airport_delays",
+   "also": [],
+   "frame_kind": "status"
+  },
+  {
+   "ask": "sunset times this week in chicago",
+   "sub": "sky/sun_moon",
+   "also": [],
+   "frame_kind": "schedule"
+  },
+  {
+   "ask": "water temp in kona",
+   "sub": "water/water_temperature",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "where do the kraken sit in the pacific division",
+   "sub": "sports/standings",
+   "also": [],
+   "frame_kind": "ranking"
+  },
+  {
+   "ask": "new joe rogan episode",
+   "sub": "news/podcasts",
+   "also": [],
+   "frame_kind": "latest_items"
+  },
+  {
+   "ask": "how strong is the sun in denver today",
+   "sub": "weather/uv",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "ppi latest",
+   "sub": "economy/inflation",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "was there just an earthquake in la",
+   "sub": "hazards/earthquakes",
+   "also": [],
+   "frame_kind": "latest_items"
+  },
+  {
+   "ask": "outages in michigan dte",
+   "sub": "energy/outages",
+   "also": [],
+   "frame_kind": "status"
+  },
+  {
+   "ask": "muni status sf",
+   "sub": "travel/transit_alerts",
+   "also": [],
+   "frame_kind": "status"
+  },
+  {
+   "ask": "utah jazz home games this month",
+   "sub": "sports/schedules",
+   "also": [],
+   "frame_kind": "schedule"
+  },
+  {
+   "ask": "mount rainier volcano activity",
+   "sub": "hazards/volcanoes",
+   "also": [],
+   "frame_kind": "status"
+  },
+  {
+   "ask": "traffic on the 405 rn",
+   "sub": "travel/traffic_roads",
+   "also": [],
+   "frame_kind": "status"
+  },
+  {
+   "ask": "ko share price",
+   "sub": "markets/stocks",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "mnf tonight who plays",
+   "sub": "sports/schedules",
+   "also": [],
+   "frame_kind": "next_event"
+  },
+  {
+   "ask": "storm surge warning mobile bay",
+   "sub": "water/water_levels",
+   "also": [],
+   "frame_kind": "alerts"
+  },
+  {
+   "ask": "wind advisory for albuquerque",
+   "sub": "weather/alerts",
+   "also": [],
+   "frame_kind": "alerts"
+  },
+  {
+   "ask": "lightning expected near fort myers this evening?",
+   "sub": "weather/forecast",
+   "also": [],
+   "frame_kind": "forecast"
+  },
+  {
+   "ask": "Mercury retrograde",
+   "sub": "sky/sky_events",
+   "also": [],
+   "frame_kind": "status"
+  },
+  {
+   "ask": "if i get to old faithful at 2 how long do i wait",
+   "sub": "science/geysers",
+   "also": [],
+   "frame_kind": "next_event"
+  },
+  {
+   "ask": "is there a tsunami coming to the oregon coast",
+   "sub": "hazards/tsunami",
+   "also": [],
+   "frame_kind": "alerts"
+  },
+  {
+   "ask": "temp in bozeman rn",
+   "sub": "weather/current",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "grand rapids headlines today",
+   "sub": "news/local_news",
+   "also": [],
+   "frame_kind": "latest_items"
+  },
+  {
+   "ask": "verizon outage today",
+   "sub": "tech/service_status",
+   "also": [],
+   "frame_kind": "status"
+  },
+  {
+   "ask": "allergies bad in nashville rn?",
+   "sub": "weather/pollen",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "flight delays at charlotte airport",
+   "sub": "travel/airport_delays",
+   "also": [],
+   "frame_kind": "status"
+  },
+  {
+   "ask": "coastal waters forecast san francisco bay",
+   "sub": "water/marine_forecast",
+   "also": [],
+   "frame_kind": "forecast"
+  },
+  {
+   "ask": "the dow today",
+   "sub": "markets/indices",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "corn futures",
+   "sub": "markets/commodities",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "world news this morning",
+   "sub": "news/headlines",
+   "also": [],
+   "frame_kind": "latest_items"
+  },
+  {
+   "ask": "is the air quality getting better in portland oregon this week",
+   "sub": "weather/air_quality",
+   "also": [],
+   "frame_kind": "forecast"
+  },
+  {
+   "ask": "when is the next artemis launch",
+   "sub": "sky/launches",
+   "also": [],
+   "frame_kind": "next_event"
+  },
+  {
+   "ask": "how windy will it be in amarillo tmrw, any big gusts",
+   "sub": "weather/forecast",
+   "also": [],
+   "frame_kind": "forecast"
+  },
+  {
+   "ask": "Yankees final score last night",
+   "sub": "sports/scores",
+   "also": [
+    "sports/results"
+   ],
+   "frame_kind": "result"
+  },
+  {
+   "ask": "bart delays rn",
+   "sub": "travel/transit_alerts",
+   "also": [],
+   "frame_kind": "alerts"
+  },
+  {
+   "ask": "waves at wrightsville beach this weekend",
+   "sub": "water/surf_waves",
+   "also": [],
+   "frame_kind": "forecast"
+  },
+  {
+   "ask": "cleveland local headlines",
+   "sub": "news/local_news",
+   "also": [],
+   "frame_kind": "latest_items"
+  },
+  {
+   "ask": "tide schedule for bar harbor this week",
+   "sub": "water/tides",
+   "also": [],
+   "frame_kind": "schedule"
+  },
+  {
+   "ask": "flooding in nashville right now?",
+   "sub": "hazards/floods_rivers",
+   "also": [],
+   "frame_kind": "status"
+  },
+  {
+   "ask": "holidays this year list",
+   "sub": "time/holidays",
+   "also": [],
+   "frame_kind": "schedule"
+  },
+  {
+   "ask": "is it raining in portland maine right now",
+   "sub": "weather/current",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "phoenix mercury next game",
+   "sub": "sports/schedules",
+   "also": [],
+   "frame_kind": "next_event"
+  },
+  {
+   "ask": "pollen tomorrow in charlotte",
+   "sub": "weather/pollen",
+   "also": [],
+   "frame_kind": "forecast"
+  },
+  {
+   "ask": "allergy forecast atlanta this week",
+   "sub": "weather/pollen",
+   "also": [],
+   "frame_kind": "forecast"
+  },
+  {
+   "ask": "tech news today",
+   "sub": "news/headlines",
+   "also": [],
+   "frame_kind": "latest_items"
+  },
+  {
+   "ask": "did anyone win the powerball",
+   "sub": "culture/trivia_fun",
+   "also": [
+    "culture/lottery"
+   ],
+   "frame_kind": "result"
+  },
+  {
+   "ask": "marta service alerts",
+   "sub": "travel/transit_alerts",
+   "also": [],
+   "frame_kind": "alerts"
+  },
+  {
+   "ask": "premier league table",
+   "sub": "sports/standings",
+   "also": [],
+   "frame_kind": "ranking"
+  },
+  {
+   "ask": "is it flat in galveston",
+   "sub": "water/surf_waves",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "gas price michigan today",
+   "sub": "economy/fuel_prices",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "msft stock",
+   "sub": "markets/stocks",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "is election day a holiday",
+   "sub": "time/holidays",
+   "also": [],
+   "frame_kind": "status"
+  },
+  {
+   "ask": "mls scores today",
+   "sub": "sports/scores",
+   "also": [],
+   "frame_kind": "result"
+  },
+  {
+   "ask": "winter storm warning for buffalo?",
+   "sub": "weather/alerts",
+   "also": [],
+   "frame_kind": "alerts"
+  },
+  {
+   "ask": "ice hockey scores tonight",
+   "sub": "sports/scores",
+   "also": [],
+   "frame_kind": "result"
+  },
+  {
+   "ask": "mississippi river level at st louis",
+   "sub": "hazards/floods_rivers",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "Chicago Fire schedule",
+   "sub": "sports/schedules",
+   "also": [],
+   "frame_kind": "schedule"
+  },
+  {
+   "ask": "federal holidays 2027",
+   "sub": "time/holidays",
+   "also": [],
+   "frame_kind": "schedule"
+  },
+  {
+   "ask": "nhl standings",
+   "sub": "sports/standings",
+   "also": [],
+   "frame_kind": "ranking"
+  },
+  {
+   "ask": "castle geyser next",
+   "sub": "science/geysers",
+   "also": [],
+   "frame_kind": "next_event"
+  },
+  {
+   "ask": "Tampa Bay Lightning score",
+   "sub": "sports/scores",
+   "also": [],
+   "frame_kind": "result"
+  },
+  {
+   "ask": "nfc north standings",
+   "sub": "sports/standings",
+   "also": [],
+   "frame_kind": "ranking"
+  },
+  {
+   "ask": "x class flare latest",
+   "sub": "hazards/space_weather",
+   "also": [],
+   "frame_kind": "latest_items"
+  },
+  {
+   "ask": "river crest forecast baton rouge",
+   "sub": "hazards/floods_rivers",
+   "also": [],
+   "frame_kind": "forecast"
+  },
+  {
+   "ask": "whats the aqi in phoenix",
+   "sub": "weather/air_quality",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "cloudflare status page",
+   "sub": "tech/service_status",
+   "also": [],
+   "frame_kind": "status"
+  },
+  {
+   "ask": "great fountain geyser next eruption",
+   "sub": "science/geysers",
+   "also": [],
+   "frame_kind": "next_event"
+  },
+  {
+   "ask": "market today",
+   "sub": "markets/indices",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "seattle storm vs aces whos winning",
+   "sub": "sports/scores",
+   "also": [],
+   "frame_kind": "result"
+  },
+  {
+   "ask": "pm2.5 bakersfield",
+   "sub": "weather/air_quality",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "is chatgpt down",
+   "sub": "tech/service_status",
+   "also": [],
+   "frame_kind": "status"
+  },
+  {
+   "ask": "evacuation orders for the fire in santa rosa",
+   "sub": "hazards/wildfires",
+   "also": [],
+   "frame_kind": "alerts"
+  },
+  {
+   "ask": "orionids when",
+   "sub": "sky/sky_events",
+   "also": [],
+   "frame_kind": "next_event"
+  },
+  {
+   "ask": "winter weather advisory salt lake city",
+   "sub": "weather/alerts",
+   "also": [],
+   "frame_kind": "alerts"
+  },
+  {
+   "ask": "wave height outer banks",
+   "sub": "water/surf_waves",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "whats the water temp at clearwater beach",
+   "sub": "water/water_temperature",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "when is thanksgiving",
+   "sub": "time/holidays",
+   "also": [],
+   "frame_kind": "next_event"
+  },
+  {
+   "ask": "why is the power out in my neighborhood",
+   "sub": "energy/outages",
+   "also": [],
+   "frame_kind": "status"
+  },
+  {
+   "ask": "is the geomagnetic storm still going",
+   "sub": "hazards/space_weather",
+   "also": [],
+   "frame_kind": "status"
+  },
+  {
+   "ask": "latest this american life",
+   "sub": "news/podcasts",
+   "also": [],
+   "frame_kind": "latest_items"
+  },
+  {
+   "ask": "premarket nasdaq futures",
+   "sub": "markets/indices",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "how many people are on the iss",
+   "sub": "sky/iss",
+   "also": [],
+   "frame_kind": "count"
+  },
+  {
+   "ask": "is it safe to go back to the beach in hilo after the tsunami",
+   "sub": "hazards/tsunami",
+   "also": [],
+   "frame_kind": "status"
+  },
+  {
+   "ask": "how often has old faithful been erupting lately",
+   "sub": "science/geysers",
+   "also": [],
+   "frame_kind": "trend"
+  },
+  {
+   "ask": "sky events this week",
+   "sub": "sky/sky_events",
+   "also": [],
+   "frame_kind": "schedule"
+  },
+  {
+   "ask": "how many points did the dow drop",
+   "sub": "markets/indices",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "southwest 2210 arrival time",
+   "sub": "travel/flights",
+   "also": [],
+   "frame_kind": "status"
+  },
+  {
+   "ask": "cheapest gas in tulsa",
+   "sub": "economy/fuel_prices",
+   "also": [],
+   "frame_kind": "ranking"
+  },
+  {
+   "ask": "is ragweed high in louisville today",
+   "sub": "weather/pollen",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "swell period malibu",
+   "sub": "water/surf_waves",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "sea temp for san diego today",
+   "sub": "water/water_temperature",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "storm surge Galveston",
+   "sub": "water/water_levels",
+   "also": [],
+   "frame_kind": "forecast"
+  },
+  {
+   "ask": "rocket launch tonight from cape canaveral",
+   "sub": "sky/launches",
+   "also": [],
+   "frame_kind": "next_event"
+  },
+  {
+   "ask": "dc metro orange line alerts",
+   "sub": "travel/transit_alerts",
+   "also": [],
+   "frame_kind": "alerts"
+  },
+  {
+   "ask": "tsunami sirens puerto rico",
+   "sub": "hazards/tsunami",
+   "also": [],
+   "frame_kind": "alerts"
+  },
+  {
+   "ask": "entergy outage new orleans",
+   "sub": "energy/outages",
+   "also": [],
+   "frame_kind": "status"
+  },
+  {
+   "ask": "nba scores tonight",
+   "sub": "sports/scores",
+   "also": [],
+   "frame_kind": "result"
+  },
+  {
+   "ask": "launches this week florida",
+   "sub": "sky/launches",
+   "also": [],
+   "frame_kind": "schedule"
+  },
+  {
+   "ask": "what's the newest macos",
+   "sub": "tech/repos_releases",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "where is the hurricane headed",
+   "sub": "hazards/tropical_storms",
+   "also": [],
+   "frame_kind": "forecast"
+  },
+  {
+   "ask": "did the rangers win",
+   "sub": "sports/results",
+   "also": [
+    "sports/scores"
+   ],
+   "frame_kind": "result"
+  },
+  {
+   "ask": "geminids best night to watch",
+   "sub": "sky/sky_events",
+   "also": [],
+   "frame_kind": "next_event"
+  },
+  {
+   "ask": "when does the iss fly over boise",
+   "sub": "sky/iss",
+   "also": [],
+   "frame_kind": "next_event"
+  },
+  {
+   "ask": "i-70 road conditions colorado",
+   "sub": "travel/traffic_roads",
+   "also": [],
+   "frame_kind": "status"
+  },
+  {
+   "ask": "is the stock market up today",
+   "sub": "markets/indices",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "texas longhorns record",
+   "sub": "sports/college",
+   "also": [
+    "sports/standings"
+   ],
+   "frame_kind": "ranking"
+  },
+  {
+   "ask": "wildfire map montana",
+   "sub": "hazards/wildfires",
+   "also": [],
+   "frame_kind": "latest_items"
+  },
+  {
+   "ask": "anything brewing in the atlantic",
+   "sub": "hazards/tropical_storms",
+   "also": [],
+   "frame_kind": "latest_items"
+  },
+  {
+   "ask": "Minnesota Wild standings",
+   "sub": "sports/standings",
+   "also": [],
+   "frame_kind": "ranking"
+  },
+  {
+   "ask": "track flight aa2431",
+   "sub": "travel/flights",
+   "also": [],
+   "frame_kind": "status"
+  },
+  {
+   "ask": "Mammoth Mountain snow forecast",
+   "sub": "weather/forecast",
+   "also": [],
+   "frame_kind": "forecast"
+  },
+  {
+   "ask": "any weather alerts for birmingham",
+   "sub": "weather/alerts",
+   "also": [],
+   "frame_kind": "alerts"
+  },
+  {
+   "ask": "did michigan win",
+   "sub": "sports/college",
+   "also": [
+    "sports/results"
+   ],
+   "frame_kind": "result"
+  },
+  {
+   "ask": "hurricane watch for charleston?",
+   "sub": "hazards/tropical_storms",
+   "also": [],
+   "frame_kind": "alerts"
+  },
+  {
+   "ask": "local news tulsa",
+   "sub": "news/local_news",
+   "also": [],
+   "frame_kind": "latest_items"
+  },
+  {
+   "ask": "10 day forecast spokane",
+   "sub": "weather/forecast",
+   "also": [],
+   "frame_kind": "forecast"
+  },
+  {
+   "ask": "ocean temperature trend outer banks this month",
+   "sub": "water/water_temperature",
+   "also": [],
+   "frame_kind": "trend"
+  },
+  {
+   "ask": "how's nvidia doing today",
+   "sub": "markets/stocks",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "is the ohio river gonna flood in cincinnati",
+   "sub": "hazards/floods_rivers",
+   "also": [],
+   "frame_kind": "forecast"
+  },
+  {
+   "ask": "big ten standings",
+   "sub": "sports/college",
+   "also": [
+    "sports/standings"
+   ],
+   "frame_kind": "ranking"
+  },
+  {
+   "ask": "Oklahoma City Thunder score",
+   "sub": "sports/scores",
+   "also": [],
+   "frame_kind": "result"
+  },
+  {
+   "ask": "sunny day flooding miami beach today",
+   "sub": "water/water_levels",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "how many people without power in florida",
+   "sub": "energy/outages",
+   "also": [],
+   "frame_kind": "count"
+  },
+  {
+   "ask": "when's the next nashville predators game",
+   "sub": "sports/schedules",
+   "also": [],
+   "frame_kind": "next_event"
+  },
+  {
+   "ask": "swell forecast for santa cruz this weekend",
+   "sub": "water/surf_waves",
+   "also": [],
+   "frame_kind": "forecast"
+  },
+  {
+   "ask": "how much daylight do we get in anchorage",
+   "sub": "sky/sun_moon",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "mta delays",
+   "sub": "travel/transit_alerts",
+   "also": [],
+   "frame_kind": "alerts"
+  },
+  {
+   "ask": "chain controls on 50 to tahoe",
+   "sub": "travel/traffic_roads",
+   "also": [],
+   "frame_kind": "status"
+  },
+  {
+   "ask": "are banks closed monday",
+   "sub": "time/holidays",
+   "also": [],
+   "frame_kind": "status"
+  },
+  {
+   "ask": "what's netflix trading at",
+   "sub": "markets/stocks",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "any fires near lake tahoe",
+   "sub": "hazards/wildfires",
+   "also": [],
+   "frame_kind": "latest_items"
+  },
+  {
+   "ask": "wind speed in cheyenne right now",
+   "sub": "weather/current",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "geomagnetic storm tonight",
+   "sub": "hazards/space_weather",
+   "also": [],
+   "frame_kind": "forecast"
+  },
+  {
+   "ask": "uv level san diego",
+   "sub": "weather/uv",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "new episodes of pod save america",
+   "sub": "news/podcasts",
+   "also": [],
+   "frame_kind": "latest_items"
+  },
+  {
+   "ask": "anything big happen today",
+   "sub": "news/headlines",
+   "also": [],
+   "frame_kind": "latest_items"
+  },
+  {
+   "ask": "water temperature at lake tahoe",
+   "sub": "water/water_temperature",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "price of silver per ounce",
+   "sub": "markets/commodities",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "tree pollen levels raleigh",
+   "sub": "weather/pollen",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "solana price",
+   "sub": "markets/crypto",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "any rivers flooding in iowa",
+   "sub": "hazards/floods_rivers",
+   "also": [],
+   "frame_kind": "status"
+  },
+  {
+   "ask": "has alaska 7 landed",
+   "sub": "travel/flights",
+   "also": [],
+   "frame_kind": "status"
+  },
+  {
+   "ask": "latest cpi",
+   "sub": "economy/inflation",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "ash advisory from the volcano near anchorage",
+   "sub": "hazards/volcanoes",
+   "also": [],
+   "frame_kind": "alerts"
+  },
+  {
+   "ask": "news in my town spokane",
+   "sub": "news/local_news",
+   "also": [],
+   "frame_kind": "latest_items"
+  },
+  {
+   "ask": "copper price",
+   "sub": "markets/commodities",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "is the uv extreme in tucson today",
+   "sub": "weather/uv",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "fire near paradise ca containment",
+   "sub": "hazards/wildfires",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "spotify outage",
+   "sub": "tech/service_status",
+   "also": [],
+   "frame_kind": "status"
+  },
+  {
+   "ask": "latest ios version",
+   "sub": "tech/repos_releases",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "how much is the mega millions now",
+   "sub": "culture/trivia_fun",
+   "also": [
+    "culture/lottery"
+   ],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "gas prices going up?",
+   "sub": "economy/fuel_prices",
+   "also": [],
+   "frame_kind": "trend"
+  },
+  {
+   "ask": "xbox live not connecting is it down or me",
+   "sub": "tech/service_status",
+   "also": [],
+   "frame_kind": "status"
+  },
+  {
+   "ask": "top news today",
+   "sub": "news/headlines",
+   "also": [],
+   "frame_kind": "latest_items"
+  },
+  {
+   "ask": "latest episode of The Daily",
+   "sub": "news/podcasts",
+   "also": [],
+   "frame_kind": "latest_items"
+  },
+  {
+   "ask": "tsunami advisory alaska today",
+   "sub": "hazards/tsunami",
+   "also": [],
+   "frame_kind": "alerts"
+  },
+  {
+   "ask": "who leads the nl central",
+   "sub": "sports/standings",
+   "also": [],
+   "frame_kind": "ranking"
+  },
+  {
+   "ask": "how choppy will monterey bay be tmrw",
+   "sub": "water/marine_forecast",
+   "also": [],
+   "frame_kind": "forecast"
+  },
+  {
+   "ask": "yellowstone geyser predictions today",
+   "sub": "science/geysers",
+   "also": [],
+   "frame_kind": "schedule"
+  },
+  {
+   "ask": "Bills score",
+   "sub": "sports/scores",
+   "also": [],
+   "frame_kind": "result"
+  },
+  {
+   "ask": "tropical storm warning outer banks",
+   "sub": "hazards/tropical_storms",
+   "also": [],
+   "frame_kind": "alerts"
+  },
+  {
+   "ask": "when does it get dark in minneapolis",
+   "sub": "sky/sun_moon",
+   "also": [],
+   "frame_kind": "next_event"
+  },
+  {
+   "ask": "alaska volcano observatory updates",
+   "sub": "hazards/volcanoes",
+   "also": [],
+   "frame_kind": "latest_items"
+  },
+  {
+   "ask": "weekend forecast savannah",
+   "sub": "weather/forecast",
+   "also": [],
+   "frame_kind": "forecast"
+  },
+  {
+   "ask": "btc price",
+   "sub": "markets/crypto",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "space weather alerts",
+   "sub": "hazards/space_weather",
+   "also": [],
+   "frame_kind": "alerts"
+  },
+  {
+   "ask": "grand geyser last went off when",
+   "sub": "science/geysers",
+   "also": [],
+   "frame_kind": "latest_items"
+  },
+  {
+   "ask": "recent earthquakes near anchorage",
+   "sub": "hazards/earthquakes",
+   "also": [],
+   "frame_kind": "latest_items"
+  },
+  {
+   "ask": "is it worth surfing at ocean beach sf today",
+   "sub": "water/surf_waves",
+   "also": [],
+   "frame_kind": "current_value"
+  },
+  {
+   "ask": "surf forecast new smyrna tomorrow",
+   "sub": "water/surf_waves",
+   "also": [],
+   "frame_kind": "forecast"
+  },
+  {
+   "ask": "ISS passes over Denver",
+   "sub": "sky/iss",
+   "also": [],
+   "frame_kind": "next_event"
+  },
+  {
+   "ask": "twins game time today",
+   "sub": "sports/schedules",
+   "also": [],
+   "frame_kind": "next_event"
+  },
+  {
+   "ask": "inflation rate right now",
+   "sub": "economy/inflation",
+   "also": [],
+   "frame_kind": "current_value"
+  }
+ ]
+}

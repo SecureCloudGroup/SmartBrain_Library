@@ -1,0 +1,125 @@
+{
+  "source_id": "kraken-ticker",
+  "answers": [
+    {
+      "name": "last_price",
+      "label": "Last trade",
+      "words": [
+        "price",
+        "last",
+        "trading at",
+        "worth",
+        "how much",
+        "quote",
+        "last trade"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "result.{pair}.c[0]",
+      "type": "number",
+      "unit": "USD",
+      "window": "now"
+    },
+    {
+      "name": "high_24h",
+      "label": "24h high",
+      "words": [
+        "high",
+        "24h high",
+        "highest",
+        "peak",
+        "range"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "result.{pair}.h[1]",
+      "type": "number",
+      "unit": "USD",
+      "window": "now"
+    },
+    {
+      "name": "low_24h",
+      "label": "24h low",
+      "words": [
+        "low",
+        "24h low",
+        "lowest",
+        "bottom",
+        "range"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "result.{pair}.l[1]",
+      "type": "number",
+      "unit": "USD",
+      "window": "now"
+    },
+    {
+      "name": "open_today",
+      "label": "Opened today",
+      "words": [
+        "open",
+        "opening price",
+        "today open",
+        "opened"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "result.{pair}.o",
+      "type": "number",
+      "unit": "USD",
+      "window": "today"
+    },
+    {
+      "name": "bid",
+      "label": "Best bid",
+      "words": [
+        "bid",
+        "best bid",
+        "buy price",
+        "spread"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "result.{pair}.b[0]",
+      "type": "number",
+      "unit": "USD",
+      "window": "now"
+    },
+    {
+      "name": "ask",
+      "label": "Best ask",
+      "words": [
+        "ask",
+        "best ask",
+        "sell price",
+        "offer",
+        "spread"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "result.{pair}.a[0]",
+      "type": "number",
+      "unit": "USD",
+      "window": "now"
+    },
+    {
+      "name": "volume_24h",
+      "label": "24h volume (coins)",
+      "words": [
+        "volume",
+        "24h volume",
+        "traded",
+        "trading volume",
+        "liquidity"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "result.{pair}.v[1]",
+      "type": "number",
+      "window": "now"
+    }
+  ],
+  "sample_url": "https://api.kraken.com/0/public/Ticker?pair=XETHZUSD",
+  "checked": "2026-09-28"
+}

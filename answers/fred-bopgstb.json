@@ -1,0 +1,73 @@
+{
+ "source_id": "fred-bopgstb",
+ "answers": [
+  {
+   "name": "latest",
+   "label": "Trade balance (goods and services)",
+   "kind": "value",
+   "primary": true,
+   "words": [
+    "us trade balance",
+    "trade balance (goods and services)",
+    "trade deficit",
+    "latest",
+    "current",
+    "now",
+    "today"
+   ],
+   "path": "rows[0].BOPGSTB",
+   "type": "number",
+   "unit": "million USD",
+   "window": "latest"
+  },
+  {
+   "name": "as_of",
+   "label": "As of",
+   "kind": "value",
+   "words": [
+    "as of",
+    "when",
+    "date",
+    "last updated",
+    "updated"
+   ],
+   "path": "rows[0].observation_date",
+   "type": "date",
+   "window": "latest"
+  },
+  {
+   "name": "recent",
+   "label": "Recent readings",
+   "kind": "list",
+   "words": [
+    "recent",
+    "history",
+    "trend",
+    "past",
+    "over time",
+    "chart",
+    "last few"
+   ],
+   "path": "rows",
+   "row": [
+    {
+     "path": "observation_date",
+     "label": "Date",
+     "type": "date"
+    },
+    {
+     "path": "BOPGSTB",
+     "label": "Trade balance (goods and services)",
+     "type": "number",
+     "unit": "million USD"
+    }
+   ],
+   "axis": {
+    "cell": "observation_date",
+    "step": "day"
+   }
+  }
+ ],
+ "sample_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=BOPGSTB",
+ "checked": "2026-09-28"
+}

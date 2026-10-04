@@ -1,0 +1,1713 @@
+{
+ "description": "Source lookup for the WP7 records (holdout, sealed: never tuned on): blind-generated asks -> acceptable FIRST source ids.",
+ "cases": [
+  {
+   "ask": "Will Cape Cod feel anything from the storm moving up the coast",
+   "ok": [
+    "nws-tropical-alerts-point"
+   ]
+  },
+  {
+   "ask": "is honolulu at risk from the hurricane near hawaii",
+   "ok": [
+    "nws-tropical-alerts-point"
+   ]
+  },
+  {
+   "ask": "storm track for Virginia Beach",
+   "ok": [
+    "nws-tropical-alerts-point"
+   ]
+  },
+  {
+   "ask": "is the gulf system going to make landfall near Lake Charles",
+   "ok": [
+    "nws-tropical-alerts-point"
+   ]
+  },
+  {
+   "ask": "Should Naples FL prepare for a hurricane?",
+   "ok": [
+    "nws-tropical-alerts-point"
+   ]
+  },
+  {
+   "ask": "will long island get hit by the tropical storm",
+   "ok": [
+    "nws-tropical-alerts-point"
+   ]
+  },
+  {
+   "ask": "Is Brownsville Texas in danger from the tropical depression",
+   "ok": [
+    "nws-tropical-alerts-point"
+   ]
+  },
+  {
+   "ask": "How high will the surge get in Biloxi",
+   "ok": [
+    "nws-tropical-alerts-point"
+   ]
+  },
+  {
+   "ask": "is daytona beach in the hurricane's path",
+   "ok": [
+    "nws-tropical-alerts-point"
+   ]
+  },
+  {
+   "ask": "Is Atlantic City threatened by any tropical cyclone?",
+   "ok": [
+    "nws-tropical-alerts-point"
+   ]
+  },
+  {
+   "ask": "are the florida keys getting a hurricane this week",
+   "ok": [
+    "nws-tropical-alerts-point"
+   ]
+  },
+  {
+   "ask": "Is St. Augustine safe from the storm off the coast",
+   "ok": [
+    "nws-tropical-alerts-point"
+   ]
+  },
+  {
+   "ask": "wildcard magic numbers",
+   "ok": [
+    "mlb-wildcard-standings"
+   ]
+  },
+  {
+   "ask": "how far out of a wild card are the Giants",
+   "ok": [
+    "mlb-wildcard-standings"
+   ]
+  },
+  {
+   "ask": "national league wild-card standings",
+   "ok": [
+    "mlb-wildcard-standings"
+   ]
+  },
+  {
+   "ask": "Padres WC position",
+   "ok": [
+    "mlb-wildcard-standings"
+   ]
+  },
+  {
+   "ask": "wild crad race AL",
+   "ok": [
+    "mlb-wildcard-standings"
+   ]
+  },
+  {
+   "ask": "Can the Reds still catch the last wildcard spot?",
+   "ok": [
+    "mlb-wildcard-standings"
+   ]
+  },
+  {
+   "ask": "which teams are fighting for the 4, 5 and 6 seeds in the american league playoff race",
+   "ok": [
+    "mlb-wildcard-standings"
+   ]
+  },
+  {
+   "ask": "MLB wildcard picture heading into the final week",
+   "ok": [
+    "mlb-wildcard-standings"
+   ]
+  },
+  {
+   "ask": "wildcard seeding NL",
+   "ok": [
+    "mlb-wildcard-standings"
+   ]
+  },
+  {
+   "ask": "Are the Royals in or out of a wild card as of today?",
+   "ok": [
+    "mlb-wildcard-standings"
+   ]
+  },
+  {
+   "ask": "whos in the non-division playoff spots rn",
+   "ok": [
+    "mlb-wildcard-standings"
+   ]
+  },
+  {
+   "ask": "is the WC race still close",
+   "ok": [
+    "mlb-wildcard-standings"
+   ]
+  },
+  {
+   "ask": "old faithful countdown",
+   "ok": [
+    "nps-geyser-predictions",
+    "geysertimes-predictions"
+   ]
+  },
+  {
+   "ask": "When is the next eruption at Castle Geyser?",
+   "ok": [
+    "nps-geyser-predictions",
+    "geysertimes-predictions"
+   ]
+  },
+  {
+   "ask": "Riverside Geyser prediction for tomorrow",
+   "ok": [
+    "nps-geyser-predictions",
+    "geysertimes-predictions"
+   ]
+  },
+  {
+   "ask": "how often does old faithful erupt and when's the next one",
+   "ok": [
+    "nps-geyser-predictions",
+    "geysertimes-predictions"
+   ]
+  },
+  {
+   "ask": "which Yellowstone eruptions are predicted for this afternoon",
+   "ok": [
+    "nps-geyser-predictions",
+    "geysertimes-predictions"
+   ]
+  },
+  {
+   "ask": "great fountain next erupts at?",
+   "ok": [
+    "nps-geyser-predictions",
+    "geysertimes-predictions"
+   ]
+  },
+  {
+   "ask": "Old Faithful eruption forecast",
+   "ok": [
+    "nps-geyser-predictions",
+    "geysertimes-predictions"
+   ]
+  },
+  {
+   "ask": "is Grand Geyser going to erupt before sunset",
+   "ok": [
+    "nps-geyser-predictions",
+    "geysertimes-predictions"
+   ]
+  },
+  {
+   "ask": "Daisy Geyser next eruption time",
+   "ok": [
+    "nps-geyser-predictions",
+    "geysertimes-predictions"
+   ]
+  },
+  {
+   "ask": "Castle, Grand and Daisy prediction times today",
+   "ok": [
+    "nps-geyser-predictions",
+    "geysertimes-predictions"
+   ]
+  },
+  {
+   "ask": "predicted eruption for Castle tomorrow",
+   "ok": [
+    "nps-geyser-predictions",
+    "geysertimes-predictions"
+   ]
+  },
+  {
+   "ask": "what time will old faithful blow next",
+   "ok": [
+    "nps-geyser-predictions",
+    "geysertimes-predictions"
+   ]
+  },
+  {
+   "ask": "has slack been having problems today",
+   "ok": [
+    "slack-status-current"
+   ]
+  },
+  {
+   "ask": "slack huddles not working is it on their end",
+   "ok": [
+    "slack-status-current"
+   ]
+  },
+  {
+   "ask": "Is Slack down for everyone or just me?",
+   "ok": [
+    "slack-status-current"
+   ]
+  },
+  {
+   "ask": "current slack status",
+   "ok": [
+    "slack-status-current"
+   ]
+  },
+  {
+   "ask": "any slack outages reported",
+   "ok": [
+    "slack-status-current"
+   ]
+  },
+  {
+   "ask": "Is Slack experiencing an outage?",
+   "ok": [
+    "slack-status-current"
+   ]
+  },
+  {
+   "ask": "slack degraded performance?",
+   "ok": [
+    "slack-status-current"
+   ]
+  },
+  {
+   "ask": "why is slack so slow right now is it down",
+   "ok": [
+    "slack-status-current"
+   ]
+  },
+  {
+   "ask": "Slack status check",
+   "ok": [
+    "slack-status-current"
+   ]
+  },
+  {
+   "ask": "is slack offline",
+   "ok": [
+    "slack-status-current"
+   ]
+  },
+  {
+   "ask": "slack acting up today?",
+   "ok": [
+    "slack-status-current"
+   ]
+  },
+  {
+   "ask": "Is Slack's service healthy right now?",
+   "ok": [
+    "slack-status-current"
+   ]
+  },
+  {
+   "ask": "Powerball estimated jackpot for the next drawing",
+   "ok": [
+    "powerball-home"
+   ]
+  },
+  {
+   "ask": "who won powerball last night",
+   "ok": [
+    "powerball-home"
+   ]
+  },
+  {
+   "ask": "what were saturday's powerball numbers, i want to check my ticket",
+   "ok": [
+    "powerball-home",
+    "ny-lottery-powerball"
+   ]
+  },
+  {
+   "ask": "what was the power play on the last powerball drawing",
+   "ok": [
+    "powerball-home",
+    "ny-lottery-powerball"
+   ]
+  },
+  {
+   "ask": "how many millions is powerball at",
+   "ok": [
+    "powerball-home"
+   ]
+  },
+  {
+   "ask": "Powerball winning numbers for 9/27",
+   "ok": [
+    "powerball-home",
+    "ny-lottery-powerball"
+   ]
+  },
+  {
+   "ask": "what time is powerball drawn",
+   "ok": [
+    "powerball-home"
+   ]
+  },
+  {
+   "ask": "whats the powerball at right now",
+   "ok": [
+    "powerball-home",
+    "ny-lottery-powerball"
+   ]
+  },
+  {
+   "ask": "Tell me the most recent Powerball results.",
+   "ok": [
+    "powerball-home",
+    "ny-lottery-powerball"
+   ]
+  },
+  {
+   "ask": "powerball red ball last night",
+   "ok": [
+    "powerball-home",
+    "ny-lottery-powerball"
+   ]
+  },
+  {
+   "ask": "how much is the powerball annuity this week",
+   "ok": [
+    "powerball-home"
+   ]
+  },
+  {
+   "ask": "When's the next Powerball and how much is it worth?",
+   "ok": [
+    "powerball-home"
+   ]
+  },
+  {
+   "ask": "Mega Millions results from last Friday",
+   "ok": [
+    "ny-lottery-megamillions"
+   ]
+  },
+  {
+   "ask": "tell me the numbers for mega millions, I bought a ticket",
+   "ok": [
+    "ny-lottery-megamillions"
+   ]
+  },
+  {
+   "ask": "Mega Millions winning numbers 9/26",
+   "ok": [
+    "ny-lottery-megamillions"
+   ]
+  },
+  {
+   "ask": "Most recent Mega Millions results please",
+   "ok": [
+    "ny-lottery-megamillions"
+   ]
+  },
+  {
+   "ask": "ny take 5 last night, what hit",
+   "ok": [
+    "ny-take5"
+   ]
+  },
+  {
+   "ask": "results for the new york state lottery",
+   "ok": [
+    "ny-lotto",
+    "ny-take5",
+    "ny-numbers-win4",
+    "ny-pick10",
+    "ny-lottery-powerball",
+    "ny-lottery-megamillions"
+   ]
+  },
+  {
+   "ask": "ny lotto results wednesday",
+   "ok": [
+    "ny-lotto"
+   ]
+  },
+  {
+   "ask": "NY Win 4 numbers yesterday evening",
+   "ok": [
+    "ny-numbers-win4"
+   ]
+  },
+  {
+   "ask": "New York Take 5 winning combination",
+   "ok": [
+    "ny-take5"
+   ]
+  },
+  {
+   "ask": "ny lottery results today",
+   "ok": [
+    "ny-lotto",
+    "ny-take5",
+    "ny-numbers-win4",
+    "ny-pick10",
+    "ny-lottery-powerball",
+    "ny-lottery-megamillions"
+   ]
+  },
+  {
+   "ask": "Show me today's New York lottery draws",
+   "ok": [
+    "ny-lotto",
+    "ny-take5",
+    "ny-numbers-win4",
+    "ny-pick10",
+    "ny-lottery-powerball",
+    "ny-lottery-megamillions"
+   ]
+  },
+  {
+   "ask": "new york pick10 results",
+   "ok": [
+    "ny-pick10"
+   ]
+  },
+  {
+   "ask": "What are the latest NY lottery winning numbers?",
+   "ok": [
+    "ny-lotto",
+    "ny-take5",
+    "ny-numbers-win4",
+    "ny-pick10",
+    "ny-lottery-powerball",
+    "ny-lottery-megamillions"
+   ]
+  },
+  {
+   "ask": "do I need to cover my plants in Albuquerque tonight for frost",
+   "ok": [
+    "open-meteo-forecast",
+    "nws-forecast",
+    "nws-forecast-hourly"
+   ]
+  },
+  {
+   "ask": "Will it snow in Salt Lake City tomorrow?",
+   "ok": [
+    "open-meteo-forecast",
+    "nws-forecast",
+    "nws-forecast-hourly"
+   ]
+  },
+  {
+   "ask": "thunderstorm chances Kansas City tonight",
+   "ok": [
+    "open-meteo-forecast",
+    "nws-forecast",
+    "nws-forecast-hourly"
+   ]
+  },
+  {
+   "ask": "is it raining in Portland Oregon right now",
+   "ok": [
+    "open-meteo-forecast",
+    "nws-forecast",
+    "nws-forecast-hourly"
+   ]
+  },
+  {
+   "ask": "freezing rain in Buffalo tomorrow morning?",
+   "ok": [
+    "open-meteo-forecast",
+    "nws-forecast",
+    "nws-forecast-hourly"
+   ]
+  },
+  {
+   "ask": "Any lightning in Tampa this evening?",
+   "ok": [
+    "open-meteo-forecast",
+    "nws-forecast",
+    "nws-forecast-hourly"
+   ]
+  },
+  {
+   "ask": "How strong will the gusts be in Wichita tonight?",
+   "ok": [
+    "open-meteo-forecast",
+    "nws-forecast",
+    "nws-forecast-hourly"
+   ]
+  },
+  {
+   "ask": "Will there be a hard freeze in Little Rock tomorrow night?",
+   "ok": [
+    "open-meteo-forecast",
+    "nws-forecast",
+    "nws-forecast-hourly"
+   ]
+  },
+  {
+   "ask": "storms in Omaha later?",
+   "ok": [
+    "open-meteo-forecast",
+    "nws-forecast",
+    "nws-forecast-hourly"
+   ]
+  },
+  {
+   "ask": "whats the chance of rain in Charlotte tomorrow",
+   "ok": [
+    "open-meteo-forecast",
+    "nws-forecast",
+    "nws-forecast-hourly"
+   ]
+  },
+  {
+   "ask": "is Anchorage gonna get snow today",
+   "ok": [
+    "open-meteo-forecast",
+    "nws-forecast",
+    "nws-forecast-hourly"
+   ]
+  },
+  {
+   "ask": "patchy fog in Houston tonight?",
+   "ok": [
+    "open-meteo-forecast",
+    "nws-forecast",
+    "nws-forecast-hourly"
+   ]
+  },
+  {
+   "ask": "severe thunderstorm warning Omaha",
+   "ok": [
+    "nws-alerts-point",
+    "nws-alerts-state"
+   ]
+  },
+  {
+   "ask": "are there any flood alerts in Nashville",
+   "ok": [
+    "nws-alerts-point",
+    "nws-alerts-state"
+   ]
+  },
+  {
+   "ask": "wind chill warning Duluth",
+   "ok": [
+    "nws-alerts-point",
+    "nws-alerts-state"
+   ]
+  },
+  {
+   "ask": "is there a fog advisory in the Bay Area",
+   "ok": [
+    "nws-alerts-point",
+    "nws-alerts-state"
+   ]
+  },
+  {
+   "ask": "Tornado alerts for Tulsa right now",
+   "ok": [
+    "nws-alerts-point",
+    "nws-alerts-state"
+   ]
+  },
+  {
+   "ask": "Is there a winter storm watch for Syracuse?",
+   "ok": [
+    "nws-alerts-point",
+    "nws-alerts-state"
+   ]
+  },
+  {
+   "ask": "flash flood emergency in San Antonio?",
+   "ok": [
+    "nws-alerts-point",
+    "nws-alerts-state"
+   ]
+  },
+  {
+   "ask": "any severe tstorm warnings in Memphis",
+   "ok": [
+    "nws-alerts-point",
+    "nws-alerts-state"
+   ]
+  },
+  {
+   "ask": "Detroit wind chill alert",
+   "ok": [
+    "nws-alerts-point",
+    "nws-alerts-state"
+   ]
+  },
+  {
+   "ask": "red flag warning in Reno today?",
+   "ok": [
+    "nws-alerts-point",
+    "nws-alerts-state"
+   ]
+  },
+  {
+   "ask": "is Chicago under a heat advisory",
+   "ok": [
+    "nws-alerts-point",
+    "nws-alerts-state"
+   ]
+  },
+  {
+   "ask": "blizzard alert North Platte",
+   "ok": [
+    "nws-alerts-point",
+    "nws-alerts-state"
+   ]
+  },
+  {
+   "ask": "atlantic basin activity today",
+   "ok": [
+    "nhc-current-storms",
+    "nhc-atlantic-rss",
+    "nhc-pacific-rss"
+   ]
+  },
+  {
+   "ask": "Are there any hurricanes out there right now",
+   "ok": [
+    "nhc-current-storms",
+    "nhc-atlantic-rss",
+    "nhc-pacific-rss"
+   ]
+  },
+  {
+   "ask": "show me all active tropical storms",
+   "ok": [
+    "nhc-current-storms",
+    "nhc-atlantic-rss",
+    "nhc-pacific-rss"
+   ]
+  },
+  {
+   "ask": "hurricanes currently in the pacific",
+   "ok": [
+    "nhc-current-storms",
+    "nhc-atlantic-rss",
+    "nhc-pacific-rss"
+   ]
+  },
+  {
+   "ask": "is the atlantic quiet or is there a storm",
+   "ok": [
+    "nhc-current-storms",
+    "nhc-atlantic-rss",
+    "nhc-pacific-rss"
+   ]
+  },
+  {
+   "ask": "current tropical cyclone activity",
+   "ok": [
+    "nhc-current-storms",
+    "nhc-atlantic-rss",
+    "nhc-pacific-rss"
+   ]
+  },
+  {
+   "ask": "what's the latest named storm in the Atlantic",
+   "ok": [
+    "nhc-current-storms",
+    "nhc-atlantic-rss",
+    "nhc-pacific-rss"
+   ]
+  },
+  {
+   "ask": "Any hurricanes on the map this morning?",
+   "ok": [
+    "nhc-current-storms",
+    "nhc-atlantic-rss",
+    "nhc-pacific-rss"
+   ]
+  },
+  {
+   "ask": "how many active hurricanes are there globally",
+   "ok": [
+    "nhc-current-storms",
+    "nhc-atlantic-rss",
+    "nhc-pacific-rss"
+   ]
+  },
+  {
+   "ask": "is there anything spinning in the Gulf",
+   "ok": [
+    "nhc-current-storms",
+    "nhc-atlantic-rss",
+    "nhc-pacific-rss"
+   ]
+  },
+  {
+   "ask": "huricanes right now",
+   "ok": [
+    "nhc-current-storms",
+    "nhc-atlantic-rss",
+    "nhc-pacific-rss"
+   ]
+  },
+  {
+   "ask": "What typhoons or hurricanes are active in the western pacific?",
+   "ok": [
+    "nhc-current-storms",
+    "nhc-atlantic-rss",
+    "nhc-pacific-rss"
+   ]
+  },
+  {
+   "ask": "who won guardians tigers",
+   "ok": [
+    "mlb-team-results",
+    "mlb-schedule"
+   ]
+  },
+  {
+   "ask": "Reds final score today",
+   "ok": [
+    "mlb-team-results",
+    "mlb-schedule"
+   ]
+  },
+  {
+   "ask": "did the dbacks win yesterday",
+   "ok": [
+    "mlb-team-results",
+    "mlb-schedule"
+   ]
+  },
+  {
+   "ask": "Pirates result from yesterday",
+   "ok": [
+    "mlb-team-results",
+    "mlb-schedule"
+   ]
+  },
+  {
+   "ask": "How did the Royals make out last night?",
+   "ok": [
+    "mlb-team-results",
+    "mlb-schedule"
+   ]
+  },
+  {
+   "ask": "Did the A's win?",
+   "ok": [
+    "mlb-team-results",
+    "mlb-schedule"
+   ]
+  },
+  {
+   "ask": "nationals score from last night",
+   "ok": [
+    "mlb-team-results",
+    "mlb-schedule"
+   ]
+  },
+  {
+   "ask": "marlins lost again?",
+   "ok": [
+    "mlb-team-results",
+    "mlb-schedule"
+   ]
+  },
+  {
+   "ask": "Did the Rockies win or lose their last game?",
+   "ok": [
+    "mlb-team-results",
+    "mlb-schedule"
+   ]
+  },
+  {
+   "ask": "yankes score",
+   "ok": [
+    "mlb-team-results",
+    "mlb-schedule"
+   ]
+  },
+  {
+   "ask": "what was the angels final",
+   "ok": [
+    "mlb-team-results",
+    "mlb-schedule"
+   ]
+  },
+  {
+   "ask": "How did the Tigers do?",
+   "ok": [
+    "mlb-team-results",
+    "mlb-schedule"
+   ]
+  },
+  {
+   "ask": "Flyers result today",
+   "ok": [
+    "nhl-score-now"
+   ]
+  },
+  {
+   "ask": "hockey results from yesterday",
+   "ok": [
+    "nhl-score-now"
+   ]
+  },
+  {
+   "ask": "Who won the Islanders vs Devils game?",
+   "ok": [
+    "nhl-score-now"
+   ]
+  },
+  {
+   "ask": "Capitals score",
+   "ok": [
+    "nhl-score-now"
+   ]
+  },
+  {
+   "ask": "nhl scoreboard",
+   "ok": [
+    "nhl-score-now"
+   ]
+  },
+  {
+   "ask": "how'd the Minnesota Wild do tonight",
+   "ok": [
+    "nhl-score-now"
+   ]
+  },
+  {
+   "ask": "Florida Panthers hockey result",
+   "ok": [
+    "nhl-score-now"
+   ]
+  },
+  {
+   "ask": "Canucks game final",
+   "ok": [
+    "nhl-score-now"
+   ]
+  },
+  {
+   "ask": "Sabres score tonight",
+   "ok": [
+    "nhl-score-now"
+   ]
+  },
+  {
+   "ask": "Predators won or lost?",
+   "ok": [
+    "nhl-score-now"
+   ]
+  },
+  {
+   "ask": "nhl scores today",
+   "ok": [
+    "nhl-score-now"
+   ]
+  },
+  {
+   "ask": "what were the scores in the NHL last night",
+   "ok": [
+    "nhl-score-now"
+   ]
+  },
+  {
+   "ask": "LAFC result",
+   "ok": [
+    "thesportsdb-last-league"
+   ]
+  },
+  {
+   "ask": "Who won the 49ers game?",
+   "ok": [
+    "thesportsdb-last-league"
+   ]
+  },
+  {
+   "ask": "nfl week 4 results",
+   "ok": [
+    "thesportsdb-last-league"
+   ]
+  },
+  {
+   "ask": "Duke basketball score",
+   "ok": [
+    "thesportsdb-last-league"
+   ]
+  },
+  {
+   "ask": "what did the Seattle Sounders do this weekend",
+   "ok": [
+    "thesportsdb-last-league"
+   ]
+  },
+  {
+   "ask": "Did the Bills lose?",
+   "ok": [
+    "thesportsdb-last-league"
+   ]
+  },
+  {
+   "ask": "Michigan Wolverines score from Saturday",
+   "ok": [
+    "thesportsdb-last-league"
+   ]
+  },
+  {
+   "ask": "wnba playoff scores",
+   "ok": [
+    "thesportsdb-last-league"
+   ]
+  },
+  {
+   "ask": "How did the Steelers do Sunday?",
+   "ok": [
+    "thesportsdb-last-league"
+   ]
+  },
+  {
+   "ask": "Knicks final score",
+   "ok": [
+    "thesportsdb-last-league"
+   ]
+  },
+  {
+   "ask": "Texas Longhorns football result",
+   "ok": [
+    "thesportsdb-last-league"
+   ]
+  },
+  {
+   "ask": "Final scores from yesterday's NFL games",
+   "ok": [
+    "thesportsdb-last-league"
+   ]
+  },
+  {
+   "ask": "mlb division standings",
+   "ok": [
+    "mlb-standings"
+   ]
+  },
+  {
+   "ask": "where is Verstappen in the drivers championship",
+   "ok": [
+    "jolpica-f1-standings"
+   ]
+  },
+  {
+   "ask": "NL East games behind",
+   "ok": [
+    "mlb-standings"
+   ]
+  },
+  {
+   "ask": "Central Division hockey rankings",
+   "ok": [
+    "nhl-standings-now"
+   ]
+  },
+  {
+   "ask": "f1 drivers and constructors after the last grand prix",
+   "ok": [
+    "jolpica-f1-standings"
+   ]
+  },
+  {
+   "ask": "Who's winning the AL East?",
+   "ok": [
+    "mlb-standings"
+   ]
+  },
+  {
+   "ask": "Eastern Conference NHL table",
+   "ok": [
+    "nhl-standings-now"
+   ]
+  },
+  {
+   "ask": "formula 1 team points",
+   "ok": [
+    "jolpica-f1-standings"
+   ]
+  },
+  {
+   "ask": "where does every MLB team sit in its division",
+   "ok": [
+    "mlb-standings"
+   ]
+  },
+  {
+   "ask": "what's the NHL points table look like",
+   "ok": [
+    "nhl-standings-now"
+   ]
+  },
+  {
+   "ask": "Is Norris leading the F1 title fight?",
+   "ok": [
+    "jolpica-f1-standings"
+   ]
+  },
+  {
+   "ask": "AL Central first place team",
+   "ok": [
+    "mlb-standings"
+   ]
+  },
+  {
+   "ask": "Narragansett swell today",
+   "ok": [
+    "open-meteo-marine",
+    "ndbc-buoy-waves"
+   ]
+  },
+  {
+   "ask": "waves in Newport this weekend",
+   "ok": [
+    "open-meteo-marine",
+    "ndbc-buoy-waves"
+   ]
+  },
+  {
+   "ask": "how's the break at La Jolla Shores",
+   "ok": [
+    "open-meteo-marine",
+    "ndbc-buoy-waves"
+   ]
+  },
+  {
+   "ask": "what's the wave height at Folly Beach",
+   "ok": [
+    "open-meteo-marine",
+    "ndbc-buoy-waves"
+   ]
+  },
+  {
+   "ask": "Rincon surf tomorrow morning",
+   "ok": [
+    "open-meteo-marine",
+    "ndbc-buoy-waves"
+   ]
+  },
+  {
+   "ask": "Is there a good swell hitting New Smyrna Beach?",
+   "ok": [
+    "open-meteo-marine",
+    "ndbc-buoy-waves"
+   ]
+  },
+  {
+   "ask": "Hanalei Bay waves",
+   "ok": [
+    "open-meteo-marine",
+    "ndbc-buoy-waves"
+   ]
+  },
+  {
+   "ask": "how many feet is the surf at Ocean City MD today",
+   "ok": [
+    "open-meteo-marine",
+    "ndbc-buoy-waves"
+   ]
+  },
+  {
+   "ask": "swell direction and period at Bolsa Chica",
+   "ok": [
+    "open-meteo-marine",
+    "ndbc-buoy-waves"
+   ]
+  },
+  {
+   "ask": "Is Long Beach NY flat today or are there waves",
+   "ok": [
+    "open-meteo-marine",
+    "ndbc-buoy-waves"
+   ]
+  },
+  {
+   "ask": "surf check Pismo",
+   "ok": [
+    "open-meteo-marine",
+    "ndbc-buoy-waves"
+   ]
+  },
+  {
+   "ask": "How big is the swell at Half Moon Bay tomorrow?",
+   "ok": [
+    "open-meteo-marine",
+    "ndbc-buoy-waves"
+   ]
+  },
+  {
+   "ask": "What temperature is the ocean at Waikiki?",
+   "ok": [
+    "open-meteo-marine",
+    "ndbc-buoy-realtime",
+    "coops-water-temp"
+   ]
+  },
+  {
+   "ask": "surface water temp Daytona Beach",
+   "ok": [
+    "open-meteo-marine",
+    "ndbc-buoy-realtime",
+    "coops-water-temp"
+   ]
+  },
+  {
+   "ask": "how many degrees is the ocean in Charleston SC",
+   "ok": [
+    "open-meteo-marine",
+    "ndbc-buoy-realtime",
+    "coops-water-temp"
+   ]
+  },
+  {
+   "ask": "Hampton Beach NH water temperature",
+   "ok": [
+    "open-meteo-marine",
+    "ndbc-buoy-realtime",
+    "coops-water-temp"
+   ]
+  },
+  {
+   "ask": "current sea temperatures along the Florida Keys",
+   "ok": [
+    "open-meteo-marine",
+    "ndbc-buoy-realtime",
+    "coops-water-temp"
+   ]
+  },
+  {
+   "ask": "Is the Atlantic still warm at Rehoboth Beach?",
+   "ok": [
+    "open-meteo-marine",
+    "ndbc-buoy-realtime",
+    "coops-water-temp"
+   ]
+  },
+  {
+   "ask": "how cold is the pacific at huntington beach today",
+   "ok": [
+    "open-meteo-marine",
+    "ndbc-buoy-realtime",
+    "coops-water-temp"
+   ]
+  },
+  {
+   "ask": "Gulf temp near Pensacola",
+   "ok": [
+    "open-meteo-marine",
+    "ndbc-buoy-realtime",
+    "coops-water-temp"
+   ]
+  },
+  {
+   "ask": "Newport RI ocean temps",
+   "ok": [
+    "open-meteo-marine",
+    "ndbc-buoy-realtime",
+    "coops-water-temp"
+   ]
+  },
+  {
+   "ask": "sst off cape hatteras",
+   "ok": [
+    "open-meteo-marine",
+    "ndbc-buoy-realtime",
+    "coops-water-temp"
+   ]
+  },
+  {
+   "ask": "what's the ocean temperature in Ocean City MD",
+   "ok": [
+    "open-meteo-marine",
+    "ndbc-buoy-realtime",
+    "coops-water-temp"
+   ]
+  },
+  {
+   "ask": "Long Beach CA water temperature today",
+   "ok": [
+    "open-meteo-marine",
+    "ndbc-buoy-realtime",
+    "coops-water-temp"
+   ]
+  },
+  {
+   "ask": "rays game time",
+   "ok": [
+    "mlb-team-schedule",
+    "thesportsdb-team-next"
+   ]
+  },
+  {
+   "ask": "when do the royals take the field again",
+   "ok": [
+    "mlb-team-schedule",
+    "thesportsdb-team-next"
+   ]
+  },
+  {
+   "ask": "texas rangers first pitch tomorrow",
+   "ok": [
+    "mlb-team-schedule",
+    "thesportsdb-team-next"
+   ]
+  },
+  {
+   "ask": "what time do the white sox play today",
+   "ok": [
+    "mlb-team-schedule",
+    "thesportsdb-team-next"
+   ]
+  },
+  {
+   "ask": "Pirates upcoming matchup",
+   "ok": [
+    "mlb-team-schedule",
+    "thesportsdb-team-next"
+   ]
+  },
+  {
+   "ask": "When does the Reds' next series start and against who?",
+   "ok": [
+    "mlb-team-schedule",
+    "thesportsdb-team-next"
+   ]
+  },
+  {
+   "ask": "dbacks game tonight what time",
+   "ok": [
+    "mlb-team-schedule",
+    "thesportsdb-team-next"
+   ]
+  },
+  {
+   "ask": "Nationals upcoming schedule",
+   "ok": [
+    "mlb-team-schedule",
+    "thesportsdb-team-next"
+   ]
+  },
+  {
+   "ask": "What time is first pitch for the Marlins?",
+   "ok": [
+    "mlb-team-schedule",
+    "thesportsdb-team-next"
+   ]
+  },
+  {
+   "ask": "who do the rockies face next",
+   "ok": [
+    "mlb-team-schedule",
+    "thesportsdb-team-next"
+   ]
+  },
+  {
+   "ask": "angels game time today",
+   "ok": [
+    "mlb-team-schedule",
+    "thesportsdb-team-next"
+   ]
+  },
+  {
+   "ask": "When do the Athletics play again?",
+   "ok": [
+    "mlb-team-schedule",
+    "thesportsdb-team-next"
+   ]
+  },
+  {
+   "ask": "lotto ny results",
+   "ok": [
+    "ny-lotto"
+   ]
+  },
+  {
+   "ask": "NY state Lotto numbers tonight",
+   "ok": [
+    "ny-lotto"
+   ]
+  },
+  {
+   "ask": "new yrok lotto numbers",
+   "ok": [
+    "ny-lotto"
+   ]
+  },
+  {
+   "ask": "what numbers were drawn in NY Lotto",
+   "ok": [
+    "ny-lotto"
+   ]
+  },
+  {
+   "ask": "New York Lotto - did anyone match all six last night?",
+   "ok": [
+    "ny-lotto"
+   ]
+  },
+  {
+   "ask": "ny lotto midweek draw results",
+   "ok": [
+    "ny-lotto"
+   ]
+  },
+  {
+   "ask": "read me the NY Lotto numbers",
+   "ok": [
+    "ny-lotto"
+   ]
+  },
+  {
+   "ask": "New York Lotto latest winning numbers and bonus ball",
+   "ok": [
+    "ny-lotto"
+   ]
+  },
+  {
+   "ask": "what came out in ny take 5 evening",
+   "ok": [
+    "ny-take5"
+   ]
+  },
+  {
+   "ask": "tkae 5 new york midday",
+   "ok": [
+    "ny-take5"
+   ]
+  },
+  {
+   "ask": "NY Take Five results",
+   "ok": [
+    "ny-take5"
+   ]
+  },
+  {
+   "ask": "check my take 5 ticket new york latest draw",
+   "ok": [
+    "ny-take5"
+   ]
+  },
+  {
+   "ask": "Take 5 NY evening numbers Friday",
+   "ok": [
+    "ny-take5"
+   ]
+  },
+  {
+   "ask": "What hit in the New York Take 5 midday?",
+   "ok": [
+    "ny-take5"
+   ]
+  },
+  {
+   "ask": "new york take 5 most recent numbers",
+   "ok": [
+    "ny-take5"
+   ]
+  },
+  {
+   "ask": "take 5 winning numbers ny tonight",
+   "ok": [
+    "ny-take5"
+   ]
+  },
+  {
+   "ask": "ny daily numbers evening",
+   "ok": [
+    "ny-numbers-win4"
+   ]
+  },
+  {
+   "ask": "new york win 4 midday draw results",
+   "ok": [
+    "ny-numbers-win4"
+   ]
+  },
+  {
+   "ask": "did 4-2-7 come out in the NY numbers",
+   "ok": [
+    "ny-numbers-win4"
+   ]
+  },
+  {
+   "ask": "Latest New York Win 4 drawing",
+   "ok": [
+    "ny-numbers-win4"
+   ]
+  },
+  {
+   "ask": "ny numbers game results sunday",
+   "ok": [
+    "ny-numbers-win4"
+   ]
+  },
+  {
+   "ask": "win 4 ny numbers from this afternoon",
+   "ok": [
+    "ny-numbers-win4"
+   ]
+  },
+  {
+   "ask": "New York Numbers winning number evening Saturday",
+   "ok": [
+    "ny-numbers-win4"
+   ]
+  },
+  {
+   "ask": "NY Win 4 and Numbers, both drawings today",
+   "ok": [
+    "ny-numbers-win4"
+   ]
+  },
+  {
+   "ask": "new york pick 10 winning numbers 9/28",
+   "ok": [
+    "ny-pick10"
+   ]
+  },
+  {
+   "ask": "What numbers came up in NY Pick 10?",
+   "ok": [
+    "ny-pick10"
+   ]
+  },
+  {
+   "ask": "pik 10 ny results",
+   "ok": [
+    "ny-pick10"
+   ]
+  },
+  {
+   "ask": "New York Lottery Pick 10 latest numbers",
+   "ok": [
+    "ny-pick10"
+   ]
+  },
+  {
+   "ask": "ny pick 10 drawing tonight numbers",
+   "ok": [
+    "ny-pick10"
+   ]
+  },
+  {
+   "ask": "what hit on pick 10 new york",
+   "ok": [
+    "ny-pick10"
+   ]
+  },
+  {
+   "ask": "Tell me the most recent New York Pick 10 results.",
+   "ok": [
+    "ny-pick10"
+   ]
+  },
+  {
+   "ask": "nys pick 10 last draw",
+   "ok": [
+    "ny-pick10"
+   ]
+  },
+  {
+   "ask": "mega millions last drawing numbers",
+   "ok": [
+    "ny-lottery-megamillions"
+   ]
+  },
+  {
+   "ask": "read me tonight's Mega Millions numbers",
+   "ok": [
+    "ny-lottery-megamillions"
+   ]
+  },
+  {
+   "ask": "What numbers were drawn for Mega Millions?",
+   "ok": [
+    "ny-lottery-megamillions"
+   ]
+  },
+  {
+   "ask": "mega millions results this week",
+   "ok": [
+    "ny-lottery-megamillions"
+   ]
+  },
+  {
+   "ask": "mega millions numbers 9/26",
+   "ok": [
+    "ny-lottery-megamillions"
+   ]
+  },
+  {
+   "ask": "Most recent Mega Millions draw, what hit?",
+   "ok": [
+    "ny-lottery-megamillions"
+   ]
+  },
+  {
+   "ask": "mega millions winning combination",
+   "ok": [
+    "ny-lottery-megamillions"
+   ]
+  },
+  {
+   "ask": "show me the mega millions numbers",
+   "ok": [
+    "ny-lottery-megamillions"
+   ]
+  },
+  {
+   "ask": "powerball results this week",
+   "ok": [
+    "powerball-home",
+    "ny-lottery-powerball"
+   ]
+  },
+  {
+   "ask": "Powerball white balls and power ball last night",
+   "ok": [
+    "powerball-home",
+    "ny-lottery-powerball"
+   ]
+  },
+  {
+   "ask": "most recent powerball numbers please",
+   "ok": [
+    "powerball-home",
+    "ny-lottery-powerball"
+   ]
+  },
+  {
+   "ask": "What hit in Powerball on Saturday?",
+   "ok": [
+    "powerball-home",
+    "ny-lottery-powerball"
+   ]
+  },
+  {
+   "ask": "power ball winning numbers monday",
+   "ok": [
+    "powerball-home",
+    "ny-lottery-powerball"
+   ]
+  },
+  {
+   "ask": "Show me the latest Powerball draw",
+   "ok": [
+    "powerball-home",
+    "ny-lottery-powerball"
+   ]
+  },
+  {
+   "ask": "powerball numbers and power play",
+   "ok": [
+    "powerball-home",
+    "ny-lottery-powerball"
+   ]
+  },
+  {
+   "ask": "what were the winning powerball numbers",
+   "ok": [
+    "powerball-home",
+    "ny-lottery-powerball"
+   ]
+  },
+  {
+   "ask": "current powerball jackpot",
+   "ok": [
+    "powerball-home"
+   ]
+  },
+  {
+   "ask": "Powerball annuity vs cash value",
+   "ok": [
+    "powerball-home"
+   ]
+  },
+  {
+   "ask": "when does the powerball draw tonight",
+   "ok": [
+    "powerball-home"
+   ]
+  },
+  {
+   "ask": "powerball jackpot size saturday",
+   "ok": [
+    "powerball-home"
+   ]
+  },
+  {
+   "ask": "how high is the powerball",
+   "ok": [
+    "powerball-home"
+   ]
+  },
+  {
+   "ask": "Powerball amount for Wednesday",
+   "ok": [
+    "powerball-home"
+   ]
+  },
+  {
+   "ask": "next powerball jackpot",
+   "ok": [
+    "powerball-home"
+   ]
+  },
+  {
+   "ask": "powerbll jackpot",
+   "ok": [
+    "powerball-home"
+   ]
+  },
+  {
+   "ask": "Is Slack currently operational?",
+   "ok": [
+    "slack-status-current"
+   ]
+  },
+  {
+   "ask": "slack keeps crashing is there an outage",
+   "ok": [
+    "slack-status-current"
+   ]
+  },
+  {
+   "ask": "Slack incident today",
+   "ok": [
+    "slack-status-current"
+   ]
+  },
+  {
+   "ask": "is slack having connectivity issues",
+   "ok": [
+    "slack-status-current"
+   ]
+  },
+  {
+   "ask": "slack not working at work",
+   "ok": [
+    "slack-status-current"
+   ]
+  },
+  {
+   "ask": "Is there a problem with Slack right now?",
+   "ok": [
+    "slack-status-current"
+   ]
+  },
+  {
+   "ask": "slack service status",
+   "ok": [
+    "slack-status-current"
+   ]
+  },
+  {
+   "ask": "slakc down?",
+   "ok": [
+    "slack-status-current"
+   ]
+  }
+ ]
+}

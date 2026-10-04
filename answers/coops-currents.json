@@ -1,0 +1,81 @@
+{
+  "source_id": "coops-currents",
+  "answers": [
+    {
+      "name": "currents",
+      "label": "Slack water and max currents",
+      "words": [
+        "slack",
+        "slack tide",
+        "slack water",
+        "current",
+        "currents",
+        "ebb",
+        "flood",
+        "max current",
+        "tidal current"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "current_predictions.cp",
+      "row": [
+        {
+          "path": "Time",
+          "label": "Time",
+          "type": "time"
+        },
+        {
+          "path": "Type",
+          "label": "Event",
+          "type": "text"
+        },
+        {
+          "path": "Velocity_Major",
+          "label": "Speed",
+          "type": "number",
+          "unit": "kt"
+        }
+      ],
+      "axis": {
+        "cell": "Time",
+        "step": "hour"
+      }
+    },
+    {
+      "name": "flood_dir",
+      "label": "Flood direction",
+      "words": [
+        "flood direction",
+        "flood",
+        "incoming",
+        "direction",
+        "set"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "current_predictions.cp[0].meanFloodDir",
+      "type": "number",
+      "unit": "°",
+      "window": "latest"
+    },
+    {
+      "name": "ebb_dir",
+      "label": "Ebb direction",
+      "words": [
+        "ebb direction",
+        "ebb",
+        "outgoing",
+        "direction",
+        "set"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "current_predictions.cp[0].meanEbbDir",
+      "type": "number",
+      "unit": "°",
+      "window": "latest"
+    }
+  ],
+  "sample_url": "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?application=SmartBrain&station=ACT6651&product=currents_predictions&interval=MAX_SLACK&begin_date=20260927&range=24&time_zone=lst_ldt&units=english&format=json",
+  "checked": "2026-09-28"
+}

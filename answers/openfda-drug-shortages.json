@@ -1,0 +1,87 @@
+{
+  "source_id": "openfda-drug-shortages",
+  "answers": [
+    {
+      "name": "shortages",
+      "label": "Drug shortages",
+      "words": [
+        "drug shortages",
+        "shortage",
+        "shortages",
+        "in shortage",
+        "out of stock",
+        "unavailable",
+        "discontinued",
+        "medication"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "results",
+      "row": [
+        {
+          "path": "generic_name",
+          "label": "Drug",
+          "type": "text"
+        },
+        {
+          "path": "status",
+          "label": "Status",
+          "type": "text"
+        },
+        {
+          "path": "update_date",
+          "label": "Updated (month/day/year)",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "details",
+      "label": "Shortage details",
+      "words": [
+        "company",
+        "maker",
+        "reason",
+        "why",
+        "dosage"
+      ],
+      "primary": false,
+      "kind": "list",
+      "path": "results",
+      "row": [
+        {
+          "path": "presentation",
+          "label": "Product",
+          "type": "text"
+        },
+        {
+          "path": "company_name",
+          "label": "Company",
+          "type": "text"
+        },
+        {
+          "path": "status",
+          "label": "Status",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "total",
+      "label": "Shortage records",
+      "words": [
+        "how many shortages",
+        "total",
+        "count",
+        "number of shortages"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "meta.results.total",
+      "type": "number",
+      "window": "latest"
+    }
+  ],
+  "sample_url": "https://api.fda.gov/drug/shortages.json?sort=update_date:desc&limit=20",
+  "checked": "2026-09-28"
+}

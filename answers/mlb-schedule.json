@@ -1,0 +1,108 @@
+{
+  "source_id": "mlb-schedule",
+  "answers": [
+    {
+      "name": "games",
+      "label": "Games",
+      "words": [
+        "games",
+        "games tonight",
+        "schedule",
+        "today",
+        "tonight",
+        "who plays",
+        "matchups",
+        "baseball"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "dates[0].games",
+      "row": [
+        {
+          "path": "teams.away.team.name",
+          "label": "Away",
+          "type": "text"
+        },
+        {
+          "path": "teams.home.team.name",
+          "label": "Home",
+          "type": "text"
+        },
+        {
+          "path": "gameDate",
+          "label": "Start",
+          "type": "time",
+          "tbd_if": {
+            "path": "status.startTimeTBD",
+            "equals": true
+          }
+        },
+        {
+          "path": "status.detailedState",
+          "label": "Status",
+          "type": "text"
+        }
+      ],
+      "axis": {
+        "cell": "gameDate",
+        "step": "hour"
+      }
+    },
+    {
+      "name": "scores",
+      "label": "Scores",
+      "words": [
+        "scores",
+        "score",
+        "final",
+        "result",
+        "results",
+        "win",
+        "won",
+        "lost",
+        "did they win"
+      ],
+      "primary": false,
+      "kind": "list",
+      "path": "dates[0].games",
+      "row": [
+        {
+          "path": "teams.away.team.name",
+          "label": "Away",
+          "type": "text"
+        },
+        {
+          "path": "teams.away.score",
+          "label": "Away score",
+          "type": "number"
+        },
+        {
+          "path": "teams.home.team.name",
+          "label": "Home",
+          "type": "text"
+        },
+        {
+          "path": "teams.home.score",
+          "label": "Home score",
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "name": "game_count",
+      "label": "Games",
+      "words": [
+        "how many games",
+        "number of games",
+        "game count"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "totalGames",
+      "type": "number",
+      "window": "today"
+    }
+  ],
+  "sample_url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&date=2026-09-27&hydrate=linescore",
+  "checked": "2026-09-28"
+}

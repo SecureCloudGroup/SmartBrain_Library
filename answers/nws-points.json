@@ -1,0 +1,130 @@
+{
+  "source_id": "nws-points",
+  "answers": [
+    {
+      "name": "office",
+      "label": "Forecast office",
+      "words": [
+        "weather office",
+        "forecast office",
+        "nws office",
+        "office",
+        "wfo",
+        "which office"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "properties.gridId",
+      "type": "text",
+      "window": "latest"
+    },
+    {
+      "name": "city",
+      "label": "Nearest city",
+      "words": [
+        "city",
+        "town",
+        "nearest city",
+        "where",
+        "location"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "properties.relativeLocation.properties.city",
+      "type": "text",
+      "window": "latest"
+    },
+    {
+      "name": "state",
+      "label": "State",
+      "words": [
+        "state",
+        "region",
+        "where",
+        "location"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "properties.relativeLocation.properties.state",
+      "type": "text",
+      "window": "latest"
+    },
+    {
+      "name": "grid_x",
+      "label": "Grid X",
+      "words": [
+        "grid",
+        "grid x",
+        "gridpoint",
+        "grid point"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "properties.gridX",
+      "type": "number",
+      "window": "latest"
+    },
+    {
+      "name": "grid_y",
+      "label": "Grid Y",
+      "words": [
+        "grid",
+        "grid y",
+        "gridpoint",
+        "grid point"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "properties.gridY",
+      "type": "number",
+      "window": "latest"
+    },
+    {
+      "name": "time_zone",
+      "label": "Time zone",
+      "words": [
+        "time zone",
+        "timezone",
+        "zone",
+        "local time"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "properties.timeZone",
+      "type": "text",
+      "window": "latest"
+    },
+    {
+      "name": "radar",
+      "label": "Nearest radar",
+      "words": [
+        "radar",
+        "radar station",
+        "radar site",
+        "nexrad"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "properties.radarStation",
+      "type": "text",
+      "window": "latest"
+    },
+    {
+      "name": "forecast_url",
+      "label": "Forecast link",
+      "words": [
+        "forecast link",
+        "forecast url",
+        "link",
+        "api url"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "properties.forecast",
+      "type": "text",
+      "window": "latest"
+    }
+  ],
+  "sample_url": "https://api.weather.gov/points/32.7765,-79.9311",
+  "checked": "2026-09-28"
+}

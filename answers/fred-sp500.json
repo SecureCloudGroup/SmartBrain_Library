@@ -1,0 +1,72 @@
+{
+ "source_id": "fred-sp500",
+ "answers": [
+  {
+   "name": "latest",
+   "label": "S&P 500 (close)",
+   "kind": "value",
+   "primary": true,
+   "words": [
+    "s&p 500 index (daily close)",
+    "s&p 500 (close)",
+    "s&p 500 today",
+    "stock market",
+    "latest",
+    "current",
+    "now",
+    "today"
+   ],
+   "path": "rows[0].SP500",
+   "type": "number",
+   "window": "latest"
+  },
+  {
+   "name": "as_of",
+   "label": "As of",
+   "kind": "value",
+   "words": [
+    "as of",
+    "when",
+    "date",
+    "last updated",
+    "updated"
+   ],
+   "path": "rows[0].observation_date",
+   "type": "date",
+   "window": "latest"
+  },
+  {
+   "name": "recent",
+   "label": "Recent readings",
+   "kind": "list",
+   "words": [
+    "recent",
+    "history",
+    "trend",
+    "past",
+    "over time",
+    "chart",
+    "last few"
+   ],
+   "path": "rows",
+   "row": [
+    {
+     "path": "observation_date",
+     "label": "Date",
+     "type": "date"
+    },
+    {
+     "path": "SP500",
+     "label": "S&P 500 (close)",
+     "type": "number"
+    }
+   ],
+   "axis": {
+    "cell": "observation_date",
+    "step": "day"
+   }
+  }
+ ],
+ "sample_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=SP500",
+ "checked": "2026-09-28"
+}

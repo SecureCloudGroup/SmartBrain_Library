@@ -1,0 +1,61 @@
+{
+  "source_id": "usgs-elevated-volcanoes",
+  "answers": [
+    {
+      "name": "volcanoes",
+      "label": "Volcanoes on alert",
+      "words": [
+        "volcano alerts",
+        "volcano",
+        "erupting",
+        "eruption",
+        "alert level",
+        "watch",
+        "warning",
+        "advisory"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "items",
+      "row": [
+        {
+          "path": "volcano_name",
+          "label": "Volcano",
+          "type": "text"
+        },
+        {
+          "path": "alert_level",
+          "label": "Alert level",
+          "type": "text"
+        },
+        {
+          "path": "color_code",
+          "label": "Aviation color",
+          "type": "text"
+        },
+        {
+          "path": "sent_unixtime",
+          "label": "Notice sent",
+          "type": "time"
+        }
+      ],
+      "may_be_empty": true
+    },
+    {
+      "name": "volcano_count",
+      "label": "Volcanoes on alert",
+      "words": [
+        "how many",
+        "count",
+        "number of volcanoes"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "items",
+      "type": "count",
+      "window": "now"
+    }
+  ],
+  "sample_url": "https://volcanoes.usgs.gov/hans-public/api/volcano/getElevatedVolcanoes",
+  "checked": "2026-09-28"
+}

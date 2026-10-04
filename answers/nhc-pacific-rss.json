@@ -1,0 +1,36 @@
+{
+ "source_id": "nhc-pacific-rss",
+ "answers": [
+  {
+   "name": "latest",
+   "label": "Latest advisories",
+   "kind": "list",
+   "primary": true,
+   "words": [
+    "hurricane",
+    "tropical storm",
+    "cyclone",
+    "nhc",
+    "headlines",
+    "news",
+    "latest"
+   ],
+   "path": "items",
+   "row": [
+    {
+     "path": "title",
+     "label": "Title",
+     "type": "text"
+    },
+    {
+     "path": "published",
+     "label": "Published",
+     "type": "time"
+    }
+   ],
+   "may_be_empty": false
+  }
+ ],
+ "sample_url": "https://www.nhc.noaa.gov/index-ep.xml",
+ "checked": "2026-09-28"
+}

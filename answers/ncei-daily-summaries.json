@@ -1,0 +1,70 @@
+{
+  "source_id": "ncei-daily-summaries",
+  "answers": [
+    {
+      "name": "days",
+      "label": "Daily highs, lows and rain",
+      "words": [
+        "daily",
+        "history",
+        "last month",
+        "record highs",
+        "rainfall",
+        "this month",
+        "highs",
+        "lows",
+        "observed"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "items",
+      "row": [
+        {
+          "path": "DATE",
+          "label": "Day",
+          "type": "date"
+        },
+        {
+          "path": "TMAX",
+          "label": "High",
+          "type": "number",
+          "unit": "°F"
+        },
+        {
+          "path": "TMIN",
+          "label": "Low",
+          "type": "number",
+          "unit": "°F"
+        },
+        {
+          "path": "PRCP",
+          "label": "Rain",
+          "type": "number",
+          "unit": "in"
+        }
+      ],
+      "newest_first": true,
+      "axis": {
+        "cell": "DATE",
+        "step": "day"
+      }
+    },
+    {
+      "name": "day_count",
+      "label": "Days of data",
+      "words": [
+        "how many days",
+        "days",
+        "count",
+        "coverage"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "items",
+      "type": "count",
+      "window": "latest"
+    }
+  ],
+  "sample_url": "https://www.ncei.noaa.gov/access/services/data/v1?dataset=daily-summaries&stations=USW00013880&startDate=2026-09-01&endDate=2026-09-20&dataTypes=TMAX,TMIN,PRCP&units=standard&format=json",
+  "checked": "2026-09-28"
+}

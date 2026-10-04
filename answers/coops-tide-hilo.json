@@ -1,0 +1,80 @@
+{
+  "source_id": "coops-tide-hilo",
+  "answers": [
+    {
+      "name": "tides",
+      "label": "High and low tides",
+      "words": [
+        "tides",
+        "tide",
+        "high tide",
+        "low tide",
+        "next high tide",
+        "next low tide",
+        "tide times",
+        "tide chart",
+        "when is high tide"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "predictions",
+      "row": [
+        {
+          "path": "t",
+          "label": "Time",
+          "type": "time"
+        },
+        {
+          "path": "type",
+          "label": "High/Low",
+          "type": "text"
+        },
+        {
+          "path": "v",
+          "label": "Height",
+          "type": "number",
+          "unit": "ft"
+        }
+      ],
+      "axis": {
+        "cell": "t",
+        "step": "hour"
+      }
+    },
+    {
+      "name": "first_tide_time",
+      "label": "First tide today",
+      "words": [
+        "first tide",
+        "morning tide",
+        "earliest tide",
+        "first high tide",
+        "first low tide"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "predictions[0].t",
+      "type": "time",
+      "window": "today",
+      "measure": "tide"
+    },
+    {
+      "name": "first_tide_type",
+      "label": "First tide today (H/L)",
+      "words": [
+        "first tide",
+        "morning tide",
+        "high or low",
+        "earliest tide"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "predictions[0].type",
+      "type": "text",
+      "window": "today",
+      "measure": "tide"
+    }
+  ],
+  "sample_url": "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?application=SmartBrain&station=8665530&time_zone=lst_ldt&units=english&format=json&product=predictions&datum=MLLW&interval=hilo&begin_date=20260927&range=48",
+  "checked": "2026-09-28"
+}

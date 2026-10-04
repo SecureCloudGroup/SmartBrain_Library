@@ -1,0 +1,18 @@
+{
+ "description": "Reviewed first-party sites for subjects people ask about, added by `sourcetool resolvers official_site` on top of every Library provider's own url and every Statuspage host. A web result is first-party when its host is one of these domains or under one (status.slack.com under slack.com). Only the subject's own operator: slack-status.com is Slack's, isitdown sites and status aggregators never are.",
+ "entries": [
+  {"name": "Slack", "aliases": [], "domains": ["slack.com", "slack-status.com"]},
+  {"name": "Amazon Web Services", "aliases": ["AWS"], "domains": ["aws.amazon.com", "health.aws.amazon.com"]},
+  {"name": "Powerball", "aliases": [], "domains": ["powerball.com"]},
+  {"name": "Mega Millions", "aliases": ["MegaMillions"], "domains": ["megamillions.com"]},
+  {"name": "New York Lottery", "aliases": ["NY Lottery"], "domains": ["nylottery.ny.gov"]},
+  {"name": "WMATA", "aliases": ["DC Metro", "Washington Metro", "Washington Metropolitan Area Transit Authority"], "domains": ["wmata.com"]},
+  {"name": "MTA (New York)", "aliases": ["New York City Subway", "NYC Subway"], "domains": ["mta.info"]},
+  {"name": "BART", "aliases": ["Bay Area Rapid Transit"], "domains": ["bart.gov"]},
+  {"name": "GeyserTimes", "aliases": ["Geyser Times"], "domains": ["geysertimes.org"]},
+  {"name": "Yellowstone National Park", "aliases": ["Yellowstone"], "domains": ["nps.gov"]},
+  {"name": "Google", "aliases": ["Google Workspace", "Gmail"], "domains": ["google.com", "workspace.google.com"]},
+  {"name": "Microsoft", "aliases": ["Microsoft 365", "Office 365", "Outlook"], "domains": ["microsoft.com", "office.com"]},
+  {"name": "FEMA", "aliases": ["Federal Emergency Management Agency"], "domains": ["fema.gov"]}
+ ]
+}

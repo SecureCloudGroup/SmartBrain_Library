@@ -1,0 +1,58 @@
+{
+  "source_id": "coops-water-temp",
+  "answers": [
+    {
+      "name": "water_temp",
+      "label": "Water temperature",
+      "words": [
+        "water temperature",
+        "water temp",
+        "how warm is the water",
+        "sea temperature",
+        "ocean temperature",
+        "swim"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "data[0].v",
+      "type": "number",
+      "unit": "°F",
+      "window": "now",
+      "measure": "water_temp"
+    },
+    {
+      "name": "observed_at",
+      "label": "Observed at",
+      "words": [
+        "when",
+        "time",
+        "observed",
+        "latest",
+        "updated"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "data[0].t",
+      "type": "time",
+      "window": "now"
+    },
+    {
+      "name": "station",
+      "label": "Station",
+      "words": [
+        "station",
+        "where",
+        "which station",
+        "location",
+        "gauge"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "metadata.name",
+      "type": "text",
+      "window": "now"
+    }
+  ],
+  "sample_url": "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?application=SmartBrain&station=8665530&time_zone=lst_ldt&units=english&format=json&product=water_temperature&date=latest",
+  "checked": "2026-09-28"
+}

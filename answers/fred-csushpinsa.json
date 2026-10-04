@@ -1,0 +1,74 @@
+{
+ "source_id": "fred-csushpinsa",
+ "answers": [
+  {
+   "name": "latest",
+   "label": "Case-Shiller home price index",
+   "kind": "value",
+   "primary": true,
+   "words": [
+    "case-shiller us home price index",
+    "case-shiller home price index",
+    "home prices",
+    "house prices trend",
+    "latest",
+    "current",
+    "now",
+    "today"
+   ],
+   "path": "rows[0].CSUSHPINSA",
+   "type": "number",
+   "unit": "index Jan 2000=100",
+   "window": "latest"
+  },
+  {
+   "name": "as_of",
+   "label": "As of",
+   "kind": "value",
+   "words": [
+    "as of",
+    "when",
+    "date",
+    "last updated",
+    "updated"
+   ],
+   "path": "rows[0].observation_date",
+   "type": "date",
+   "window": "latest"
+  },
+  {
+   "name": "recent",
+   "label": "Recent readings",
+   "kind": "list",
+   "words": [
+    "recent",
+    "history",
+    "trend",
+    "past",
+    "over time",
+    "chart",
+    "last few"
+   ],
+   "path": "rows",
+   "row": [
+    {
+     "path": "observation_date",
+     "label": "Date",
+     "type": "date"
+    },
+    {
+     "path": "CSUSHPINSA",
+     "label": "Case-Shiller home price index",
+     "type": "number",
+     "unit": "index Jan 2000=100"
+    }
+   ],
+   "axis": {
+    "cell": "observation_date",
+    "step": "day"
+   }
+  }
+ ],
+ "sample_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=CSUSHPINSA",
+ "checked": "2026-09-28"
+}

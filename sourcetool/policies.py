@@ -11,6 +11,7 @@ Fields
   differ_on   geo only: attributes that make two nearby entries different answers (then ask)
   max_age     how old the data may be before the card calls itself stale ("15m", "1h", "1d", "7d", "40d", "1y")
   cross_check a numeric headline is compared with a second source when the card is built
+  measure     station resolver -> the column its entry must report (attrs.measures) to be offered at all
 """
 from __future__ import annotations
 
@@ -32,8 +33,8 @@ DEFAULTS = {
     "markets":  {"prefer": PRIMARY, "match": "name", "resolvers": ["ticker"], "max_age": "15m", "cross_check": True},
     "economy":  {"prefer": OFFICIAL, "match": "none", "resolvers": [], "max_age": "40d"},
     "energy":   {"prefer": OFFICIAL, "match": "geo", "resolvers": ["us_state"], "max_age": "1d"},
-    "sports":   {"prefer": PRIMARY, "match": "name", "resolvers": ["team_mlb", "team_nhl", "team_espn"],
-                 "max_age": "15m"},
+    "sports":   {"prefer": PRIMARY, "match": "name",
+                 "resolvers": ["team_mlb", "team_nhl", "team_espn", "sports_league"], "max_age": "15m"},
     "news":     {"prefer": PRIMARY, "match": "none", "resolvers": [], "max_age": "1h"},
     "travel":   {"prefer": OFFICIAL, "match": "name", "resolvers": ["airport"], "max_age": "15m"},
     "health":   {"prefer": OFFICIAL, "match": "none", "resolvers": ["us_state"], "max_age": "7d"},
@@ -59,16 +60,21 @@ OVERRIDES = {
     "weather/climate_records": {"max_age": "1d"},
     "weather/drought": {"resolvers": ["us_state", "county"], "max_age": "7d"},
     "hazards/earthquakes": {"max_km": 300, "max_age": "15m"},
-    "hazards/tropical_storms": {"match": "none", "resolvers": [], "max_age": "1h"},
+    # a storm is asked about by where it may hit ("any hurricanes headed for Tampa?"): the place is a parameter
+    "hazards/tropical_storms": {"match": "geo", "resolvers": ["place", "zip"], "max_age": "1h"},
     "hazards/floods_rivers": {"resolvers": ["place", "nwps_gauge"], "max_km": 25, "differ_on": ["river"]},
     "hazards/volcanoes": {"match": "none", "resolvers": []},
     "hazards/tsunami": {"match": "none", "resolvers": [], "max_age": "15m"},
     "hazards/space_weather": {"match": "none", "resolvers": []},
     "hazards/emergencies": {"match": "name", "resolvers": ["us_state"], "max_age": "1d"},
-    "water/tides": {"resolvers": ["place", "tide_station"], "max_age": "1d"},
-    "water/water_levels": {"resolvers": ["place", "tide_station"], "max_age": "15m"},
-    "water/surf_waves": {"resolvers": ["place", "buoy"], "max_km": 80, "differ_on": []},
-    "water/water_temperature": {"resolvers": ["place", "tide_station", "buoy"]},
+    # the tide_station table keeps secondary stations only 50 km from a primary one (resolvers.h_tide_station):
+    # 30 km + 50 km keeps every place that had a station within 30 km covered
+    "water/tides": {"resolvers": ["place", "tide_station"], "max_km": 80, "max_age": "1d"},
+    "water/water_levels": {"resolvers": ["place", "tide_station"], "max_km": 80, "max_age": "15m"},
+    # `measure`: the column a station of that resolver must report to be offered (a buoy's attrs.measures)
+    "water/surf_waves": {"resolvers": ["place", "buoy"], "max_km": 80, "differ_on": [], "measure": {"buoy": "WVHT"}},
+    "water/water_temperature": {"resolvers": ["place", "tide_station", "buoy"], "max_km": 80,
+                                "measure": {"buoy": "WTMP"}},
     "water/marine_forecast": {"max_km": 60, "differ_on": []},
     "water/beach_quality": {"max_age": "1d", "differ_on": []},
     "water/currents": {"max_age": "1d"},
@@ -94,9 +100,11 @@ OVERRIDES = {
     "energy/oil_gas_supply": {"match": "none", "resolvers": [], "max_age": "7d"},
     "sports/standings": {"max_age": "1d"},
     "sports/player_stats": {"max_age": "1d"},
-    "sports/college": {"resolvers": ["team_espn"], "max_age": "1h"},
+    "sports/college": {"resolvers": ["team_espn", "sports_league"], "max_age": "1h"},
     "sports/motorsport_golf_other": {"resolvers": ["team_espn"]},
     "news/local_news": {"match": "geo", "resolvers": ["place", "us_state"], "max_km": 80},
+    # a place named with "news" asks for that place's news: a national feed is not an answer to "Seattle news"
+    "news/headlines": {"match": "geo", "resolvers": ["place", "us_state"], "max_km": 80},
     "news/podcasts": {"max_age": "1d"},
     "news/fact_checks": {"max_age": "1d"},
     "travel/flights": {"prefer": PRIMARY, "resolvers": ["airport"], "max_age": "15m"},
@@ -125,9 +133,11 @@ OVERRIDES = {
     "tech/ai_models": {"match": "none", "max_age": "1d"},
     "culture/events": {"match": "geo", "resolvers": ["place"], "max_km": 50},
     "culture/museums_art": {"max_age": "40d"},
+    "culture/lottery": {"prefer": OFFICIAL},  # the lottery's own draw results and jackpot first
     "shopping/deals": {"match": "none", "cross_check": False, "max_age": "1h"},
     "science/nature_wildlife": {"match": "geo", "resolvers": ["place"], "max_km": 25},
     "science/environment_data": {"max_age": "40d"},
+    "science/geysers": {"match": "name", "resolvers": ["geyser"], "max_age": "15m"},
     "time/time_zones": {"match": "name", "resolvers": ["place"], "max_age": "15m"},
     "time/countdowns": {"max_age": "15m"},
 }

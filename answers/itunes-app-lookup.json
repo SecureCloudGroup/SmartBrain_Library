@@ -1,0 +1,97 @@
+{
+  "source_id": "itunes-app-lookup",
+  "answers": [
+    {
+      "name": "app",
+      "label": "App",
+      "words": [
+        "app",
+        "name",
+        "which app"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "results[0].trackName",
+      "type": "text",
+      "window": "latest"
+    },
+    {
+      "name": "price",
+      "label": "Price",
+      "words": [
+        "price",
+        "cost",
+        "how much",
+        "free",
+        "paid"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "results[0].formattedPrice",
+      "type": "text",
+      "window": "latest"
+    },
+    {
+      "name": "version",
+      "label": "Latest version",
+      "words": [
+        "version",
+        "latest version",
+        "current version",
+        "update"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "results[0].version",
+      "type": "text",
+      "window": "latest"
+    },
+    {
+      "name": "version_date",
+      "label": "Version released",
+      "words": [
+        "updated",
+        "when updated",
+        "release date",
+        "last update"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "results[0].currentVersionReleaseDate",
+      "type": "time",
+      "window": "latest"
+    },
+    {
+      "name": "rating",
+      "label": "Rating (of 5)",
+      "words": [
+        "rating",
+        "stars",
+        "reviews",
+        "score"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "results[0].averageUserRating",
+      "type": "number",
+      "window": "latest"
+    },
+    {
+      "name": "release_notes",
+      "label": "What's new",
+      "words": [
+        "what's new",
+        "release notes",
+        "changes",
+        "changelog"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "results[0].releaseNotes",
+      "type": "text",
+      "window": "latest"
+    }
+  ],
+  "sample_url": "https://itunes.apple.com/lookup?id=284882215&country=us",
+  "checked": "2026-09-28"
+}

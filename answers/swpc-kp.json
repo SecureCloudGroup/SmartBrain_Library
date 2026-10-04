@@ -1,0 +1,43 @@
+{
+  "source_id": "swpc-kp",
+  "answers": [
+    {
+      "name": "kp",
+      "label": "Planetary Kp index",
+      "words": [
+        "kp index",
+        "kp",
+        "geomagnetic",
+        "geomagnetic storm",
+        "aurora",
+        "northern lights",
+        "now",
+        "latest",
+        "trend"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "items",
+      "row": [
+        {
+          "path": "time_tag",
+          "label": "Time (UTC)",
+          "type": "time",
+          "utc": true
+        },
+        {
+          "path": "Kp",
+          "label": "Kp",
+          "type": "number"
+        }
+      ],
+      "newest_first": true,
+      "axis": {
+        "cell": "time_tag",
+        "step": "hour"
+      }
+    }
+  ],
+  "sample_url": "https://services.swpc.noaa.gov/products/noaa-planetary-k-index.json",
+  "checked": "2026-09-28"
+}

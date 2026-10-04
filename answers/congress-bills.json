@@ -1,0 +1,78 @@
+{
+  "source_id": "congress-bills",
+  "answers": [
+    {
+      "name": "latest_bills",
+      "label": "Latest bills",
+      "words": [
+        "latest bills",
+        "bills",
+        "congress",
+        "new bills",
+        "what did congress pass",
+        "legislation",
+        "activity"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "bills",
+      "row": [
+        {
+          "path": "title",
+          "label": "Bill",
+          "type": "text"
+        },
+        {
+          "path": "latestAction.text",
+          "label": "Latest action",
+          "type": "text"
+        },
+        {
+          "path": "latestAction.actionDate",
+          "label": "Action date",
+          "type": "date"
+        }
+      ],
+      "axis": {
+        "cell": "latestAction.actionDate",
+        "step": "day"
+      }
+    },
+    {
+      "name": "introduced",
+      "label": "Recently introduced",
+      "words": [
+        "introduced",
+        "new",
+        "filed",
+        "chamber"
+      ],
+      "primary": false,
+      "kind": "list",
+      "path": "bills",
+      "row": [
+        {
+          "path": "title",
+          "label": "Bill",
+          "type": "text"
+        },
+        {
+          "path": "originChamber",
+          "label": "Chamber",
+          "type": "text"
+        },
+        {
+          "path": "introducedDate",
+          "label": "Introduced",
+          "type": "date"
+        }
+      ],
+      "axis": {
+        "cell": "introducedDate",
+        "step": "day"
+      }
+    }
+  ],
+  "sample_url": "https://api.congress.gov/v3/bill?api_key=DEMO_KEY&limit=20&sort=updateDate+desc&format=json",
+  "checked": "2026-09-28"
+}

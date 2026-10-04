@@ -1,0 +1,67 @@
+{
+  "source_id": "homebrew-formula",
+  "answers": [
+    {
+      "name": "stable_version",
+      "label": "Stable version",
+      "words": [
+        "version",
+        "latest",
+        "latest version",
+        "stable",
+        "current version",
+        "release"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "versions.stable",
+      "type": "text",
+      "window": "latest"
+    },
+    {
+      "name": "description",
+      "label": "Description",
+      "words": [
+        "description",
+        "what is",
+        "about"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "desc",
+      "type": "text",
+      "window": "latest"
+    },
+    {
+      "name": "license",
+      "label": "License",
+      "words": [
+        "license",
+        "licence",
+        "open source",
+        "terms"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "license",
+      "type": "text",
+      "window": "latest"
+    },
+    {
+      "name": "homepage",
+      "label": "Homepage",
+      "words": [
+        "homepage",
+        "website",
+        "site"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "homepage",
+      "type": "text",
+      "window": "latest"
+    }
+  ],
+  "sample_url": "https://formulae.brew.sh/api/formula/git.json",
+  "checked": "2026-09-28"
+}

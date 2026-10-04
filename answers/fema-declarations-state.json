@@ -1,0 +1,64 @@
+{
+  "source_id": "fema-declarations-state",
+  "answers": [
+    {
+      "name": "declarations",
+      "label": "Disaster declarations",
+      "words": [
+        "disaster declarations",
+        "disaster",
+        "fema",
+        "emergency",
+        "declared",
+        "federal disaster",
+        "recent disasters"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "DisasterDeclarationsSummaries",
+      "row": [
+        {
+          "path": "declarationTitle",
+          "label": "Disaster",
+          "type": "text"
+        },
+        {
+          "path": "incidentType",
+          "label": "Type",
+          "type": "text"
+        },
+        {
+          "path": "designatedArea",
+          "label": "Area",
+          "type": "text"
+        },
+        {
+          "path": "declarationDate",
+          "label": "Declared",
+          "type": "date"
+        }
+      ],
+      "axis": {
+        "cell": "declarationDate",
+        "step": "day"
+      }
+    },
+    {
+      "name": "latest_title",
+      "label": "Latest declaration",
+      "words": [
+        "latest",
+        "most recent",
+        "newest declaration",
+        "last disaster"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "DisasterDeclarationsSummaries[0].declarationTitle",
+      "type": "text",
+      "window": "latest"
+    }
+  ],
+  "sample_url": "https://www.fema.gov/api/open/v2/DisasterDeclarationsSummaries?$filter=state%20eq%20%27FL%27&$orderby=declarationDate%20desc&$top=20",
+  "checked": "2026-09-28"
+}

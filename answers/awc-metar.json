@@ -1,0 +1,163 @@
+{
+  "source_id": "awc-metar",
+  "answers": [
+    {
+      "name": "raw_metar",
+      "label": "METAR",
+      "words": [
+        "metar",
+        "raw metar",
+        "report",
+        "observation",
+        "airport weather"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "items[0].rawOb",
+      "type": "text",
+      "window": "now"
+    },
+    {
+      "name": "temperature",
+      "label": "Temperature",
+      "words": [
+        "temperature",
+        "temp",
+        "degrees",
+        "hot",
+        "cold",
+        "warm",
+        "how hot",
+        "how cold"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "items[0].temp",
+      "type": "number",
+      "unit": "°C",
+      "window": "now",
+      "measure": "temperature"
+    },
+    {
+      "name": "wind",
+      "label": "Wind speed",
+      "words": [
+        "wind",
+        "windy",
+        "breeze",
+        "wind speed",
+        "gusts",
+        "knots"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "items[0].wspd",
+      "type": "number",
+      "unit": "kt",
+      "window": "now",
+      "measure": "wind"
+    },
+    {
+      "name": "flight_category",
+      "label": "Flight category",
+      "words": [
+        "flight category",
+        "vfr",
+        "ifr",
+        "mvfr",
+        "lifr",
+        "flying conditions"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "items[0].fltCat",
+      "type": "text",
+      "window": "now"
+    },
+    {
+      "name": "dewpoint",
+      "label": "Dew point",
+      "words": [
+        "dew point",
+        "dewpoint",
+        "fog risk",
+        "moisture",
+        "dew"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "items[0].dewp",
+      "type": "number",
+      "unit": "°C",
+      "window": "now"
+    },
+    {
+      "name": "wind_dir",
+      "label": "Wind direction",
+      "words": [
+        "wind direction",
+        "runway",
+        "crosswind",
+        "wind from",
+        "heading"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "items[0].wdir",
+      "type": "number",
+      "unit": "°",
+      "window": "now"
+    },
+    {
+      "name": "altimeter",
+      "label": "Altimeter",
+      "words": [
+        "altimeter",
+        "pressure",
+        "qnh",
+        "barometer",
+        "setting"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "items[0].altim",
+      "type": "number",
+      "unit": "hPa",
+      "window": "now"
+    },
+    {
+      "name": "observed_at",
+      "label": "Observed at",
+      "words": [
+        "when",
+        "time",
+        "observed",
+        "last report",
+        "updated"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "items[0].obsTime",
+      "type": "time",
+      "window": "now"
+    },
+    {
+      "name": "station_name",
+      "label": "Airport",
+      "words": [
+        "airport",
+        "station",
+        "where",
+        "name",
+        "which airport"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "items[0].name",
+      "type": "text",
+      "window": "now"
+    }
+  ],
+  "sample_url": "https://aviationweather.gov/api/data/metar?ids=KCHS&format=json",
+  "checked": "2026-09-28"
+}

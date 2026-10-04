@@ -1,0 +1,73 @@
+{
+ "source_id": "fred-icsa",
+ "answers": [
+  {
+   "name": "latest",
+   "label": "Initial jobless claims (weekly)",
+   "kind": "value",
+   "primary": true,
+   "words": [
+    "initial jobless claims",
+    "initial jobless claims (weekly)",
+    "weekly jobless claims",
+    "latest",
+    "current",
+    "now",
+    "today"
+   ],
+   "path": "rows[0].ICSA",
+   "type": "number",
+   "unit": "claims",
+   "window": "latest"
+  },
+  {
+   "name": "as_of",
+   "label": "As of",
+   "kind": "value",
+   "words": [
+    "as of",
+    "when",
+    "date",
+    "last updated",
+    "updated"
+   ],
+   "path": "rows[0].observation_date",
+   "type": "date",
+   "window": "latest"
+  },
+  {
+   "name": "recent",
+   "label": "Recent readings",
+   "kind": "list",
+   "words": [
+    "recent",
+    "history",
+    "trend",
+    "past",
+    "over time",
+    "chart",
+    "last few"
+   ],
+   "path": "rows",
+   "row": [
+    {
+     "path": "observation_date",
+     "label": "Date",
+     "type": "date"
+    },
+    {
+     "path": "ICSA",
+     "label": "Initial jobless claims (weekly)",
+     "type": "number",
+     "unit": "claims"
+    }
+   ],
+   "axis": {
+    "cell": "observation_date",
+    "step": "day"
+   }
+  }
+ ],
+ "sample_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=ICSA",
+ "checked": "2026-09-28"
+}

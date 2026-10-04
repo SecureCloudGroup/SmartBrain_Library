@@ -1,0 +1,66 @@
+{
+  "source_id": "timeapi-zone",
+  "answers": [
+    {
+      "name": "time",
+      "label": "Local time",
+      "words": [
+        "time",
+        "what time",
+        "clock",
+        "local time",
+        "now"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "time",
+      "type": "text",
+      "window": "now"
+    },
+    {
+      "name": "day",
+      "label": "Day",
+      "words": [
+        "day",
+        "weekday",
+        "what day",
+        "day of week"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "dayOfWeek",
+      "type": "text",
+      "window": "now"
+    },
+    {
+      "name": "date",
+      "label": "Date",
+      "words": [
+        "date",
+        "today",
+        "what date"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "date",
+      "type": "text",
+      "window": "now"
+    },
+    {
+      "name": "zone",
+      "label": "Time zone",
+      "words": [
+        "time zone",
+        "zone",
+        "timezone"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "timeZone",
+      "type": "text",
+      "window": "now"
+    }
+  ],
+  "sample_url": "https://timeapi.io/api/time/current/zone?timeZone=Asia/Tokyo",
+  "checked": "2026-09-28"
+}

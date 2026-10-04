@@ -1,0 +1,152 @@
+{
+ "url": "https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/od/upcoming_auctions?filter=auction_date:gte:2026-09-28&sort=auction_date&page[size]=20",
+ "fetched": "2026-09-29T16:42:20Z",
+ "sample": {
+  "data": [
+   {
+    "record_date": "2026-09-25",
+    "security_type": "Bill",
+    "security_term": "17-Week",
+    "reopening": "No",
+    "cusip": "912797WS2",
+    "offering_amt": "75000000000",
+    "announcemt_date": "2026-09-29",
+    "auction_date": "2026-09-30",
+    "issue_date": "2026-10-06"
+   },
+   {
+    "record_date": "2026-09-25",
+    "security_type": "Bill",
+    "security_term": "8-Week",
+    "reopening": "Yes",
+    "cusip": "912797VZ7",
+    "offering_amt": "95000000000",
+    "announcemt_date": "2026-09-29",
+    "auction_date": "2026-10-01",
+    "issue_date": "2026-10-06"
+   },
+   {
+    "record_date": "2026-09-25",
+    "security_type": "Bill",
+    "security_term": "4-Week",
+    "reopening": "Yes",
+    "cusip": "912797VP9",
+    "offering_amt": "100000000000",
+    "announcemt_date": "2026-09-29",
+    "auction_date": "2026-10-01",
+    "issue_date": "2026-10-06"
+   },
+   {
+    "record_date": "2026-09-25",
+    "security_type": "Bill",
+    "security_term": "13-Week",
+    "reopening": "Yes",
+    "cusip": "912797VS3",
+    "offering_amt": "null",
+    "announcemt_date": "2026-10-01",
+    "auction_date": "2026-10-05",
+    "issue_date": "2026-10-08"
+   },
+   {
+    "record_date": "2026-09-25",
+    "security_type": "Bill",
+    "security_term": "26-Week",
+    "reopening": "No",
+    "cusip": "912797WU7",
+    "offering_amt": "null",
+    "announcemt_date": "2026-10-01",
+    "auction_date": "2026-10-05",
+    "issue_date": "2026-10-08"
+   },
+   {
+    "record_date": "2026-09-25",
+    "security_type": "Note",
+    "security_term": "3-Year",
+    "reopening": "No",
+    "cusip": "91282CRQ6",
+    "offering_amt": "null",
+    "announcemt_date": "2026-10-01",
+    "auction_date": "2026-10-06",
+    "issue_date": "2026-10-15"
+   },
+   {
+    "record_date": "2026-09-25",
+    "security_type": "Bill",
+    "security_term": "6-Week",
+    "reopening": "Yes",
+    "cusip": "912797UZ8",
+    "offering_amt": "null",
+    "announcemt_date": "2026-10-01",
+    "auction_date": "2026-10-06",
+    "issue_date": "2026-10-08"
+   },
+   {
+    "record_date": "2026-09-25",
+    "security_type": "Note",
+    "security_term": "9-Year 10-Month",
+    "reopening": "Yes",
+    "cusip": "91282CRF0",
+    "offering_amt": "null",
+    "announcemt_date": "2026-10-01",
+    "auction_date": "2026-10-07",
+    "issue_date": "2026-10-15"
+   },
+   {
+    "record_date": "2026-09-25",
+    "security_type": "Bond",
+    "security_term": "29-Year 10-Month",
+    "reopening": "Yes",
+    "cusip": "912810UW6",
+    "offering_amt": "null",
+    "announcemt_date": "2026-10-01",
+    "auction_date": "2026-10-08",
+    "issue_date": "2026-10-15"
+   }
+  ],
+  "meta": {
+   "count": 9,
+   "labels": {
+    "record_date": "Record Date",
+    "security_type": "Security Type",
+    "security_term": "Security Term",
+    "reopening": "Reopening",
+    "cusip": "CUSIP",
+    "offering_amt": "Offering Amount",
+    "announcemt_date": "Announcement Date",
+    "auction_date": "Auction Date",
+    "issue_date": "Issue Date"
+   },
+   "dataTypes": {
+    "record_date": "DATE",
+    "security_type": "STRING",
+    "security_term": "STRING",
+    "reopening": "STRING",
+    "cusip": "STRING",
+    "offering_amt": "CURRENCY0",
+    "announcemt_date": "DATE",
+    "auction_date": "DATE",
+    "issue_date": "DATE"
+   },
+   "dataFormats": {
+    "record_date": "YYYY-MM-DD",
+    "security_type": "String",
+    "security_term": "String",
+    "reopening": "String",
+    "cusip": "String",
+    "offering_amt": "$1,000,000",
+    "announcemt_date": "YYYY-MM-DD",
+    "auction_date": "YYYY-MM-DD",
+    "issue_date": "YYYY-MM-DD"
+   },
+   "total-count": 9,
+   "total-pages": 1
+  },
+  "links": {
+   "self": "&page%5Bnumber%5D=1&page%5Bsize%5D=20",
+   "first": "&page%5Bnumber%5D=1&page%5Bsize%5D=20",
+   "prev": null,
+   "next": null,
+   "last": "&page%5Bnumber%5D=1&page%5Bsize%5D=20"
+  }
+ }
+}

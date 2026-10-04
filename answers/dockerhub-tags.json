@@ -1,0 +1,56 @@
+{
+  "source_id": "dockerhub-tags",
+  "answers": [
+    {
+      "name": "tags",
+      "label": "Latest tags",
+      "words": [
+        "tags",
+        "new tags",
+        "latest tags",
+        "images",
+        "versions",
+        "releases",
+        "new images"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "results",
+      "row": [
+        {
+          "path": "name",
+          "label": "Tag",
+          "type": "text"
+        },
+        {
+          "path": "last_updated",
+          "label": "Updated",
+          "type": "time"
+        },
+        {
+          "path": "full_size",
+          "label": "Size",
+          "type": "number",
+          "unit": "bytes"
+        }
+      ]
+    },
+    {
+      "name": "tag_count",
+      "label": "Total tags",
+      "words": [
+        "how many tags",
+        "tag count",
+        "total tags",
+        "number of tags"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "count",
+      "type": "number",
+      "window": "latest"
+    }
+  ],
+  "sample_url": "https://hub.docker.com/v2/repositories/library/postgres/tags?page_size=10&ordering=last_updated",
+  "checked": "2026-09-28"
+}

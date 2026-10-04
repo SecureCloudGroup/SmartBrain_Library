@@ -1,0 +1,73 @@
+{
+ "source_id": "fred-gdp",
+ "answers": [
+  {
+   "name": "latest",
+   "label": "GDP (annual rate)",
+   "kind": "value",
+   "primary": true,
+   "words": [
+    "gross domestic product",
+    "gdp (annual rate)",
+    "us gdp",
+    "latest",
+    "current",
+    "now",
+    "today"
+   ],
+   "path": "rows[0].GDP",
+   "type": "number",
+   "unit": "billion USD",
+   "window": "latest"
+  },
+  {
+   "name": "as_of",
+   "label": "As of",
+   "kind": "value",
+   "words": [
+    "as of",
+    "when",
+    "date",
+    "last updated",
+    "updated"
+   ],
+   "path": "rows[0].observation_date",
+   "type": "date",
+   "window": "latest"
+  },
+  {
+   "name": "recent",
+   "label": "Recent readings",
+   "kind": "list",
+   "words": [
+    "recent",
+    "history",
+    "trend",
+    "past",
+    "over time",
+    "chart",
+    "last few"
+   ],
+   "path": "rows",
+   "row": [
+    {
+     "path": "observation_date",
+     "label": "Date",
+     "type": "date"
+    },
+    {
+     "path": "GDP",
+     "label": "GDP (annual rate)",
+     "type": "number",
+     "unit": "billion USD"
+    }
+   ],
+   "axis": {
+    "cell": "observation_date",
+    "step": "day"
+   }
+  }
+ ],
+ "sample_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=GDP",
+ "checked": "2026-09-28"
+}

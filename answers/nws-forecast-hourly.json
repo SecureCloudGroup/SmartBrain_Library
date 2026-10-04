@@ -1,0 +1,163 @@
+{
+  "source_id": "nws-forecast-hourly",
+  "answers": [
+    {
+      "name": "hours",
+      "label": "Hourly forecast",
+      "words": [
+        "hourly",
+        "by hour",
+        "hour by hour",
+        "tonight",
+        "later today",
+        "this afternoon",
+        "next few hours",
+        "forecast",
+        "this evening",
+        "overnight",
+        "storm tonight",
+        "thunderstorm",
+        "fog",
+        "freezing rain",
+        "sleet"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "properties.periods",
+      "row": [
+        {
+          "path": "startTime",
+          "label": "Time",
+          "type": "time"
+        },
+        {
+          "path": "temperature",
+          "label": "Temperature",
+          "type": "number",
+          "unit": "°F"
+        },
+        {
+          "path": "probabilityOfPrecipitation.value",
+          "label": "Rain chance",
+          "type": "number",
+          "unit": "%"
+        },
+        {
+          "path": "shortForecast",
+          "label": "Conditions",
+          "type": "text"
+        }
+      ],
+      "axis": {
+        "cell": "startTime",
+        "step": "hour"
+      }
+    },
+    {
+      "name": "temp_this_hour",
+      "label": "Temperature this hour",
+      "words": [
+        "temperature",
+        "temp",
+        "degrees",
+        "hot",
+        "cold",
+        "warm",
+        "how hot",
+        "how cold",
+        "now"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "properties.periods[0].temperature",
+      "type": "number",
+      "unit": "°F",
+      "window": "now",
+      "measure": "temperature"
+    },
+    {
+      "name": "conditions_this_hour",
+      "label": "Conditions this hour",
+      "words": [
+        "conditions",
+        "sky",
+        "sunny",
+        "cloudy",
+        "clear",
+        "outside",
+        "what's it like",
+        "storm",
+        "thunderstorm",
+        "hail",
+        "fog",
+        "frost",
+        "snow",
+        "sleet",
+        "freezing rain"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "properties.periods[0].shortForecast",
+      "type": "text",
+      "window": "now",
+      "measure": "conditions"
+    },
+    {
+      "name": "rain_this_hour",
+      "label": "Rain chance this hour",
+      "words": [
+        "rain",
+        "rain chance",
+        "chance of rain",
+        "precipitation",
+        "umbrella",
+        "showers",
+        "rain today"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "properties.periods[0].probabilityOfPrecipitation.value",
+      "type": "number",
+      "unit": "%",
+      "window": "now",
+      "measure": "precip_chance"
+    },
+    {
+      "name": "humidity_this_hour",
+      "label": "Humidity this hour",
+      "words": [
+        "humidity",
+        "humid",
+        "muggy",
+        "sticky",
+        "damp"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "properties.periods[0].relativeHumidity.value",
+      "type": "number",
+      "unit": "%",
+      "window": "now",
+      "measure": "humidity"
+    },
+    {
+      "name": "wind_this_hour",
+      "label": "Wind this hour",
+      "words": [
+        "wind",
+        "windy",
+        "breeze",
+        "wind speed",
+        "gusts"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "properties.periods[0].windSpeed",
+      "type": "text",
+      "window": "now",
+      "measure": "wind"
+    }
+  ],
+  "sample_url": "https://api.weather.gov/gridpoints/CHS/87,77/forecast/hourly",
+  "checked": "2026-09-29"
+}

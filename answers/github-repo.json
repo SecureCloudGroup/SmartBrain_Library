@@ -1,0 +1,110 @@
+{
+  "source_id": "github-repo",
+  "answers": [
+    {
+      "name": "stars",
+      "label": "Stars",
+      "words": [
+        "stars",
+        "stargazers",
+        "popularity",
+        "how many stars",
+        "starred"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "stargazers_count",
+      "type": "number",
+      "window": "latest"
+    },
+    {
+      "name": "forks",
+      "label": "Forks",
+      "words": [
+        "forks",
+        "forked",
+        "how many forks"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "forks_count",
+      "type": "number",
+      "window": "latest"
+    },
+    {
+      "name": "open_issues",
+      "label": "Open issues",
+      "words": [
+        "open issues",
+        "issues",
+        "bugs",
+        "pull requests"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "open_issues_count",
+      "type": "number",
+      "window": "latest"
+    },
+    {
+      "name": "last_push",
+      "label": "Last push",
+      "words": [
+        "last push",
+        "last commit",
+        "updated",
+        "activity",
+        "active"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "pushed_at",
+      "type": "time",
+      "window": "latest"
+    },
+    {
+      "name": "language",
+      "label": "Language",
+      "words": [
+        "language",
+        "written in",
+        "programming language"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "language",
+      "type": "text",
+      "window": "latest"
+    },
+    {
+      "name": "description",
+      "label": "Description",
+      "words": [
+        "description",
+        "what is",
+        "about"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "description",
+      "type": "text",
+      "window": "latest"
+    },
+    {
+      "name": "watchers",
+      "label": "Watchers",
+      "words": [
+        "watchers",
+        "subscribers",
+        "watching"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "subscribers_count",
+      "type": "number",
+      "window": "latest"
+    }
+  ],
+  "sample_url": "https://api.github.com/repos/python/cpython",
+  "checked": "2026-09-28"
+}

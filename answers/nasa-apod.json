@@ -1,0 +1,83 @@
+{
+  "source_id": "nasa-apod",
+  "answers": [
+    {
+      "name": "title",
+      "label": "Title",
+      "words": [
+        "title",
+        "astronomy picture of the day",
+        "apod",
+        "space photo",
+        "what is it"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "title",
+      "type": "text",
+      "window": "today"
+    },
+    {
+      "name": "image_url",
+      "label": "Image link",
+      "words": [
+        "image link",
+        "image url",
+        "link to the image"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "url",
+      "type": "text",
+      "window": "today"
+    },
+    {
+      "name": "explanation",
+      "label": "Explanation",
+      "words": [
+        "explanation",
+        "description",
+        "about",
+        "what am i looking at",
+        "details"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "explanation",
+      "type": "text",
+      "window": "today"
+    },
+    {
+      "name": "date",
+      "label": "Date",
+      "words": [
+        "date",
+        "day",
+        "when",
+        "today"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "date",
+      "type": "text",
+      "window": "today"
+    },
+    {
+      "name": "media_type",
+      "label": "Media type",
+      "words": [
+        "media",
+        "type",
+        "video",
+        "image or video"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "media_type",
+      "type": "text",
+      "window": "today"
+    }
+  ],
+  "sample_url": "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY",
+  "checked": "2026-09-28"
+}

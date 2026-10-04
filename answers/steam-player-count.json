@@ -1,0 +1,24 @@
+{
+  "source_id": "steam-player-count",
+  "answers": [
+    {
+      "name": "players",
+      "label": "Players right now",
+      "words": [
+        "how many people are playing",
+        "players",
+        "playing",
+        "player count",
+        "online",
+        "concurrent"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "response.player_count",
+      "type": "number",
+      "window": "now"
+    }
+  ],
+  "sample_url": "https://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v1/?appid=730",
+  "checked": "2026-09-28"
+}

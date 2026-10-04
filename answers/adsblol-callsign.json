@@ -1,0 +1,66 @@
+{
+  "source_id": "adsblol-callsign",
+  "answers": [
+    {
+      "name": "aircraft",
+      "label": "Flight position",
+      "words": [
+        "where",
+        "position",
+        "track",
+        "flight",
+        "altitude",
+        "speed",
+        "location",
+        "map",
+        "latitude",
+        "longitude"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "ac",
+      "row": [
+        {
+          "path": "alt_baro",
+          "label": "Altitude",
+          "type": "number",
+          "unit": "ft"
+        },
+        {
+          "path": "gs",
+          "label": "Ground speed",
+          "type": "number",
+          "unit": "kt"
+        },
+        {
+          "path": "lat",
+          "label": "Latitude",
+          "type": "number"
+        },
+        {
+          "path": "lon",
+          "label": "Longitude",
+          "type": "number"
+        }
+      ],
+      "may_be_empty": true
+    },
+    {
+      "name": "updated",
+      "label": "Last update",
+      "words": [
+        "updated",
+        "last seen",
+        "when",
+        "time"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "now",
+      "type": "time",
+      "window": "now"
+    }
+  ],
+  "sample_url": "https://api.adsb.lol/v2/callsign/DAL1234",
+  "checked": "2026-09-28"
+}

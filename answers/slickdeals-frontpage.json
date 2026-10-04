@@ -1,0 +1,36 @@
+{
+ "source_id": "slickdeals-frontpage",
+ "answers": [
+  {
+   "name": "latest",
+   "label": "Deals",
+   "kind": "list",
+   "primary": true,
+   "words": [
+    "deals",
+    "sale",
+    "coupon",
+    "discount",
+    "headlines",
+    "news",
+    "latest"
+   ],
+   "path": "items",
+   "row": [
+    {
+     "path": "title",
+     "label": "Title",
+     "type": "text"
+    },
+    {
+     "path": "published",
+     "label": "Published",
+     "type": "time"
+    }
+   ],
+   "may_be_empty": false
+  }
+ ],
+ "sample_url": "https://slickdeals.net/newsearch.php?mode=frontpage&searcharea=deals&searchin=first&rss=1",
+ "checked": "2026-09-28"
+}

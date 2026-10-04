@@ -1,0 +1,132 @@
+{
+  "source_id": "eol-nodejs",
+  "answers": [
+    {
+      "name": "latest",
+      "label": "Latest version",
+      "words": [
+        "latest version",
+        "latest",
+        "current version",
+        "newest",
+        "version",
+        "latest release",
+        "update",
+        "what version"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "result.releases[0].latest.name",
+      "type": "text",
+      "window": "latest"
+    },
+    {
+      "name": "release",
+      "label": "Latest release",
+      "words": [
+        "release",
+        "release name",
+        "codename",
+        "name"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "result.releases[0].label",
+      "type": "text",
+      "window": "latest"
+    },
+    {
+      "name": "latest_date",
+      "label": "Latest version released",
+      "words": [
+        "when",
+        "release date",
+        "released",
+        "date",
+        "how new"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "result.releases[0].latest.date",
+      "type": "date",
+      "window": "latest"
+    },
+    {
+      "name": "first_released",
+      "label": "First released",
+      "words": [
+        "first released",
+        "release date",
+        "launched",
+        "came out",
+        "when"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "result.releases[0].releaseDate",
+      "type": "date",
+      "window": "latest"
+    },
+    {
+      "name": "support_ends",
+      "label": "Support ends",
+      "words": [
+        "end of life",
+        "eol",
+        "support ends",
+        "supported until",
+        "security support",
+        "how long supported"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "result.releases[0].eolFrom",
+      "type": "date",
+      "window": "latest"
+    },
+    {
+      "name": "releases",
+      "label": "Releases",
+      "words": [
+        "releases",
+        "all versions",
+        "older versions",
+        "version history",
+        "supported versions",
+        "which versions",
+        "lts",
+        "long term support",
+        "lts version",
+        "current lts",
+        "latest lts"
+      ],
+      "primary": false,
+      "kind": "list",
+      "path": "result.releases",
+      "row": [
+        {
+          "path": "label",
+          "label": "Release",
+          "type": "text"
+        },
+        {
+          "path": "latest.name",
+          "label": "Latest",
+          "type": "text"
+        },
+        {
+          "path": "releaseDate",
+          "label": "First released",
+          "type": "date"
+        },
+        {
+          "path": "eolFrom",
+          "label": "Support ends",
+          "type": "date"
+        }
+      ]
+    }
+  ],
+  "sample_url": "https://endoflife.date/api/v1/products/nodejs/",
+  "checked": "2026-09-29"
+}

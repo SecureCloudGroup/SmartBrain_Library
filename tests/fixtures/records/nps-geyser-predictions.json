@@ -1,0 +1,29 @@
+{
+ "url": "https://carto.nps.gov/user/nps-yell/api/v2/sql?q=SELECT%20prediction_datetime,offset_amount,offset_unit%20FROM%20geyser_eruptions%20WHERE%20npmap_id=%27ee5bf30e-4594-4bc0-91ce-452b603743ea%27%20AND%20archived=false%20ORDER%20BY%20prediction_datetime%20DESC%20LIMIT%201",
+ "fetched": "2026-09-29T16:45:59Z",
+ "sample": {
+  "rows": [
+   {
+    "prediction_datetime": "2026-09-29T17:34:00Z",
+    "offset_amount": 12,
+    "offset_unit": "minutes"
+   }
+  ],
+  "time": 0.009,
+  "fields": {
+   "prediction_datetime": {
+    "type": "date",
+    "pgtype": "timestamptz"
+   },
+   "offset_amount": {
+    "type": "number",
+    "pgtype": "float8"
+   },
+   "offset_unit": {
+    "type": "string",
+    "pgtype": "text"
+   }
+  },
+  "total_rows": 1
+ }
+}

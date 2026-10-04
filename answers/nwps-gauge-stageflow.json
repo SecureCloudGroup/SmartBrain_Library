@@ -1,0 +1,90 @@
+{
+  "source_id": "nwps-gauge-stageflow",
+  "answers": [
+    {
+      "name": "observed",
+      "label": "Observed river level",
+      "words": [
+        "river level",
+        "stage",
+        "how high",
+        "water level",
+        "observed",
+        "latest",
+        "now",
+        "gauge"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "observed.data",
+      "row": [
+        {
+          "path": "validTime",
+          "label": "Time",
+          "type": "time"
+        },
+        {
+          "path": "primary",
+          "label": "Stage",
+          "type": "number",
+          "unit": "ft"
+        }
+      ],
+      "newest_first": true,
+      "axis": {
+        "cell": "validTime",
+        "step": "hour"
+      }
+    },
+    {
+      "name": "forecast",
+      "label": "Forecast river level",
+      "words": [
+        "forecast",
+        "flood forecast",
+        "will the river flood",
+        "crest",
+        "tomorrow",
+        "next days",
+        "predicted"
+      ],
+      "primary": false,
+      "kind": "list",
+      "path": "forecast.data",
+      "row": [
+        {
+          "path": "validTime",
+          "label": "Time",
+          "type": "time"
+        },
+        {
+          "path": "primary",
+          "label": "Stage",
+          "type": "number",
+          "unit": "ft"
+        }
+      ],
+      "may_be_empty": true,
+      "axis": {
+        "cell": "validTime",
+        "step": "hour"
+      }
+    },
+    {
+      "name": "measure",
+      "label": "Measured as",
+      "words": [
+        "measure",
+        "what is measured",
+        "type"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "observed.primaryName",
+      "type": "text",
+      "window": "now"
+    }
+  ],
+  "sample_url": "https://api.water.noaa.gov/nwps/v1/gauges/ACFS1/stageflow",
+  "checked": "2026-09-28"
+}

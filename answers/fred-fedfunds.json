@@ -1,0 +1,73 @@
+{
+ "source_id": "fred-fedfunds",
+ "answers": [
+  {
+   "name": "latest",
+   "label": "Federal funds rate",
+   "kind": "value",
+   "primary": true,
+   "words": [
+    "federal funds rate",
+    "fed funds rate",
+    "interest rate the fed set",
+    "latest",
+    "current",
+    "now",
+    "today"
+   ],
+   "path": "rows[0].FEDFUNDS",
+   "type": "number",
+   "unit": "%",
+   "window": "latest"
+  },
+  {
+   "name": "as_of",
+   "label": "As of",
+   "kind": "value",
+   "words": [
+    "as of",
+    "when",
+    "date",
+    "last updated",
+    "updated"
+   ],
+   "path": "rows[0].observation_date",
+   "type": "date",
+   "window": "latest"
+  },
+  {
+   "name": "recent",
+   "label": "Recent readings",
+   "kind": "list",
+   "words": [
+    "recent",
+    "history",
+    "trend",
+    "past",
+    "over time",
+    "chart",
+    "last few"
+   ],
+   "path": "rows",
+   "row": [
+    {
+     "path": "observation_date",
+     "label": "Date",
+     "type": "date"
+    },
+    {
+     "path": "FEDFUNDS",
+     "label": "Federal funds rate",
+     "type": "number",
+     "unit": "%"
+    }
+   ],
+   "axis": {
+    "cell": "observation_date",
+    "step": "day"
+   }
+  }
+ ],
+ "sample_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=FEDFUNDS",
+ "checked": "2026-09-28"
+}

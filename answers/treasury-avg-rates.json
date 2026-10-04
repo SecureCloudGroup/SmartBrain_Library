@@ -1,0 +1,64 @@
+{
+  "source_id": "treasury-avg-rates",
+  "answers": [
+    {
+      "name": "rates",
+      "label": "Average interest rates",
+      "words": [
+        "interest rates",
+        "treasury rates",
+        "average rate",
+        "rate",
+        "bills",
+        "notes",
+        "bonds",
+        "tips",
+        "cost of debt",
+        "yield"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "data",
+      "row": [
+        {
+          "path": "security_desc",
+          "label": "Security",
+          "type": "text"
+        },
+        {
+          "path": "avg_interest_rate_amt",
+          "label": "Avg rate",
+          "type": "number",
+          "unit": "%"
+        },
+        {
+          "path": "record_date",
+          "label": "Month ending",
+          "type": "date"
+        }
+      ],
+      "axis": {
+        "cell": "record_date",
+        "step": "day"
+      }
+    },
+    {
+      "name": "as_of",
+      "label": "Latest month",
+      "words": [
+        "as of",
+        "date",
+        "month",
+        "when",
+        "latest"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "data[0].record_date",
+      "type": "date",
+      "window": "latest"
+    }
+  ],
+  "sample_url": "https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/avg_interest_rates?sort=-record_date&page[size]=20",
+  "checked": "2026-09-28"
+}

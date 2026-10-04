@@ -1,0 +1,67 @@
+{
+  "source_id": "treasury-upcoming-auctions",
+  "answers": [
+    {
+      "name": "auctions",
+      "label": "Upcoming Treasury auctions",
+      "words": [
+        "auction",
+        "auctions",
+        "upcoming auctions",
+        "next auction",
+        "bond auction",
+        "bill auction",
+        "note auction",
+        "when",
+        "treasury auction",
+        "schedule"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "data",
+      "row": [
+        {
+          "path": "auction_date",
+          "label": "Auction date",
+          "type": "date"
+        },
+        {
+          "path": "security_type",
+          "label": "Type",
+          "type": "text"
+        },
+        {
+          "path": "security_term",
+          "label": "Term",
+          "type": "text"
+        },
+        {
+          "path": "issue_date",
+          "label": "Issue date",
+          "type": "date"
+        }
+      ],
+      "axis": {
+        "cell": "auction_date",
+        "step": "day"
+      }
+    },
+    {
+      "name": "announced",
+      "label": "Announced as of",
+      "words": [
+        "announced",
+        "as of",
+        "updated",
+        "latest announcement"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "data[0].record_date",
+      "type": "date",
+      "window": "latest"
+    }
+  ],
+  "sample_url": "https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/od/upcoming_auctions?filter=auction_date:gte:2026-09-28&sort=auction_date&page[size]=20",
+  "checked": "2026-09-28"
+}

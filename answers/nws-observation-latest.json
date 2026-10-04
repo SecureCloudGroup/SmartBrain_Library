@@ -1,0 +1,169 @@
+{
+  "source_id": "nws-observation-latest",
+  "answers": [
+    {
+      "name": "temperature",
+      "label": "Temperature",
+      "words": [
+        "temperature",
+        "temp",
+        "degrees",
+        "hot",
+        "cold",
+        "warm",
+        "how hot",
+        "how cold",
+        "now",
+        "current"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "properties.temperature.value",
+      "type": "number",
+      "unit": "°C",
+      "window": "now",
+      "measure": "temperature"
+    },
+    {
+      "name": "conditions",
+      "label": "Conditions",
+      "words": [
+        "conditions",
+        "sky",
+        "sunny",
+        "cloudy",
+        "clear",
+        "outside",
+        "what's it like",
+        "conditions right now"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "properties.textDescription",
+      "type": "text",
+      "window": "now",
+      "measure": "conditions"
+    },
+    {
+      "name": "humidity",
+      "label": "Humidity",
+      "words": [
+        "humidity",
+        "humid",
+        "muggy",
+        "sticky",
+        "damp"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "properties.relativeHumidity.value",
+      "type": "number",
+      "unit": "%",
+      "window": "now",
+      "measure": "humidity"
+    },
+    {
+      "name": "wind",
+      "label": "Wind speed",
+      "words": [
+        "wind",
+        "windy",
+        "breeze",
+        "wind speed",
+        "gusts"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "properties.windSpeed.value",
+      "type": "number",
+      "unit": "km/h",
+      "window": "now",
+      "measure": "wind"
+    },
+    {
+      "name": "dewpoint",
+      "label": "Dew point",
+      "words": [
+        "dew point",
+        "dewpoint",
+        "muggy",
+        "moisture",
+        "dew"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "properties.dewpoint.value",
+      "type": "number",
+      "unit": "°C",
+      "window": "now"
+    },
+    {
+      "name": "wind_direction",
+      "label": "Wind direction",
+      "words": [
+        "wind direction",
+        "which way is the wind",
+        "wind from",
+        "bearing",
+        "heading"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "properties.windDirection.value",
+      "type": "number",
+      "unit": "°",
+      "window": "now"
+    },
+    {
+      "name": "pressure",
+      "label": "Barometric pressure",
+      "words": [
+        "pressure",
+        "barometer",
+        "barometric",
+        "air pressure",
+        "millibars"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "properties.barometricPressure.value",
+      "type": "number",
+      "unit": "Pa",
+      "window": "now"
+    },
+    {
+      "name": "observed_at",
+      "label": "Observed at",
+      "words": [
+        "when",
+        "time",
+        "observed",
+        "last update",
+        "updated"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "properties.timestamp",
+      "type": "time",
+      "window": "now"
+    },
+    {
+      "name": "station_name",
+      "label": "Station",
+      "words": [
+        "station",
+        "where",
+        "which station",
+        "airport",
+        "location"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "properties.stationName",
+      "type": "text",
+      "window": "now"
+    }
+  ],
+  "sample_url": "https://api.weather.gov/stations/KCHS/observations/latest",
+  "checked": "2026-09-28"
+}

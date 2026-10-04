@@ -1,0 +1,60 @@
+{
+  "source_id": "fec-candidates",
+  "answers": [
+    {
+      "name": "candidates",
+      "label": "Candidates",
+      "words": [
+        "candidates",
+        "senate candidates",
+        "who is running",
+        "running",
+        "race",
+        "election",
+        "2026"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "results",
+      "row": [
+        {
+          "path": "name",
+          "label": "Candidate",
+          "type": "text"
+        },
+        {
+          "path": "party_full",
+          "label": "Party",
+          "type": "text"
+        },
+        {
+          "path": "state",
+          "label": "State",
+          "type": "text"
+        },
+        {
+          "path": "incumbent_challenge_full",
+          "label": "Status",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "candidate_total",
+      "label": "Candidates filed",
+      "words": [
+        "how many candidates",
+        "number of candidates",
+        "total",
+        "count"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "pagination.count",
+      "type": "number",
+      "window": "latest"
+    }
+  ],
+  "sample_url": "https://api.open.fec.gov/v1/candidates/?api_key=DEMO_KEY&election_year=2026&office=S&per_page=20",
+  "checked": "2026-09-28"
+}

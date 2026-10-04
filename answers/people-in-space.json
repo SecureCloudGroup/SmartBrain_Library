@@ -1,0 +1,76 @@
+{
+  "source_id": "people-in-space",
+  "answers": [
+    {
+      "name": "people",
+      "label": "People in space",
+      "words": [
+        "astronauts",
+        "people in space",
+        "who is in space",
+        "crew",
+        "astronauts on the iss",
+        "cosmonauts",
+        "names"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "people",
+      "row": [
+        {
+          "path": "name",
+          "label": "Name",
+          "type": "text"
+        },
+        {
+          "path": "spacecraft",
+          "label": "Spacecraft",
+          "type": "text"
+        },
+        {
+          "path": "agency",
+          "label": "Agency",
+          "type": "text"
+        },
+        {
+          "path": "country",
+          "label": "Country",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "count",
+      "label": "People in space",
+      "words": [
+        "how many",
+        "how many people are in space",
+        "count",
+        "number",
+        "total"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "number",
+      "type": "number",
+      "window": "now"
+    },
+    {
+      "name": "expedition",
+      "label": "ISS expedition",
+      "words": [
+        "expedition",
+        "iss expedition",
+        "current expedition",
+        "mission"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "iss_expedition",
+      "type": "number",
+      "window": "now"
+    }
+  ],
+  "sample_url": "https://corquaid.github.io/international-space-station-APIs/JSON/people-in-space.json",
+  "checked": "2026-09-28"
+}

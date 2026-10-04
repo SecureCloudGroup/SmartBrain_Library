@@ -1,0 +1,77 @@
+{
+  "source_id": "eia-natgas-storage",
+  "answers": [
+    {
+      "name": "storage",
+      "label": "Working gas in storage (Lower 48)",
+      "words": [
+        "natural gas storage",
+        "gas storage",
+        "storage report",
+        "inventories",
+        "working gas",
+        "bcf",
+        "gas inventories",
+        "how much gas"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "response.data[0].value",
+      "type": "number",
+      "unit_path": "response.data[0].units",
+      "window": "latest"
+    },
+    {
+      "name": "week",
+      "label": "Week ending",
+      "words": [
+        "week",
+        "latest week",
+        "report date",
+        "when",
+        "as of"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "response.data[0].period",
+      "type": "date",
+      "window": "latest"
+    },
+    {
+      "name": "weekly",
+      "label": "Storage by week",
+      "words": [
+        "trend",
+        "weekly",
+        "by week",
+        "history",
+        "last weeks",
+        "injection",
+        "build",
+        "draw"
+      ],
+      "primary": false,
+      "kind": "list",
+      "path": "response.data",
+      "row": [
+        {
+          "path": "period",
+          "label": "Week ending",
+          "type": "date"
+        },
+        {
+          "path": "value",
+          "label": "Working gas",
+          "type": "number",
+          "unit_path": "units"
+        }
+      ],
+      "axis": {
+        "cell": "period",
+        "step": "day"
+      }
+    }
+  ],
+  "sample_url": "https://api.eia.gov/v2/natural-gas/stor/wkly/data/?api_key=DEMO_KEY&frequency=weekly&data[0]=value&facets[series][]=NW2_EPG0_SWO_R48_BCF&sort[0][column]=period&sort[0][direction]=desc&length=20",
+  "checked": "2026-09-28"
+}

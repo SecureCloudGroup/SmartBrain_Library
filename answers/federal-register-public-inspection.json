@@ -1,0 +1,58 @@
+{
+  "source_id": "federal-register-public-inspection",
+  "answers": [
+    {
+      "name": "upcoming",
+      "label": "Upcoming documents",
+      "words": [
+        "upcoming federal rules",
+        "upcoming",
+        "public inspection",
+        "before publication",
+        "tomorrow",
+        "new rules",
+        "federal register"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "results",
+      "row": [
+        {
+          "path": "title",
+          "label": "Document",
+          "type": "text"
+        },
+        {
+          "path": "agency_names[0]",
+          "label": "Agency",
+          "type": "text"
+        },
+        {
+          "path": "publication_date",
+          "label": "Publishes",
+          "type": "date"
+        }
+      ],
+      "axis": {
+        "cell": "publication_date",
+        "step": "day"
+      }
+    },
+    {
+      "name": "upcoming_count",
+      "label": "Documents on public inspection",
+      "words": [
+        "how many",
+        "count",
+        "number of documents"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "count",
+      "type": "number",
+      "window": "latest"
+    }
+  ],
+  "sample_url": "https://www.federalregister.gov/api/v1/public-inspection-documents/current.json",
+  "checked": "2026-09-28"
+}

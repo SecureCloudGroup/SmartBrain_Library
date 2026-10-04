@@ -1,0 +1,53 @@
+{
+  "source_id": "geysertimes-predictions",
+  "answers": [
+    {
+      "name": "predictions",
+      "label": "Predicted eruptions",
+      "words": [
+        "next eruption",
+        "erupt",
+        "eruption",
+        "prediction",
+        "predicted",
+        "when",
+        "what time",
+        "go off",
+        "window",
+        "geyser"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "predictions",
+      "row": [
+        {
+          "path": "prediction",
+          "label": "Predicted",
+          "type": "time"
+        },
+        {
+          "path": "windowOpen",
+          "label": "Window opens",
+          "type": "time"
+        },
+        {
+          "path": "windowClose",
+          "label": "Window closes",
+          "type": "time"
+        },
+        {
+          "path": "userName",
+          "label": "Predicted by",
+          "type": "text"
+        }
+      ],
+      "may_be_empty": true,
+      "filter": {
+        "path": "geyser",
+        "equals": "{gt_id}"
+      }
+    }
+  ],
+  "sample_url": "https://www.geysertimes.org/api/v5/predictions_latest",
+  "checked": "2026-09-29"
+}

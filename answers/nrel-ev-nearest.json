@@ -1,0 +1,63 @@
+{
+  "source_id": "nrel-ev-nearest",
+  "answers": [
+    {
+      "name": "stations",
+      "label": "Nearest EV chargers",
+      "words": [
+        "ev chargers",
+        "charging stations",
+        "chargers near me",
+        "superchargers",
+        "nearest",
+        "where to charge",
+        "network",
+        "distance"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "fuel_stations",
+      "row": [
+        {
+          "path": "station_name",
+          "label": "Station",
+          "type": "text"
+        },
+        {
+          "path": "street_address",
+          "label": "Address",
+          "type": "text"
+        },
+        {
+          "path": "ev_network",
+          "label": "Network",
+          "type": "text"
+        },
+        {
+          "path": "distance",
+          "label": "Distance",
+          "type": "number",
+          "unit": "mi"
+        }
+      ],
+      "may_be_empty": true
+    },
+    {
+      "name": "total",
+      "label": "Chargers found",
+      "words": [
+        "how many",
+        "count",
+        "number of chargers",
+        "total"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "total_results",
+      "type": "number",
+      "window": "latest"
+    }
+  ],
+  "sample_url": "https://developer.nlr.gov/api/alt-fuel-stations/v1/nearest.json?api_key=DEMO_KEY&latitude=32.7765&longitude=-79.9311&fuel_type=ELEC&limit=10",
+  "checked": "2026-09-28"
+}

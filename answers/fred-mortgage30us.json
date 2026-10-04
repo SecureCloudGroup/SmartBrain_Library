@@ -1,0 +1,74 @@
+{
+ "source_id": "fred-mortgage30us",
+ "answers": [
+  {
+   "name": "latest",
+   "label": "30-year mortgage rate",
+   "kind": "value",
+   "primary": true,
+   "words": [
+    "30-year fixed mortgage rate",
+    "30-year mortgage rate",
+    "mortgage rates",
+    "30 year mortgage rate",
+    "latest",
+    "current",
+    "now",
+    "today"
+   ],
+   "path": "rows[0].MORTGAGE30US",
+   "type": "number",
+   "unit": "%",
+   "window": "latest"
+  },
+  {
+   "name": "as_of",
+   "label": "As of",
+   "kind": "value",
+   "words": [
+    "as of",
+    "when",
+    "date",
+    "last updated",
+    "updated"
+   ],
+   "path": "rows[0].observation_date",
+   "type": "date",
+   "window": "latest"
+  },
+  {
+   "name": "recent",
+   "label": "Recent readings",
+   "kind": "list",
+   "words": [
+    "recent",
+    "history",
+    "trend",
+    "past",
+    "over time",
+    "chart",
+    "last few"
+   ],
+   "path": "rows",
+   "row": [
+    {
+     "path": "observation_date",
+     "label": "Date",
+     "type": "date"
+    },
+    {
+     "path": "MORTGAGE30US",
+     "label": "30-year mortgage rate",
+     "type": "number",
+     "unit": "%"
+    }
+   ],
+   "axis": {
+    "cell": "observation_date",
+    "step": "day"
+   }
+  }
+ ],
+ "sample_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=MORTGAGE30US",
+ "checked": "2026-09-28"
+}

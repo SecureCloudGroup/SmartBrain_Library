@@ -1,0 +1,128 @@
+{
+  "source_id": "off-product",
+  "answers": [
+    {
+      "name": "product",
+      "label": "Product",
+      "words": [
+        "product",
+        "name",
+        "what is this",
+        "barcode"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "product.product_name",
+      "type": "text",
+      "window": "latest"
+    },
+    {
+      "name": "calories",
+      "label": "Calories per 100 g",
+      "words": [
+        "calories",
+        "kcal",
+        "energy",
+        "nutrition"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "product.nutriments.energy-kcal_100g",
+      "type": "number",
+      "unit_path": "product.nutriments.energy-kcal_unit",
+      "window": "latest"
+    },
+    {
+      "name": "sugars",
+      "label": "Sugars per 100 g",
+      "words": [
+        "sugar",
+        "sugars",
+        "sweet"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "product.nutriments.sugars_100g",
+      "type": "number",
+      "unit_path": "product.nutriments.sugars_unit",
+      "window": "latest"
+    },
+    {
+      "name": "fat",
+      "label": "Fat per 100 g",
+      "words": [
+        "fat",
+        "fats",
+        "fatty"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "product.nutriments.fat_100g",
+      "type": "number",
+      "unit_path": "product.nutriments.fat_unit",
+      "window": "latest"
+    },
+    {
+      "name": "protein",
+      "label": "Protein per 100 g",
+      "words": [
+        "protein",
+        "proteins",
+        "how much protein"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "product.nutriments.proteins_100g",
+      "type": "number",
+      "unit_path": "product.nutriments.proteins_unit",
+      "window": "latest"
+    },
+    {
+      "name": "salt",
+      "label": "Salt per 100 g",
+      "words": [
+        "salt",
+        "sodium",
+        "salty"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "product.nutriments.salt_100g",
+      "type": "number",
+      "unit_path": "product.nutriments.salt_unit",
+      "window": "latest"
+    },
+    {
+      "name": "brand",
+      "label": "Brand",
+      "words": [
+        "brand",
+        "maker",
+        "who makes"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "product.brands",
+      "type": "text",
+      "window": "latest"
+    },
+    {
+      "name": "nutriscore",
+      "label": "Nutri-Score grade",
+      "words": [
+        "nutri-score",
+        "nutriscore",
+        "grade",
+        "healthy",
+        "health score"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "product.nutriscore_grade",
+      "type": "text",
+      "window": "latest"
+    }
+  ],
+  "sample_url": "https://world.openfoodfacts.org/api/v2/product/3017620422003.json",
+  "checked": "2026-09-28"
+}

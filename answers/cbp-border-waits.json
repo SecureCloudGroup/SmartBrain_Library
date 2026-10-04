@@ -1,0 +1,81 @@
+{
+  "source_id": "cbp-border-waits",
+  "answers": [
+    {
+      "name": "ports",
+      "label": "Border wait times",
+      "words": [
+        "border wait",
+        "wait time",
+        "border",
+        "crossing",
+        "delay",
+        "line",
+        "car",
+        "port of entry",
+        "how long"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "items",
+      "row": [
+        {
+          "path": "port_name",
+          "label": "Port",
+          "type": "text"
+        },
+        {
+          "path": "crossing_name",
+          "label": "Crossing",
+          "type": "text"
+        },
+        {
+          "path": "passenger_vehicle_lanes.standard_lanes.delay_minutes",
+          "label": "Car wait",
+          "type": "number",
+          "unit": "min"
+        },
+        {
+          "path": "port_status",
+          "label": "Status",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "truck_waits",
+      "label": "Truck wait times",
+      "words": [
+        "truck",
+        "commercial",
+        "truck wait",
+        "freight",
+        "cargo",
+        "commercial lanes"
+      ],
+      "primary": false,
+      "kind": "list",
+      "path": "items",
+      "row": [
+        {
+          "path": "port_name",
+          "label": "Port",
+          "type": "text"
+        },
+        {
+          "path": "crossing_name",
+          "label": "Crossing",
+          "type": "text"
+        },
+        {
+          "path": "commercial_vehicle_lanes.standard_lanes.delay_minutes",
+          "label": "Truck wait",
+          "type": "number",
+          "unit": "min"
+        }
+      ]
+    }
+  ],
+  "sample_url": "https://bwt.cbp.gov/api/bwtnew",
+  "checked": "2026-09-28"
+}

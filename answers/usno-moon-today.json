@@ -1,0 +1,59 @@
+{
+  "source_id": "usno-moon-today",
+  "answers": [
+    {
+      "name": "moon_phase",
+      "label": "Moon phase",
+      "words": [
+        "moon phase",
+        "phase",
+        "moon tonight",
+        "moon today",
+        "what phase",
+        "tonight",
+        "full moon",
+        "lunar"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "properties.data.curphase",
+      "type": "text",
+      "window": "today"
+    },
+    {
+      "name": "illumination",
+      "label": "Moon illuminated",
+      "words": [
+        "illumination",
+        "how full",
+        "lit",
+        "brightness",
+        "how bright",
+        "percent"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "properties.data.fracillum",
+      "type": "text",
+      "window": "today"
+    },
+    {
+      "name": "closest_phase",
+      "label": "Nearest main phase",
+      "words": [
+        "closest phase",
+        "nearest phase",
+        "last full moon",
+        "recent phase",
+        "nearest full moon"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "properties.data.closestphase.phase",
+      "type": "text",
+      "window": "today"
+    }
+  ],
+  "sample_url": "https://aa.usno.navy.mil/api/rstt/oneday?date=2026-09-28&coords=39.83,-98.58",
+  "checked": "2026-09-28"
+}

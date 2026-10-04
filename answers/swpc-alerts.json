@@ -1,0 +1,51 @@
+{
+  "source_id": "swpc-alerts",
+  "answers": [
+    {
+      "name": "alerts",
+      "label": "Space weather alerts",
+      "words": [
+        "solar storm warning",
+        "alerts",
+        "warnings",
+        "watches",
+        "geomagnetic storm",
+        "space weather alert",
+        "solar flare"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "items",
+      "row": [
+        {
+          "path": "message",
+          "label": "Message",
+          "type": "text"
+        },
+        {
+          "path": "issue_datetime",
+          "label": "Issued (UTC)",
+          "type": "text"
+        }
+      ],
+      "may_be_empty": true
+    },
+    {
+      "name": "latest",
+      "label": "Latest alert",
+      "words": [
+        "latest",
+        "most recent",
+        "newest alert",
+        "last warning"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "items[0].message",
+      "type": "text",
+      "window": "latest"
+    }
+  ],
+  "sample_url": "https://services.swpc.noaa.gov/products/alerts.json",
+  "checked": "2026-09-28"
+}

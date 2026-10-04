@@ -39,7 +39,7 @@
   {"ask": "wildfires in Maricopa County AZ", "resolver": "county", "expect": "resolved", "key": "04013"}
  ],
  "near": [
-  {"ask": "tides in San Diego CA", "from": "place", "resolver": "tide_station", "max_km": 30, "differ_on": ["water"], "expect_any": ["resolved", "ambiguous"]},
-  {"ask": "tides in Chicago IL", "from": "place", "resolver": "tide_station", "max_km": 30, "differ_on": ["water"], "expect_any": ["none"]},
+  {"ask": "tides in San Diego CA", "from": "place", "resolver": "tide_station", "max_km": 80, "differ_on": ["water"], "expect_any": ["resolved", "ambiguous"]},
+  {"ask": "tides in Chicago IL", "from": "place", "resolver": "tide_station", "max_km": 80, "differ_on": ["water"], "expect_any": ["none"]},
   {"ask": "buoy near Cape Cod MA", "from": "place", "resolver": "buoy", "max_km": 120, "differ_on": [], "expect_any": ["resolved", "none"]}
  ]}

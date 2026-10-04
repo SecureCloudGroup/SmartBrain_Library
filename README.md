@@ -28,6 +28,7 @@ python3 -m venv .venv && .venv/bin/pip install httpx duckdb
 .venv/bin/python -m sourcetool build          # build/library.duckdb (+ search index)
 .venv/bin/python -m sourcetool lookup "tides for Charleston Harbor today"
 .venv/bin/python -m sourcetool coverage       # sources per subcategory, empty ones listed
+.venv/bin/python -m sourcetool answers-check  # fetch each answers/ sample and verify its paths (live)
 ```
 
 | Path | What |
@@ -37,6 +38,7 @@ python3 -m venv .venv && .venv/bin/pip install httpx duckdb
 | `sources/harvested/` | records harvested from open catalogs (labelled, ranked lower) |
 | `sources/suggested/` | users' suggestions, written by `sourcetool ingest` |
 | `providers/` | provider records |
+| `answers/` | which response paths answer which questions, per curated source (merged into records by `build`) |
 | `resolvers/` | lists that turn words into parameters (status pages, stations…) |
 | `sourcetool/` | the tool |
 | `service/` | the Library API the app submits votes and suggestions to ([README](service/README.md)) |

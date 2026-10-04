@@ -1,0 +1,128 @@
+{
+  "source_id": "ny-numbers-win4",
+  "answers": [
+    {
+      "name": "evening_win4",
+      "label": "Win 4 evening",
+      "words": [
+        "win 4",
+        "win four",
+        "win 4 evening",
+        "evening",
+        "tonight",
+        "results"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "items[0].evening_win_4",
+      "type": "text",
+      "window": "latest"
+    },
+    {
+      "name": "midday_win4",
+      "label": "Win 4 midday",
+      "words": [
+        "win 4 midday",
+        "midday",
+        "afternoon"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "items[0].midday_win_4",
+      "type": "text",
+      "window": "latest"
+    },
+    {
+      "name": "evening_numbers",
+      "label": "Numbers evening",
+      "words": [
+        "numbers",
+        "numbers evening",
+        "pick 3",
+        "daily numbers",
+        "evening numbers"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "items[0].evening_daily",
+      "type": "text",
+      "window": "latest"
+    },
+    {
+      "name": "midday_numbers",
+      "label": "Numbers midday",
+      "words": [
+        "numbers midday",
+        "midday numbers",
+        "pick 3 midday"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "items[0].midday_daily",
+      "type": "text",
+      "window": "latest"
+    },
+    {
+      "name": "draw_date",
+      "label": "Draw date",
+      "words": [
+        "draw date",
+        "when",
+        "which drawing",
+        "last drawing",
+        "date"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "items[0].draw_date",
+      "type": "date",
+      "window": "latest"
+    },
+    {
+      "name": "recent",
+      "label": "Recent draws",
+      "words": [
+        "recent",
+        "past draws",
+        "previous",
+        "history",
+        "last few",
+        "this week",
+        "yesterday",
+        "saturday",
+        "wednesday"
+      ],
+      "primary": false,
+      "kind": "list",
+      "path": "items",
+      "row": [
+        {
+          "path": "draw_date",
+          "label": "Draw",
+          "type": "date"
+        },
+        {
+          "path": "midday_daily",
+          "label": "Numbers midday",
+          "type": "text"
+        },
+        {
+          "path": "evening_daily",
+          "label": "Numbers evening",
+          "type": "text"
+        },
+        {
+          "path": "evening_win_4",
+          "label": "Win 4 evening",
+          "type": "text"
+        }
+      ],
+      "axis": {
+        "cell": "draw_date",
+        "step": "day"
+      }
+    }
+  ],
+  "sample_url": "https://data.ny.gov/resource/hsys-3def.json?$order=draw_date%20DESC&$limit=10",
+  "checked": "2026-09-29"
+}

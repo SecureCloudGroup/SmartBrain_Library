@@ -1,0 +1,64 @@
+{
+  "source_id": "github-advisories",
+  "answers": [
+    {
+      "name": "latest_advisory",
+      "label": "Newest advisory",
+      "words": [
+        "newest advisory",
+        "latest advisory",
+        "most recent",
+        "just published"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "items[0].summary",
+      "type": "text",
+      "window": "latest"
+    },
+    {
+      "name": "advisories",
+      "label": "Security advisories",
+      "words": [
+        "advisories",
+        "security advisories",
+        "vulnerabilities",
+        "security",
+        "cve",
+        "new advisories",
+        "latest"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "items",
+      "row": [
+        {
+          "path": "summary",
+          "label": "Advisory",
+          "type": "text"
+        },
+        {
+          "path": "severity",
+          "label": "Severity",
+          "type": "text"
+        },
+        {
+          "path": "published_at",
+          "label": "Published",
+          "type": "time"
+        },
+        {
+          "path": "ghsa_id",
+          "label": "GHSA id",
+          "type": "text"
+        }
+      ],
+      "axis": {
+        "cell": "published_at",
+        "step": "hour"
+      }
+    }
+  ],
+  "sample_url": "https://api.github.com/advisories?per_page=20&type=reviewed",
+  "checked": "2026-09-28"
+}

@@ -1,0 +1,61 @@
+{
+ "source_id": "kcm-alerts",
+ "answers": [
+  {
+   "name": "alerts",
+   "label": "King County Metro alerts",
+   "kind": "list",
+   "primary": true,
+   "words": [
+    "delays",
+    "delay",
+    "advisory",
+    "advisories",
+    "service alert",
+    "alerts",
+    "running",
+    "disruption",
+    "status",
+    "is it running",
+    "detour",
+    "detours",
+    "bus",
+    "link light rail"
+   ],
+   "path": "entity",
+   "row": [
+    {
+     "path": "alert.header_text.translation[0].text",
+     "label": "Alert",
+     "type": "text"
+    },
+    {
+     "path": "alert.effect",
+     "label": "Effect",
+     "type": "text"
+    },
+    {
+     "path": "alert.active_period[0].start",
+     "label": "Since",
+     "type": "time"
+    }
+   ],
+   "may_be_empty": true
+  },
+  {
+   "name": "count",
+   "label": "Alerts in effect",
+   "kind": "value",
+   "words": [
+    "how many",
+    "number of alerts",
+    "count"
+   ],
+   "path": "entity",
+   "type": "count",
+   "window": "now"
+  }
+ ],
+ "sample_url": "https://s3.amazonaws.com/kcm-alerts-realtime-prod/alerts_pb.json",
+ "checked": "2026-09-29"
+}

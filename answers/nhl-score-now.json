@@ -1,0 +1,65 @@
+{
+  "source_id": "nhl-score-now",
+  "answers": [
+    {
+      "name": "games",
+      "label": "Games",
+      "words": [
+        "hockey scores",
+        "games tonight",
+        "games",
+        "scores",
+        "tonight",
+        "today",
+        "nhl games",
+        "who plays"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "games",
+      "row": [
+        {
+          "path": "awayTeam.name.default",
+          "label": "Away",
+          "type": "text"
+        },
+        {
+          "path": "homeTeam.name.default",
+          "label": "Home",
+          "type": "text"
+        },
+        {
+          "path": "startTimeUTC",
+          "label": "Start",
+          "type": "time"
+        },
+        {
+          "path": "gameState",
+          "label": "State",
+          "type": "text"
+        }
+      ],
+      "may_be_empty": true,
+      "axis": {
+        "cell": "startTimeUTC",
+        "step": "hour"
+      }
+    },
+    {
+      "name": "current_date",
+      "label": "Date",
+      "words": [
+        "date",
+        "day",
+        "which day"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "currentDate",
+      "type": "date",
+      "window": "today"
+    }
+  ],
+  "sample_url": "https://api-web.nhle.com/v1/score/now",
+  "checked": "2026-09-28"
+}

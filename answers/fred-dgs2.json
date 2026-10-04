@@ -1,0 +1,72 @@
+{
+ "source_id": "fred-dgs2",
+ "answers": [
+  {
+   "name": "latest",
+   "label": "2-year Treasury yield",
+   "kind": "value",
+   "primary": true,
+   "words": [
+    "2-year treasury yield",
+    "2 year yield",
+    "latest",
+    "current",
+    "now",
+    "today"
+   ],
+   "path": "rows[0].DGS2",
+   "type": "number",
+   "unit": "%",
+   "window": "latest"
+  },
+  {
+   "name": "as_of",
+   "label": "As of",
+   "kind": "value",
+   "words": [
+    "as of",
+    "when",
+    "date",
+    "last updated",
+    "updated"
+   ],
+   "path": "rows[0].observation_date",
+   "type": "date",
+   "window": "latest"
+  },
+  {
+   "name": "recent",
+   "label": "Recent readings",
+   "kind": "list",
+   "words": [
+    "recent",
+    "history",
+    "trend",
+    "past",
+    "over time",
+    "chart",
+    "last few"
+   ],
+   "path": "rows",
+   "row": [
+    {
+     "path": "observation_date",
+     "label": "Date",
+     "type": "date"
+    },
+    {
+     "path": "DGS2",
+     "label": "2-year Treasury yield",
+     "type": "number",
+     "unit": "%"
+    }
+   ],
+   "axis": {
+    "cell": "observation_date",
+    "step": "day"
+   }
+  }
+ ],
+ "sample_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS2",
+ "checked": "2026-09-28"
+}

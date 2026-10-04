@@ -1,0 +1,66 @@
+{
+  "source_id": "inaturalist-nearby",
+  "answers": [
+    {
+      "name": "observations",
+      "label": "Recent observations",
+      "words": [
+        "wildlife",
+        "animals",
+        "plants",
+        "species",
+        "seen",
+        "sightings",
+        "observations",
+        "nature",
+        "near me"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "results",
+      "row": [
+        {
+          "path": "taxon.preferred_common_name",
+          "label": "Species",
+          "type": "text"
+        },
+        {
+          "path": "taxon.name",
+          "label": "Scientific name",
+          "type": "text"
+        },
+        {
+          "path": "observed_on",
+          "label": "Observed",
+          "type": "date"
+        },
+        {
+          "path": "place_guess",
+          "label": "Where",
+          "type": "text"
+        }
+      ],
+      "axis": {
+        "cell": "observed_on",
+        "step": "day"
+      }
+    },
+    {
+      "name": "observation_count",
+      "label": "Observations nearby",
+      "words": [
+        "how many",
+        "count",
+        "total",
+        "number of sightings"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "total_results",
+      "type": "number",
+      "window": "latest"
+    }
+  ],
+  "sample_url": "https://api.inaturalist.org/v1/observations?lat=32.7765&lng=-79.9311&radius=10&order_by=observed_on&per_page=20",
+  "checked": "2026-09-28"
+}

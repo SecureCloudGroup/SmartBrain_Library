@@ -1,0 +1,152 @@
+{
+  "source_id": "ndbc-buoy-realtime",
+  "answers": [
+    {
+      "name": "wind_speed",
+      "label": "Wind speed",
+      "words": [
+        "wind",
+        "windy",
+        "breeze",
+        "wind speed",
+        "gusts"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "rows[0].WSPD",
+      "type": "number",
+      "unit": "m/s",
+      "window": "now",
+      "measure": "wind"
+    },
+    {
+      "name": "water_temp",
+      "label": "Water temperature",
+      "words": [
+        "water temperature",
+        "water temp",
+        "sea temperature",
+        "ocean temperature",
+        "how warm is the water"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "rows[0].WTMP",
+      "type": "number",
+      "unit": "°C",
+      "window": "now",
+      "measure": "water_temp"
+    },
+    {
+      "name": "air_temp",
+      "label": "Air temperature",
+      "words": [
+        "air temperature",
+        "air temp",
+        "temperature",
+        "offshore temperature",
+        "temp"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "rows[0].ATMP",
+      "type": "number",
+      "unit": "°C",
+      "window": "now",
+      "measure": "temperature"
+    },
+    {
+      "name": "gust",
+      "label": "Wind gust",
+      "words": [
+        "gust",
+        "gusts",
+        "wind gust",
+        "peak wind",
+        "gusty"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "rows[0].GST",
+      "type": "number",
+      "unit": "m/s",
+      "window": "now",
+      "measure": "wind"
+    },
+    {
+      "name": "wind_dir",
+      "label": "Wind direction",
+      "words": [
+        "wind direction",
+        "wind from",
+        "direction",
+        "heading"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "rows[0].WDIR",
+      "type": "number",
+      "unit": "°",
+      "window": "now"
+    },
+    {
+      "name": "pressure",
+      "label": "Pressure",
+      "words": [
+        "pressure",
+        "barometer",
+        "barometric",
+        "hpa",
+        "millibars"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "rows[0].PRES",
+      "type": "number",
+      "unit": "hPa",
+      "window": "now"
+    },
+    {
+      "name": "recent",
+      "label": "Recent observations (UTC hour)",
+      "words": [
+        "recent",
+        "trend",
+        "history",
+        "last few hours",
+        "observations",
+        "offshore conditions"
+      ],
+      "primary": false,
+      "kind": "list",
+      "path": "rows",
+      "row": [
+        {
+          "path": "hh",
+          "label": "Hour (UTC)",
+          "type": "number"
+        },
+        {
+          "path": "GST",
+          "label": "Gust",
+          "type": "number",
+          "unit": "m/s"
+        },
+        {
+          "path": "WSPD",
+          "label": "Wind",
+          "type": "number",
+          "unit": "m/s"
+        },
+        {
+          "path": "WTMP",
+          "label": "Water temp",
+          "type": "number",
+          "unit": "°C"
+        }
+      ]
+    }
+  ],
+  "sample_url": "https://www.ndbc.noaa.gov/data/realtime2/41004.txt",
+  "checked": "2026-09-29"
+}

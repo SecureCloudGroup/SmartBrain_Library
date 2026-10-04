@@ -1,0 +1,74 @@
+{
+  "source_id": "sec-submissions",
+  "answers": [
+    {
+      "name": "filings",
+      "label": "Recent filings",
+      "words": [
+        "filings",
+        "latest filings",
+        "sec filings",
+        "10-k",
+        "10-q",
+        "8-k",
+        "filed",
+        "reports",
+        "annual report",
+        "quarterly report",
+        "edgar"
+      ],
+      "primary": true,
+      "kind": "columns",
+      "columns": [
+        {
+          "path": "filings.recent.filingDate",
+          "label": "Filed",
+          "type": "text"
+        },
+        {
+          "path": "filings.recent.form",
+          "label": "Form",
+          "type": "text"
+        },
+        {
+          "path": "filings.recent.primaryDocDescription",
+          "label": "Document",
+          "type": "text"
+        }
+      ],
+      "limit": 10
+    },
+    {
+      "name": "company",
+      "label": "Company",
+      "words": [
+        "company",
+        "name",
+        "who",
+        "registrant"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "name",
+      "type": "text",
+      "window": "latest"
+    },
+    {
+      "name": "industry",
+      "label": "Industry",
+      "words": [
+        "industry",
+        "sector",
+        "sic",
+        "business"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "sicDescription",
+      "type": "text",
+      "window": "latest"
+    }
+  ],
+  "sample_url": "https://data.sec.gov/submissions/CIK0000320193.json",
+  "checked": "2026-09-28"
+}

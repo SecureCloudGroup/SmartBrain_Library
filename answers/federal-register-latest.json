@@ -1,0 +1,73 @@
+{
+  "source_id": "federal-register-latest",
+  "answers": [
+    {
+      "name": "documents",
+      "label": "Latest documents",
+      "words": [
+        "new rules",
+        "rules",
+        "federal register",
+        "regulations",
+        "notices",
+        "proposed rule",
+        "latest",
+        "today"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "results",
+      "row": [
+        {
+          "path": "title",
+          "label": "Document",
+          "type": "text"
+        },
+        {
+          "path": "type",
+          "label": "Type",
+          "type": "text"
+        },
+        {
+          "path": "publication_date",
+          "label": "Published",
+          "type": "date"
+        }
+      ],
+      "axis": {
+        "cell": "publication_date",
+        "step": "day"
+      }
+    },
+    {
+      "name": "newest",
+      "label": "Newest document",
+      "words": [
+        "newest",
+        "latest document",
+        "most recent"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "results[0].title",
+      "type": "text",
+      "window": "latest"
+    },
+    {
+      "name": "newest_date",
+      "label": "Newest published",
+      "words": [
+        "when",
+        "date",
+        "published"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "results[0].publication_date",
+      "type": "date",
+      "window": "latest"
+    }
+  ],
+  "sample_url": "https://www.federalregister.gov/api/v1/documents.json?per_page=20&order=newest&conditions[agencies][]=environmental-protection-agency",
+  "checked": "2026-09-28"
+}

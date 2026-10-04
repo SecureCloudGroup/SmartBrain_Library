@@ -1,0 +1,77 @@
+{
+  "source_id": "fred-inflation-rate",
+  "answers": [
+    {
+      "name": "rate",
+      "label": "Inflation rate (year over year)",
+      "words": [
+        "inflation",
+        "inflation rate",
+        "current inflation",
+        "cpi inflation",
+        "prices rising",
+        "cost of living",
+        "annual inflation",
+        "rate"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "rows[0].CPIAUCSL_PC1",
+      "type": "number",
+      "unit": "%",
+      "window": "latest"
+    },
+    {
+      "name": "as_of",
+      "label": "As of month",
+      "words": [
+        "as of",
+        "month",
+        "latest month",
+        "when",
+        "date"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "rows[0].observation_date",
+      "type": "date",
+      "window": "latest"
+    },
+    {
+      "name": "recent",
+      "label": "Inflation by month",
+      "words": [
+        "trend",
+        "history",
+        "by month",
+        "monthly",
+        "recent months",
+        "over time",
+        "this year",
+        "last year"
+      ],
+      "primary": false,
+      "kind": "list",
+      "path": "rows",
+      "row": [
+        {
+          "path": "observation_date",
+          "label": "Month",
+          "type": "date"
+        },
+        {
+          "path": "CPIAUCSL_PC1",
+          "label": "Inflation rate",
+          "type": "number",
+          "unit": "%"
+        }
+      ],
+      "axis": {
+        "cell": "observation_date",
+        "step": "day"
+      }
+    }
+  ],
+  "sample_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=CPIAUCSL&transformation=pc1",
+  "checked": "2026-09-28"
+}

@@ -1,0 +1,72 @@
+{
+ "source_id": "fred-vixcls",
+ "answers": [
+  {
+   "name": "latest",
+   "label": "VIX volatility index (close)",
+   "kind": "value",
+   "primary": true,
+   "words": [
+    "vix volatility index",
+    "vix volatility index (close)",
+    "vix",
+    "market fear index",
+    "latest",
+    "current",
+    "now",
+    "today"
+   ],
+   "path": "rows[0].VIXCLS",
+   "type": "number",
+   "window": "latest"
+  },
+  {
+   "name": "as_of",
+   "label": "As of",
+   "kind": "value",
+   "words": [
+    "as of",
+    "when",
+    "date",
+    "last updated",
+    "updated"
+   ],
+   "path": "rows[0].observation_date",
+   "type": "date",
+   "window": "latest"
+  },
+  {
+   "name": "recent",
+   "label": "Recent readings",
+   "kind": "list",
+   "words": [
+    "recent",
+    "history",
+    "trend",
+    "past",
+    "over time",
+    "chart",
+    "last few"
+   ],
+   "path": "rows",
+   "row": [
+    {
+     "path": "observation_date",
+     "label": "Date",
+     "type": "date"
+    },
+    {
+     "path": "VIXCLS",
+     "label": "VIX volatility index (close)",
+     "type": "number"
+    }
+   ],
+   "axis": {
+    "cell": "observation_date",
+    "step": "day"
+   }
+  }
+ ],
+ "sample_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=VIXCLS",
+ "checked": "2026-09-28"
+}

@@ -1,0 +1,59 @@
+{
+  "source_id": "coops-stations-tide",
+  "answers": [
+    {
+      "name": "stations",
+      "label": "Tide stations",
+      "words": [
+        "tide stations",
+        "stations",
+        "near me",
+        "list",
+        "where",
+        "tide gauge"
+      ],
+      "primary": true,
+      "kind": "list",
+      "path": "stations",
+      "row": [
+        {
+          "path": "name",
+          "label": "Station",
+          "type": "text"
+        },
+        {
+          "path": "state",
+          "label": "State",
+          "type": "text"
+        },
+        {
+          "path": "lat",
+          "label": "Latitude",
+          "type": "number"
+        },
+        {
+          "path": "lng",
+          "label": "Longitude",
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "name": "station_count",
+      "label": "Tide stations",
+      "words": [
+        "how many",
+        "count",
+        "number of stations",
+        "total"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "stations",
+      "type": "count",
+      "window": "latest"
+    }
+  ],
+  "sample_url": "https://api.tidesandcurrents.noaa.gov/mdapi/prod/webapi/stations.json?type=tidepredictions",
+  "checked": "2026-09-28"
+}

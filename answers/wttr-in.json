@@ -1,0 +1,222 @@
+{
+  "source_id": "wttr-in",
+  "answers": [
+    {
+      "name": "temperature",
+      "label": "Temperature",
+      "words": [
+        "temperature",
+        "temp",
+        "degrees",
+        "hot",
+        "cold",
+        "warm",
+        "how hot",
+        "how cold",
+        "now",
+        "current"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "current_condition[0].temp_F",
+      "type": "number",
+      "unit": "°F",
+      "window": "now",
+      "measure": "temperature"
+    },
+    {
+      "name": "conditions",
+      "label": "Conditions",
+      "words": [
+        "conditions",
+        "sky",
+        "sunny",
+        "cloudy",
+        "clear",
+        "outside",
+        "what's it like",
+        "weather now"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "current_condition[0].weatherDesc[0].value",
+      "type": "text",
+      "window": "now",
+      "measure": "conditions"
+    },
+    {
+      "name": "high_today",
+      "label": "High today",
+      "words": [
+        "high",
+        "high today",
+        "max",
+        "maximum",
+        "how hot today",
+        "warmest"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "weather[0].maxtempF",
+      "type": "number",
+      "unit": "°F",
+      "window": "today",
+      "measure": "temperature"
+    },
+    {
+      "name": "low_today",
+      "label": "Low today",
+      "words": [
+        "low",
+        "low today",
+        "min",
+        "minimum",
+        "coldest",
+        "overnight low"
+      ],
+      "primary": true,
+      "kind": "value",
+      "path": "weather[0].mintempF",
+      "type": "number",
+      "unit": "°F",
+      "window": "today",
+      "measure": "temperature"
+    },
+    {
+      "name": "feels_like",
+      "label": "Feels like",
+      "words": [
+        "feels like",
+        "apparent temperature",
+        "heat index",
+        "wind chill",
+        "real feel"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "current_condition[0].FeelsLikeF",
+      "type": "number",
+      "unit": "°F",
+      "window": "now",
+      "measure": "feels_like"
+    },
+    {
+      "name": "humidity",
+      "label": "Humidity",
+      "words": [
+        "humidity",
+        "humid",
+        "muggy",
+        "sticky",
+        "damp"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "current_condition[0].humidity",
+      "type": "number",
+      "unit": "%",
+      "window": "now",
+      "measure": "humidity"
+    },
+    {
+      "name": "wind",
+      "label": "Wind speed",
+      "words": [
+        "wind",
+        "windy",
+        "breeze",
+        "wind speed",
+        "gusts"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "current_condition[0].windspeedMiles",
+      "type": "number",
+      "unit": "mph",
+      "window": "now",
+      "measure": "wind"
+    },
+    {
+      "name": "rain_today",
+      "label": "Rain chance today (3 PM)",
+      "words": [
+        "rain",
+        "rain chance",
+        "chance of rain",
+        "precipitation",
+        "umbrella",
+        "showers",
+        "rain today"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "weather[0].hourly[5].chanceofrain",
+      "type": "number",
+      "unit": "%",
+      "window": "today",
+      "measure": "precip_chance"
+    },
+    {
+      "name": "rain_tomorrow",
+      "label": "Rain chance tomorrow (3 PM)",
+      "words": [
+        "tomorrow",
+        "rain tomorrow",
+        "chance of rain tomorrow",
+        "will it rain tomorrow",
+        "umbrella tomorrow"
+      ],
+      "primary": false,
+      "kind": "value",
+      "path": "weather[1].hourly[5].chanceofrain",
+      "type": "number",
+      "unit": "%",
+      "window": "tomorrow",
+      "measure": "precip_chance"
+    },
+    {
+      "name": "daily_forecast",
+      "label": "3-day forecast",
+      "words": [
+        "forecast",
+        "this week",
+        "7 day",
+        "week",
+        "weekend",
+        "next few days",
+        "daily forecast",
+        "outlook"
+      ],
+      "primary": false,
+      "kind": "list",
+      "path": "weather",
+      "row": [
+        {
+          "path": "date",
+          "label": "Day",
+          "type": "text"
+        },
+        {
+          "path": "maxtempF",
+          "label": "High",
+          "type": "number",
+          "unit": "°F"
+        },
+        {
+          "path": "mintempF",
+          "label": "Low",
+          "type": "number",
+          "unit": "°F"
+        },
+        {
+          "path": "hourly[5].chanceofrain",
+          "label": "Rain chance (3 PM)",
+          "type": "number",
+          "unit": "%"
+        }
+      ]
+    }
+  ],
+  "sample_url": "https://wttr.in/Charleston?format=j1",
+  "checked": "2026-09-28"
+}

@@ -1,0 +1,201 @@
+{
+ "url": "https://aviationweather.gov/api/data/taf?ids=KCHS&format=json",
+ "fetched": "2026-10-03T17:23:26Z",
+ "sample": [
+  {
+   "icaoId": "KCHS",
+   "dbPopTime": "2026-10-03T11:28:25.609Z",
+   "bulletinTime": "2026-10-03T11:28:00.000Z",
+   "issueTime": "2026-10-03T11:28:00.000Z",
+   "validTimeFrom": 1791028800,
+   "validTimeTo": 1791115200,
+   "rawTAF": "TAF KCHS 031128Z 0312/0412 VRB03KT P6SM SCT060 BKN100 FM031400 17005KT P6SM VCSH SCT035 BKN050 PROB30 0317/0323 4SM SHRA BR OVC035 FM040000 15004KT P6SM SCT030 BKN100 PROB30 0402/0408 4SM -SHRA BR BKN030 FM040800 VRB03KT P6SM -RA BKN035",
+   "mostRecent": 1,
+   "remarks": "",
+   "lat": 32.89945,
+   "lon": -80.0407,
+   "elev": 12,
+   "prior": 1,
+   "name": "Charleston Intl",
+   "fcsts": [
+    {
+     "timeFrom": 1791028800,
+     "timeTo": 1791036000,
+     "timeBec": null,
+     "fcstChange": null,
+     "probability": null,
+     "wdir": "VRB",
+     "wspd": 3,
+     "wgst": null,
+     "wshearHgt": null,
+     "wshearDir": null,
+     "wshearSpd": null,
+     "visib": "6+",
+     "altim": null,
+     "vertVis": null,
+     "wxString": null,
+     "notDecoded": null,
+     "clouds": [
+      {
+       "cover": "SCT",
+       "base": 6000,
+       "type": null
+      },
+      {
+       "cover": "BKN",
+       "base": 10000,
+       "type": null
+      }
+     ],
+     "icgTurb": [],
+     "temp": []
+    },
+    {
+     "timeFrom": 1791036000,
+     "timeTo": 1791072000,
+     "timeBec": null,
+     "fcstChange": "FM",
+     "probability": null,
+     "wdir": 170,
+     "wspd": 5,
+     "wgst": null,
+     "wshearHgt": null,
+     "wshearDir": null,
+     "wshearSpd": null,
+     "visib": "6+",
+     "altim": null,
+     "vertVis": null,
+     "wxString": "VCSH",
+     "notDecoded": null,
+     "clouds": [
+      {
+       "cover": "SCT",
+       "base": 3500,
+       "type": null
+      },
+      {
+       "cover": "BKN",
+       "base": 5000,
+       "type": null
+      }
+     ],
+     "icgTurb": [],
+     "temp": []
+    },
+    {
+     "timeFrom": 1791046800,
+     "timeTo": 1791068400,
+     "timeBec": null,
+     "fcstChange": "PROB",
+     "probability": 30,
+     "wdir": null,
+     "wspd": null,
+     "wgst": null,
+     "wshearHgt": null,
+     "wshearDir": null,
+     "wshearSpd": null,
+     "visib": 4,
+     "altim": null,
+     "vertVis": null,
+     "wxString": "SHRA BR",
+     "notDecoded": null,
+     "clouds": [
+      {
+       "cover": "OVC",
+       "base": 3500,
+       "type": null
+      }
+     ],
+     "icgTurb": [],
+     "temp": []
+    },
+    {
+     "timeFrom": 1791072000,
+     "timeTo": 1791100800,
+     "timeBec": null,
+     "fcstChange": "FM",
+     "probability": null,
+     "wdir": 150,
+     "wspd": 4,
+     "wgst": null,
+     "wshearHgt": null,
+     "wshearDir": null,
+     "wshearSpd": null,
+     "visib": "6+",
+     "altim": null,
+     "vertVis": null,
+     "wxString": null,
+     "notDecoded": null,
+     "clouds": [
+      {
+       "cover": "SCT",
+       "base": 3000,
+       "type": null
+      },
+      {
+       "cover": "BKN",
+       "base": 10000,
+       "type": null
+      }
+     ],
+     "icgTurb": [],
+     "temp": []
+    },
+    {
+     "timeFrom": 1791079200,
+     "timeTo": 1791100800,
+     "timeBec": null,
+     "fcstChange": "PROB",
+     "probability": 30,
+     "wdir": null,
+     "wspd": null,
+     "wgst": null,
+     "wshearHgt": null,
+     "wshearDir": null,
+     "wshearSpd": null,
+     "visib": 4,
+     "altim": null,
+     "vertVis": null,
+     "wxString": "-SHRA BR",
+     "notDecoded": null,
+     "clouds": [
+      {
+       "cover": "BKN",
+       "base": 3000,
+       "type": null
+      }
+     ],
+     "icgTurb": [],
+     "temp": []
+    },
+    {
+     "timeFrom": 1791100800,
+     "timeTo": 1791115200,
+     "timeBec": null,
+     "fcstChange": "FM",
+     "probability": null,
+     "wdir": "VRB",
+     "wspd": 3,
+     "wgst": null,
+     "wshearHgt": null,
+     "wshearDir": null,
+     "wshearSpd": null,
+     "visib": "6+",
+     "altim": null,
+     "vertVis": null,
+     "wxString": "-RA",
+     "notDecoded": null,
+     "clouds": [
+      {
+       "cover": "BKN",
+       "base": 3500,
+       "type": null
+      }
+     ],
+     "icgTurb": [],
+     "temp": []
+    }
+   ]
+  }
+ ]
+}
