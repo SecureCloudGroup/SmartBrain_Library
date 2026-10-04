@@ -59,7 +59,8 @@ _EIGHT_BIT = {"latin-1": "latin-1", "latin1": "latin-1", "iso-8859-1": "latin-1"
 
 def decode_body(content: bytes, content_type: str = "") -> str:
     """BOM -> declared charset -> UTF-8. A declared 8-bit charset over valid UTF-8 is a wrong header; UTF-16
-    without a BOM takes its byte order from where the NULs sit. Never raises."""
+    without a BOM takes its byte order from where the NULs sit (a dense one-parity run — a stray NUL in a
+    UTF-8 body is not UTF-16, F8 2026-10-04). Never raises."""
     for bom, codec in _BOMS:
         if content.startswith(bom):
             return content[len(bom):].decode(codec, "replace")
@@ -68,19 +69,39 @@ def decode_body(content: bytes, content_type: str = "") -> str:
         name, _, value = part.strip().partition("=")
         if name.strip().lower() == "charset":
             declared = value.strip().strip("'\"").lower()
-    if declared in _UTF16 or (not declared and b"\x00" in content[:64]):
-        head = content[:64]
-        even = sum(1 for i in range(0, len(head), 2) if head[i] == 0)
-        odd = sum(1 for i in range(1, len(head), 2) if head[i] == 0)
-        order = _UTF16.get(declared) or (None if even == odd else "utf-16-be" if even > odd else "utf-16-le")
+    if declared in _UTF16:
+        order = _UTF16.get(declared) or _utf16_order(content)
         if order:
             return content.decode(order, "replace")
+    elif not declared:
+        order = _utf16_order(content)
+        if order:
+            try:
+                return content.decode(order)  # strict: a clean UTF-16 decode confirms the guess
+            except UnicodeDecodeError:
+                pass
     if declared in _EIGHT_BIT:
         try:
             return content.decode("utf-8")
         except UnicodeDecodeError:
             return content.decode(_EIGHT_BIT[declared], "replace")
     return content.decode("utf-8", "replace")
+
+
+def _utf16_order(content: bytes) -> str | None:
+    """Byte order of BOM-less UTF-16 text, from where its NULs sit (ASCII in UTF-16 has one NUL per
+    character); None when the head shows no such pattern or the run is too sparse (<25% of the head)."""
+    head = content[:64]
+    if not head:
+        return None
+    even = sum(1 for i in range(0, len(head), 2) if head[i] == 0)
+    odd = sum(1 for i in range(1, len(head), 2) if head[i] == 0)
+    min_nuls = max(len(head) // 4, 1)
+    if even >= min_nuls and even > odd:
+        return "utf-16-be"
+    if odd >= min_nuls and odd > even:
+        return "utf-16-le"
+    return None
 
 _last_hit: dict[str, float] = {}
 _host_locks: dict[str, threading.Lock] = {}

@@ -67,6 +67,88 @@ def _private_ip(host: str) -> bool:
         return False  # a host name, not an IP literal
 
 
+def _is_ip_literal(host: str) -> bool:
+    """``host`` is an IP address (any family), not a DNS name."""
+    try:
+        ipaddress.ip_address(host.strip("[]"))
+        return True
+    except ValueError:
+        return False
+
+
+def resolver_host_value_problems(record: dict, *, inline_rows: dict | None = None) -> list[str]:
+    """Every resolver value filling a host-position ``{param}`` must itself be a safe host — no credential
+    (``@``), explicit port, query/fragment, or IP literal — else the inflated URL smuggles a target past
+    the url_template check (F3 2026-10-04).
+
+    ``inline_rows`` is a {resolver_name: [rows]} map tests use to supply resolver rows without a file."""
+    assert isinstance(record, dict), "record required"
+    assert inline_rows is None or isinstance(inline_rows, dict), "inline_rows must be a dict or None"
+    access = record.get("access") or {}
+    template = access.get("url_template") or ""
+    if not template:
+        return []
+    try:
+        host_tok = urlsplit(template).netloc
+    except ValueError:
+        return []
+    match = re.fullmatch(r"\{([a-z_][a-z0-9_]*)\}", host_tok)
+    if match is None:
+        return []
+    param_name = match.group(1)
+    fill = next((p.get("fill") or {} for p in (access.get("params") or [])
+                 if p.get("name") == param_name), {})
+    if (fill.get("from") or "") != "resolver":
+        return []
+    name = fill.get("resolver") or ""
+    field = fill.get("field") or "key"
+    rows = _resolver_rows(name, inline_rows)
+    bad: list[str] = []
+    seen = 0
+    for row in rows[:5000]:  # bounded scan
+        seen += 1
+        value = row.get(field)
+        if not isinstance(value, str) or not value:
+            continue
+        bad += [f"{name}.{field}={value!r}: {m}" for m in _host_value_problems(value)]
+    assert seen or not rows, "rows must be scanned"
+    return bad
+
+
+def _resolver_rows(name: str, inline_rows: dict | None) -> list[dict]:
+    """Resolver rows by name — ``inline_rows`` (tests) wins, else read the jsonl table."""
+    assert isinstance(name, str), "name must be a string"
+    if inline_rows is not None and name in inline_rows:
+        return list(inline_rows[name])
+    if not name:
+        return []
+    from .common import read_jsonl  # lazy: schema stays import-light
+    path = ROOT / "resolvers" / f"{name}.jsonl"
+    if not path.exists():
+        return []
+    return read_jsonl(path)
+
+
+def _host_value_problems(value: str) -> list[str]:
+    """Problems with a bare host-position value inflated as ``https://<value>``."""
+    assert isinstance(value, str), "value must be a string"
+    out = url_problems("https://" + value)
+    if "@" in value.split("/", 1)[0]:
+        out.append("userinfo in host")
+    try:
+        parsed = urlsplit("https://" + value)
+        if parsed.port is not None:
+            out.append("explicit port in host")
+    except ValueError:
+        out.append("not a valid address")
+    first = value.split("/", 1)[0]
+    if "#" in value or "?" in first:  # a path may carry its query (feeds: ?outputType=xml)
+        out.append("query or fragment in host position")
+    if _is_ip_literal(first):
+        out.append("IP literal in host position")
+    return list(dict.fromkeys(out))
+
+
 def validate_record(r: dict) -> list[str]:
     """Return a list of problems; an empty list means the record is well-formed."""
     errs: list[str] = []

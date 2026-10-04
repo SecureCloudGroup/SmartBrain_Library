@@ -15,7 +15,7 @@ import pytest
 from sourcetool.answers import (ANSWERS, AXIS_STEPS, MEASURES, WINDOWS, answer_lints, answer_problems,
                                 check_sample, params_of)
 from sourcetool.common import ROOT, SOURCES, read_jsonl
-from sourcetool.schema import validate_record
+from sourcetool.schema import resolver_host_value_problems, validate_record
 
 FIXTURES = ROOT / "tests" / "fixtures" / "records"
 RECORDS = {r["id"]: r for r in read_jsonl(SOURCES / "curated" / "core.jsonl")}
@@ -94,6 +94,30 @@ def test_answers_files_pass_the_schema_and_the_lints():
 def test_changed_and_new_records_are_well_formed():
     for sid in NEW + ("open-meteo-forecast", "open-meteo-marine", "mlb-standings", "nhl-standings-now"):
         assert validate_record(RECORDS[sid]) == [], sid
+
+
+# F3 (review 2026-10-04): a resolver value that fills a host position must itself be a safe host — no
+# credential (@), explicit port, query/fragment, or IP literal — else the inflated URL smuggles a target
+# past the record-time check.
+def test_resolver_host_check_catches_an_at_credential_port_and_fragment():
+    rec = {"id": "fake", "access": {"url_template": "https://{feed}", "params": [
+        {"name": "feed", "fill": {"from": "resolver", "resolver": "__inline__", "field": "key"}}]}}
+    bad = resolver_host_value_problems(rec, inline_rows={"__inline__": [
+        {"key": "news.example.com@evil"},
+        {"key": "ok.example.com:81/x"},
+        {"key": "ok.example.com?q=1"},
+        {"key": "feeds.example.com/arc/outboundfeeds/rss/?outputType=xml"},
+        {"key": "ok.example.com/path#frag"},
+        {"key": "203.0.113.9"},
+        {"key": "ok.example.com/rss"}]})
+    tokens = ("@evil", ":81", "?q=1", "#frag", "203.0.113.9")
+    hits = {tok for tok in tokens for b in bad if tok in b}
+    assert hits == set(tokens), hits
+    assert not [b for b in bad if "outputType" in b], bad  # a feed path keeps its query
+    # A url_template without a host-position {param} is out of scope: no false positives.
+    out_of_scope = {"id": "x", "access": {"url_template": "https://api.example.com/x?p={q}",
+                                            "params": [{"name": "q", "fill": {"from": "text"}}]}}
+    assert resolver_host_value_problems(out_of_scope) == []
 
 
 # --- weather: tonight, phenomena, alerts --------------------------------------------------------------
