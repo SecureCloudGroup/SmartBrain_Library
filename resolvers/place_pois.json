@@ -1,0 +1,23 @@
+{
+ "description": "Reviewed points of interest people name instead of their town, added by `sourcetool resolvers place` as reviewed nicknames of the Census place that serves them (an alias, and listed in attrs.nicknames so the app takes one as the ask's place on its own). Ski areas first: \"snow forecast Mammoth Mountain\" is Mammoth Lakes, CA, never Mountain City, TN. A name that is already a place's own name or alias (\"Beaver Creek\", \"Kirkwood\", \"Sugarloaf\", \"Whiteface\") is not listed; a resort whose town is not a Census place (Killington, Alyeska, Sugarbush) is left out until it has a `points` entry.",
+ "entries": [
+  {"type": "ski_area", "place": "Mammoth Lakes", "state": "CA", "names": ["Mammoth Mountain", "Mammoth Mountain Ski Area"]},
+  {"type": "ski_area", "place": "South Lake Tahoe", "state": "CA", "names": ["Heavenly Mountain", "Heavenly Ski Resort"]},
+  {"type": "ski_area", "place": "Truckee", "state": "CA", "names": ["Northstar California", "Northstar Tahoe"]},
+  {"type": "ski_area", "place": "Big Bear Lake", "state": "CA", "names": ["Big Bear Mountain", "Snow Summit", "Bear Mountain Resort"]},
+  {"type": "ski_area", "place": "Snowmass Village", "state": "CO", "names": ["Snowmass", "Aspen Snowmass"]},
+  {"type": "ski_area", "place": "Keystone", "state": "CO", "names": ["Arapahoe Basin", "A-Basin"]},
+  {"type": "ski_area", "place": "Park City", "state": "UT", "names": ["Deer Valley", "Park City Mountain"]},
+  {"type": "ski_area", "place": "Eden", "state": "UT", "names": ["Powder Mountain"]},
+  {"type": "ski_area", "place": "Whitefish", "state": "MT", "names": ["Whitefish Mountain", "Whitefish Mountain Resort"]},
+  {"type": "ski_area", "place": "Bend", "state": "OR", "names": ["Mount Bachelor", "Mt Bachelor"]},
+  {"type": "ski_area", "place": "Government Camp", "state": "OR", "names": ["Mt Hood Meadows", "Mount Hood Meadows", "Timberline Lodge"]},
+  {"type": "ski_area", "place": "Lake Placid", "state": "NY", "names": ["Whiteface Mountain"]},
+  {"type": "ski_area", "place": "North Creek", "state": "NY", "names": ["Gore Mountain"]},
+  {"type": "ski_area", "place": "Hunter", "state": "NY", "names": ["Hunter Mountain"]},
+  {"type": "ski_area", "place": "Lincoln", "state": "NH", "names": ["Loon Mountain"]},
+  {"type": "ski_area", "place": "Stowe", "state": "VT", "names": ["Stowe Mountain Resort", "Stowe Mountain"]},
+  {"type": "ski_area", "place": "Bethel", "state": "ME", "names": ["Sunday River"]},
+  {"type": "ski_area", "place": "Boyne Falls", "state": "MI", "names": ["Boyne Mountain"]}
+ ]
+}

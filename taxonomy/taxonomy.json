@@ -6,6 +6,7 @@
   "forecast",
   "next_event",
   "schedule",
+  "result",
   "latest_items",
   "ranking",
   "trend",
@@ -53,7 +54,8 @@
   "agency",
   "bill",
   "court",
-  "dataset"
+  "dataset",
+  "url"
  ],
  "categories": [
   {
@@ -77,13 +79,61 @@
       "precipitation",
       "snow",
       "hourly",
-      "daily",
       "wind",
       "temp",
       "hot",
       "cold",
       "degrees",
-      "warm"
+      "warm",
+      "storm",
+      "storms",
+      "thunderstorm",
+      "tstorms",
+      "hail",
+      "fog",
+      "foggy",
+      "frost",
+      "freeze",
+      "sleet",
+      "freezing rain",
+      "gusts",
+      "gusty",
+      "windy",
+      "lightning strikes",
+      "lightning near",
+      "lightning expected",
+      "any lightning",
+      "chance of rain",
+      "rain chance",
+      "humid",
+      "muggy",
+      "high today",
+      "low tonight",
+      "rainy",
+      "showers",
+      "drizzle",
+      "snowfall",
+      "snowstorm",
+      "highs",
+      "lows",
+      "high temp",
+      "low temp",
+      "heat wave",
+      "cold front",
+      "freezing",
+      "below freezing",
+      "umbrella",
+      "jacket",
+      "sunny",
+      "cloudy",
+      "overcast",
+      "clear skies",
+      "heat index",
+      "wind chill",
+      "precip",
+      "wx",
+      "t storm",
+      "t storms"
      ],
      "policy": {
       "prefer": [
@@ -101,7 +151,12 @@
       "max_age": "1h",
       "cross_check": false,
       "ask_if_ambiguous": true
-     }
+     },
+     "expects": [
+      "temperature",
+      "precip_chance",
+      "conditions"
+     ]
     },
     {
      "id": "current",
@@ -120,7 +175,22 @@
       "temperature now",
       "humidity",
       "dew point",
-      "metar"
+      "metar",
+      "snowing",
+      "wind speed",
+      "feels like",
+      "currently",
+      "is it raining",
+      "is it snowing",
+      "outside",
+      "current temp",
+      "current temperature",
+      "temp now",
+      "barometric pressure",
+      "visibility",
+      "how hot is it",
+      "how cold is it",
+      "how warm is it"
      ],
      "policy": {
       "prefer": [
@@ -156,12 +226,41 @@
      "keywords": [
       "alert",
       "warning",
-      "watch",
       "advisory",
       "severe",
       "tornado",
       "flood warning",
-      "heat advisory"
+      "heat advisory",
+      "alerts",
+      "warnings",
+      "weather alert",
+      "weather alerts",
+      "nws alerts",
+      "wind advisory",
+      "winter weather advisory",
+      "winter storm warning",
+      "winter storm watch",
+      "freeze warning",
+      "frost advisory",
+      "blizzard",
+      "tornado warning",
+      "tornado watch",
+      "tornadoes",
+      "severe thunderstorm warning",
+      "severe thunderstorm watch",
+      "severe weather",
+      "flash flood warning",
+      "flood watch",
+      "red flag warning",
+      "dense fog advisory",
+      "excessive heat warning",
+      "heat warning",
+      "watches and warnings",
+      "ice storm warning",
+      "high wind warning",
+      "high wind watch",
+      "special weather statement",
+      "tornado sirens"
      ],
      "policy": {
       "prefer": [
@@ -200,7 +299,17 @@
       "pm2.5",
       "ozone",
       "smoke",
-      "pollution"
+      "pollution",
+      "air quality forecast",
+      "smoky",
+      "haze",
+      "aqi forecast",
+      "wildfire smoke",
+      "air pollution",
+      "smog",
+      "particulates",
+      "pm 2.5",
+      "pm25"
      ],
      "policy": {
       "prefer": [
@@ -219,7 +328,11 @@
       "max_age": "1h",
       "cross_check": false,
       "ask_if_ambiguous": true
-     }
+     },
+     "expects": [
+      "air_quality",
+      "observed_time"
+     ]
     },
     {
      "id": "pollen",
@@ -236,7 +349,18 @@
       "pollen",
       "allergy",
       "allergen",
-      "mold"
+      "mold",
+      "allergies",
+      "allergy forecast",
+      "pollen forecast",
+      "pollen count",
+      "ragweed",
+      "hay fever",
+      "tree pollen",
+      "mold count",
+      "allergy season",
+      "cedar fever",
+      "cedar pollen"
      ],
      "policy": {
       "prefer": [
@@ -271,7 +395,14 @@
      "keywords": [
       "uv index",
       "sunburn",
-      "ultraviolet"
+      "ultraviolet",
+      "uv",
+      "uv level",
+      "uv forecast",
+      "sunscreen",
+      "sun strength",
+      "strong is the sun",
+      "spf"
      ],
      "policy": {
       "prefer": [
@@ -423,7 +554,13 @@
       "quake",
       "seismic",
       "magnitude",
-      "tremor"
+      "tremor",
+      "quakes",
+      "shaking",
+      "aftershock",
+      "aftershocks",
+      "temblor",
+      "richter"
      ],
      "policy": {
       "prefer": [
@@ -459,7 +596,23 @@
       "hurricane",
       "tropical storm",
       "cyclone",
-      "nhc"
+      "nhc",
+      "hurricane watch",
+      "hurricane warning",
+      "tropical storm watch",
+      "tropical storm warning",
+      "tropical depression",
+      "tropics",
+      "tropical",
+      "named storm",
+      "hurricane season",
+      "in the atlantic",
+      "in the gulf",
+      "typhoon",
+      "storm track",
+      "spaghetti models",
+      "landfall",
+      "hurricane center"
      ],
      "policy": {
       "prefer": [
@@ -468,9 +621,12 @@
        "aggregator",
        "community"
       ],
-      "match": "none",
-      "resolvers": [],
-      "max_km": null,
+      "match": "geo",
+      "resolvers": [
+       "place",
+       "zip"
+      ],
+      "max_km": 200,
       "differ_on": [],
       "max_age": "1h",
       "cross_check": false,
@@ -491,10 +647,21 @@
      ],
      "keywords": [
       "wildfire",
-      "fire",
       "containment",
       "burn",
-      "smoke"
+      "smoke",
+      "fires",
+      "fire near",
+      "fires near",
+      "forest fire",
+      "brush fire",
+      "fire danger",
+      "evacuation",
+      "evacuations",
+      "blaze",
+      "acres burned",
+      "fire map",
+      "burning"
      ],
      "policy": {
       "prefer": [
@@ -533,7 +700,20 @@
       "stage",
       "gauge",
       "streamflow",
-      "discharge"
+      "discharge",
+      "floods",
+      "flooding",
+      "flooded",
+      "river crest",
+      "crest forecast",
+      "river forecast",
+      "flood stage",
+      "high water",
+      "river levels",
+      "river height",
+      "creek",
+      "levee",
+      "river"
      ],
      "policy": {
       "prefer": [
@@ -569,7 +749,20 @@
      "keywords": [
       "volcano",
       "eruption",
-      "volcanic"
+      "volcanic",
+      "volcanoes",
+      "volcano alert",
+      "volcano alert level",
+      "ash advisory",
+      "volcanic ash",
+      "ashfall",
+      "active volcano",
+      "kilauea",
+      "mauna loa",
+      "mount st helens",
+      "mount rainier",
+      "mount shasta",
+      "mount spurr"
      ],
      "policy": {
       "prefer": [
@@ -597,7 +790,11 @@
       "none"
      ],
      "keywords": [
-      "tsunami"
+      "tsunami",
+      "tsunamis",
+      "tsunami warning",
+      "tsunami advisory",
+      "tsunami watch"
      ],
      "policy": {
       "prefer": [
@@ -635,7 +832,24 @@
       "kp index",
       "solar flare",
       "space weather",
-      "space weather forecast"
+      "space weather forecast",
+      "geomagnetic storm",
+      "solar storm",
+      "solar storms",
+      "kp",
+      "cme",
+      "coronal mass ejection",
+      "x class flare",
+      "flare",
+      "flares",
+      "aurora borealis",
+      "sunspot",
+      "sunspots",
+      "solar wind",
+      "radio blackout",
+      "space weather alert",
+      "solar activity",
+      "space weather alerts"
      ],
      "policy": {
       "prefer": [
@@ -707,7 +921,9 @@
       "tides",
       "high tide",
       "low tide",
-      "tide table"
+      "tide table",
+      "tide chart",
+      "tide times"
      ],
      "policy": {
       "prefer": [
@@ -743,7 +959,18 @@
      "keywords": [
       "water level",
       "storm surge",
-      "sea level"
+      "sea level",
+      "storm surge forecast",
+      "storm surge warning",
+      "surge",
+      "tide gauge",
+      "sunny day flooding",
+      "king tide",
+      "king tides",
+      "coastal flooding",
+      "tidal flooding",
+      "flood at high tide",
+      "high tide flooding"
      ],
      "policy": {
       "prefer": [
@@ -781,7 +1008,27 @@
       "surf",
       "wave height",
       "swell",
-      "buoy"
+      "buoy",
+      "waves",
+      "wave",
+      "surfing",
+      "surf report",
+      "surf forecast",
+      "swell forecast",
+      "surf conditions",
+      "breakers",
+      "wave period",
+      "glassy",
+      "blown out",
+      "head high",
+      "waist high",
+      "knee high",
+      "surfable",
+      "rideable",
+      "surf check",
+      "flat",
+      "big wave",
+      "wave forecast"
      ],
      "policy": {
       "prefer": [
@@ -799,8 +1046,17 @@
       "differ_on": [],
       "max_age": "1h",
       "cross_check": false,
-      "ask_if_ambiguous": true
-     }
+      "ask_if_ambiguous": true,
+      "measure": {
+       "buoy": "WVHT"
+      }
+     },
+     "expects": [
+      "waves",
+      "wave_period",
+      "wave_direction",
+      "wind"
+     ]
     },
     {
      "id": "water_temperature",
@@ -816,7 +1072,21 @@
       "sea temperature",
       "water temp",
       "ocean temperature",
-      "sea surface temperature"
+      "sea surface temperature",
+      "ocean temp",
+      "sea temp",
+      "lake temp",
+      "lake temperature",
+      "water cold",
+      "water warm",
+      "swimming temperature",
+      "warm is the water",
+      "cold is the water",
+      "warm enough to swim",
+      "warm is the ocean",
+      "warm is the lake",
+      "cold to swim",
+      "too cold to swim"
      ],
      "policy": {
       "prefer": [
@@ -837,8 +1107,15 @@
       ],
       "max_age": "1h",
       "cross_check": false,
-      "ask_if_ambiguous": true
-     }
+      "ask_if_ambiguous": true,
+      "measure": {
+       "buoy": "WTMP"
+      }
+     },
+     "expects": [
+      "water_temp",
+      "observed_time"
+     ]
     },
     {
      "id": "marine_forecast",
@@ -853,7 +1130,25 @@
      "keywords": [
       "marine forecast",
       "small craft",
-      "boating"
+      "boating",
+      "boating forecast",
+      "coastal waters",
+      "coastal waters forecast",
+      "nearshore",
+      "nearshore forecast",
+      "offshore forecast",
+      "gale warning",
+      "small craft advisory",
+      "seas",
+      "choppy",
+      "sea state",
+      "fishing forecast",
+      "sea conditions",
+      "offshore",
+      "marine weather",
+      "marine conditions",
+      "boat out",
+      "boat"
      ],
      "policy": {
       "prefer": [
@@ -963,10 +1258,18 @@
      ],
      "keywords": [
       "launch",
-      "rocket",
       "spacex",
       "nasa launch",
-      "liftoff"
+      "liftoff",
+      "rocket launch",
+      "blue origin",
+      "rocket lab",
+      "starship",
+      "falcon 9",
+      "artemis",
+      "cape canaveral",
+      "vandenberg",
+      "launches"
      ],
      "policy": {
       "prefer": [
@@ -1002,7 +1305,18 @@
       "daylight",
       "day length",
       "sundown",
-      "moon"
+      "moon",
+      "get dark",
+      "gets dark",
+      "twilight",
+      "golden hour",
+      "dusk",
+      "dawn",
+      "full moon",
+      "new moon",
+      "sun come up",
+      "sun go down",
+      "sun set"
      ],
      "policy": {
       "prefer": [
@@ -1072,7 +1386,27 @@
       "meteor shower",
       "planet",
       "conjunction",
-      "comet"
+      "comet",
+      "meteor",
+      "meteors",
+      "perseids",
+      "geminids",
+      "orionids",
+      "leonids",
+      "quadrantids",
+      "lyrids",
+      "retrograde",
+      "mercury retrograde",
+      "sky events",
+      "planets",
+      "visible planets",
+      "stargazing",
+      "blood moon",
+      "shooting stars",
+      "venus",
+      "jupiter",
+      "saturn",
+      "comets"
      ],
      "policy": {
       "prefer": [
@@ -1174,8 +1508,17 @@
       "share price",
       "ticker",
       "quote",
-      "nasdaq",
-      "nyse"
+      "nyse",
+      "stocks",
+      "shares",
+      "trading at",
+      "stock price",
+      "premarket",
+      "after hours",
+      "market cap",
+      "stock quote",
+      "share",
+      "share of"
      ],
      "policy": {
       "prefer": [
@@ -1211,7 +1554,23 @@
       "dow",
       "nasdaq composite",
       "index",
-      "russell"
+      "russell",
+      "nasdaq",
+      "dow jones",
+      "the dow",
+      "stock market",
+      "the market",
+      "market today",
+      "s&p",
+      "sp500",
+      "russell 2000",
+      "futures",
+      "indexes",
+      "indices",
+      "small caps",
+      "wall street",
+      "vix",
+      "volatility index"
      ],
      "policy": {
       "prefer": [
@@ -1249,7 +1608,20 @@
       "coin",
       "token",
       "btc",
-      "eth"
+      "eth",
+      "solana",
+      "xrp",
+      "dogecoin",
+      "doge",
+      "cardano",
+      "litecoin",
+      "tether",
+      "stablecoin",
+      "crypto market",
+      "altcoins",
+      "memecoin",
+      "coins",
+      "tokens"
      ],
      "policy": {
       "prefer": [
@@ -1323,7 +1695,19 @@
       "natural gas",
       "commodity",
       "wheat",
-      "corn"
+      "corn",
+      "copper",
+      "wti",
+      "brent",
+      "oil prices",
+      "crude oil",
+      "platinum",
+      "palladium",
+      "soybeans",
+      "lumber",
+      "barrel",
+      "per ounce",
+      "bullion"
      ],
      "policy": {
       "prefer": [
@@ -1358,7 +1742,8 @@
       "bond",
       "mortgage rate",
       "fed funds",
-      "10-year"
+      "10 year",
+      "bonds"
      ],
      "policy": {
       "prefer": [
@@ -1389,14 +1774,16 @@
      ],
      "keywords": [
       "sec filing",
-      "10-k",
-      "8-k",
       "earnings",
       "edgar",
       "insider",
       "eps",
       "earnings per share",
-      "net income"
+      "net income",
+      "10 k",
+      "8 k",
+      "10k",
+      "8k"
      ],
      "policy": {
       "prefer": [
@@ -1463,7 +1850,11 @@
       "market open",
       "market closed",
       "trading hours",
-      "market holiday"
+      "market holiday",
+      "is the market open",
+      "stock market open",
+      "market hours",
+      "market open today"
      ],
      "policy": {
       "prefer": [
@@ -1504,7 +1895,11 @@
       "consumer price",
       "pce",
       "consumer price index",
-      "price index"
+      "price index",
+      "ppi",
+      "producer price",
+      "producer prices",
+      "cost of living"
      ],
      "policy": {
       "prefer": [
@@ -1643,7 +2038,14 @@
       "gas price",
       "gasoline",
       "diesel",
-      "fuel price"
+      "fuel price",
+      "gas",
+      "cheapest gas",
+      "gas prices",
+      "price of gas",
+      "average gas",
+      "gallon",
+      "fuel"
      ],
      "policy": {
       "prefer": [
@@ -1883,8 +2285,43 @@
      ],
      "keywords": [
       "power outage",
-      "outage",
-      "blackout"
+      "blackout",
+      "power out",
+      "without power",
+      "power outages",
+      "power restored",
+      "power be restored",
+      "power back on",
+      "power shutoff",
+      "lost power",
+      "no power",
+      "outage map",
+      "utility",
+      "power company",
+      "electricity out",
+      "pg&e",
+      "pge",
+      "con ed",
+      "coned",
+      "duke energy",
+      "dominion energy",
+      "entergy",
+      "dte",
+      "comed",
+      "xcel",
+      "fpl",
+      "georgia power",
+      "oncor",
+      "centerpoint",
+      "pepco",
+      "eversource",
+      "national grid",
+      "ameren",
+      "consumers energy",
+      "peco",
+      "bge",
+      "pse&g",
+      "southern california edison"
      ],
      "policy": {
       "prefer": [
@@ -1918,7 +2355,8 @@
      "keywords": [
       "ev charging",
       "charging station",
-      "charger"
+      "ev charger",
+      "ev chargers"
      ],
      "policy": {
       "prefer": [
@@ -1991,8 +2429,17 @@
      "keywords": [
       "score",
       "live score",
-      "game",
-      "final"
+      "final",
+      "scores",
+      "whos winning",
+      "who s winning",
+      "winning",
+      "up or down",
+      "vs",
+      "box score",
+      "halftime",
+      "live scores",
+      "game over"
      ],
      "policy": {
       "prefer": [
@@ -2013,7 +2460,11 @@
       "max_age": "15m",
       "cross_check": false,
       "ask_if_ambiguous": true
-     }
+     },
+     "expects": [
+      "score",
+      "opponent"
+     ]
     },
     {
      "id": "schedules",
@@ -2031,7 +2482,28 @@
       "fixtures",
       "next game",
       "kickoff",
-      "tip-off"
+      "game",
+      "games",
+      "game time",
+      "next match",
+      "upcoming matches",
+      "upcoming games",
+      "play next",
+      "playing",
+      "play tonight",
+      "who plays",
+      "home games",
+      "first pitch",
+      "puck drop",
+      "mnf",
+      "monday night football",
+      "thursday night football",
+      "sunday night football",
+      "matchup",
+      "tip off",
+      "play today",
+      "play",
+      "plays"
      ],
      "policy": {
       "prefer": [
@@ -2052,7 +2524,11 @@
       "max_age": "15m",
       "cross_check": false,
       "ask_if_ambiguous": true
-     }
+     },
+     "expects": [
+      "opponent",
+      "start_time"
+     ]
     },
     {
      "id": "standings",
@@ -2067,7 +2543,19 @@
       "standings",
       "table",
       "rankings",
-      "playoff picture"
+      "playoff picture",
+      "magic number",
+      "division",
+      "wild card",
+      "wildcard",
+      "who leads",
+      "first place",
+      "games back",
+      "playoff race",
+      "seeding",
+      "clinched",
+      "elimination number",
+      "top 25"
      ],
      "policy": {
       "prefer": [
@@ -2088,7 +2576,11 @@
       "max_age": "1d",
       "cross_check": false,
       "ask_if_ambiguous": true
-     }
+     },
+     "expects": [
+      "rank",
+      "record"
+     ]
     },
     {
      "id": "player_stats",
@@ -2141,7 +2633,15 @@
      "keywords": [
       "results",
       "who won",
-      "final score"
+      "final score",
+      "win",
+      "won",
+      "lose",
+      "lost",
+      "beat",
+      "result",
+      "how did",
+      "win loss record"
      ],
      "policy": {
       "prefer": [
@@ -2216,7 +2716,15 @@
       "college football",
       "ncaa",
       "march madness",
-      "ap poll"
+      "ap poll",
+      "college basketball",
+      "cfb",
+      "ncaaf",
+      "ncaab",
+      "bowl game",
+      "heisman",
+      "crimson tide",
+      "college"
      ],
      "policy": {
       "prefer": [
@@ -2294,7 +2802,12 @@
       "headlines",
       "news",
       "breaking",
-      "top stories"
+      "top stories",
+      "current events",
+      "whats happening",
+      "happening today",
+      "big news",
+      "what happened"
      ],
      "policy": {
       "prefer": [
@@ -2366,7 +2879,12 @@
      ],
      "keywords": [
       "local news",
-      "city news"
+      "city news",
+      "local",
+      "local headlines",
+      "news in",
+      "my town",
+      "in my area"
      ],
      "policy": {
       "prefer": [
@@ -2430,7 +2948,15 @@
      ],
      "keywords": [
       "podcast",
-      "episode"
+      "episode",
+      "podcasts",
+      "latest episode",
+      "new episode",
+      "episodes",
+      "the daily",
+      "up first",
+      "this american life",
+      "radiolab"
      ],
      "policy": {
       "prefer": [
@@ -2528,7 +3054,10 @@
       "flight",
       "arrival",
       "departure",
-      "delayed"
+      "delayed",
+      "landed",
+      "departed",
+      "took off"
      ],
      "policy": {
       "prefer": [
@@ -2561,7 +3090,14 @@
       "airport delay",
       "ground stop",
       "faa delays",
-      "tsa wait"
+      "tsa wait",
+      "airport",
+      "airport status",
+      "flight delays",
+      "ground delay",
+      "fog delays",
+      "security line",
+      "security wait"
      ],
      "policy": {
       "prefer": [
@@ -2636,7 +3172,30 @@
       "delay",
       "disruption",
       "planned work",
-      "line running"
+      "line running",
+      "delays",
+      "alerts",
+      "service alerts",
+      "line delays",
+      "bart",
+      "mta",
+      "septa",
+      "muni",
+      "cta",
+      "mbta",
+      "wmata",
+      "marta",
+      "lirr",
+      "nj transit",
+      "metra",
+      "caltrain",
+      "dc metro",
+      "subway delays",
+      "train delayed",
+      "trains delayed",
+      "train running",
+      "trains running",
+      "running late"
      ],
      "policy": {
       "prefer": [
@@ -2674,7 +3233,21 @@
       "road closure",
       "road conditions",
       "traffic camera",
-      "511"
+      "511",
+      "pass open",
+      "chain controls",
+      "chains required",
+      "road closed",
+      "roads",
+      "highway",
+      "interstate",
+      "road closures",
+      "accident",
+      "crash on",
+      "construction",
+      "backed up",
+      "commute",
+      "traffic jam"
      ],
      "policy": {
       "prefer": [
@@ -3413,7 +3986,14 @@
       "down",
       "outage right now",
       "not working",
-      "status"
+      "status",
+      "down right now",
+      "having issues",
+      "not loading",
+      "servers down",
+      "servers",
+      "server status",
+      "servers up"
      ],
      "policy": {
       "prefer": [
@@ -3449,7 +4029,21 @@
       "stars",
       "commits",
       "issues",
-      "pull requests"
+      "pull requests",
+      "latest version",
+      "newest version",
+      "lts",
+      "latest release",
+      "ios",
+      "macos",
+      "android",
+      "kernel",
+      "software update",
+      "release notes",
+      "changelog",
+      "current version",
+      "what version",
+      "version number"
      ],
      "policy": {
       "prefer": [
@@ -3482,7 +4076,9 @@
       "pypi",
       "package version",
       "crate",
-      "downloads"
+      "downloads",
+      "version",
+      "latest version"
      ],
      "policy": {
       "prefer": [
@@ -3652,7 +4248,11 @@
       "next episode",
       "tv show",
       "season",
-      "airs"
+      "airs",
+      "tv",
+      "on tv",
+      "tv tonight",
+      "tv listings"
      ],
      "policy": {
       "prefer": [
@@ -3720,7 +4320,10 @@
       "music chart",
       "new album",
       "billboard",
-      "top songs"
+      "top songs",
+      "album",
+      "albums",
+      "top albums"
      ],
      "policy": {
       "prefer": [
@@ -3926,6 +4529,48 @@
       "prefer": [
        "primary",
        "official",
+       "aggregator",
+       "community"
+      ],
+      "match": "none",
+      "resolvers": [],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "1d",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
+    },
+    {
+     "id": "lottery",
+     "label": "Lottery jackpots & numbers",
+     "kinds": [
+      "current_value",
+      "next_event",
+      "latest_items"
+     ],
+     "params": [
+      "none"
+     ],
+     "keywords": [
+      "powerball",
+      "mega millions",
+      "lottery",
+      "jackpot",
+      "winning numbers",
+      "lotto",
+      "win the powerball",
+      "win the lottery",
+      "win the mega millions",
+      "drawing",
+      "take 5",
+      "pick 10",
+      "cash4life"
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
        "aggregator",
        "community"
       ],
@@ -4265,6 +4910,46 @@
       "cross_check": false,
       "ask_if_ambiguous": true
      }
+    },
+    {
+     "id": "geysers",
+     "label": "Geyser eruptions",
+     "kinds": [
+      "next_event",
+      "latest_items"
+     ],
+     "params": [
+      "station"
+     ],
+     "keywords": [
+      "geyser",
+      "old faithful",
+      "geyser eruption",
+      "next eruption",
+      "eruption prediction",
+      "eruption time",
+      "geyser prediction",
+      "erupt",
+      "erupted",
+      "erupting"
+     ],
+     "policy": {
+      "prefer": [
+       "official",
+       "primary",
+       "aggregator",
+       "community"
+      ],
+      "match": "name",
+      "resolvers": [
+       "geyser"
+      ],
+      "max_km": null,
+      "differ_on": [],
+      "max_age": "15m",
+      "cross_check": false,
+      "ask_if_ambiguous": true
+     }
     }
    ]
   },
@@ -4286,7 +4971,33 @@
      "keywords": [
       "holiday",
       "federal holiday",
-      "day off"
+      "day off",
+      "thanksgiving",
+      "christmas",
+      "memorial day",
+      "labor day",
+      "banks closed",
+      "bank holiday",
+      "post office closed",
+      "mail delivery",
+      "election day",
+      "new years",
+      "federal holidays",
+      "halloween",
+      "valentines day",
+      "fourth of july",
+      "july 4th",
+      "independence day",
+      "veterans day",
+      "mlk day",
+      "presidents day",
+      "juneteenth",
+      "columbus day",
+      "st patricks day",
+      "mothers day",
+      "fathers day",
+      "hanukkah",
+      "new years day"
      ],
      "policy": {
       "prefer": [
