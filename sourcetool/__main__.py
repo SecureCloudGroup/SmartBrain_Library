@@ -18,6 +18,8 @@
   python -m sourcetool answers-check [ID ...]                           fetch samples, check answers/ paths (live)
   python -m sourcetool answers-check --lint                             record + keyword lints (offline, no fetch)
   python -m sourcetool answers-generate                                 write answers for curated feeds + FRED series
+  python -m sourcetool asks-overlap --against FILE [FILE ...]           report asks that overlap any labeled set
+                                                                        (exact + jaccard>=0.75); exit nonzero if any
 
 Writes only to this checkout. Publishing is a PR the operator merges.
 """
@@ -61,7 +63,7 @@ def _check_taxonomy_and_resolvers() -> int:
 
 def cmd_check(_args) -> int:
     from .answers import load_answers, params_of
-    from .schema import load_asks, validate_record
+    from .schema import load_asks, resolver_host_value_problems, validate_record
     bad = _check_taxonomy_and_resolvers()
     seen: dict[str, dict] = {}
     records: list[dict] = []
@@ -69,6 +71,8 @@ def cmd_check(_args) -> int:
         for r in read_jsonl(f):
             records.append(r)
             errs = validate_record(r)
+            # F3 2026-10-04: resolver values filling a host position must be safe hosts.
+            errs += [f"resolver host value: {m}" for m in resolver_host_value_problems(r)]
             if r["tier"] == "curated":
                 errs += [f"param {p['name']} has no fill" for p in r["access"].get("params", []) if "fill" not in p]
             if r["id"] in seen:
@@ -206,10 +210,33 @@ def cmd_answers_generate(args) -> int:
     return answers.cmd_generate(args)
 
 
+def cmd_asks_overlap(args) -> int:
+    """`asks-overlap --against FILE [FILE ...]`: report asks that overlap labeled eval sets outside
+    the repo. Prints a per-file breakdown (exact / near) and returns 1 if any overlap is found."""
+    from pathlib import Path
+
+    from .overlap import eval_asks_from, overlaps, train_asks_from_library
+    from .schema import ASKS
+    assert "--against" in args, "usage: asks-overlap --against FILE [FILE ...]"
+    paths = [Path(p) for p in args[args.index("--against") + 1:]]
+    assert paths, "give at least one --against file"
+    train = train_asks_from_library(ASKS)
+    total = 0
+    for p in paths:
+        hits = overlaps(train, eval_asks_from(p))
+        exact = sum(1 for _, _, j in hits if j == 1.0)
+        near = len(hits) - exact
+        print(f"{p}: exact={exact} near={near}")
+        for t, e, j in hits:
+            print(f"  j={j:.2f}  train={t!r}  eval={e!r}")
+        total += len(hits)
+    return 1 if total else 0
+
+
 def main(argv: list[str]) -> int:
     if not argv or argv[0] not in {"check", "validate", "harvest", "build", "lookup", "coverage", "resolvers",
                                    "policies", "fills", "evalres", "evallookup", "ingest", "answers-check",
-                                   "answers-generate"}:
+                                   "answers-generate", "asks-overlap"}:
         print(__doc__)
         return 2
     return globals()["cmd_" + argv[0].replace("-", "_")](argv[1:])

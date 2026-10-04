@@ -158,3 +158,44 @@ def test_build_refuses_malformed_asks(pack):
     write(pack / "asks", [{"source_id": "a", "asks": asks(9) + ["weather tomorrow"]}])
     with pytest.raises(SystemExit, match="asks refused"):
         build_mod.build()
+
+
+# --- overlap gate: contamination of locate v2's training asks ---------------------------------------------
+#
+# An example ask that is also a labeled eval case inflates every reported gain (train = test). The
+# gate shares the reviewer's normalization + jaccard measure, so the numbers compare to theirs.
+
+
+def test_overlap_normalization_and_measure():
+    """norm + overlaps agree with the reviewer's rule: exact ignores case / punctuation / "'", and
+    a near match is a jaccard >= 0.75 over at least two eval words."""
+    from sourcetool.overlap import norm, overlaps
+    assert norm("How's the Nasdaq, doing?") == "hows the nasdaq doing"
+    hits = overlaps(["bitcoin price"], ["Bitcoin price?"])
+    assert hits == [("bitcoin price", "Bitcoin price?", 1.0)]
+    near = overlaps(["who won the game"], ["who won the mets game"])
+    assert near and near[0][2] >= 0.75
+    assert overlaps(["bitcoin price"], ["bitcoin"]) == []  # one eval word: no near
+
+
+def test_committed_asks_do_not_overlap_in_repo_eval_sets():
+    """Gate: no ask in asks/*.jsonl overlaps (exact or jaccard >= 0.75) any labeled set under tests/.
+    This is the measurement-integrity test — a train/test leak between locate v2's example asks and
+    the evaluation cases."""
+    from pathlib import Path
+
+    from sourcetool.overlap import eval_asks_from, overlaps, train_asks_from_library
+    from sourcetool.schema import ASKS
+    train = train_asks_from_library(ASKS)
+    tests_dir = Path(__file__).parent
+    labeled = sorted(p for p in tests_dir.glob("*.json")
+                     if p.stem.split("_", 1)[0] in {"classify", "lookup", "resolution"})
+    assert labeled, "no labeled eval sets found under tests/"
+    report: list[str] = []
+    for p in labeled:
+        hits = overlaps(train, eval_asks_from(p))
+        if hits:
+            exact = sum(1 for _, _, j in hits if j == 1.0)
+            report.append(f"{p.name}: exact={exact} near={len(hits) - exact}")
+            report.extend(f"  j={j:.2f}  train={t!r}  eval={e!r}" for t, e, j in hits[:40])
+    assert not report, "asks/*.jsonl overlaps in-repo eval sets:\n" + "\n".join(report)
