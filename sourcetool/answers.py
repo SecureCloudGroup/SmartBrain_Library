@@ -304,6 +304,41 @@ def answer_lints(rec: dict) -> list[str]:
     return out
 
 
+def _time_cells(a: dict):
+    """Every time field of one answer, as (path, utc_declared) — None for utc when not set."""
+    out: list[tuple[str, bool | None]] = []
+    if a.get("kind") == "value" and a.get("type") == "time":
+        out.append((str(a.get("path") or ""), a.get("utc") if "utc" in a else None))
+    for f in (a.get("row") or []) + (a.get("columns") or []):
+        if isinstance(f, dict) and f.get("type") == "time":
+            out.append((str(f.get("path") or ""), f.get("utc") if "utc" in f else None))
+    return out
+
+
+def utc_consistency_lints(recs: list[dict]) -> list[str]:
+    """F13 (2026-10-04): answers from the SAME provider reading the SAME time path must agree on
+    `utc` — the field found that swpc-kp's time cells lacked `utc: true` while sibling
+    swpc-kp-forecast declared it, so the engine's window transform treated zoneless UTC times
+    as local wall and dropped tonight's rows. The lint catches that whole class."""
+    groups: dict[tuple[str, str], dict] = {}
+    for r in recs:
+        provider = str(((r or {}).get("provider") or {}).get("name") or "")
+        for a in (r.get("answers") or []):
+            if not isinstance(a, dict):
+                continue
+            for path, utc in _time_cells(a):
+                key = (provider, path)
+                groups.setdefault(key, {}).setdefault(utc, []).append(r["id"])
+    out: list[str] = []
+    for (provider, path), by_flag in groups.items():
+        if len(by_flag) < 2 or not provider:  # one declaration (or no provider) — nothing to disagree on
+            continue
+        if True in by_flag and (False in by_flag or None in by_flag):
+            disagree = sorted({sid for ids in by_flag.values() for sid in ids})
+            out.append(f"{provider}: time path {path!r} disagrees on utc across {disagree}")
+    return out
+
+
 def _fold(text: str) -> str:
     """Whole lowercase tokens, plurals folded ("thunderstorms" -> "thunderstorm")."""
     toks = re.findall(r"[a-z0-9.+]+", (text or "").lower())
@@ -632,8 +667,10 @@ def fetch_sample(rec: dict, cache_hours: float = 12.0):
 
 def lint_report(recs: list[dict], tax: dict | None = None) -> list[str]:
     """Every lint over records that carry their answers (no network): each record's promises against its
-    answers (answer_lints), then each subcategory keyword against the curated sources filed there."""
+    answers (answer_lints), each subcategory keyword against the curated sources filed there, and utc
+    consistency across answers of the same provider reading the same time path (F13 2026-10-04)."""
     out = [p for r in recs for p in answer_lints(r)]
+    out += utc_consistency_lints(recs)
     return out + keyword_lints(recs, tax)
 
 

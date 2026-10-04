@@ -22,7 +22,8 @@
         {
           "path": "time_tag",
           "label": "Time (UTC)",
-          "type": "time"
+          "type": "time",
+          "utc": true
         },
         {
           "path": "Kp",
