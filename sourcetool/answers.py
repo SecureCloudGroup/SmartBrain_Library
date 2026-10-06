@@ -48,6 +48,10 @@ KEYS = {"value": COMMON | {"path", "type", "unit", "unit_path", "codes", "utc", 
 ROW_KEYS = {"path", "label", "type", "unit", "unit_path", "utc", "tbd_if"}  # utc: zoneless times are UTC
 COLUMN_KEYS = (ROW_KEYS - {"tbd_if"}) | {"codes"}
 FILE_KEYS = {"source_id", "answers", "sample_url", "checked"}
+# spec v1.3 (2026-10-06): written by `answers-recheck`, never by hand — a file whose live sample failed the check
+# twice on later days is "drifted": build holds it back and the app offers the source as a link until it passes again
+FILE_OPTIONAL_KEYS = {"status", "last_failure"}
+FILE_STATUSES = ("drifted",)
 MAX_ANSWERS = 12
 
 _NAME = re.compile(r"[a-z][a-z0-9_]{0,39}")
@@ -585,10 +589,25 @@ def params_of(rec: dict) -> dict:
     return {q["name"]: q.get("example") for q in rec["access"].get("params", [])}
 
 
-def load_answers(params_by_id: dict[str, dict], directory: Path = ANSWERS) -> tuple[dict[str, list], list[str]]:
+def held_back(directory: Path = ANSWERS) -> list[str]:
+    """The source ids whose answers file is marked drifted (served as links until a recheck passes)."""
+    out = []
+    for f in sorted(directory.glob("*.json")):
+        try:
+            d = json.loads(f.read_text())
+        except ValueError:
+            continue
+        if isinstance(d, dict) and d.get("status") == "drifted":
+            out.append(f.stem)
+    return out
+
+
+def load_answers(params_by_id: dict[str, dict], directory: Path = ANSWERS,
+                 include_drifted: bool = False) -> tuple[dict[str, list], list[str]]:
     """Read every answers/<id>.json: ({source_id: answers}, problems). `params_by_id` maps each record id
     to its params (`params_of`). A file whose id has no record, or whose answers fail the schema, is a
-    problem (build refuses it)."""
+    problem (build refuses it). A file marked drifted is validated but left out unless `include_drifted`
+    (the live check and the recheck still want it; build and the lints do not)."""
     out: dict[str, list] = {}
     errs: list[str] = []
     for f in sorted(directory.glob("*.json")):
@@ -597,8 +616,8 @@ def load_answers(params_by_id: dict[str, dict], directory: Path = ANSWERS) -> tu
         except ValueError as e:
             errs.append(f"{f.name}: not JSON ({e})")
             continue
-        if not isinstance(d, dict) or set(d) != FILE_KEYS:
-            errs.append(f"{f.name}: must hold exactly {sorted(FILE_KEYS)}")
+        if not isinstance(d, dict) or not FILE_KEYS <= set(d) or not set(d) <= FILE_KEYS | FILE_OPTIONAL_KEYS:
+            errs.append(f"{f.name}: must hold exactly {sorted(FILE_KEYS)} (plus optional {sorted(FILE_OPTIONAL_KEYS)})")
             continue
         sid = d["source_id"]
         if sid != f.stem:
@@ -612,8 +631,12 @@ def load_answers(params_by_id: dict[str, dict], directory: Path = ANSWERS) -> tu
             bad.append("sample_url must be the https URL fetched")
         if not isinstance(d["checked"], str) or not _DATE.fullmatch(d["checked"]):
             bad.append("checked must be YYYY-MM-DD")
+        if "status" in d and d["status"] not in FILE_STATUSES:
+            bad.append(f"status must be one of {'/'.join(FILE_STATUSES)}")
+        if "last_failure" in d and not (isinstance(d["last_failure"], str) and _DATE.fullmatch(d["last_failure"])):
+            bad.append("last_failure must be YYYY-MM-DD")
         errs += [f"{f.name}: {e}" for e in bad]
-        if not bad:
+        if not bad and (include_drifted or d.get("status") != "drifted"):
             out[sid] = d["answers"]
     return out, errs
 
@@ -627,7 +650,10 @@ def _records(tier: str | None = None) -> dict[str, dict]:
 # --- live samples ----------------------------------------------------------------------------------
 
 class Skip(Exception):
-    """The source cannot be sampled without a user's own value or key."""
+    """The source cannot be sampled HERE: it needs a user's own value or key, or (csv / feed / xml / text) the
+    app's parsers from a SmartBrain_3000 checkout this machine lacks. A skip is never the source's fault, so
+    `answers-recheck` leaves the file alone (Phase 2a, 2026-10-06: before this a missing checkout read as FAIL,
+    and the weekly job would have drifted every non-JSON source within two weeks)."""
 
 
 class Failed(Exception):
@@ -645,8 +671,8 @@ def _formats():
     try:
         from smartbrain_3000 import formats
     except ImportError as e:
-        raise Failed(f"the app's parsers are missing ({APP}/smartbrain_3000/formats.py: {e}); "
-                     "csv/feed/xml/text samples need a SmartBrain_3000 checkout") from None
+        raise Skip(f"the app's parsers are missing ({APP}/smartbrain_3000/formats.py: {e}); "
+                   "csv/feed/xml/text samples need a SmartBrain_3000 checkout") from None
     return formats
 
 
@@ -751,7 +777,7 @@ def cmd_check(ids: list[str]) -> int:
     if "--lint" in ids:  # offline: the lints only, no sample is fetched
         return cmd_lint()
     recs = _records()
-    loaded, errs = load_answers({k: params_of(r) for k, r in recs.items()})
+    loaded, errs = load_answers({k: params_of(r) for k, r in recs.items()}, include_drifted=True)
     for e in errs:
         print(f"INVALID {e}")
     todo = ids or sorted(loaded)

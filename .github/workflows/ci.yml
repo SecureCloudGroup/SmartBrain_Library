@@ -73,14 +73,46 @@ jobs:
       - run: pip install -r service/requirements-test.txt
       - run: python -m pytest service/tests tests/test_ingest.py -q
   revalidate:
-    name: weekly re-validation (report only)
+    name: weekly re-validation + answers re-check
     if: github.event_name == 'schedule'
     runs-on: ubuntu-latest
+    permissions:
+      contents: write   # pushes the rechecked answers files to a recheck/<date> branch; the PR is opened by hand
     steps:
       - uses: actions/checkout@v4
+      - name: the app's parsers (csv / feed / xml / text samples are parsed exactly as its cards parse them)
+        uses: actions/checkout@v4
+        with:
+          repository: SecureCloudGroup/SmartBrain_3000
+          path: .app
+          sparse-checkout: app/smartbrain_3000
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install "httpx==0.28.1" "duckdb==1.5.4"
-      - run: python -m sourcetool validate --only curated
-      - run: git diff --stat
+      - run: pip install "httpx==0.28.1" "duckdb==1.5.4" cryptography
+      - name: re-validate curated records (report only)
+        run: python -m sourcetool validate --only curated || true
+      - name: re-check every answers file against a fresh live sample
+        id: recheck
+        env:
+          SMARTBRAIN_APP: ${{ github.workspace }}/.app/app
+        run: |
+          set +e
+          python -m sourcetool answers-recheck | tee recheck.log
+          echo "rc=${PIPESTATUS[0]}" >> "$GITHUB_OUTPUT"
+      - name: push the changed answers files for a PR
+        if: always()
+        run: |
+          rm -rf .app
+          git add -A answers sources
+          if git diff --cached --quiet; then echo "nothing changed"; exit 0; fi
+          BR="recheck/$(date -u +%F)"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -q -m "answers-recheck $(date -u +%F): $(tail -1 recheck.log)"
+          git push -f origin "HEAD:refs/heads/$BR"
+          { echo "## answers-recheck"; echo; echo '```'; cat recheck.log; echo '```'; echo;
+            echo "Branch \`$BR\` pushed — open the PR: https://github.com/${GITHUB_REPOSITORY}/compare/main...$BR"; } >> "$GITHUB_STEP_SUMMARY"
+      - name: fail the run when any file failed or drifted
+        if: steps.recheck.outputs.rc != '0'
+        run: exit 1
