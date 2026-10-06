@@ -29,7 +29,7 @@ def rows(**kw):
 def cols(**kw):
     a = {"name": "daily", "label": "Daily forecast", "kind": "columns", "primary": True,
          "words": ["forecast", "this week", "daily"],
-         "columns": [{"path": "daily.time", "label": "Day", "type": "time"},
+         "columns": [{"path": "daily.time", "label": "Day", "type": "date"},  # a day column IS a date (v1.3 types every element)
                      {"path": "daily.temperature_2m_max", "label": "High", "type": "number",
                       "unit_path": "daily_units.temperature_2m_max"}]}
     a.update(kw)

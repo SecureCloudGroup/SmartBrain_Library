@@ -12,7 +12,7 @@ from pathlib import Path
 
 import pytest
 
-from sourcetool.answers import (ANSWERS, AXIS_STEPS, MEASURES, WINDOWS, answer_lints, answer_problems,
+from sourcetool.answers import (ANSWERS, AXIS_STEPS, MEASURES, WINDOWS, answer_lints, answer_problems, exempt_key,
                                 check_sample, params_of)
 from sourcetool.common import ROOT, SOURCES, read_jsonl
 from sourcetool.schema import resolver_host_value_problems, validate_record
@@ -86,7 +86,7 @@ def test_answers_files_pass_the_schema_and_the_lints():
         if sid not in RECORDS:
             continue  # a harvested record's file: its own suite
         problems += [f"{sid}: {e}" for e in answer_problems(d["answers"], params_of(RECORDS[sid]))]
-        problems += [e for e in answer_lints(_merged(sid)) if e.split(" has no")[0] not in exempt]
+        problems += [e for e in answer_lints(_merged(sid)) if exempt_key(e) not in exempt]
     assert not problems, problems
     assert all(v for v in exempt.values()), "every exemption names its reason"
 
