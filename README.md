@@ -4,10 +4,10 @@ The SmartBrain Library is an open registry of **where the data lives**: weather,
 
 [SmartBrain](https://github.com/SecureCloudGroup/SmartBrain_3000)'s Neural Interface looks a request up in the Library **on the user's own machine**. That lookup takes milliseconds and uses no cloud search or AI service. SmartBrain then offers the best sources one at a time. When the user answers **Yes**, SmartBrain builds the card.
 
-- **9,045 sources** (6,918 validated ok), US scope in v1:
-  - 269 hand-curated and validated sources from 131 providers;
+- **8,672 sources** (6,531 validated ok), US scope in v1:
+  - 310 hand-curated sources (257 validated ok) from 140 providers, 254 of them with declared answers the app builds cards from;
   - harvested from open catalogs: US open-data portals, the Mobility Database, GBFS, Census, Wikidata, APIs.guru and public-apis.
-- **18 categories, 127 subcategories**, in `taxonomy/taxonomy.json`.
+- **18 categories, 129 subcategories**, in `taxonomy/taxonomy.json`.
 - Every source records:
   - who publishes it and how official it is;
   - its terms;

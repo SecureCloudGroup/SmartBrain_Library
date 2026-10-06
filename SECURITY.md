@@ -6,4 +6,4 @@ What this repo can affect: SmartBrain installs fetch data from the sources liste
 - only the maintainer merges changes;
 - CI schema checks: https only, public hosts, no credentials, no undeclared parameters;
 - the app runs the same validator, fetches only through its SSRF-guarded network layer, and treats every response as untrusted data;
-- packs are signed and pinned on first use, and older packs are refused (no rollback).
+- each app release pins one pack by tag and sha256 and installs nothing else (Ed25519 signing between app releases is planned, see `docs/PLAN.md` R12).

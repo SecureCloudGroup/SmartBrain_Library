@@ -69,7 +69,8 @@ def test_answers_check_lint_is_offline(monkeypatch, capsys):
     monkeypatch.setattr(answers_mod, "fetch_sample", no_fetch)
     rc = answers_mod.cmd_check(["--lint"])
     out = capsys.readouterr().out
-    assert rc in (0, 1) and "lint" in out.splitlines()[-1]
+    assert rc == 0, out  # the gate: the repo's own data passes its lints (kinds served, utc, keyword baseline)
+    assert "lint" in out.splitlines()[-1]
 
 
 # --- the app's identity and decode ----------------------------------------------------------------------

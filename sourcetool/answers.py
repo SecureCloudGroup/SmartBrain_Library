@@ -488,6 +488,41 @@ def _axis_check(w: str, cells: list) -> list[str]:
     return [] if bad is _MISSING else [f"{w}: axis cell {_show(bad)} is not an ISO date/time"]
 
 
+_MAX_CHECKED_ROWS = 500  # the engine's series cap: every row a card could show is typed (spec v1.3, 2026-10-05)
+# a cell a row lacks: the app's sparse-row rule (ni_flow._MISSING) shows "—" for these, never a wrong value
+_SPARSE_TEXT = frozenset({"", "mm", "n/a", "na", "-", "--", "—", "null", "none", "missing"})
+
+
+def _sparse(v) -> bool:
+    return v is _MISSING or v is None or (isinstance(v, str) and v.strip().lower() in _SPARSE_TEXT)
+
+
+def _check_rows(w: str, items: list, row: list, ex: dict) -> list[str]:
+    """Every row after the first (spec v1.3): a cell that is PRESENT must hold its declared type; a cell
+    the row lacks is allowed (the card shows "—" for it). The caller checks the first row in full. One
+    message per field, naming the first offending row; bounded by ``_MAX_CHECKED_ROWS``."""
+    errs: list[str] = []
+    for j, f in enumerate(row):
+        for i, it in enumerate(items[1:_MAX_CHECKED_ROWS], start=1):  # rows 1..499: the first 500 rows with row 0
+            v = resolve(it, f["path"], ex)
+            if _sparse(v):
+                continue
+            if not type_ok(v, f["type"]):
+                errs.append(f"{w} row[{j}] at item {i}: {f['path']} is {_show(v)}, not {f['type']}")
+                break
+    return errs
+
+
+def _check_column(w: str, col: list, f: dict) -> list[str]:
+    """Every element of a column (spec v1.3): a present value holds the declared type; nulls are allowed."""
+    for i, v in enumerate(col[:_MAX_CHECKED_ROWS]):
+        if _sparse(v):
+            continue
+        if not type_ok(v, f["type"]):
+            return [f"{w} at index {i}: {f['path']} is {_show(v)}, not {f['type']}"]
+    return []
+
+
 def check_sample(answers: list, sample, examples: dict | None = None) -> list[str]:
     """Every path resolves in the sample with the type its answer promises. `examples` maps each of the
     record's params to its `example` (what a `{param}` segment or a filter stands for in the sample).
@@ -520,6 +555,7 @@ def check_sample(answers: list, sample, examples: dict | None = None) -> list[st
             else:
                 for j, f in enumerate(a["row"]):
                     errs += _check_field(f"{w} row[{j}]", items[0], sample, f, ex)
+                errs += _check_rows(w, items, a["row"], ex)
                 if "axis" in a:
                     errs += _axis_check(w, [resolve(it, a["axis"]["cell"], ex) for it in items])
         else:
@@ -530,6 +566,7 @@ def check_sample(answers: list, sample, examples: dict | None = None) -> list[st
                     errs.append(f"{w} columns[{j}]: {f['path']} is {_show(col)}, not a list")
                     continue
                 lengths.add(len(col))
+                errs += _check_column(f"{w} columns[{j}]", col, f)
                 if "unit_path" in f and not isinstance(resolve(sample, f["unit_path"], ex), str):
                     errs.append(f"{w} columns[{j}]: unit_path {f['unit_path']} is not text")
             if len(lengths) > 1:
@@ -674,14 +711,39 @@ def lint_report(recs: list[dict], tax: dict | None = None) -> list[str]:
     return out + keyword_lints(recs, tax)
 
 
+def exempt_key(lint: str) -> str:
+    """The key a kind lint is exempted under in lint_exempt.json: ``"<id>: kind <k>"`` — the lint message up to
+    its " has no answer" tail. One place for the rule, used by the gate and the test suite alike."""
+    assert isinstance(lint, str), "lint message required"
+    return lint.split(" has no")[0]
+
+
+KEYWORD_LINT_BASELINE = ROOT / "tests" / "fixtures" / "keyword_lint_baseline.json"
+LINT_EXEMPT = ROOT / "tests" / "fixtures" / "records" / "lint_exempt.json"
+
+
 def cmd_lint() -> int:
+    """`answers-check --lint` (offline). Gating since Phase 0 (2026-10-05): kind lints (minus the reasoned
+    exemptions in lint_exempt.json, the same list the test suite applies) and utc lints fail; a keyword lint
+    fails only when it is NEW against the committed baseline — a ratchet, so the backlog never grows and
+    shrinks as sources are filed under their keywords."""
     recs = _records()
     loaded, errs = load_answers({k: params_of(r) for k, r in recs.items()})
     merged = [{**r, "answers": loaded[k]} if k in loaded else r for k, r in recs.items() if not r.get("replaced_by")]
-    problems = [f"INVALID {e}" for e in errs] + [f"LINT {p}" for p in lint_report(merged)]
+    exempt = json.loads(LINT_EXEMPT.read_text()) if LINT_EXEMPT.is_file() else {}
+    hard = [p for r in merged for p in answer_lints(r) if exempt_key(p) not in exempt]
+    hard += utc_consistency_lints(merged)
+    keyword = keyword_lints(merged)
+    baseline = set(json.loads(KEYWORD_LINT_BASELINE.read_text())) if KEYWORD_LINT_BASELINE.is_file() else set()
+    new_kw = [p for p in keyword if p not in baseline]
+    gone = sorted(baseline - set(keyword))
+    problems = [f"INVALID {e}" for e in errs] + [f"LINT {p}" for p in hard] + [f"LINT NEW {p}" for p in new_kw]
     for p in problems:
         print(p)
-    print(f"{len(merged)} records, {len(loaded)} with answers: {len(problems)} lint problems")
+    if gone:
+        print(f"{len(gone)} baseline keyword lints no longer fire; drop them from {KEYWORD_LINT_BASELINE.name}")
+    print(f"{len(merged)} records, {len(loaded)} with answers: {len(problems)} lint problems "
+          f"({len(keyword) - len(new_kw)} keyword lints held by the baseline)")
     return 1 if problems else 0
 
 

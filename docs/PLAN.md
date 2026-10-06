@@ -108,7 +108,7 @@ Security:
 - Submissions go into a queue (SQLite on the VPS).
 - The only operator endpoint is authenticated (token held by the operator's machine) and reads that queue.
 
-Flow: the queue feeds `sourcetool ingest` on the operator's side. It validates, aggregates votes per source, drafts a classification (R3) and opens a PR in this repo. The operator merges, a tag triggers a new signed pack, and the app fetches the manifest and installs the pack.
+Flow: the queue feeds `sourcetool ingest` on the operator's side. It validates, aggregates votes per source, drafts a classification (R3) and opens a PR in this repo. The operator merges, a tag triggers a new pack release (sha256-pinned by the app; Ed25519 in v2), and the app fetches the manifest and installs the pack.
 
 ## 5. Distribution and trust
 
@@ -118,7 +118,7 @@ Flow: the queue feeds `sourcetool ingest` on the operator's side. It validates, 
 
 ## 6. In the app (R8, R9)
 
-- **DuckDB tables:** `library_sources`, `library_source_categories`, `library_terms`, `library_taxonomy` and `library_meta`, loaded from the signed pack. They are plaintext: public catalog data holds no user content.
+- **DuckDB tables:** `library_sources`, `library_source_categories`, `library_terms`, `library_taxonomy` and `library_meta`, loaded from the pinned pack. They are plaintext: public catalog data holds no user content.
 - **Local sources** are user data. They are sealed in the vault and indexed **in memory at unlock** (a user has tens or hundreds, not thousands). Scoring merges them with the Library results. So nothing about a user's interests sits in plaintext at rest.
 - **Lookup** uses the SQL in `sourcetool/build.py` (`_LOOKUP`): term weights plus a category match from the taxonomy, plus a prior. The prior covers tier, validation, authority, votes, terms and usage.
 - **The Library page** (`/ni/library`, R9):
@@ -135,7 +135,7 @@ Flow: the queue feeds `sourcetool ingest` on the operator's side. It validates, 
 |---|---|---|
 | A | Taxonomy v1, schema, `sourcetool` check, validate, harvest, build and lookup; curated US core; 7 harvesters; DuckDB build | **done** |
 | B | Repo public and protected; CI (schema check plus validation of changed records); scheduled re-validation | this change |
-| C | App: signed pack install, DuckDB tables, lookup in the NI finder, Yes recorded locally, the Library page and form | next (SmartBrain_3000 PR) |
+| C | App: pinned pack install, DuckDB tables, lookup in the NI finder, Yes recorded locally, the Library page and form | next (SmartBrain_3000 PR) |
 | D | The Library API on the VPS, `sourcetool ingest`, vote aggregation, and the Yes vote plus suggestions from the app | service and ingest built; VPS deploy and the app's calls next |
 | E | Model-drafted classification (R3) to fix keyword misplacements; more harvesters (state 511 and GTFS registries, NWS stations, NOAA stations as resolvers) | rolling |
 
