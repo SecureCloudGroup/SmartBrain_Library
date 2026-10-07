@@ -209,7 +209,11 @@
       "max_age": "1h",
       "cross_check": true,
       "ask_if_ambiguous": true
-     }
+     },
+     "expects": [
+      "temperature",
+      "conditions"
+     ]
     },
     {
      "id": "alerts",
@@ -944,7 +948,11 @@
       "max_age": "1d",
       "cross_check": false,
       "ask_if_ambiguous": true
-     }
+     },
+     "expects": [
+      "tide",
+      "start_time"
+     ]
     },
     {
      "id": "water_levels",

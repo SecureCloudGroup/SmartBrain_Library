@@ -1,0 +1,77 @@
+{
+ "source_id": "openf1-sessions",
+ "answers": [
+  {
+   "name": "f1_schedule",
+   "label": "F1 Session Schedule",
+   "words": [
+    "f1 schedule",
+    "formula 1 sessions",
+    "upcoming f1 races",
+    "f1 race calendar",
+    "formula one schedule",
+    "f1 practice sessions",
+    "grand prix calendar",
+    "f1 qualifying sessions",
+    "motorsport schedule",
+    "f1 calendar",
+    "f1 upcoming events",
+    "formula 1 race schedule"
+   ],
+   "primary": true,
+   "kind": "list",
+   "path": "items",
+   "row": [
+    {
+     "path": "date_start",
+     "label": "Start",
+     "type": "time"
+    },
+    {
+     "path": "session_name",
+     "label": "Session",
+     "type": "text"
+    },
+    {
+     "path": "circuit_short_name",
+     "label": "Circuit",
+     "type": "text"
+    },
+    {
+     "path": "country_name",
+     "label": "Country",
+     "type": "text"
+    }
+   ],
+   "axis": {
+    "cell": "date_start",
+    "step": "period"
+   }
+  },
+  {
+   "name": "session_count",
+   "label": "Total Sessions",
+   "words": [
+    "how many f1 sessions",
+    "number of f1 sessions",
+    "f1 session count",
+    "total f1 sessions",
+    "f1 races remaining"
+   ],
+   "primary": false,
+   "kind": "value",
+   "path": "items",
+   "type": "count",
+   "window": "now"
+  }
+ ],
+ "sample_url": "https://api.openf1.org/v1/sessions?date_start%3E=2026-09-28",
+ "checked": "2026-10-06",
+ "draft_meta": {
+  "tool": "claude-cli",
+  "model": "claude-sonnet-4-6",
+  "is_local": false,
+  "prompt_sha": "ed26fcec03176c59",
+  "date": "2026-10-06"
+ }
+}

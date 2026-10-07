@@ -1,0 +1,122 @@
+{
+ "source_id": "treasury-yield-curve",
+ "answers": [
+  {
+   "name": "yield_10yr",
+   "label": "10-Year Yield",
+   "words": [
+    "10 year treasury yield",
+    "10yr yield",
+    "ten year rate",
+    "10 year rate",
+    "treasury 10 year",
+    "10yr treasury",
+    "ten year treasury",
+    "10 year bond yield"
+   ],
+   "primary": true,
+   "kind": "value",
+   "path": "rows[0]._10_Yr",
+   "type": "number",
+   "unit": "%",
+   "window": "latest"
+  },
+  {
+   "name": "yield_2yr",
+   "label": "2-Year Yield",
+   "words": [
+    "2 year treasury yield",
+    "2yr yield",
+    "two year rate",
+    "2 year rate",
+    "short term treasury yield",
+    "2yr treasury",
+    "two year treasury yield"
+   ],
+   "primary": true,
+   "kind": "value",
+   "path": "rows[0]._2_Yr",
+   "type": "number",
+   "unit": "%",
+   "window": "latest"
+  },
+  {
+   "name": "yield_30yr",
+   "label": "30-Year Yield",
+   "words": [
+    "30 year treasury yield",
+    "30yr yield",
+    "thirty year rate",
+    "long bond yield",
+    "30 year rate",
+    "treasury 30 year",
+    "30yr treasury"
+   ],
+   "primary": true,
+   "kind": "value",
+   "path": "rows[0]._30_Yr",
+   "type": "number",
+   "unit": "%",
+   "window": "latest"
+  },
+  {
+   "name": "yield_curve_history",
+   "label": "Yield Curve Trend",
+   "words": [
+    "yield curve trend",
+    "treasury yield history",
+    "interest rate trend",
+    "bond yields over time",
+    "yield curve chart",
+    "treasury rates history",
+    "yield curve over time",
+    "yield curve"
+   ],
+   "primary": false,
+   "kind": "list",
+   "path": "rows",
+   "newest_first": true,
+   "row": [
+    {
+     "path": "Date",
+     "label": "Date",
+     "type": "date"
+    },
+    {
+     "path": "_2_Yr",
+     "label": "2-Year",
+     "type": "number",
+     "unit": "%"
+    },
+    {
+     "path": "_10_Yr",
+     "label": "10-Year",
+     "type": "number",
+     "unit": "%"
+    },
+    {
+     "path": "_30_Yr",
+     "label": "30-Year",
+     "type": "number",
+     "unit": "%"
+    }
+   ],
+   "axis": {
+    "cell": "Date",
+    "step": "day"
+   }
+  }
+ ],
+ "problems": [
+  "answer yield_curve_history row[0]: Date is \"10/05/2026\", not date",
+  "answer yield_curve_history row[0] at item 1: Date is \"10/02/2026\", not date",
+  "answer yield_curve_history: axis cell \"10/05/2026\" is not an ISO date/time"
+ ],
+ "draft_meta": {
+  "tool": "claude-cli",
+  "model": "claude-sonnet-4-6",
+  "is_local": false,
+  "prompt_sha": "7a84400f9c64b03a",
+  "date": "2026-10-06"
+ }
+}

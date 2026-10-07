@@ -50,8 +50,11 @@ COLUMN_KEYS = (ROW_KEYS - {"tbd_if"}) | {"codes"}
 FILE_KEYS = {"source_id", "answers", "sample_url", "checked"}
 # spec v1.3 (2026-10-06): written by `answers-recheck`, never by hand — a file whose live sample failed the check
 # twice on later days is "drifted": build holds it back and the app offers the source as a link until it passes again
-FILE_OPTIONAL_KEYS = {"status", "last_failure"}
+FILE_OPTIONAL_KEYS = {"status", "last_failure", "draft_meta"}
 FILE_STATUSES = ("drifted",)
+# spec v1.3: a file `answers-draft` wrote carries where it came from; the words and labels in it are data a human
+# reviewed before merge, never a runtime model string
+DRAFT_META_KEYS = {"tool", "model", "is_local", "prompt_sha", "date"}
 MAX_ANSWERS = 12
 
 _NAME = re.compile(r"[a-z][a-z0-9_]{0,39}")
@@ -602,6 +605,19 @@ def held_back(directory: Path = ANSWERS) -> list[str]:
     return out
 
 
+def draft_meta_problems(meta) -> list[str]:
+    """`draft_meta` is closed: tool, model, prompt_sha (text), is_local (bool), date (YYYY-MM-DD)."""
+    if not isinstance(meta, dict) or set(meta) != DRAFT_META_KEYS:
+        return [f"draft_meta must hold exactly {sorted(DRAFT_META_KEYS)}"]
+    errs = [f"draft_meta.{k} must be text" for k in ("tool", "model", "prompt_sha")
+            if not (isinstance(meta[k], str) and meta[k].strip())]
+    if not isinstance(meta["is_local"], bool):
+        errs.append("draft_meta.is_local must be true or false")
+    if not (isinstance(meta["date"], str) and _DATE.fullmatch(meta["date"])):
+        errs.append("draft_meta.date must be YYYY-MM-DD")
+    return errs
+
+
 def load_answers(params_by_id: dict[str, dict], directory: Path = ANSWERS,
                  include_drifted: bool = False) -> tuple[dict[str, list], list[str]]:
     """Read every answers/<id>.json: ({source_id: answers}, problems). `params_by_id` maps each record id
@@ -635,6 +651,8 @@ def load_answers(params_by_id: dict[str, dict], directory: Path = ANSWERS,
             bad.append(f"status must be one of {'/'.join(FILE_STATUSES)}")
         if "last_failure" in d and not (isinstance(d["last_failure"], str) and _DATE.fullmatch(d["last_failure"])):
             bad.append("last_failure must be YYYY-MM-DD")
+        if "draft_meta" in d:
+            bad += draft_meta_problems(d["draft_meta"])
         errs += [f"{f.name}: {e}" for e in bad]
         if not bad and (include_drifted or d.get("status") != "drifted"):
             out[sid] = d["answers"]

@@ -1,0 +1,77 @@
+{
+ "source_id": "nhl-club-schedule",
+ "answers": [
+  {
+   "name": "schedule",
+   "label": "Team Schedule",
+   "words": [
+    "nhl schedule",
+    "team schedule",
+    "next game",
+    "upcoming games",
+    "game schedule",
+    "this weeks games",
+    "when do they play",
+    "puck drop",
+    "game time",
+    "who do they play next",
+    "upcoming matches",
+    "next nhl game"
+   ],
+   "primary": true,
+   "kind": "list",
+   "path": "games",
+   "row": [
+    {
+     "path": "gameDate",
+     "label": "Date",
+     "type": "date"
+    },
+    {
+     "path": "startTimeUTC",
+     "label": "Start",
+     "type": "time"
+    },
+    {
+     "path": "awayTeam.commonName.default",
+     "label": "Away",
+     "type": "text"
+    },
+    {
+     "path": "homeTeam.commonName.default",
+     "label": "Home",
+     "type": "text"
+    }
+   ],
+   "axis": {
+    "cell": "gameDate",
+    "step": "day"
+   }
+  },
+  {
+   "name": "games_count",
+   "label": "Games This Week",
+   "words": [
+    "how many games this week",
+    "number of games this week",
+    "games scheduled this week",
+    "how many games scheduled"
+   ],
+   "primary": false,
+   "kind": "value",
+   "path": "games",
+   "type": "count",
+   "unit": "games",
+   "window": "now"
+  }
+ ],
+ "sample_url": "https://api-web.nhle.com/v1/club-schedule/BOS/week/now",
+ "checked": "2026-10-06",
+ "draft_meta": {
+  "tool": "claude-cli",
+  "model": "claude-sonnet-4-6",
+  "is_local": false,
+  "prompt_sha": "332810eb18ac72b7",
+  "date": "2026-10-06"
+ }
+}

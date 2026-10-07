@@ -1,0 +1,120 @@
+{
+ "source_id": "usaspending-awards-agency",
+ "answers": [
+  {
+   "name": "total_obligated",
+   "label": "Total Obligated",
+   "words": [
+    "total obligated",
+    "how much obligated",
+    "agency obligations",
+    "federal obligations",
+    "spending obligated",
+    "obligated amount",
+    "fy obligated",
+    "fiscal year obligations",
+    "agency total obligations"
+   ],
+   "primary": true,
+   "kind": "value",
+   "path": "agency_data_by_year[1].agency_total_obligated",
+   "type": "number",
+   "unit": "USD",
+   "window": "latest"
+  },
+  {
+   "name": "budgetary_resources",
+   "label": "Budgetary Resources",
+   "words": [
+    "budgetary resources",
+    "agency budget",
+    "total budget resources",
+    "budget allocation",
+    "how much budget",
+    "agency funding",
+    "fiscal year budget resources"
+   ],
+   "primary": true,
+   "kind": "value",
+   "path": "agency_data_by_year[1].agency_budgetary_resources",
+   "type": "number",
+   "unit": "USD",
+   "window": "latest"
+  },
+  {
+   "name": "total_outlayed",
+   "label": "Total Outlayed",
+   "words": [
+    "total outlayed",
+    "agency outlays",
+    "how much outlayed",
+    "actual spending",
+    "money spent",
+    "outlayed funds",
+    "fiscal year outlays"
+   ],
+   "primary": true,
+   "kind": "value",
+   "path": "agency_data_by_year[1].agency_total_outlayed",
+   "type": "number",
+   "unit": "USD",
+   "window": "latest"
+  },
+  {
+   "name": "govt_total_resources",
+   "label": "Government-Wide Budgetary Resources",
+   "words": [
+    "government total resources",
+    "federal total budget",
+    "total budgetary resources",
+    "whole government budget",
+    "government wide resources",
+    "total federal resources"
+   ],
+   "primary": false,
+   "kind": "value",
+   "path": "agency_data_by_year[1].total_budgetary_resources",
+   "type": "number",
+   "unit": "USD",
+   "window": "latest"
+  },
+  {
+   "name": "obligations_by_period",
+   "label": "Obligations by Period",
+   "words": [
+    "obligations by period",
+    "period breakdown",
+    "quarterly obligations",
+    "spending by period",
+    "obligation periods",
+    "periodic spending",
+    "obligation period data"
+   ],
+   "primary": false,
+   "kind": "list",
+   "path": "agency_data_by_year[1].agency_obligation_by_period",
+   "row": [
+    {
+     "path": "period",
+     "label": "Period",
+     "type": "number"
+    },
+    {
+     "path": "obligated",
+     "label": "Obligated",
+     "type": "number",
+     "unit": "USD"
+    }
+   ]
+  }
+ ],
+ "sample_url": "https://api.usaspending.gov/api/v2/agency/080/budgetary_resources/",
+ "checked": "2026-10-06",
+ "draft_meta": {
+  "tool": "claude-cli",
+  "model": "claude-sonnet-4-6",
+  "is_local": false,
+  "prompt_sha": "be92667c3f50680b",
+  "date": "2026-10-06"
+ }
+}

@@ -1,0 +1,68 @@
+{
+ "source_id": "giss-global-temp",
+ "answers": [
+  {
+   "name": "temp_anomaly_trend",
+   "label": "Global Temperature Anomaly",
+   "words": [
+    "global temperature anomaly",
+    "temperature trend",
+    "global warming trend",
+    "surface temperature anomaly",
+    "temperature anomaly history",
+    "nasa gistemp",
+    "giss temperature data",
+    "monthly temperature anomaly",
+    "climate temperature trend",
+    "how hot is earth getting",
+    "temperature anomaly by year",
+    "gistemp monthly data",
+    "global surface warming"
+   ],
+   "kind": "list",
+   "primary": true,
+   "path": "rows",
+   "row": [
+    {
+     "path": "Year",
+     "label": "Year",
+     "type": "number"
+    },
+    {
+     "path": "Jan",
+     "label": "Jan",
+     "type": "number",
+     "unit": "°C"
+    },
+    {
+     "path": "Jul",
+     "label": "Jul",
+     "type": "number",
+     "unit": "°C"
+    },
+    {
+     "path": "Dec",
+     "label": "Dec",
+     "type": "number",
+     "unit": "°C"
+    }
+   ]
+  }
+ ],
+ "problems": [
+  "answer temp_anomaly_trend row[1]: Jan is \"-.19\", not number",
+  "answer temp_anomaly_trend row[2]: Jul is \"-.19\", not number",
+  "answer temp_anomaly_trend row[3]: Dec is \"-.18\", not number",
+  "answer temp_anomaly_trend row[1] at item 1: Jan is \"-.20\", not number",
+  "answer temp_anomaly_trend row[2] at item 1: Jul is \".00\", not number",
+  "answer temp_anomaly_trend row[3] at item 1: Dec is \"-.08\", not number",
+  "giss-global-temp: kind trend has no answer that serves it"
+ ],
+ "draft_meta": {
+  "tool": "claude-cli",
+  "model": "claude-sonnet-4-6",
+  "is_local": false,
+  "prompt_sha": "a6094b2aaf68156b",
+  "date": "2026-10-06"
+ }
+}

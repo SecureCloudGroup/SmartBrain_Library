@@ -1,0 +1,60 @@
+{
+ "source_id": "pubmed-search",
+ "answers": [
+  {
+   "name": "article_ids",
+   "label": "New Articles",
+   "words": [
+    "latest pubmed articles",
+    "new papers",
+    "recent studies",
+    "newest research",
+    "pubmed search results",
+    "latest research papers",
+    "new articles",
+    "recent papers",
+    "latest papers",
+    "new studies on topic"
+   ],
+   "primary": true,
+   "kind": "list",
+   "path": "esearchresult.idlist",
+   "newest_first": true,
+   "rows": [
+    {
+     "path": "",
+     "label": "Article ID",
+     "type": "text"
+    }
+   ]
+  },
+  {
+   "name": "total_results",
+   "label": "Total Results",
+   "words": [
+    "how many papers",
+    "total results",
+    "number of studies",
+    "count of articles",
+    "how many articles",
+    "total papers found"
+   ],
+   "primary": false,
+   "kind": "value",
+   "path": "esearchresult.count",
+   "type": "number",
+   "unit": "papers"
+  }
+ ],
+ "problems": [
+  "answer article_ids: unknown keys ['rows']",
+  "answer article_ids: row must hold 1-4 fields"
+ ],
+ "draft_meta": {
+  "tool": "claude-cli",
+  "model": "claude-sonnet-4-6",
+  "is_local": false,
+  "prompt_sha": "a388d26bbab03bfa",
+  "date": "2026-10-06"
+ }
+}

@@ -1,0 +1,178 @@
+{
+ "source_id": "sec-companyfacts",
+ "answers": [
+  {
+   "name": "total_assets",
+   "label": "Total Assets",
+   "words": [
+    "total assets",
+    "reported assets",
+    "balance sheet total",
+    "assets history",
+    "total company assets",
+    "asset value over time",
+    "sec total assets",
+    "edgar assets",
+    "company assets reported"
+   ],
+   "primary": true,
+   "kind": "list",
+   "path": "facts.us-gaap.Assets.units.USD",
+   "row": [
+    {
+     "path": "end",
+     "label": "Period End",
+     "type": "date"
+    },
+    {
+     "path": "val",
+     "label": "Total Assets",
+     "type": "number",
+     "unit": "USD"
+    },
+    {
+     "path": "form",
+     "label": "Form",
+     "type": "text"
+    },
+    {
+     "path": "fp",
+     "label": "Period",
+     "type": "text"
+    }
+   ],
+   "axis": {
+    "cell": "end",
+    "step": "day"
+   }
+  },
+  {
+   "name": "cash_and_equivalents",
+   "label": "Cash & Equivalents",
+   "words": [
+    "cash balance",
+    "cash on hand",
+    "cash equivalents",
+    "cash and cash equivalents",
+    "cash position",
+    "liquidity",
+    "cash holdings",
+    "reported cash"
+   ],
+   "primary": false,
+   "kind": "list",
+   "path": "facts.us-gaap.CashAndCashEquivalentsAtCarryingValue.units.USD",
+   "row": [
+    {
+     "path": "end",
+     "label": "Period End",
+     "type": "date"
+    },
+    {
+     "path": "val",
+     "label": "Cash",
+     "type": "number",
+     "unit": "USD"
+    },
+    {
+     "path": "form",
+     "label": "Form",
+     "type": "text"
+    },
+    {
+     "path": "fp",
+     "label": "Period",
+     "type": "text"
+    }
+   ],
+   "axis": {
+    "cell": "end",
+    "step": "day"
+   }
+  },
+  {
+   "name": "shares_outstanding",
+   "label": "Shares Outstanding",
+   "words": [
+    "shares outstanding",
+    "common stock shares",
+    "shares count",
+    "number of shares",
+    "how many shares",
+    "stock shares outstanding",
+    "outstanding shares"
+   ],
+   "primary": false,
+   "kind": "list",
+   "path": "facts.dei.EntityCommonStockSharesOutstanding.units.shares",
+   "row": [
+    {
+     "path": "end",
+     "label": "Period End",
+     "type": "date"
+    },
+    {
+     "path": "val",
+     "label": "Shares",
+     "type": "number",
+     "unit": "shares"
+    },
+    {
+     "path": "form",
+     "label": "Form",
+     "type": "text"
+    }
+   ],
+   "axis": {
+    "cell": "end",
+    "step": "day"
+   }
+  },
+  {
+   "name": "public_float",
+   "label": "Public Float",
+   "words": [
+    "public float",
+    "entity public float",
+    "market float",
+    "aggregate market value",
+    "float value",
+    "public company float"
+   ],
+   "primary": false,
+   "kind": "list",
+   "path": "facts.dei.EntityPublicFloat.units.USD",
+   "row": [
+    {
+     "path": "end",
+     "label": "Period End",
+     "type": "date"
+    },
+    {
+     "path": "val",
+     "label": "Float",
+     "type": "number",
+     "unit": "USD"
+    },
+    {
+     "path": "form",
+     "label": "Form",
+     "type": "text"
+    }
+   ],
+   "axis": {
+    "cell": "end",
+    "step": "day"
+   }
+  }
+ ],
+ "sample_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000320193.json",
+ "checked": "2026-10-06",
+ "draft_meta": {
+  "tool": "claude-cli",
+  "model": "claude-sonnet-4-6",
+  "is_local": false,
+  "prompt_sha": "bf7448ea82d18803",
+  "date": "2026-10-06"
+ }
+}
