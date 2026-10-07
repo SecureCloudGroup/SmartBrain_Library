@@ -1,0 +1,78 @@
+{
+ "source_id": "nvd-cves-keyword",
+ "answers": [
+  {
+   "name": "cve_list",
+   "label": "Recent CVEs",
+   "words": [
+    "recent cves",
+    "latest vulnerabilities",
+    "openssl cves",
+    "new vulnerabilities",
+    "cve list",
+    "security advisories",
+    "vulnerability feed",
+    "published cves",
+    "recent security issues",
+    "latest cve advisories"
+   ],
+   "primary": true,
+   "kind": "list",
+   "path": "vulnerabilities",
+   "row": [
+    {
+     "path": "cve.id",
+     "label": "CVE ID",
+     "type": "text"
+    },
+    {
+     "path": "cve.published",
+     "label": "Published",
+     "type": "time",
+     "utc": true
+    },
+    {
+     "path": "cve.vulnStatus",
+     "label": "Status",
+     "type": "text"
+    },
+    {
+     "path": "cve.descriptions[0].value",
+     "label": "Description",
+     "type": "text"
+    }
+   ],
+   "axis": {
+    "cell": "cve.published",
+    "step": "hour"
+   }
+  },
+  {
+   "name": "cve_count",
+   "label": "CVE Count",
+   "words": [
+    "how many cves",
+    "total vulnerabilities",
+    "cve count",
+    "number of vulnerabilities",
+    "vulnerability count",
+    "total cves found"
+   ],
+   "primary": false,
+   "kind": "value",
+   "path": "totalResults",
+   "type": "number",
+   "unit": "CVEs",
+   "window": "latest"
+  }
+ ],
+ "sample_url": "https://services.nvd.nist.gov/rest/json/cves/2.0?keywordSearch=openssl&resultsPerPage=20&pubStartDate=2026-08-29T00:00:00.000&pubEndDate=2026-09-28T23:59:59.999",
+ "checked": "2026-10-06",
+ "draft_meta": {
+  "tool": "claude-cli",
+  "model": "claude-sonnet-4-6",
+  "is_local": false,
+  "prompt_sha": "6ad0a072930510f5",
+  "date": "2026-10-06"
+ }
+}

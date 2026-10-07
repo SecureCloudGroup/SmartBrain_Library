@@ -1,0 +1,79 @@
+{
+ "source_id": "nsidc-arctic-ice",
+ "answers": [
+  {
+   "name": "current_extent",
+   "label": "Arctic Sea Ice Extent",
+   "words": [
+    "arctic sea ice extent",
+    "current sea ice",
+    "how much arctic ice",
+    "sea ice area today",
+    "arctic ice extent now",
+    "north pole ice coverage",
+    "arctic ice size",
+    "current arctic ice"
+   ],
+   "primary": false,
+   "kind": "value",
+   "path": "rows[1].Extent",
+   "type": "number",
+   "unit": "10^6 sq km",
+   "window": "latest"
+  },
+  {
+   "name": "extent_history",
+   "label": "Sea Ice Extent Over Time",
+   "words": [
+    "arctic sea ice trend",
+    "sea ice extent history",
+    "sea ice over time",
+    "arctic ice change",
+    "sea ice extent chart",
+    "daily sea ice extent",
+    "arctic ice trend data",
+    "sea ice historical data",
+    "arctic ice extent graph"
+   ],
+   "primary": true,
+   "kind": "list",
+   "path": "rows",
+   "row": [
+    {
+     "path": "Year",
+     "label": "Year",
+     "type": "text"
+    },
+    {
+     "path": "Month",
+     "label": "Month",
+     "type": "text"
+    },
+    {
+     "path": "Day",
+     "label": "Day",
+     "type": "text"
+    },
+    {
+     "path": "Extent",
+     "label": "Extent",
+     "type": "number",
+     "unit": "10^6 sq km"
+    }
+   ]
+  }
+ ],
+ "problems": [
+  "answer current_extent: rows[1].Extent is \"     10.231\", not number",
+  "answer extent_history row[3]: Extent is \" 10^6 sq km\", not number",
+  "answer extent_history row[3] at item 1: Extent is \"     10.231\", not number",
+  "nsidc-arctic-ice: kind trend has no answer that serves it"
+ ],
+ "draft_meta": {
+  "tool": "claude-cli",
+  "model": "claude-sonnet-4-6",
+  "is_local": false,
+  "prompt_sha": "d34b1394b514d7cd",
+  "date": "2026-10-06"
+ }
+}

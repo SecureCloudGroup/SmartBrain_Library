@@ -36,7 +36,7 @@ Harvested sources, by catalog:
 |---|---|
 | R1 | The repo is **SmartBrain Library**, public. Only the operator merges and updates it. |
 | R2 | Both tiers: curated and harvested (labelled). Users can **suggest** a source and add their own **local** source. |
-| R3 | `sourcetool` may use a model on the publisher side (local, or frontier with consent) to draft classifications and descriptions for review. The user's machine never needs one. |
+| R3 (extended 2026-10-06: `answers-draft` drafts answers files with the operator's claude CLI; every path is validated against the live sample and the draft is reviewed before promotion) | `sourcetool` may use a model on the publisher side (local, or frontier with consent) to draft classifications and descriptions for review. The user's machine never needs one. |
 | R4 | Only sources whose terms allow automated personal use, for now. User-paid services may come later. |
 | R5 | v1 = US. |
 | R6 | **A Yes is a good source.** Every time a user taps Yes on a source, it is recorded as a good source, "because they said so". It is recorded locally at once and submitted to the Library as a vote. |

@@ -1,0 +1,121 @@
+{
+ "source_id": "treasury-mts",
+ "answers": [
+  {
+   "name": "mts_trend",
+   "label": "Federal Receipts & Outlays",
+   "words": [
+    "federal receipts and outlays trend",
+    "monthly treasury statement",
+    "federal budget trend",
+    "government receipts outlays by month",
+    "federal deficit trend",
+    "treasury monthly statement",
+    "ytd federal spending trend",
+    "federal receipts trend",
+    "government finance trend",
+    "mts fiscal data"
+   ],
+   "primary": true,
+   "kind": "list",
+   "path": "data",
+   "newest_first": true,
+   "axis": {
+    "cell": "record_date",
+    "step": "day"
+   },
+   "row": [
+    {
+     "path": "record_date",
+     "label": "Date",
+     "type": "date"
+    },
+    {
+     "path": "current_month_gross_rcpt_amt",
+     "label": "Receipts",
+     "type": "number",
+     "unit": "USD"
+    },
+    {
+     "path": "current_month_gross_outly_amt",
+     "label": "Outlays",
+     "type": "number",
+     "unit": "USD"
+    },
+    {
+     "path": "current_month_dfct_sur_amt",
+     "label": "Deficit",
+     "type": "number",
+     "unit": "USD"
+    }
+   ]
+  },
+  {
+   "name": "latest_receipts",
+   "label": "YTD Federal Receipts",
+   "words": [
+    "federal receipts year to date",
+    "government tax receipts",
+    "ytd federal receipts",
+    "current federal receipts",
+    "total federal revenue",
+    "government income",
+    "federal revenue amount",
+    "how much has government collected"
+   ],
+   "primary": false,
+   "kind": "value",
+   "path": "data[0].current_month_gross_rcpt_amt",
+   "type": "number",
+   "unit": "USD",
+   "window": "latest"
+  },
+  {
+   "name": "latest_outlays",
+   "label": "YTD Federal Outlays",
+   "words": [
+    "federal outlays year to date",
+    "government spending amount",
+    "ytd federal outlays",
+    "current federal spending",
+    "total government outlays",
+    "federal expenditures",
+    "how much has government spent"
+   ],
+   "primary": false,
+   "kind": "value",
+   "path": "data[0].current_month_gross_outly_amt",
+   "type": "number",
+   "unit": "USD",
+   "window": "latest"
+  },
+  {
+   "name": "latest_deficit",
+   "label": "YTD Federal Deficit",
+   "words": [
+    "federal deficit amount",
+    "budget deficit year to date",
+    "current federal deficit",
+    "government deficit surplus",
+    "ytd deficit",
+    "federal deficit today",
+    "how big is the deficit"
+   ],
+   "primary": false,
+   "kind": "value",
+   "path": "data[0].current_month_dfct_sur_amt",
+   "type": "number",
+   "unit": "USD",
+   "window": "latest"
+  }
+ ],
+ "sample_url": "https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/mts/mts_table_1?filter=classification_desc:eq:Year-to-Date&sort=-record_date,-src_line_nbr&page[size]=4",
+ "checked": "2026-10-06",
+ "draft_meta": {
+  "tool": "claude-cli",
+  "model": "claude-sonnet-4-6",
+  "is_local": false,
+  "prompt_sha": "a7e05e0d11f8699c",
+  "date": "2026-10-06"
+ }
+}

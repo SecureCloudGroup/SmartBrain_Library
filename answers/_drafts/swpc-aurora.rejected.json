@@ -1,0 +1,38 @@
+{
+ "source_id": "swpc-aurora",
+ "answers": [
+  {
+   "name": "aurora_grid_count",
+   "label": "Aurora Grid Points",
+   "words": [
+    "aurora grid points",
+    "aurora coverage data",
+    "aurora probability grid",
+    "ovation aurora grid",
+    "aurora map data",
+    "aurora data available",
+    "aurora forecast grid",
+    "aurora coordinate data",
+    "how many aurora data points",
+    "aurora point count",
+    "aurora grid size"
+   ],
+   "primary": true,
+   "kind": "value",
+   "path": "coordinates",
+   "type": "count",
+   "unit": "points",
+   "window": "latest"
+  }
+ ],
+ "problems": [
+  "swpc-aurora: kind forecast has no answer that serves it"
+ ],
+ "draft_meta": {
+  "tool": "claude-cli",
+  "model": "claude-sonnet-4-6",
+  "is_local": false,
+  "prompt_sha": "e271b6e3b8de31db",
+  "date": "2026-10-06"
+ }
+}

@@ -1,0 +1,41 @@
+{
+ "source_id": "nws-marine-zone",
+ "answers": [
+  {
+   "name": "marine_forecast",
+   "label": "Marine Forecast",
+   "words": [
+    "marine forecast",
+    "coastal waters forecast",
+    "boating forecast",
+    "nearshore forecast",
+    "marine weather",
+    "sea conditions",
+    "offshore forecast",
+    "small craft advisory",
+    "coastal forecast",
+    "fishing forecast",
+    "marine conditions",
+    "boat out today",
+    "sea state",
+    "sailing conditions",
+    "boat conditions"
+   ],
+   "primary": true,
+   "kind": "value",
+   "path": "text",
+   "type": "text",
+   "window": "latest"
+  }
+ ],
+ "problems": [
+  "nws-marine-zone: kind forecast has no answer that serves it"
+ ],
+ "draft_meta": {
+  "tool": "claude-cli",
+  "model": "claude-sonnet-4-6",
+  "is_local": false,
+  "prompt_sha": "59e06e5d62b944e4",
+  "date": "2026-10-06"
+ }
+}

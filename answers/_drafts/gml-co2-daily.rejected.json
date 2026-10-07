@@ -1,0 +1,77 @@
+{
+ "source_id": "gml-co2-daily",
+ "answers": [
+  {
+   "name": "co2_current",
+   "label": "Current CO2",
+   "words": [
+    "current co2",
+    "co2 today",
+    "latest co2",
+    "carbon dioxide level",
+    "atmospheric co2",
+    "co2 ppm",
+    "mauna loa co2",
+    "co2 reading now",
+    "carbon dioxide concentration"
+   ],
+   "primary": true,
+   "kind": "value",
+   "path": "rows[0]._333_46",
+   "type": "number",
+   "unit": "ppm",
+   "window": "latest"
+  },
+  {
+   "name": "co2_trend",
+   "label": "CO2 History",
+   "words": [
+    "co2 trend",
+    "carbon dioxide history",
+    "co2 over time",
+    "atmospheric co2 trend",
+    "co2 chart",
+    "mauna loa co2 history",
+    "daily co2 readings",
+    "co2 time series"
+   ],
+   "primary": false,
+   "kind": "list",
+   "path": "rows",
+   "rows": [
+    {
+     "path": "_1974",
+     "label": "Year",
+     "type": "number"
+    },
+    {
+     "path": "_5",
+     "label": "Month",
+     "type": "number"
+    },
+    {
+     "path": "_19",
+     "label": "Day",
+     "type": "number"
+    },
+    {
+     "path": "_333_46",
+     "label": "CO2",
+     "type": "number",
+     "unit": "ppm"
+    }
+   ]
+  }
+ ],
+ "problems": [
+  "answer co2_trend: unknown keys ['rows']",
+  "answer co2_trend: row must hold 1-4 fields"
+ ],
+ "draft_meta": {
+  "tool": "claude-cli",
+  "model": "claude-sonnet-4-6",
+  "is_local": false,
+  "prompt_sha": "694822a0b74dd426",
+  "date": "2026-10-06"
+ }
+}

@@ -18,6 +18,9 @@
   python -m sourcetool answers-check [ID ...]                           fetch samples, check answers/ paths (live)
   python -m sourcetool answers-check --lint                             record + keyword lints (offline, no fetch)
   python -m sourcetool answers-generate                                 write answers for curated feeds + FRED series
+  python -m sourcetool answers-draft ID [ID ...] [--model M] [--force]   the operator's claude CLI drafts answers/_drafts/<id>.json
+                                                                        from the live sample; code validates every path
+  python -m sourcetool answers-promote ID [ID ...] [--force]            re-verify a draft live and move it into answers/
   python -m sourcetool answers-recheck [--since DAYS] [ID ...]          re-fetch live samples; PASS stamps checked,
                                                                         two failures on later days mark the file drifted
   python -m sourcetool asks-overlap --against FILE [FILE ...]           report asks that overlap any labeled set
@@ -217,6 +220,16 @@ def cmd_answers_recheck(args) -> int:
     return recheck.main(args)
 
 
+def cmd_answers_draft(args) -> int:
+    from . import draft
+    return draft.main(args)
+
+
+def cmd_answers_promote(args) -> int:
+    from . import draft
+    return draft.main_promote(args)
+
+
 def cmd_asks_overlap(args) -> int:
     """`asks-overlap --against FILE [FILE ...]`: report asks that overlap labeled eval sets outside
     the repo. Prints a per-file breakdown (exact / near) and returns 1 if any overlap is found."""
@@ -243,7 +256,8 @@ def cmd_asks_overlap(args) -> int:
 def main(argv: list[str]) -> int:
     if not argv or argv[0] not in {"check", "validate", "harvest", "build", "lookup", "coverage", "resolvers",
                                    "policies", "fills", "evalres", "evallookup", "ingest", "answers-check",
-                                   "answers-generate", "answers-recheck", "asks-overlap"}:
+                                   "answers-generate", "answers-recheck", "answers-draft", "answers-promote",
+                                   "asks-overlap"}:
         print(__doc__)
         return 2
     return globals()["cmd_" + argv[0].replace("-", "_")](argv[1:])

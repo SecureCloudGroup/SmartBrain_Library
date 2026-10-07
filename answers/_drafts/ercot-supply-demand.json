@@ -1,0 +1,107 @@
+{
+ "source_id": "ercot-supply-demand",
+ "answers": [
+  {
+   "name": "last_updated",
+   "label": "Last Updated",
+   "words": [
+    "when was ercot data updated",
+    "ercot data last refresh",
+    "last update time",
+    "ercot data timestamp",
+    "how fresh is ercot data"
+   ],
+   "primary": false,
+   "kind": "value",
+   "path": "lastUpdated",
+   "type": "time"
+  },
+  {
+   "name": "demand_history",
+   "label": "Demand History",
+   "words": [
+    "ercot demand history",
+    "texas grid demand over time",
+    "historical demand data",
+    "power demand trend",
+    "grid load history",
+    "electricity demand chart",
+    "demand readings today"
+   ],
+   "primary": true,
+   "kind": "list",
+   "path": "data",
+   "row": [
+    {
+     "path": "timestamp",
+     "label": "Time",
+     "type": "time"
+    },
+    {
+     "path": "demand",
+     "label": "Demand",
+     "type": "number",
+     "unit": "MW"
+    },
+    {
+     "path": "capacity",
+     "label": "Capacity",
+     "type": "number",
+     "unit": "MW"
+    }
+   ],
+   "axis": {
+    "cell": "timestamp",
+    "step": "hour"
+   }
+  },
+  {
+   "name": "demand_forecast",
+   "label": "Demand Forecast",
+   "words": [
+    "ercot demand forecast",
+    "texas grid forecast",
+    "forecasted power demand",
+    "electricity demand forecast",
+    "grid load forecast",
+    "ercot forecast tomorrow",
+    "predicted grid demand texas"
+   ],
+   "primary": false,
+   "kind": "list",
+   "path": "forecast",
+   "row": [
+    {
+     "path": "timestamp",
+     "label": "Time",
+     "type": "time"
+    },
+    {
+     "path": "forecastedDemand",
+     "label": "Forecast Demand",
+     "type": "number",
+     "unit": "MW"
+    },
+    {
+     "path": "availCapGen",
+     "label": "Avail Capacity",
+     "type": "number",
+     "unit": "MW"
+    }
+   ],
+   "axis": {
+    "cell": "timestamp",
+    "step": "hour"
+   }
+  }
+ ],
+ "sample_url": "https://www.ercot.com/api/1/services/read/dashboards/supply-demand.json",
+ "checked": "2026-10-06",
+ "draft_meta": {
+  "tool": "claude-cli",
+  "model": "claude-sonnet-4-6",
+  "is_local": false,
+  "prompt_sha": "5f24a9da44785efe",
+  "date": "2026-10-06"
+ }
+}

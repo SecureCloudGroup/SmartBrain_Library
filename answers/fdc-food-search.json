@@ -1,0 +1,101 @@
+{
+ "source_id": "fdc-food-search",
+ "answers": [
+  {
+   "name": "food_results",
+   "label": "Food Search Results",
+   "words": [
+    "nutrition facts",
+    "food search results",
+    "foods matching query",
+    "find food",
+    "food lookup",
+    "usda food data",
+    "search for food",
+    "what foods match",
+    "food database results",
+    "look up food"
+   ],
+   "primary": true,
+   "kind": "list",
+   "path": "foods",
+   "row": [
+    {
+     "path": "description",
+     "label": "Food",
+     "type": "text"
+    },
+    {
+     "path": "foodCategory",
+     "label": "Category",
+     "type": "text"
+    },
+    {
+     "path": "dataType",
+     "label": "Data Type",
+     "type": "text"
+    }
+   ]
+  },
+  {
+   "name": "food_nutrients",
+   "label": "Nutrients (Top Result)",
+   "words": [
+    "nutrient breakdown",
+    "nutrient list",
+    "vitamins and minerals",
+    "nutrient values",
+    "nutrition details",
+    "macronutrients",
+    "micronutrients",
+    "nutrition composition"
+   ],
+   "primary": false,
+   "kind": "list",
+   "path": "foods[0].foodNutrients",
+   "row": [
+    {
+     "path": "nutrientName",
+     "label": "Nutrient",
+     "type": "text"
+    },
+    {
+     "path": "value",
+     "label": "Amount",
+     "type": "number"
+    },
+    {
+     "path": "unitName",
+     "label": "Unit",
+     "type": "text"
+    }
+   ]
+  },
+  {
+   "name": "total_hits",
+   "label": "Total Matches",
+   "words": [
+    "how many results",
+    "total food matches",
+    "number of foods found",
+    "how many foods match",
+    "result count"
+   ],
+   "primary": false,
+   "kind": "value",
+   "path": "totalHits",
+   "type": "number",
+   "unit": "results",
+   "window": "latest"
+  }
+ ],
+ "sample_url": "https://api.nal.usda.gov/fdc/v1/foods/search?query=banana&pageSize=5&dataType=Foundation,SR%20Legacy&api_key=DEMO_KEY",
+ "checked": "2026-10-06",
+ "draft_meta": {
+  "tool": "claude-cli",
+  "model": "claude-sonnet-4-6",
+  "is_local": false,
+  "prompt_sha": "29149cb08ca881f5",
+  "date": "2026-10-06"
+ }
+}

@@ -1,0 +1,59 @@
+{
+ "source_id": "gml-co2-monthly",
+ "answers": [
+  {
+   "name": "co2_monthly_trend",
+   "label": "Monthly CO2",
+   "words": [
+    "co2 trend",
+    "carbon dioxide monthly",
+    "mauna loa co2",
+    "atmospheric co2 levels",
+    "co2 history",
+    "monthly carbon dioxide",
+    "co2 over time",
+    "carbon trend",
+    "co2 measurements",
+    "co2 readings",
+    "atmospheric carbon dioxide"
+   ],
+   "primary": true,
+   "kind": "list",
+   "path": "rows",
+   "row": [
+    {
+     "path": "year",
+     "label": "Year",
+     "type": "number"
+    },
+    {
+     "path": "month",
+     "label": "Month",
+     "type": "number"
+    },
+    {
+     "path": "average",
+     "label": "CO2 Average",
+     "type": "number",
+     "unit": "ppm"
+    },
+    {
+     "path": "deseasonalized",
+     "label": "Deseasonalized",
+     "type": "number",
+     "unit": "ppm"
+    }
+   ]
+  }
+ ],
+ "problems": [
+  "gml-co2-monthly: kind trend has no answer that serves it"
+ ],
+ "draft_meta": {
+  "tool": "claude-cli",
+  "model": "claude-sonnet-4-6",
+  "is_local": false,
+  "prompt_sha": "dc0b1d2aab37417f",
+  "date": "2026-10-06"
+ }
+}

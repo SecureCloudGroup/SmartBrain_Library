@@ -1,0 +1,121 @@
+{
+ "source_id": "coingecko-chart",
+ "answers": [
+  {
+   "name": "price_history",
+   "label": "Price History",
+   "words": [
+    "bitcoin price history",
+    "crypto price chart",
+    "coin price over time",
+    "price trend",
+    "historical prices",
+    "price chart",
+    "btc price history",
+    "coin price trend"
+   ],
+   "primary": true,
+   "kind": "list",
+   "path": "prices",
+   "row": [
+    {
+     "path": "[0]",
+     "label": "Time",
+     "type": "time",
+     "utc": true
+    },
+    {
+     "path": "[1]",
+     "label": "Price",
+     "type": "number",
+     "unit": "USD"
+    }
+   ],
+   "axis": {
+    "cell": "[0]",
+    "step": "hour"
+   }
+  },
+  {
+   "name": "market_cap_history",
+   "label": "Market Cap History",
+   "words": [
+    "market cap history",
+    "crypto market cap",
+    "coin market cap over time",
+    "market capitalization history",
+    "btc market cap trend",
+    "coin market cap chart"
+   ],
+   "primary": false,
+   "kind": "list",
+   "path": "market_caps",
+   "row": [
+    {
+     "path": "[0]",
+     "label": "Time",
+     "type": "time",
+     "utc": true
+    },
+    {
+     "path": "[1]",
+     "label": "Market Cap",
+     "type": "number",
+     "unit": "USD"
+    }
+   ],
+   "axis": {
+    "cell": "[0]",
+    "step": "hour"
+   }
+  },
+  {
+   "name": "volume_history",
+   "label": "Volume History",
+   "words": [
+    "trading volume history",
+    "crypto volume chart",
+    "coin volume over time",
+    "volume trend",
+    "btc trading volume",
+    "daily volume history"
+   ],
+   "primary": false,
+   "kind": "list",
+   "path": "total_volumes",
+   "row": [
+    {
+     "path": "[0]",
+     "label": "Time",
+     "type": "time",
+     "utc": true
+    },
+    {
+     "path": "[1]",
+     "label": "Volume",
+     "type": "number",
+     "unit": "USD"
+    }
+   ],
+   "axis": {
+    "cell": "[0]",
+    "step": "hour"
+   }
+  }
+ ],
+ "problems": [
+  "answer price_history row[0]: bad path '[0]'",
+  "answer price_history row[1]: bad path '[1]'",
+  "answer market_cap_history row[0]: bad path '[0]'",
+  "answer market_cap_history row[1]: bad path '[1]'",
+  "answer volume_history row[0]: bad path '[0]'",
+  "answer volume_history row[1]: bad path '[1]'"
+ ],
+ "draft_meta": {
+  "tool": "claude-cli",
+  "model": "claude-sonnet-4-6",
+  "is_local": false,
+  "prompt_sha": "e49487a36d62187c",
+  "date": "2026-10-06"
+ }
+}
