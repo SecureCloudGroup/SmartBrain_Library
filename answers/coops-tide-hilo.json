@@ -7,13 +7,10 @@
       "words": [
         "tides",
         "tide",
-        "high tide",
-        "low tide",
-        "next high tide",
-        "next low tide",
         "tide times",
         "tide chart",
-        "when is high tide"
+        "tide table",
+        "tide schedule"
       ],
       "primary": true,
       "kind": "list",
@@ -36,6 +33,82 @@
           "unit": "ft"
         }
       ],
+      "axis": {
+        "cell": "t",
+        "step": "hour"
+      }
+    },
+    {
+      "name": "next_high",
+      "label": "Next high tide",
+      "words": [
+        "next high tide",
+        "high tide",
+        "when is high tide"
+      ],
+      "primary": false,
+      "kind": "list",
+      "path": "predictions",
+      "row": [
+        {
+          "path": "t",
+          "label": "Time",
+          "type": "time"
+        },
+        {
+          "path": "type",
+          "label": "High/Low",
+          "type": "text"
+        },
+        {
+          "path": "v",
+          "label": "Height",
+          "type": "number",
+          "unit": "ft"
+        }
+      ],
+      "filter": {
+        "path": "type",
+        "equals": "H"
+      },
+      "axis": {
+        "cell": "t",
+        "step": "hour"
+      }
+    },
+    {
+      "name": "next_low",
+      "label": "Next low tide",
+      "words": [
+        "next low tide",
+        "low tide",
+        "when is low tide"
+      ],
+      "primary": false,
+      "kind": "list",
+      "path": "predictions",
+      "row": [
+        {
+          "path": "t",
+          "label": "Time",
+          "type": "time"
+        },
+        {
+          "path": "type",
+          "label": "High/Low",
+          "type": "text"
+        },
+        {
+          "path": "v",
+          "label": "Height",
+          "type": "number",
+          "unit": "ft"
+        }
+      ],
+      "filter": {
+        "path": "type",
+        "equals": "L"
+      },
       "axis": {
         "cell": "t",
         "step": "hour"

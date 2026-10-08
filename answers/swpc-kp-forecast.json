@@ -11,7 +11,7 @@
    "filter": {"path": "observed", "equals": "predicted"},
    "row": [
     {"path": "time_tag", "label": "Window starts", "type": "time", "utc": true},
-    {"path": "kp", "label": "Kp", "type": "number"}
+    {"path": "kp", "label": "Kp", "type": "number", "unit": "Kp"}
    ],
    "axis": {"cell": "time_tag", "step": "hour"}
   },
@@ -24,7 +24,7 @@
    "filter": {"path": "observed", "equals": "estimated"},
    "row": [
     {"path": "time_tag", "label": "Window starts", "type": "time", "utc": true},
-    {"path": "kp", "label": "Kp", "type": "number"}
+    {"path": "kp", "label": "Kp", "type": "number", "unit": "Kp"}
    ],
    "may_be_empty": true,
    "axis": {"cell": "time_tag", "step": "hour"}
@@ -38,7 +38,7 @@
    "filter": {"path": "observed", "equals": "observed"},
    "row": [
     {"path": "time_tag", "label": "Window starts", "type": "time", "utc": true},
-    {"path": "kp", "label": "Kp", "type": "number"}
+    {"path": "kp", "label": "Kp", "type": "number", "unit": "Kp"}
    ],
    "newest_first": true,
    "axis": {"cell": "time_tag", "step": "hour"}
