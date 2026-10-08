@@ -260,6 +260,8 @@
       "excessive heat warning",
       "heat warning",
       "watches and warnings",
+      "advisories",
+      "watches",
       "ice storm warning",
       "high wind warning",
       "high wind watch",
@@ -1324,7 +1326,11 @@
       "new moon",
       "sun come up",
       "sun go down",
-      "sun set"
+      "sun set",
+      "sun rise",
+      "sun rises",
+      "sun up",
+      "sunup"
      ],
      "policy": {
       "prefer": [
