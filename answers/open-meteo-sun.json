@@ -7,7 +7,9 @@
       "words": [
         "sunrise",
         "sunrise today",
+        "sun rise",
         "sun up",
+        "sunup",
         "dawn",
         "what time is sunrise",
         "when is sunrise",
@@ -46,7 +48,8 @@
         "tomorrow",
         "sunrise tomorrow",
         "dawn tomorrow",
-        "sun up tomorrow"
+        "sun up tomorrow",
+        "sun rise tomorrow"
       ],
       "primary": false,
       "kind": "value",
