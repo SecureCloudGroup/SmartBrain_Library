@@ -89,8 +89,8 @@ def test_paths():
 
 
 def test_list_rules():
-    bad([rows(row=[])], "1-4 fields")
-    bad([rows(row=[{"path": "a", "label": "A", "type": "text"}] * 5)], "1-4 fields")
+    bad([rows(row=[])], "1-5 fields")
+    bad([rows(row=[{"path": "a", "label": "A", "type": "text"}] * 6)], "1-5 fields")
     bad([rows(row=[{"path": "a", "label": "A", "type": "count"}])], "type must be")
     bad([rows(row=[{"path": "a", "label": "A", "type": "text", "codes": "wmo_weather"}])], "unknown keys")
     bad([rows(may_be_empty="yes")], "may_be_empty")
@@ -98,8 +98,8 @@ def test_list_rules():
 
 
 def test_columns_rules():
-    bad([cols(columns=cols()["columns"][:1])], "2-4 fields")
-    bad([cols(columns=cols()["columns"] * 3)], "2-4 fields")
+    bad([cols(columns=cols()["columns"][:1])], "2-5 fields")
+    bad([cols(columns=cols()["columns"] * 3)], "2-5 fields")
     bad([cols(limit=0)], "limit")
     bad([cols(limit=True)], "limit")
     c = cols()

@@ -233,8 +233,8 @@ def answer_problems(answers, params=()) -> list[str]:
                 errs.append(f"{w}: measure must be one of {'/'.join(MEASURES)}")
         elif kind == "list":
             rows = a.get("row")
-            if not isinstance(rows, list) or not 1 <= len(rows) <= 4:
-                errs.append(f"{w}: row must hold 1-4 fields")
+            if not isinstance(rows, list) or not 1 <= len(rows) <= 5:
+                errs.append(f"{w}: row must hold 1-5 fields")
             else:
                 for j, f in enumerate(rows):
                     errs += _field_problems(f"{w} row[{j}]", f, ROW_KEYS, ROW_TYPES)
@@ -245,8 +245,8 @@ def answer_problems(answers, params=()) -> list[str]:
                 errs += _filter_problems(w, a["filter"])
         else:
             cols = a.get("columns")
-            if not isinstance(cols, list) or not 2 <= len(cols) <= 4:
-                errs.append(f"{w}: columns must hold 2-4 fields")
+            if not isinstance(cols, list) or not 2 <= len(cols) <= 5:
+                errs.append(f"{w}: columns must hold 2-5 fields")
             else:
                 for j, f in enumerate(cols):
                     errs += _field_problems(f"{w} columns[{j}]", f, COLUMN_KEYS, ROW_TYPES)
