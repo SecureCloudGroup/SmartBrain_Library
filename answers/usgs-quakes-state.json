@@ -55,5 +55,5 @@
     }
   ],
   "sample_url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&minlatitude=51.179&maxlatitude=71.435&minlongitude=-187.651&maxlongitude=-129.974&minmagnitude=2.5&starttime=2026-08-29&orderby=time&limit=20",
-  "checked": "2026-09-28"
+  "checked": "2026-10-12"
 }

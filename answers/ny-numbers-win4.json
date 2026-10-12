@@ -124,5 +124,5 @@
     }
   ],
   "sample_url": "https://data.ny.gov/resource/hsys-3def.json?$order=draw_date%20DESC&$limit=10",
-  "checked": "2026-09-29"
+  "checked": "2026-10-12"
 }

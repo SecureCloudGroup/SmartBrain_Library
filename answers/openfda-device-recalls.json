@@ -59,5 +59,5 @@
     }
   ],
   "sample_url": "https://api.fda.gov/device/recall.json?sort=event_date_initiated:desc&limit=20",
-  "checked": "2026-09-28"
+  "checked": "2026-10-12"
 }

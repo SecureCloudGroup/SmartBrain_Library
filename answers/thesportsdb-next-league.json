@@ -30,7 +30,8 @@
       "primary": true,
       "kind": "value",
       "path": "events[0].strTimestamp",
-      "type": "time", "utc": true,
+      "type": "time",
+      "utc": true,
       "window": "latest"
     },
     {
@@ -71,7 +72,8 @@
         {
           "path": "strTimestamp",
           "label": "Start",
-          "type": "time", "utc": true
+          "type": "time",
+          "utc": true
         },
         {
           "path": "strVenue",
@@ -79,9 +81,13 @@
           "type": "text"
         }
       ],
-      "axis": {"cell": "strTimestamp", "step": "day"}
+      "axis": {
+        "cell": "strTimestamp",
+        "step": "day"
+      }
     }
   ],
   "sample_url": "https://www.thesportsdb.com/api/v1/json/123/eventsnextleague.php?id=4391",
-  "checked": "2026-09-28"
+  "checked": "2026-09-28",
+  "last_failure": "2026-10-12"
 }

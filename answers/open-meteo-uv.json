@@ -90,5 +90,5 @@
   }
  ],
  "sample_url": "https://api.open-meteo.com/v1/forecast?latitude=32.7765&longitude=-79.9311&current=uv_index&daily=uv_index_max&timezone=auto",
- "checked": "2026-09-28"
+ "checked": "2026-10-12"
 }

@@ -61,5 +61,5 @@
     }
   ],
   "sample_url": "https://api.nasa.gov/neo/rest/v1/feed?start_date=2026-09-27&api_key=DEMO_KEY",
-  "checked": "2026-09-28"
+  "checked": "2026-10-12"
 }

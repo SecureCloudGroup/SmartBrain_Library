@@ -149,5 +149,6 @@
     }
   ],
   "sample_url": "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?application=SmartBrain&station=8665530&time_zone=lst_ldt&units=english&format=json&product=predictions&datum=MLLW&interval=hilo&begin_date=20260927&range=48",
-  "checked": "2026-09-28"
+  "checked": "2026-09-28",
+  "last_failure": "2026-10-12"
 }

@@ -38,5 +38,5 @@
     }
   ],
   "sample_url": "https://api.frankfurter.dev/v2/rates?base=USD&quotes=EUR&from=2026-06-01",
-  "checked": "2026-09-28"
+  "checked": "2026-10-12"
 }
