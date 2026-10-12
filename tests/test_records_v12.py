@@ -194,6 +194,17 @@ def test_mlb_team_schedule_marks_tbd_times_and_names_the_game():
     assert start["tbd_if"] == {"path": "status.startTimeTBD", "equals": True}
 
 
+def test_upcoming_calendars_ask_from_today_forward():
+    """Round 20 (Q3b fix round): a calendar whose next_* / upcoming answers read the first date the address
+    returns asks from today forward — the generic date window (start -30 .. end 0) handed "next Braves game" a
+    game already played. The fill rules carry it, so a `sourcetool fills` run keeps it."""
+    from sourcetool.fills import fill_for
+    for sid in ("mlb-team-schedule", "finnhub-earnings-calendar"):
+        params = [p for p in RECORDS[sid]["access"]["params"] if p["name"] in ("start", "end")]
+        assert {p["name"]: p["fill"]["offset_days"] for p in params} == {"start": 0, "end": 30}, sid
+        assert all(fill_for(RECORDS[sid], p) == p["fill"] for p in params), sid
+
+
 # --- water: marine coverage, direction, swell, surf --------------------------------------------------
 
 def test_open_meteo_marine_is_ocean_and_coast_only_and_reads_direction_and_swell():
