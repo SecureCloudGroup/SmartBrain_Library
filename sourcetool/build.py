@@ -60,6 +60,10 @@ def build() -> str:
     from .schema import taxonomy_problems
     if problems := taxonomy_problems(taxonomy()):  # before anything is written: the old build stays usable
         raise SystemExit("taxonomy refused:\n  " + "\n  ".join(problems))
+    from .answers import load_code_tables
+    codes, problems = load_code_tables()
+    if problems:  # v1.5: a malformed code table is refused before anything is written, like the taxonomy
+        raise SystemExit("code tables refused:\n  " + "\n  ".join(problems))
     t0 = time.time()
     BUILD.mkdir(exist_ok=True)
     if DB.exists():
@@ -139,6 +143,7 @@ def build() -> str:
                         (c["id"], s["id"], f"{c['label']} › {s['label']}", s["kinds"], s["params"], s["keywords"],
                          json.dumps(pack_policy(s))))
     n_res = _load_resolvers(con)
+    _load_codes(con, codes)
     con.execute("INSERT INTO library_meta VALUES ('built_at', ?), ('records', ?), ('schema', '1'), "
                 "('sources_with_answers', ?)", (time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()), str(n),
                                                 str(n_answers)))
@@ -184,6 +189,18 @@ def _copy(con, table: str, rows: list[tuple]) -> None:
     finally:
         import os
         os.unlink(path)
+
+
+def _load_codes(con: duckdb.DuckDBPyConnection, tables: dict[str, list[str]]) -> int:
+    """v1.5: every Library code table as library_codes(name, value), one row per value: what a text cell that declares
+    `codes: <name>` holds, so the app can tell a value the cell can hold from words it can't."""
+    assert isinstance(tables, dict), "tables must be {name: values}"
+    rows = [(name, v) for name, values in sorted(tables.items()) for v in values]
+    con.execute("CREATE TABLE library_codes(name VARCHAR, value VARCHAR)")
+    if rows:  # a pack with no code table keeps the (empty) table
+        con.executemany("INSERT INTO library_codes VALUES (?,?)", rows)
+    assert con.execute("SELECT count(*) FROM library_codes").fetchone()[0] == len(rows), "every value is packed"
+    return len(rows)
 
 
 def _load_resolvers(con) -> int:

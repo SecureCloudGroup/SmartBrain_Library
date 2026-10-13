@@ -92,7 +92,7 @@ def test_list_rules():
     bad([rows(row=[])], "1-5 fields")
     bad([rows(row=[{"path": "a", "label": "A", "type": "text"}] * 6)], "1-5 fields")
     bad([rows(row=[{"path": "a", "label": "A", "type": "count"}])], "type must be")
-    bad([rows(row=[{"path": "a", "label": "A", "type": "text", "codes": "wmo_weather"}])], "unknown keys")
+    bad([rows(row=[{"path": "a", "label": "A", "type": "text", "codes": "wmo_weather"}])], "on a number")  # v1.5: by type
     bad([rows(may_be_empty="yes")], "may_be_empty")
     bad([rows(limit=5)], "unknown keys")
 

@@ -33,7 +33,7 @@ python3 -m venv .venv && .venv/bin/pip install httpx duckdb
 
 | Path | What |
 |---|---|
-| `taxonomy/` | categories, subcategories, question kinds, parameter kinds |
+| `taxonomy/` | categories, subcategories, question kinds, parameter kinds; `codes/`: the values a text cell holds (NWS alert event types) |
 | `sources/curated/` | hand-curated records (JSONL, one per line) |
 | `sources/harvested/` | records harvested from open catalogs (labelled, ranked lower) |
 | `sources/suggested/` | users' suggestions, written by `sourcetool ingest` |

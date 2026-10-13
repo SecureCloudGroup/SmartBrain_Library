@@ -28,7 +28,8 @@
         {
           "path": "properties.event",
           "label": "Alert",
-          "type": "text"
+          "type": "text",
+          "codes": "nws_event"
         },
         {
           "path": "properties.severity",
@@ -46,6 +47,10 @@
           "type": "time"
         }
       ],
+      "filter": {
+        "path": "properties.status",
+        "equals": "Actual"
+      },
       "may_be_empty": true
     },
     {

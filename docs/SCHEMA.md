@@ -1,4 +1,4 @@
-# Source record schema (v1, answers spec v1.4)
+# Source record schema (v1, answers spec v1.5)
 
 Each source is one JSON object per line in `sources/**/*.jsonl`. Users' suggestions arrive through the Library API and `sourcetool ingest` writes them to `sources/suggested/<date>.jsonl` with tier `harvested` and origin `{by: "user-suggestion"}`. `sourcetool/schema.py` holds the rules, and CI, `sourcetool` and the app all run the same validator.
 
@@ -59,6 +59,23 @@ Example (USGS state earthquakes, `min_mag` filled from its default 2.5):
 ```json
 {"name": "quakes", "kind": "list", "path": "features", "row": [{"path": "properties.mag", "label": "Magnitude", "type": "number"}, ...],
  "param_bounds": {"properties.mag": {"min": "min_mag"}}}
+```
+
+### Answers spec v1.5: the values a text cell holds
+
+`codes` names a cell's code table, and the table decides what the cell holds. Optional and closed; before v1.5 it sat on a value or a column only, and v1.5 also takes it on a list row field.
+
+| Key | On | Meaning |
+|---|---|---|
+| `codes` | a `number` value, column or list row field | `"wmo_weather"`: the cell holds a WMO weather code, and the app shows the code's words (that table ships with the app). |
+| `codes` | a `text` value, column or list row field | The name of a Library code table, `taxonomy/codes/<name>.json` (a slug other than `wmo_weather`): the closed list of values the cell holds, as the provider writes them. The table must exist and hold at least one value. `answers-check` reports a sample value outside it (case and spacing ignored), and the table is then fetched again from its `source_url`. |
+
+A code table is `{description, type: "text", source_url, fetched: "YYYY-MM-DD", values}`: 1 to 1,000 values of 1 to 80 characters, none repeated (case and spacing ignored). `check` refuses a malformed table, and `build` packs every table into `library_codes(name VARCHAR, value VARCHAR)`, one row per value, so the app can tell a value the cell can hold ("Coastal Flood Advisory") from words it can't ("anywhere"). `nws_event` holds the National Weather Service's alert event types (from `https://api.weather.gov/alerts/types`) and is declared on `properties.event` of `nws-alerts-point`, `nws-alerts-state` and `nws-tropical-alerts-point`.
+
+Example (NWS alerts at a point):
+
+```json
+{"name": "alerts", "kind": "list", "path": "features", "row": [{"path": "properties.event", "label": "Alert", "type": "text", "codes": "nws_event"}, ...]}
 ```
 
 ### Taxonomy keys
