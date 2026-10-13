@@ -1,4 +1,4 @@
-# Source record schema (v1, answers spec v1.2)
+# Source record schema (v1, answers spec v1.4)
 
 Each source is one JSON object per line in `sources/**/*.jsonl`. Users' suggestions arrive through the Library API and `sourcetool ingest` writes them to `sources/suggested/<date>.jsonl` with tier `harvested` and origin `{by: "user-suggestion"}`. `sourcetool/schema.py` holds the rules, and CI, `sourcetool` and the app all run the same validator.
 
@@ -44,6 +44,21 @@ Example (MLB postseason game times are placeholders until the league sets them):
 ```json
 {"name": "next_game_time", "label": "Game time", "kind": "value", "type": "time", "words": ["game time", "first pitch", "when"],
  "path": "dates[0].games[0].gameDate", "tbd_if": {"path": "dates[0].games[0].status.startTimeTBD", "equals": true}}
+```
+
+### Answers spec v1.4: the parameter that bounds a cell
+
+Optional and closed, on a `list` or `columns` answer. It lets the app push a comparator the user asked for into the address, so the source returns the rows the card keeps; the card's own row filter stays.
+
+| Key | On | Meaning |
+|---|---|---|
+| `param_bounds` | list, columns | `{<cell path>: {min?: <param>, max?: <param>}}`, 1 to 4 cells: the parameter of the address that bounds that `number` cell from below (`min`) or above (`max`). The cell is one of the answer's own `number` fields, each side names one of the record's `access.params` whose `example` is a number, and a parameter bounds one side of one cell only. "Earthquakes above magnitude 4" fetches with `minmagnitude=4` instead of the default 2.5, and the card still keeps only the rows above 4. |
+
+Example (USGS state earthquakes, `min_mag` filled from its default 2.5):
+
+```json
+{"name": "quakes", "kind": "list", "path": "features", "row": [{"path": "properties.mag", "label": "Magnitude", "type": "number"}, ...],
+ "param_bounds": {"properties.mag": {"min": "min_mag"}}}
 ```
 
 ### Taxonomy keys

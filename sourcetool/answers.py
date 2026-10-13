@@ -43,8 +43,11 @@ COMPONENTS = MEASURES + ("observed_time", "wave_period", "score", "opponent", "s
                          "record")
 COMMON = {"name", "label", "words", "primary", "kind"}
 KEYS = {"value": COMMON | {"path", "type", "unit", "unit_path", "codes", "utc", "window", "measure", "tbd_if"},
-        "list": COMMON | {"path", "row", "newest_first", "may_be_empty", "filter", "axis"},
-        "columns": COMMON | {"columns", "limit", "axis"}}
+        "list": COMMON | {"path", "row", "newest_first", "may_be_empty", "filter", "axis", "param_bounds"},
+        "columns": COMMON | {"columns", "limit", "axis", "param_bounds"}}
+# v1.4: `param_bounds` names the parameter of the address that bounds a number cell from below / above
+BOUND_SIDES = ("min", "max")
+MAX_BOUNDS = 4
 ROW_KEYS = {"path", "label", "type", "unit", "unit_path", "utc", "tbd_if"}  # utc: zoneless times are UTC
 COLUMN_KEYS = (ROW_KEYS - {"tbd_if"}) | {"codes"}
 FILE_KEYS = {"source_id", "answers", "sample_url", "checked"}
@@ -143,6 +146,39 @@ def _axis_problems(w: str, a: dict) -> list[str]:
     cells = {f.get("path") for f in fields or [] if isinstance(f, dict) and f.get("type") in ("time", "date")}
     if ax["cell"] not in cells:
         errs.append(f"{w}: axis cell must be one of its date/time fields {sorted(c for c in cells if c)}")
+    return errs
+
+
+def _bounds_problems(w: str, a: dict, params) -> list[str]:
+    """v1.4 `param_bounds: {<cell path>: {min?: <param>, max?: <param>}}` says which parameter of the address
+    bounds a number cell from below or above (USGS `minmagnitude` for `properties.mag`), so the app can push an
+    asked comparator ("above magnitude 4") into the address while its row filter stays. The cell is one of the
+    answer's own `number` fields; each side names a parameter of the source (whose example is a number, when the
+    examples are known), and one parameter bounds one side only."""
+    if "param_bounds" not in a:
+        return []
+    pb = a["param_bounds"]
+    if not isinstance(pb, dict) or not 1 <= len(pb) <= MAX_BOUNDS:
+        return [f"{w}: param_bounds must map 1-{MAX_BOUNDS} number cells to {{min, max}}"]
+    fields = a.get("row") if a.get("kind") == "list" else a.get("columns")
+    numbers = {f.get("path") for f in fields or [] if isinstance(f, dict) and f.get("type") == "number"}
+    errs, used = [], []
+    for cell, sides in pb.items():
+        if cell not in numbers:
+            errs.append(f"{w}: param_bounds cell {cell!r} is not one of its number fields "
+                        f"{sorted(n for n in numbers if n)}")
+        if not isinstance(sides, dict) or not sides or set(sides) - set(BOUND_SIDES):
+            errs.append(f"{w}: param_bounds[{cell!r}] must be {{min?, max?}} naming parameters")
+            continue
+        for side, name in sides.items():
+            if not isinstance(name, str) or name not in params:
+                errs.append(f"{w}: param_bounds {side} {name!r} is not a parameter of this source")
+                continue
+            if isinstance(params, dict) and not _is_number(params[name]):
+                errs.append(f"{w}: param_bounds {side} {name!r} is not a number parameter (example {params[name]!r})")
+            used.append(name)
+    if len(set(used)) < len(used):
+        errs.append(f"{w}: a parameter bounds one side of one cell only")
     return errs
 
 
@@ -254,7 +290,7 @@ def answer_problems(answers, params=()) -> list[str]:
             if "limit" in a and (isinstance(lim, bool) or not isinstance(lim, int) or not 1 <= lim <= 100):
                 errs.append(f"{w}: limit must be a whole number 1-100")
         if kind != "value":
-            errs += _axis_problems(w, a)
+            errs += _axis_problems(w, a) + _bounds_problems(w, a, params)
         errs += _param_problems(w, a, params)
     rows_primary = primary["list"] + primary["columns"]
     if rows_primary and primary["value"]:

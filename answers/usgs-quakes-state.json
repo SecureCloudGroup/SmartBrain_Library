@@ -36,7 +36,12 @@
           "type": "time"
         }
       ],
-      "may_be_empty": true
+      "may_be_empty": true,
+      "param_bounds": {
+        "properties.mag": {
+          "min": "min_mag"
+        }
+      }
     },
     {
       "name": "quake_count",

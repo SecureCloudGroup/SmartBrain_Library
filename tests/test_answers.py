@@ -107,6 +107,24 @@ def test_columns_rules():
     bad([c], "wmo_weather")
 
 
+def test_param_bounds_v14():
+    """v1.4: `param_bounds` names the parameter that bounds a number cell (USGS minmagnitude for properties.mag);
+    the cell is one of the answer's number fields, each side a number parameter of the source, one side each."""
+    params = {"min_mag": "2.5", "radius_km": "200", "start": "2026-09-01", "lat": "37.77"}
+    ok = rows(param_bounds={"properties.mag": {"min": "min_mag"}})
+    assert answer_problems([ok], params) == []
+    assert answer_problems([ok], {"min_mag"}) == []   # names only (schema.validate_record): no example to check
+    assert answer_problems([cols(param_bounds={"daily.temperature_2m_max": {"max": "radius_km"}})], params) == []
+    bad([rows(param_bounds={"properties.place": {"min": "min_mag"}})], "not one of its number fields", params)
+    bad([rows(param_bounds={"properties.mag": {"min": "magnitude"}})], "not a parameter", params)
+    bad([rows(param_bounds={"properties.mag": {"min": "start"}})], "not a number parameter", params)
+    bad([rows(param_bounds={"properties.mag": {"low": "min_mag"}})], "{min?, max?}", params)
+    bad([rows(param_bounds={"properties.mag": {}})], "{min?, max?}", params)
+    bad([rows(param_bounds={})], "1-4", params)
+    bad([rows(param_bounds={"properties.mag": {"min": "min_mag", "max": "min_mag"}})], "one side", params)
+    bad([value(param_bounds={"current.temperature_2m": {"min": "min_mag"}})], "unknown keys", params)
+
+
 def test_primary_limits():
     assert answer_problems([value(primary=False)]) == []  # primary is a maximum, not a minimum (v1.1)
     bad([value(str(c)) for c in "abcde"], "at most 4")

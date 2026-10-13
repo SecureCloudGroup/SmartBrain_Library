@@ -47,6 +47,10 @@ BY_PROVIDER = {
     ("frankfurter", "quote"): R("currency", many_index=1),
     ("mlb", "team"): R("team_mlb"),
     ("mlb", "since"): CLOCK("%Y-%m-%d", -7),
+    # an upcoming calendar asks from today forward: its next_* / upcoming answers read the first date the address
+    # returns, so the generic date window (start -30 .. end 0) handed them a game already played (Round 20, Q3b)
+    ("mlb", "start"): CLOCK("%Y-%m-%d"), ("mlb", "end"): CLOCK("%Y-%m-%d", 30),
+    ("finnhub", "start"): CLOCK("%Y-%m-%d"), ("finnhub", "end"): CLOCK("%Y-%m-%d", 30),
     ("nhl", "team"): R("team_nhl"),
     ("espn", "sport"): R("team_espn", "attrs.sport", fallback=DEFAULT("football")),
     ("espn", "league"): R("team_espn", "attrs.league", fallback=DEFAULT("nfl")),
