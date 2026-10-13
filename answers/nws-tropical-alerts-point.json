@@ -28,7 +28,8 @@
         {
           "path": "properties.event",
           "label": "Alert",
-          "type": "text"
+          "type": "text",
+          "codes": "nws_event"
         },
         {
           "path": "properties.areaDesc",
@@ -46,9 +47,13 @@
           "type": "time"
         }
       ],
+      "filter": {
+        "path": "properties.status",
+        "equals": "Actual"
+      },
       "may_be_empty": true
     }
   ],
-  "sample_url": "https://api.weather.gov/alerts/active?point=27.9477,-82.4584&event=Hurricane%20Warning,Hurricane%20Watch,Tropical%20Storm%20Warning,Tropical%20Storm%20Watch,Storm%20Surge%20Warning,Storm%20Surge%20Watch,Extreme%20Wind%20Warning,Hurricane%20Local%20Statement",
+  "sample_url": "https://api.weather.gov/alerts/active?point=27.9477,-82.4584&event=Hurricane%20Warning,Hurricane%20Watch,Tropical%20Storm%20Warning,Tropical%20Storm%20Watch,Storm%20Surge%20Warning,Storm%20Surge%20Watch,Extreme%20Wind%20Warning,Tropical%20Cyclone%20Local%20Statement",
   "checked": "2026-09-29"
 }

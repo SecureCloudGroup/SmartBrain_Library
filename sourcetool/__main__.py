@@ -43,12 +43,14 @@ def _files(only: str | None) -> list[Path]:
 
 
 def _check_taxonomy_and_resolvers() -> int:
-    """The taxonomy is well-formed (schema.taxonomy_problems), every subcategory has a policy, and every
-    resolver a policy names has a table (a missing one is a noted gap)."""
+    """The taxonomy is well-formed (schema.taxonomy_problems) and so are its code tables (answers.load_code_tables),
+    every subcategory has a policy, and every resolver a policy names has a table (a missing one is a noted gap)."""
+    from .answers import load_code_tables
     from .resolvers import RES
     from .schema import taxonomy_problems
     t = taxonomy()
     problems = taxonomy_problems(t)  # the closed shape: keys, kinds, params, keywords, expects, policy.measure
+    problems += [f"codes/{p}" for p in load_code_tables()[1]]  # v1.5: taxonomy/codes/<name>.json, closed shape
     for p in problems:
         print(f"taxonomy: {p}")
     bad = len(problems)

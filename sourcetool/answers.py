@@ -29,7 +29,13 @@ AUTHORING_UA = "SmartBrain-Library-authoring/1 info@securecloudgroup.com"
 KINDS = ("value", "list", "columns")
 VALUE_TYPES = ("number", "text", "time", "date", "count")
 ROW_TYPES = ("number", "text", "time", "date")
-CODES = ("wmo_weather",)
+CODES = ("wmo_weather",)  # number tables: a code -> its words, shipped with the app
+# v1.5: a text cell's `codes` names a Library table of the values it holds, taxonomy/codes/<name>.json
+CODE_TABLES = ROOT / "taxonomy" / "codes"
+CODE_TABLE_KEYS = {"description", "type", "source_url", "fetched", "values"}
+MAX_CODE_TABLES = 50
+MAX_CODE_VALUES = 1000
+MAX_CODE_CHARS = 80
 # v1.2: what a value delivers. `window` is the stretch of time it is about ("latest" = the newest published
 # reading, not tied to the clock); `measure` is the quantity it reports. Both closed (docs/SCHEMA.md).
 WINDOWS = ("now", "today", "tonight", "tomorrow", "latest")
@@ -48,7 +54,7 @@ KEYS = {"value": COMMON | {"path", "type", "unit", "unit_path", "codes", "utc", 
 # v1.4: `param_bounds` names the parameter of the address that bounds a number cell from below / above
 BOUND_SIDES = ("min", "max")
 MAX_BOUNDS = 4
-ROW_KEYS = {"path", "label", "type", "unit", "unit_path", "utc", "tbd_if"}  # utc: zoneless times are UTC
+ROW_KEYS = {"path", "label", "type", "unit", "unit_path", "utc", "tbd_if", "codes"}  # utc: zoneless times are UTC
 COLUMN_KEYS = (ROW_KEYS - {"tbd_if"}) | {"codes"}
 FILE_KEYS = {"source_id", "answers", "sample_url", "checked"}
 # spec v1.3 (2026-10-06): written by `answers-recheck`, never by hand — a file whose live sample failed the check
@@ -112,9 +118,78 @@ def _field_problems(where: str, f, keys: set[str], types: tuple) -> list[str]:
     errs += _label_problems(where, f.get("label"))
     if f.get("type") not in types:
         errs.append(f"{where}: type must be one of {'/'.join(types)}")
-    if "codes" in f and f["codes"] not in CODES:
-        errs.append(f"{where}: codes must be \"wmo_weather\"")
+    errs += _codes_problems(where, f)
     return errs + _unit_problems(where, f) + _utc_problems(where, f) + _tbd_problems(where, f)
+
+
+def _said(text: str) -> str:
+    """A code table value or a cell value as the two are compared: case and spacing ignored."""
+    assert isinstance(text, str), "text must be a str"
+    out = " ".join(text.split()).casefold()
+    assert "  " not in out, "spacing is folded"
+    return out
+
+
+def _code_table_problems(name: str, d: object) -> list[str]:
+    """One code table's closed shape (v1.5): {description, type: "text", source_url (https), fetched (YYYY-MM-DD),
+    values: 1-MAX_CODE_VALUES texts of 1-MAX_CODE_CHARS characters, none repeated (case and spacing ignored)}."""
+    assert isinstance(name, str), "name must be a str"
+    assert CODE_TABLE_KEYS >= {"type", "values"}, "the closed keys hold type and values"
+    if not _NAME.fullmatch(name) or name in CODES:
+        return [f"the table name must be a slug [a-z][a-z0-9_]{{0,39}} other than {'/'.join(CODES)}"]
+    if not isinstance(d, dict) or set(d) != CODE_TABLE_KEYS:
+        return [f"must hold exactly {sorted(CODE_TABLE_KEYS)}"]
+    errs = [] if d["type"] == "text" else ["type must be text"]
+    if not (isinstance(d["description"], str) and d["description"].strip()):
+        errs.append("description must be text")
+    if not (isinstance(d["source_url"], str) and d["source_url"].startswith("https://")):
+        errs.append("source_url must be the https URL the values came from")
+    if not (isinstance(d["fetched"], str) and _DATE.fullmatch(d["fetched"])):
+        errs.append("fetched must be YYYY-MM-DD")
+    vals = d["values"]
+    if not isinstance(vals, list) or not 1 <= len(vals) <= MAX_CODE_VALUES or any(
+            not isinstance(v, str) or not v.strip() or v != v.strip() or len(v) > MAX_CODE_CHARS for v in vals):
+        errs.append(f"values must be 1-{MAX_CODE_VALUES} texts of 1-{MAX_CODE_CHARS} characters")
+    elif len({_said(v) for v in vals}) < len(vals):
+        errs.append("values repeat (case and spacing ignored)")
+    return errs
+
+
+def load_code_tables(directory: Path | None = None) -> tuple[dict[str, list[str]], list[str]]:
+    """v1.5: every Library code table, taxonomy/codes/<name>.json, as ({name: values}, problems): the closed list of
+    values a text cell holds, as the provider writes them. A malformed table is a problem (`check` reports it, `build`
+    refuses it) and is left out, so a cell that names it is refused too."""
+    directory = directory or CODE_TABLES
+    assert isinstance(directory, Path), "directory must be a Path"
+    files = sorted(directory.glob("*.json"))
+    errs = [f"at most {MAX_CODE_TABLES} code tables"] if len(files) > MAX_CODE_TABLES else []
+    tables: dict[str, list[str]] = {}
+    for f in files[:MAX_CODE_TABLES]:  # bounded
+        try:
+            d = json.loads(f.read_text(encoding="utf-8"))
+        except ValueError as e:
+            errs.append(f"{f.name}: not JSON ({e})")
+            continue
+        bad = _code_table_problems(f.stem, d)
+        errs += [f"{f.name}: {e}" for e in bad]
+        if not bad:
+            tables[f.stem] = list(d["values"])
+    assert all(tables.values()), "a loaded table is never empty"
+    return tables, errs
+
+
+def _codes_problems(where: str, f: dict) -> list[str]:
+    """`codes` names the cell's code table: "wmo_weather" on a number (a weather code; the app ships its words), or
+    since v1.5 a Library code table on a text (the closed list of values the cell holds, `load_code_tables`)."""
+    assert isinstance(where, str) and isinstance(f, dict), "where + field required"
+    if "codes" not in f or (f.get("type") == "number" and f["codes"] in CODES):
+        return []
+    tables = load_code_tables()[0]
+    assert all(isinstance(n, str) for n in tables), "table names are slugs"
+    if f.get("type") == "text" and isinstance(f["codes"], str) and f["codes"] in tables:
+        return []
+    return [(f'{where}: codes must be "wmo_weather" on a number, or a code table of taxonomy/codes on a text '
+             f'({"/".join(sorted(tables)) or "none"})')]
 
 
 def _tbd_problems(where: str, f: dict) -> list[str]:
@@ -260,9 +335,7 @@ def answer_problems(answers, params=()) -> list[str]:
         if kind == "value":
             if a.get("type") not in VALUE_TYPES:
                 errs.append(f"{w}: type must be one of {'/'.join(VALUE_TYPES)}")
-            if "codes" in a and a["codes"] not in CODES:
-                errs.append(f"{w}: codes must be \"wmo_weather\"")
-            errs += _unit_problems(w, a) + _utc_problems(w, a) + _tbd_problems(w, a)
+            errs += _codes_problems(w, a) + _unit_problems(w, a) + _utc_problems(w, a) + _tbd_problems(w, a)
             if "window" in a and a["window"] not in WINDOWS:
                 errs.append(f"{w}: window must be one of {'/'.join(WINDOWS)}")
             if "measure" in a and a["measure"] not in MEASURES:
@@ -488,7 +561,9 @@ def _check_field(where: str, item, root, f: dict, ex: dict) -> list[str]:
     return errs
 
 
-_TBD_KEY = re.compile(r"tb[da]", re.I)  # startTimeTBD, timeTBA, isTBD
+# startTimeTBD, timeTBA, isTBD, tbd, time_tbd — never the letters inside another word (TheSportsDB's
+# idAPIfootball flagged every event as TBA on the 2026-10-12 weekly recheck)
+_TBD_KEY = re.compile(r"TB[DA](?![a-z])|(?:^|_)tb[da](?:_|$)")
 _TBD_VALUE = re.compile(r"\s*(tbd|tba|to be (determined|announced))\s*", re.I)
 
 
@@ -566,6 +641,26 @@ def _check_column(w: str, col: list, f: dict) -> list[str]:
     return []
 
 
+def _codes_check(w: str, f: dict, values: list) -> list[str]:
+    """v1.5: every present value of a text cell that names a code table is one of the table's values (case and
+    spacing ignored). The values outside it are reported (the first three), so the table is refreshed."""
+    assert isinstance(w, str) and isinstance(f, dict), "where + field required"
+    assert isinstance(values, list), "values must be a list"
+    named = f.get("type") == "text" and isinstance(f.get("codes"), str)
+    table = load_code_tables()[0].get(f["codes"]) if named else None
+    if not table:  # no text table on this cell (a cell naming a missing one is the schema's problem)
+        return []
+    known = {_said(v) for v in table}
+    outside: list[str] = []
+    for v in values[:_MAX_CHECKED_ROWS]:  # bounded
+        if isinstance(v, str) and not _sparse(v) and _said(v) not in known and v not in outside:
+            outside.append(v)
+    if not outside:
+        return []
+    return [(f"{w}: {f['path']} holds {', '.join(_show(v) for v in outside[:3])}, not in code table {f['codes']} "
+             f"(refresh taxonomy/codes/{f['codes']}.json from its source_url)")]
+
+
 def check_sample(answers: list, sample, examples: dict | None = None) -> list[str]:
     """Every path resolves in the sample with the type its answer promises. `examples` maps each of the
     record's params to its `example` (what a `{param}` segment or a filter stands for in the sample).
@@ -578,7 +673,7 @@ def check_sample(answers: list, sample, examples: dict | None = None) -> list[st
     for a in answers:
         w = f"answer {a['name']}"
         if a["kind"] == "value":
-            errs += _check_field(w, sample, sample, a, ex)
+            errs += _check_field(w, sample, sample, a, ex) + _codes_check(w, a, [resolve(sample, a["path"], ex)])
         elif a["kind"] == "list":
             items = resolve(sample, a["path"], ex)
             if isinstance(items, list) and "filter" in a:
@@ -599,6 +694,8 @@ def check_sample(answers: list, sample, examples: dict | None = None) -> list[st
                 for j, f in enumerate(a["row"]):
                     errs += _check_field(f"{w} row[{j}]", items[0], sample, f, ex)
                 errs += _check_rows(w, items, a["row"], ex)
+                errs += [e for j, f in enumerate(a["row"]) if f.get("codes") for e in _codes_check(
+                    f"{w} row[{j}]", f, [resolve(it, f["path"], ex) for it in items[:_MAX_CHECKED_ROWS]])]
                 if "axis" in a:
                     errs += _axis_check(w, [resolve(it, a["axis"]["cell"], ex) for it in items])
         else:
@@ -609,7 +706,7 @@ def check_sample(answers: list, sample, examples: dict | None = None) -> list[st
                     errs.append(f"{w} columns[{j}]: {f['path']} is {_show(col)}, not a list")
                     continue
                 lengths.add(len(col))
-                errs += _check_column(f"{w} columns[{j}]", col, f)
+                errs += _check_column(f"{w} columns[{j}]", col, f) + _codes_check(f"{w} columns[{j}]", f, col)
                 if "unit_path" in f and not isinstance(resolve(sample, f["unit_path"], ex), str):
                     errs.append(f"{w} columns[{j}]: unit_path {f['unit_path']} is not text")
             if len(lengths) > 1:
