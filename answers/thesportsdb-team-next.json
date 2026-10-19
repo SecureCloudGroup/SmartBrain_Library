@@ -4,7 +4,15 @@
   {
    "name": "next_game",
    "label": "Next game",
-   "words": ["next game", "next match", "who do they play", "opponent", "play next", "matchup", "next"],
+   "words": [
+    "next game",
+    "next match",
+    "who do they play",
+    "opponent",
+    "play next",
+    "matchup",
+    "next"
+   ],
    "primary": true,
    "kind": "value",
    "path": "events[0].strEvent",
@@ -14,17 +22,36 @@
   {
    "name": "start",
    "label": "Start",
-   "words": ["when", "what time", "start time", "kickoff", "tip-off", "date", "game time", "next game", "play next"],
+   "words": [
+    "when",
+    "what time",
+    "start time",
+    "kickoff",
+    "tip-off",
+    "date",
+    "game time",
+    "next game",
+    "play next"
+   ],
    "primary": true,
    "kind": "value",
    "path": "events[0].strTimestamp",
-   "type": "time", "utc": true,
+   "type": "time",
+   "utc": true,
    "window": "latest"
   },
   {
    "name": "venue",
    "label": "Venue",
-   "words": ["where", "venue", "stadium", "arena", "field", "next game", "play next"],
+   "words": [
+    "where",
+    "venue",
+    "stadium",
+    "arena",
+    "field",
+    "next game",
+    "play next"
+   ],
    "primary": true,
    "kind": "value",
    "path": "events[0].strVenue",
@@ -34,7 +61,12 @@
   {
    "name": "home",
    "label": "Home team",
-   "words": ["home", "home team", "home game", "at home"],
+   "words": [
+    "home",
+    "home team",
+    "home game",
+    "at home"
+   ],
    "kind": "value",
    "path": "events[0].strHomeTeam",
    "type": "text",
@@ -43,7 +75,13 @@
   {
    "name": "away",
    "label": "Away team",
-   "words": ["away", "away team", "away game", "on the road", "visitors"],
+   "words": [
+    "away",
+    "away team",
+    "away game",
+    "on the road",
+    "visitors"
+   ],
    "kind": "value",
    "path": "events[0].strAwayTeam",
    "type": "text",
@@ -51,5 +89,5 @@
   }
  ],
  "sample_url": "https://www.thesportsdb.com/api/v1/json/123/eventsnext.php?id=134949",
- "checked": "2026-09-29"
+ "checked": "2026-10-19"
 }

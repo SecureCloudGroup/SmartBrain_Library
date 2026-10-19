@@ -90,7 +90,7 @@
   }
  ],
  "sample_url": "https://api.nal.usda.gov/fdc/v1/foods/search?query=banana&pageSize=5&dataType=Foundation,SR%20Legacy&api_key=DEMO_KEY",
- "checked": "2026-10-06",
+ "checked": "2026-10-19",
  "draft_meta": {
   "tool": "claude-cli",
   "model": "claude-sonnet-4-6",

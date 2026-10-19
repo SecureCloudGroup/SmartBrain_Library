@@ -106,5 +106,5 @@
     }
   ],
   "sample_url": "https://air-quality-api.open-meteo.com/v1/air-quality?latitude=32.7765&longitude=-79.9311&current=us_aqi,pm2_5,pm10,ozone&hourly=us_aqi&timezone=auto",
-  "checked": "2026-09-28"
+  "checked": "2026-10-19"
 }

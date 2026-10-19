@@ -60,5 +60,5 @@
     }
   ],
   "sample_url": "https://api.github.com/advisories?per_page=20&type=reviewed",
-  "checked": "2026-09-28"
+  "checked": "2026-10-19"
 }

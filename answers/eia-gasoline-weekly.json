@@ -87,5 +87,6 @@
     }
   ],
   "sample_url": "https://api.eia.gov/v2/petroleum/pri/gnd/data/?api_key=DEMO_KEY&frequency=weekly&data[0]=value&facets[product][]=EPMR&facets[duoarea][]=NUS&sort[0][column]=period&sort[0][direction]=desc&length=12",
-  "checked": "2026-09-29"
+  "checked": "2026-09-29",
+  "last_failure": "2026-10-19"
 }

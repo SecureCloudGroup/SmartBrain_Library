@@ -56,5 +56,6 @@
     }
   ],
   "sample_url": "https://api.eia.gov/v2/electricity/rto/fuel-type-data/data/?api_key=DEMO_KEY&frequency=hourly&data[0]=value&facets[respondent][]=CISO&sort[0][column]=period&sort[0][direction]=desc&length=48",
-  "checked": "2026-09-28"
+  "checked": "2026-09-28",
+  "last_failure": "2026-10-19"
 }

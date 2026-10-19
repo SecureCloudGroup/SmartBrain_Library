@@ -77,5 +77,5 @@
     }
   ],
   "sample_url": "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?application=SmartBrain&station=ACT6651&product=currents_predictions&interval=MAX_SLACK&begin_date=20260927&range=24&time_zone=lst_ldt&units=english&format=json",
-  "checked": "2026-09-28"
+  "checked": "2026-10-19"
 }

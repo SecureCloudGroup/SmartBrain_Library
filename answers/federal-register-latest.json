@@ -69,5 +69,5 @@
     }
   ],
   "sample_url": "https://www.federalregister.gov/api/v1/documents.json?per_page=20&order=newest&conditions[agencies][]=environmental-protection-agency",
-  "checked": "2026-09-28"
+  "checked": "2026-10-19"
 }

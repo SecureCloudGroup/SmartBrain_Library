@@ -4,21 +4,51 @@
   {
    "name": "table",
    "label": "Table (top five)",
-   "words": ["table", "standings", "league table", "top five", "top 5", "points", "who leads", "first place", "top of the table"],
+   "words": [
+    "table",
+    "standings",
+    "league table",
+    "top five",
+    "top 5",
+    "points",
+    "who leads",
+    "first place",
+    "top of the table"
+   ],
    "primary": true,
    "kind": "list",
    "path": "table",
    "row": [
-    {"path": "intRank", "label": "#", "type": "number"},
-    {"path": "strTeam", "label": "Team", "type": "text"},
-    {"path": "intPoints", "label": "Pts", "type": "number"},
-    {"path": "strGroup", "label": "Group", "type": "text"}
+    {
+     "path": "intRank",
+     "label": "#",
+     "type": "number"
+    },
+    {
+     "path": "strTeam",
+     "label": "Team",
+     "type": "text"
+    },
+    {
+     "path": "intPoints",
+     "label": "Pts",
+     "type": "number"
+    },
+    {
+     "path": "strGroup",
+     "label": "Group",
+     "type": "text"
+    }
    ]
   },
   {
    "name": "season",
    "label": "Season",
-   "words": ["season", "which season", "year"],
+   "words": [
+    "season",
+    "which season",
+    "year"
+   ],
    "kind": "value",
    "path": "table[0].strSeason",
    "type": "text",
@@ -27,7 +57,12 @@
   {
    "name": "updated",
    "label": "Updated",
-   "words": ["updated", "as of", "last updated", "when"],
+   "words": [
+    "updated",
+    "as of",
+    "last updated",
+    "when"
+   ],
    "kind": "value",
    "path": "table[0].dateUpdated",
    "type": "time",
@@ -35,5 +70,5 @@
   }
  ],
  "sample_url": "https://www.thesportsdb.com/api/v1/json/123/lookuptable.php?l=4328",
- "checked": "2026-09-29"
+ "checked": "2026-10-19"
 }

@@ -77,5 +77,5 @@
     }
   ],
   "sample_url": "https://api.nhtsa.gov/recalls/recallsByVehicle?make=honda&model=accord&modelYear=2020",
-  "checked": "2026-09-28"
+  "checked": "2026-10-19"
 }

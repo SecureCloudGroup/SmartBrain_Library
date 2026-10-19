@@ -178,5 +178,5 @@
     }
   ],
   "sample_url": "https://marine-api.open-meteo.com/v1/marine?latitude=32.7765&longitude=-79.80&current=wave_height,wave_direction,wave_period,swell_wave_height,swell_wave_direction,swell_wave_period,sea_surface_temperature&hourly=wave_height&length_unit=imperial&temperature_unit=fahrenheit&timezone=auto",
-  "checked": "2026-09-29"
+  "checked": "2026-10-19"
 }

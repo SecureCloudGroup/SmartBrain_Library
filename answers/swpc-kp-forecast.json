@@ -4,46 +4,117 @@
   {
    "name": "forecast",
    "label": "Forecast Kp (3-hour windows)",
-   "words": ["forecast", "tonight", "tomorrow", "aurora", "northern lights", "kp forecast", "kp", "geomagnetic storm", "will i see", "next 3 days"],
+   "words": [
+    "forecast",
+    "tonight",
+    "tomorrow",
+    "aurora",
+    "northern lights",
+    "kp forecast",
+    "kp",
+    "geomagnetic storm",
+    "will i see",
+    "next 3 days"
+   ],
    "primary": true,
    "kind": "list",
    "path": "items",
-   "filter": {"path": "observed", "equals": "predicted"},
+   "filter": {
+    "path": "observed",
+    "equals": "predicted"
+   },
    "row": [
-    {"path": "time_tag", "label": "Window starts", "type": "time", "utc": true},
-    {"path": "kp", "label": "Kp", "type": "number", "unit": "Kp"}
+    {
+     "path": "time_tag",
+     "label": "Window starts",
+     "type": "time",
+     "utc": true
+    },
+    {
+     "path": "kp",
+     "label": "Kp",
+     "type": "number",
+     "unit": "Kp"
+    }
    ],
-   "axis": {"cell": "time_tag", "step": "hour"}
+   "axis": {
+    "cell": "time_tag",
+    "step": "hour"
+   }
   },
   {
    "name": "today",
    "label": "Kp estimate today",
-   "words": ["today", "right now", "now", "current kp", "estimated"],
+   "words": [
+    "today",
+    "right now",
+    "now",
+    "current kp",
+    "estimated"
+   ],
    "kind": "list",
    "path": "items",
-   "filter": {"path": "observed", "equals": "estimated"},
+   "filter": {
+    "path": "observed",
+    "equals": "estimated"
+   },
    "row": [
-    {"path": "time_tag", "label": "Window starts", "type": "time", "utc": true},
-    {"path": "kp", "label": "Kp", "type": "number", "unit": "Kp"}
+    {
+     "path": "time_tag",
+     "label": "Window starts",
+     "type": "time",
+     "utc": true
+    },
+    {
+     "path": "kp",
+     "label": "Kp",
+     "type": "number",
+     "unit": "Kp"
+    }
    ],
    "may_be_empty": true,
-   "axis": {"cell": "time_tag", "step": "hour"}
+   "axis": {
+    "cell": "time_tag",
+    "step": "hour"
+   }
   },
   {
    "name": "observed",
    "label": "Kp observed (last week)",
-   "words": ["observed", "last night", "past week", "history", "recent"],
+   "words": [
+    "observed",
+    "last night",
+    "past week",
+    "history",
+    "recent"
+   ],
    "kind": "list",
    "path": "items",
-   "filter": {"path": "observed", "equals": "observed"},
+   "filter": {
+    "path": "observed",
+    "equals": "observed"
+   },
    "row": [
-    {"path": "time_tag", "label": "Window starts", "type": "time", "utc": true},
-    {"path": "kp", "label": "Kp", "type": "number", "unit": "Kp"}
+    {
+     "path": "time_tag",
+     "label": "Window starts",
+     "type": "time",
+     "utc": true
+    },
+    {
+     "path": "kp",
+     "label": "Kp",
+     "type": "number",
+     "unit": "Kp"
+    }
    ],
    "newest_first": true,
-   "axis": {"cell": "time_tag", "step": "hour"}
+   "axis": {
+    "cell": "time_tag",
+    "step": "hour"
+   }
   }
  ],
  "sample_url": "https://services.swpc.noaa.gov/products/noaa-planetary-k-index-forecast.json",
- "checked": "2026-09-29"
+ "checked": "2026-10-19"
 }

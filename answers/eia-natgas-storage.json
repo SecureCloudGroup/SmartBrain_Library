@@ -73,5 +73,6 @@
     }
   ],
   "sample_url": "https://api.eia.gov/v2/natural-gas/stor/wkly/data/?api_key=DEMO_KEY&frequency=weekly&data[0]=value&facets[series][]=NW2_EPG0_SWO_R48_BCF&sort[0][column]=period&sort[0][direction]=desc&length=20",
-  "checked": "2026-09-28"
+  "checked": "2026-09-28",
+  "last_failure": "2026-10-19"
 }

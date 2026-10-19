@@ -57,5 +57,5 @@
     }
   ],
   "sample_url": "https://eonet.gsfc.nasa.gov/api/v3/events?status=open&limit=25",
-  "checked": "2026-09-28"
+  "checked": "2026-10-19"
 }

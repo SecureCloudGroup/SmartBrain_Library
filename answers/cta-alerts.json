@@ -48,5 +48,5 @@
   }
  ],
  "sample_url": "https://www.transitchicago.com/api/1.0/alerts.aspx?outputType=JSON&activeonly=true&accessibility=false&routeid=red,blue,brn,g,org,p,pink,y",
- "checked": "2026-09-29"
+ "checked": "2026-10-19"
 }

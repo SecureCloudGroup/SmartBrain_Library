@@ -69,5 +69,6 @@
     }
   ],
   "sample_url": "https://rss.marketingtools.apple.com/api/v2/us/music/most-played/25/albums.json",
-  "checked": "2026-09-28"
+  "checked": "2026-09-28",
+  "last_failure": "2026-10-19"
 }

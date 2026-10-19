@@ -61,5 +61,5 @@
     }
   ],
   "sample_url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&latitude=37.77&longitude=-122.42&maxradiuskm=200&minmagnitude=2.5&starttime=2026-09-01&orderby=time",
-  "checked": "2026-09-28"
+  "checked": "2026-10-19"
 }

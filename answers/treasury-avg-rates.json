@@ -60,5 +60,5 @@
     }
   ],
   "sample_url": "https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/avg_interest_rates?sort=-record_date&page[size]=20",
-  "checked": "2026-09-28"
+  "checked": "2026-10-19"
 }

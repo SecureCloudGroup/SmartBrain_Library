@@ -81,5 +81,5 @@
     }
   ],
   "sample_url": "https://statsapi.mlb.com/api/v1/standings?leagueId=103,104&standingsTypes=wildCard",
-  "checked": "2026-09-29"
+  "checked": "2026-10-19"
 }
