@@ -56,5 +56,5 @@
     }
   ],
   "sample_url": "https://clinicaltrials.gov/api/v2/studies?query.cond=diabetes&filter.overallStatus=RECRUITING&pageSize=10&sort=LastUpdatePostDate:desc",
-  "checked": "2026-09-28"
+  "checked": "2026-10-26"
 }

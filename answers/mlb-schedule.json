@@ -104,5 +104,5 @@
     }
   ],
   "sample_url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&date=2026-09-27&hydrate=linescore",
-  "checked": "2026-09-28"
+  "checked": "2026-10-26"
 }

@@ -221,5 +221,5 @@
     }
   ],
   "sample_url": "https://statsapi.mlb.com/api/v1/standings?leagueId=103,104&standingsTypes=regularSeason",
-  "checked": "2026-09-28"
+  "checked": "2026-10-26"
 }

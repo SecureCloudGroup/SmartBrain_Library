@@ -79,5 +79,5 @@
     }
   ],
   "sample_url": "https://carto.nps.gov/user/nps-yell/api/v2/sql?q=SELECT%20prediction_datetime,offset_amount,offset_unit%20FROM%20geyser_eruptions%20WHERE%20npmap_id=%27ee5bf30e-4594-4bc0-91ce-452b603743ea%27%20AND%20archived=false%20ORDER%20BY%20prediction_datetime%20DESC%20LIMIT%201",
-  "checked": "2026-09-29"
+  "checked": "2026-10-26"
 }

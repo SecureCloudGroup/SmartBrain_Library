@@ -84,5 +84,5 @@
     }
   ],
   "sample_url": "https://ssd-api.jpl.nasa.gov/cad.api?dist-max=0.05&date-min=now&sort=date&limit=20",
-  "checked": "2026-09-28"
+  "checked": "2026-10-26"
 }

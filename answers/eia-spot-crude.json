@@ -55,5 +55,6 @@
     }
   ],
   "sample_url": "https://api.eia.gov/v2/petroleum/pri/spt/data/?api_key=DEMO_KEY&frequency=daily&data[0]=value&facets[series][]=RBRTE&facets[series][]=RWTC&sort[0][column]=period&sort[0][direction]=desc&length=20",
-  "checked": "2026-09-28"
+  "checked": "2026-09-28",
+  "last_failure": "2026-10-26"
 }

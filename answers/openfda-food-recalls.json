@@ -57,5 +57,5 @@
     }
   ],
   "sample_url": "https://api.fda.gov/food/enforcement.json?sort=report_date:desc&limit=20",
-  "checked": "2026-09-28"
+  "checked": "2026-10-26"
 }

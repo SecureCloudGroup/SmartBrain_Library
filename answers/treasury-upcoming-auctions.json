@@ -63,5 +63,5 @@
     }
   ],
   "sample_url": "https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/od/upcoming_auctions?filter=auction_date:gte:2026-09-28&sort=auction_date&page[size]=20",
-  "checked": "2026-09-28"
+  "checked": "2026-10-26"
 }

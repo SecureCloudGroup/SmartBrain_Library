@@ -55,5 +55,5 @@
     }
   ],
   "sample_url": "https://api.tidesandcurrents.noaa.gov/mdapi/prod/webapi/stations.json?type=tidepredictions",
-  "checked": "2026-09-28"
+  "checked": "2026-10-26"
 }

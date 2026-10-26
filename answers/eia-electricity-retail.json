@@ -79,5 +79,6 @@
     }
   ],
   "sample_url": "https://api.eia.gov/v2/electricity/retail-sales/data/?api_key=DEMO_KEY&frequency=monthly&data[0]=price&facets[stateid][]=SC&facets[sectorid][]=RES&sort[0][column]=period&sort[0][direction]=desc&length=12",
-  "checked": "2026-09-28"
+  "checked": "2026-09-28",
+  "last_failure": "2026-10-26"
 }

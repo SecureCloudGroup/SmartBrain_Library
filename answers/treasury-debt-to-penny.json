@@ -103,5 +103,5 @@
     }
   ],
   "sample_url": "https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/debt_to_penny?sort=-record_date&page[size]=10",
-  "checked": "2026-09-28"
+  "checked": "2026-10-26"
 }

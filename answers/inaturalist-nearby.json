@@ -62,5 +62,5 @@
     }
   ],
   "sample_url": "https://api.inaturalist.org/v1/observations?lat=32.7765&lng=-79.9311&radius=10&order_by=observed_on&per_page=20",
-  "checked": "2026-09-28"
+  "checked": "2026-10-26"
 }
