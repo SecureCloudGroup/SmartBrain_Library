@@ -22,6 +22,11 @@ TERMS = ("public_domain", "open_license", "terms_allow", "unverified")
 CADENCE = ("realtime", "minutes", "hourly", "daily", "weekly", "monthly", "quarterly", "annual", "irregular", "static")
 VALIDATION = ("unvalidated", "ok", "degraded", "failed", "refused")
 WATER = ("ocean_coastal",)  # coverage.water: the source has data only at sea and on the coast (open-meteo-marine)
+# access.limits: the free plan's documented request limits, each a window of {requests, seconds}. A monthly quota is
+# written as the longest month (31 days), so a refresh that fits it fits every month.
+LIMITS_MAX = 4
+LIMIT_REQUESTS_MAX = 10_000_000
+LIMIT_SECONDS_MAX = 31 * 86400
 
 REQUIRED = ("id", "name", "description", "provider", "tier", "categories", "kinds", "coverage", "access", "terms",
             "freshness", "origin")
@@ -149,6 +154,38 @@ def _host_value_problems(value: str) -> list[str]:
     return list(dict.fromkeys(out))
 
 
+def _whole(value: object, top: int) -> bool:
+    return isinstance(value, int) and not isinstance(value, bool) and 1 <= value <= top
+
+
+def limit_problems(limits: object) -> list[str]:
+    """What is wrong with a record's ``access.limits`` (an empty list when nothing is).
+
+    ``access.limits`` is the free plan's documented request limits: 1 to ``LIMITS_MAX`` windows, each
+    ``{"requests": n, "seconds": w}`` (Alpha Vantage's free key is ``[{"requests": 1, "seconds": 1},
+    {"requests": 25, "seconds": 86400}]``). A limit counts per key for a keyed source and per address for a keyless
+    one. The app reads it to pick a source whose free plan covers how often a card refreshes. Left out, the limit is
+    unknown, and the app treats an unknown limit as fitting."""
+    if not isinstance(limits, list) or not 1 <= len(limits) <= LIMITS_MAX:
+        return [f"access.limits must be a list of 1 to {LIMITS_MAX} {{requests, seconds}} windows"]
+    errs: list[str] = []
+    windows: set[int] = set()
+    for i, limit in enumerate(limits):  # bounded: at most LIMITS_MAX
+        if not isinstance(limit, dict) or set(limit) != {"requests", "seconds"}:
+            errs.append(f"access.limits[{i}] must be {{requests, seconds}} and nothing else")
+            continue
+        if not _whole(limit["requests"], LIMIT_REQUESTS_MAX):
+            errs.append(f"access.limits[{i}].requests must be a whole number from 1 to {LIMIT_REQUESTS_MAX:,}")
+        if not _whole(limit["seconds"], LIMIT_SECONDS_MAX):
+            errs.append(f"access.limits[{i}].seconds must be a whole number from 1 to {LIMIT_SECONDS_MAX:,} "
+                        "(31 days)")
+        elif limit["seconds"] in windows:
+            errs.append(f"access.limits[{i}]: another limit has the same {limit['seconds']} s window")
+        else:
+            windows.add(limit["seconds"])
+    return errs
+
+
 def validate_record(r: dict) -> list[str]:
     """Return a list of problems; an empty list means the record is well-formed."""
     errs: list[str] = []
@@ -187,6 +224,8 @@ def validate_record(r: dict) -> list[str]:
         if not _PARAM.search(str(value)):
             errs.append(f"access.headers.{name}: a fixed header is never sent by the app — use an address "
                         "or format that needs none")
+    if "limits" in a:
+        errs += limit_problems(a["limits"])
     names = set(_PARAM.findall(a.get("url_template") or ""))
     declared = {q["name"] for q in a.get("params", [])}
     if names - declared:
